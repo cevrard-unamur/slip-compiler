@@ -17,21 +17,24 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitRoot(PlayPlusParser.RootContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PlayPlusParser#programme}.
+	 * Visit a parse tree produced by the {@code mainProgram}
+	 * labeled alternative in {@link PlayPlusParser#programme}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitProgramme(PlayPlusParser.ProgrammeContext ctx);
+	T visitMainProgram(PlayPlusParser.MainProgramContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PlayPlusParser#mapImport}.
+	 * Visit a parse tree produced by the {@code mapImportation}
+	 * labeled alternative in {@link PlayPlusParser#mapImport}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMapImport(PlayPlusParser.MapImportContext ctx);
+	T visitMapImportation(PlayPlusParser.MapImportationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PlayPlusParser#mainFunction}.
+	 * Visit a parse tree produced by the {@code mainFucntion}
+	 * labeled alternative in {@link PlayPlusParser#mainFunction}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMainFunction(PlayPlusParser.MainFunctionContext ctx);
+	T visitMainFucntion(PlayPlusParser.MainFucntionContext ctx);
 }

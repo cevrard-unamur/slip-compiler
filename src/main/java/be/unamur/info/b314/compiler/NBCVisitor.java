@@ -28,47 +28,4 @@ public class NBCVisitor extends PlayPlusBaseVisitor<Object> {
         printer.printStop(); // Stop execution
         return null;
     }
-
-    @Override
-    public Object visitAffectInstr(PlayPlusParser.AffectInstrContext ctx) {
-        String var = ctx.ID().getText();
-        /* Here you need to print the instructions  */
-        printer.printLoadAdress(var, 0);
-        ctx.expression().accept(this); // Compute expression
-        return null;
-    }
-
-    @Override
-    public Object visitConstantExpr(PlayPlusParser.ConstantExprContext ctx) {
-        int value = Integer.parseInt(ctx.NUMBER().getText()); // Get value
-        printer.printLoadConstant(NBCCodeTypes.Int, value); // Load constant value
-        return null;
-    }
-
-    @Override
-    public Object visitVariableExpr(PlayPlusParser.VariableExprContext ctx) {
-        String var = ctx.ID().getText();
-        printer.printLoad(NBCCodeTypes.Int, var);
-        /* Here you need to print the variables  */
-        return null;
-    }
-
- //   @Override
-    public Integer visitPlusMinusExpr(PlayPlusParser.PlusMinusExprContext ctx) {
-        String nLeft = ctx.left.getText();
-        String nRight = ctx.right.getText();
-        String operator = ctx.op.getText();
-        PlayPlusParser.AffectInstrContext instr = (PlayPlusParser.AffectInstrContext) ctx.parent;
-        String var = instr.ID().getText();
-        int value = 0;
-        if(operator.equals("+")){
-            value = Integer.parseInt(nLeft) + Integer.parseInt(nRight); // Get value
-            printer.printAdd(NBCCodeTypes.Int, var, value);
-        } else {
-            value = Integer.parseInt(nLeft) - Integer.parseInt(nRight); // Get value
-            printer.printSub(NBCCodeTypes.Int, var, value);
-        }
-        return null;
-    }
-
 }

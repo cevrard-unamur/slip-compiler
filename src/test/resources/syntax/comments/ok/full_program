@@ -1,0 +1,6 @@
+#import "helloworld.map"
+
+main as function(): void
+do
+
+end
