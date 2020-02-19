@@ -1,20 +1,27 @@
 lexer grammar PlayPlusWords;
 
 // Words
+// Map importation
+IMPORT: '#import';
+QUOTE: '"';
+MAPFILE: ID + '.map';
 
-AFFECT: 'affect';
+// Functions
+MAIN: 'main';
+AS: 'as';
+FUNCTION: 'function';
 LPAR: '(';
 RPAR: ')';
-COMMA: ',';
-PLUS: '+';
-MINUS: '-';
+COLON: ':';
+VOID: 'void';
+DO: 'do';
+END: 'end';
 
 // Identifiers
-
 ID: LETTER (LETTER | DIGIT)* ;
-
 NUMBER: (DIGIT)+;
 
+// Fragments
 fragment LETTER: 'A'..'Z' | 'a'..'z' ;
 fragment DIGIT: '0'..'9' ;
 

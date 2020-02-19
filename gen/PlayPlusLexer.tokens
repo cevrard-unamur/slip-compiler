@@ -1,0 +1,17 @@
+AFFECT=1
+LPAR=2
+RPAR=3
+COMMA=4
+PLUS=5
+MINUS=6
+ID=7
+NUMBER=8
+COMMENT=9
+NEWLINE=10
+WS=11
+'affect'=1
+'('=2
+')'=3
+','=4
+'+'=5
+'-'=6

@@ -1,0 +1,5 @@
+; Start instructions
+mov x 0
+ldc sdword 5
+; End instructions
+
