@@ -18,8 +18,8 @@ public class PlayPlusParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		IMPORT=1, QUOTE=2, MAPFILE=3, MAIN=4, AS=5, FUNCTION=6, LPAR=7, RPAR=8, 
-		COLON=9, VOID=10, DO=11, END=12, ID=13, NUMBER=14, COMMENT=15, NEWLINE=16, 
-		WS=17;
+		COLON=9, VOID=10, DO=11, END=12, ID=13, NUMBER=14, COMMENT_MULTILINE=15, 
+		COMMENT_SINGLELINE=16, NEWLINE=17, WS=18;
 	public static final int
 		RULE_root = 0, RULE_programme = 1, RULE_mapImport = 2, RULE_mainFunction = 3;
 	public static final String[] ruleNames = {
@@ -32,8 +32,8 @@ public class PlayPlusParser extends Parser {
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, "IMPORT", "QUOTE", "MAPFILE", "MAIN", "AS", "FUNCTION", "LPAR", 
-		"RPAR", "COLON", "VOID", "DO", "END", "ID", "NUMBER", "COMMENT", "NEWLINE", 
-		"WS"
+		"RPAR", "COLON", "VOID", "DO", "END", "ID", "NUMBER", "COMMENT_MULTILINE", 
+		"COMMENT_SINGLELINE", "NEWLINE", "WS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -129,31 +129,43 @@ public class PlayPlusParser extends Parser {
 	}
 
 	public static class ProgrammeContext extends ParserRuleContext {
+		public ProgrammeContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_programme; }
+	 
+		public ProgrammeContext() { }
+		public void copyFrom(ProgrammeContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class MainProgramContext extends ProgrammeContext {
 		public MapImportContext mapImport() {
 			return getRuleContext(MapImportContext.class,0);
 		}
 		public MainFunctionContext mainFunction() {
 			return getRuleContext(MainFunctionContext.class,0);
 		}
-		public List<TerminalNode> COMMENT() { return getTokens(PlayPlusParser.COMMENT); }
-		public TerminalNode COMMENT(int i) {
-			return getToken(PlayPlusParser.COMMENT, i);
+		public List<TerminalNode> COMMENT_MULTILINE() { return getTokens(PlayPlusParser.COMMENT_MULTILINE); }
+		public TerminalNode COMMENT_MULTILINE(int i) {
+			return getToken(PlayPlusParser.COMMENT_MULTILINE, i);
 		}
-		public ProgrammeContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
+		public List<TerminalNode> COMMENT_SINGLELINE() { return getTokens(PlayPlusParser.COMMENT_SINGLELINE); }
+		public TerminalNode COMMENT_SINGLELINE(int i) {
+			return getToken(PlayPlusParser.COMMENT_SINGLELINE, i);
 		}
-		@Override public int getRuleIndex() { return RULE_programme; }
+		public MainProgramContext(ProgrammeContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterProgramme(this);
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterMainProgram(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitProgramme(this);
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitMainProgram(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitProgramme(this);
+			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitMainProgram(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -163,23 +175,24 @@ public class PlayPlusParser extends Parser {
 		enterRule(_localctx, 2, RULE_programme);
 		int _la;
 		try {
+			_localctx = new MainProgramContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(10);
 			mapImport();
-			setState(17);
+			setState(23);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 			case 1:
 				{
 				setState(14);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while (_la==COMMENT) {
+				while (_la==COMMENT_MULTILINE) {
 					{
 					{
 					setState(11);
-					match(COMMENT);
+					match(COMMENT_MULTILINE);
 					}
 					}
 					setState(16);
@@ -188,8 +201,26 @@ public class PlayPlusParser extends Parser {
 				}
 				}
 				break;
+			case 2:
+				{
+				setState(20);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				while (_la==COMMENT_SINGLELINE) {
+					{
+					{
+					setState(17);
+					match(COMMENT_SINGLELINE);
+					}
+					}
+					setState(22);
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+				}
+				}
+				break;
 			}
-			setState(19);
+			setState(25);
 			mainFunction();
 			}
 		}
@@ -205,27 +236,35 @@ public class PlayPlusParser extends Parser {
 	}
 
 	public static class MapImportContext extends ParserRuleContext {
+		public MapImportContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_mapImport; }
+	 
+		public MapImportContext() { }
+		public void copyFrom(MapImportContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class MapImportationContext extends MapImportContext {
 		public TerminalNode IMPORT() { return getToken(PlayPlusParser.IMPORT, 0); }
 		public List<TerminalNode> QUOTE() { return getTokens(PlayPlusParser.QUOTE); }
 		public TerminalNode QUOTE(int i) {
 			return getToken(PlayPlusParser.QUOTE, i);
 		}
 		public TerminalNode MAPFILE() { return getToken(PlayPlusParser.MAPFILE, 0); }
-		public MapImportContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_mapImport; }
+		public MapImportationContext(MapImportContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterMapImport(this);
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterMapImportation(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitMapImport(this);
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitMapImportation(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitMapImport(this);
+			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitMapImportation(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -234,15 +273,16 @@ public class PlayPlusParser extends Parser {
 		MapImportContext _localctx = new MapImportContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_mapImport);
 		try {
+			_localctx = new MapImportationContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(21);
+			setState(27);
 			match(IMPORT);
-			setState(22);
+			setState(28);
 			match(QUOTE);
-			setState(23);
+			setState(29);
 			match(MAPFILE);
-			setState(24);
+			setState(30);
 			match(QUOTE);
 			}
 		}
@@ -258,6 +298,17 @@ public class PlayPlusParser extends Parser {
 	}
 
 	public static class MainFunctionContext extends ParserRuleContext {
+		public MainFunctionContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_mainFunction; }
+	 
+		public MainFunctionContext() { }
+		public void copyFrom(MainFunctionContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class MainFucntionContext extends MainFunctionContext {
 		public TerminalNode MAIN() { return getToken(PlayPlusParser.MAIN, 0); }
 		public TerminalNode AS() { return getToken(PlayPlusParser.AS, 0); }
 		public TerminalNode FUNCTION() { return getToken(PlayPlusParser.FUNCTION, 0); }
@@ -267,21 +318,18 @@ public class PlayPlusParser extends Parser {
 		public TerminalNode VOID() { return getToken(PlayPlusParser.VOID, 0); }
 		public TerminalNode DO() { return getToken(PlayPlusParser.DO, 0); }
 		public TerminalNode END() { return getToken(PlayPlusParser.END, 0); }
-		public MainFunctionContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_mainFunction; }
+		public MainFucntionContext(MainFunctionContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterMainFunction(this);
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterMainFucntion(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitMainFunction(this);
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitMainFucntion(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitMainFunction(this);
+			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitMainFucntion(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -290,25 +338,26 @@ public class PlayPlusParser extends Parser {
 		MainFunctionContext _localctx = new MainFunctionContext(_ctx, getState());
 		enterRule(_localctx, 6, RULE_mainFunction);
 		try {
+			_localctx = new MainFucntionContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(26);
-			match(MAIN);
-			setState(27);
-			match(AS);
-			setState(28);
-			match(FUNCTION);
-			setState(29);
-			match(LPAR);
-			setState(30);
-			match(RPAR);
-			setState(31);
-			match(COLON);
 			setState(32);
-			match(VOID);
+			match(MAIN);
 			setState(33);
-			match(DO);
+			match(AS);
 			setState(34);
+			match(FUNCTION);
+			setState(35);
+			match(LPAR);
+			setState(36);
+			match(RPAR);
+			setState(37);
+			match(COLON);
+			setState(38);
+			match(VOID);
+			setState(39);
+			match(DO);
+			setState(40);
 			match(END);
 			}
 		}
@@ -324,16 +373,18 @@ public class PlayPlusParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\23\'\4\2\t\2\4\3"+
-		"\t\3\4\4\t\4\4\5\t\5\3\2\3\2\3\3\3\3\7\3\17\n\3\f\3\16\3\22\13\3\5\3\24"+
-		"\n\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3"+
-		"\5\3\5\2\2\6\2\4\6\b\2\2$\2\n\3\2\2\2\4\f\3\2\2\2\6\27\3\2\2\2\b\34\3"+
-		"\2\2\2\n\13\5\4\3\2\13\3\3\2\2\2\f\23\5\6\4\2\r\17\7\21\2\2\16\r\3\2\2"+
-		"\2\17\22\3\2\2\2\20\16\3\2\2\2\20\21\3\2\2\2\21\24\3\2\2\2\22\20\3\2\2"+
-		"\2\23\20\3\2\2\2\23\24\3\2\2\2\24\25\3\2\2\2\25\26\5\b\5\2\26\5\3\2\2"+
-		"\2\27\30\7\3\2\2\30\31\7\4\2\2\31\32\7\5\2\2\32\33\7\4\2\2\33\7\3\2\2"+
-		"\2\34\35\7\6\2\2\35\36\7\7\2\2\36\37\7\b\2\2\37 \7\t\2\2 !\7\n\2\2!\""+
-		"\7\13\2\2\"#\7\f\2\2#$\7\r\2\2$%\7\16\2\2%\t\3\2\2\2\4\20\23";
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\24-\4\2\t\2\4\3\t"+
+		"\3\4\4\t\4\4\5\t\5\3\2\3\2\3\3\3\3\7\3\17\n\3\f\3\16\3\22\13\3\3\3\7\3"+
+		"\25\n\3\f\3\16\3\30\13\3\5\3\32\n\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\3\5\3"+
+		"\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\2\2\6\2\4\6\b\2\2,\2\n\3\2\2\2"+
+		"\4\f\3\2\2\2\6\35\3\2\2\2\b\"\3\2\2\2\n\13\5\4\3\2\13\3\3\2\2\2\f\31\5"+
+		"\6\4\2\r\17\7\21\2\2\16\r\3\2\2\2\17\22\3\2\2\2\20\16\3\2\2\2\20\21\3"+
+		"\2\2\2\21\32\3\2\2\2\22\20\3\2\2\2\23\25\7\22\2\2\24\23\3\2\2\2\25\30"+
+		"\3\2\2\2\26\24\3\2\2\2\26\27\3\2\2\2\27\32\3\2\2\2\30\26\3\2\2\2\31\20"+
+		"\3\2\2\2\31\26\3\2\2\2\31\32\3\2\2\2\32\33\3\2\2\2\33\34\5\b\5\2\34\5"+
+		"\3\2\2\2\35\36\7\3\2\2\36\37\7\4\2\2\37 \7\5\2\2 !\7\4\2\2!\7\3\2\2\2"+
+		"\"#\7\6\2\2#$\7\7\2\2$%\7\b\2\2%&\7\t\2\2&\'\7\n\2\2\'(\7\13\2\2()\7\f"+
+		"\2\2)*\7\r\2\2*+\7\16\2\2+\t\3\2\2\2\5\20\26\31";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

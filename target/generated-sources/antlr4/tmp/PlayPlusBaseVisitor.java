@@ -24,19 +24,19 @@ public class PlayPlusBaseVisitor<T> extends AbstractParseTreeVisitor<T> implemen
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitProgramme(PlayPlusParser.ProgrammeContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMainProgram(PlayPlusParser.MainProgramContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMapImport(PlayPlusParser.MapImportContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMapImportation(PlayPlusParser.MapImportationContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMainFunction(PlayPlusParser.MainFunctionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMainFucntion(PlayPlusParser.MainFucntionContext ctx) { return visitChildren(ctx); }
 }

@@ -18,33 +18,39 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 */
 	void exitRoot(PlayPlusParser.RootContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PlayPlusParser#programme}.
+	 * Enter a parse tree produced by the {@code mainProgram}
+	 * labeled alternative in {@link PlayPlusParser#programme}.
 	 * @param ctx the parse tree
 	 */
-	void enterProgramme(PlayPlusParser.ProgrammeContext ctx);
+	void enterMainProgram(PlayPlusParser.MainProgramContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PlayPlusParser#programme}.
+	 * Exit a parse tree produced by the {@code mainProgram}
+	 * labeled alternative in {@link PlayPlusParser#programme}.
 	 * @param ctx the parse tree
 	 */
-	void exitProgramme(PlayPlusParser.ProgrammeContext ctx);
+	void exitMainProgram(PlayPlusParser.MainProgramContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PlayPlusParser#mapImport}.
+	 * Enter a parse tree produced by the {@code mapImportation}
+	 * labeled alternative in {@link PlayPlusParser#mapImport}.
 	 * @param ctx the parse tree
 	 */
-	void enterMapImport(PlayPlusParser.MapImportContext ctx);
+	void enterMapImportation(PlayPlusParser.MapImportationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PlayPlusParser#mapImport}.
+	 * Exit a parse tree produced by the {@code mapImportation}
+	 * labeled alternative in {@link PlayPlusParser#mapImport}.
 	 * @param ctx the parse tree
 	 */
-	void exitMapImport(PlayPlusParser.MapImportContext ctx);
+	void exitMapImportation(PlayPlusParser.MapImportationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PlayPlusParser#mainFunction}.
+	 * Enter a parse tree produced by the {@code mainFucntion}
+	 * labeled alternative in {@link PlayPlusParser#mainFunction}.
 	 * @param ctx the parse tree
 	 */
-	void enterMainFunction(PlayPlusParser.MainFunctionContext ctx);
+	void enterMainFucntion(PlayPlusParser.MainFucntionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PlayPlusParser#mainFunction}.
+	 * Exit a parse tree produced by the {@code mainFucntion}
+	 * labeled alternative in {@link PlayPlusParser#mainFunction}.
 	 * @param ctx the parse tree
 	 */
-	void exitMainFunction(PlayPlusParser.MainFunctionContext ctx);
+	void exitMainFucntion(PlayPlusParser.MainFucntionContext ctx);
 }

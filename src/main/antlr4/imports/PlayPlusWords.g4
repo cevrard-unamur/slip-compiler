@@ -27,7 +27,8 @@ fragment DIGIT: '0'..'9' ;
 
 // Comments -> ignored
 
-COMMENT: '/*' .*? '*/' -> skip;
+COMMENT_MULTILINE: '/*' .*? '*/' -> skip;
+COMMENT_SINGLELINE: '//' .*? NEWLINE -> skip;
 
 // Whitespaces -> ignored
 

@@ -30,36 +30,40 @@ public class B314commentsSyntaxTest {
     // Serie variables OK
     //
     @Test
-    public void testcomments_comments_everywhere_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/comments/ok/comments_everywhere.b314", testFolder.newFile(), true, "variables: comments_everywhere");
+    public void test_comment_more() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/comments/ok/comment_more", testFolder.newFile(), true, "variables: comment_more");
     }
 
     @Test
-    public void testcomments_empty_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/comments/ok/empty.b314", testFolder.newFile(), true, "variables: empty");
+    public void test_full_program() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/comments/ok/full_program", testFolder.newFile(), true, "variables: full_program");
     }
 
     @Test
-    public void testcomments_empty_multiple_lines_and_tab_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/comments/ok/empty_multiple_lines_and_tab.b314", testFolder.newFile(), true, "variables: empty_multiple_lines_and_tab");
+    public void test_comment_multiline() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/comments/ok/comment_multiline", testFolder.newFile(), true, "variables: comment_multiline");
+    }
+
+    @Test
+    public void test_comment_singleline() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/comments/ok/comment_singleline", testFolder.newFile(), true, "variables: comment_singleline");
     }
 
     //
     // Serie variables KO
     //
     @Test
-    public void testcomments_at_least_one_instruction_in_default_ko() throws Exception {
-        CompilerTestHelper.launchCompilation("/syntax/comments/ko/at_least_one_instruction_in_default.b314", testFolder.newFile(), false, "variables: at_least_one_instruction_in_default");
+    public void test_empty_import() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/comments/ko/empty_import", testFolder.newFile(), false, "variables: empty_import");
     }
 
     @Test
-    public void testcomments_missing_declare_bloc_ko() throws Exception {
-        CompilerTestHelper.launchCompilation("/syntax/comments/ko/missing_declare_bloc.b314", testFolder.newFile(), false, "variables: missing_declare_bloc");
+    public void test_import_string() throws Exception {
+        CompilerTestHelper.launchCompilation("/syntax/comments/ko/import_string", testFolder.newFile(), false, "variables: import_string");
     }
 
     @Test
-    public void testcomments_missing_default_bloc_ko() throws Exception {
-        CompilerTestHelper.launchCompilation("/syntax/comments/ko/missing_default_bloc.b314", testFolder.newFile(), false, "variables: missing_default_bloc");
+    public void test_missing_main_function() throws Exception {
+        CompilerTestHelper.launchCompilation("/syntax/comments/ko/missing_main_function", testFolder.newFile(), false, "variables: missing_main_function");
     }
-
 }

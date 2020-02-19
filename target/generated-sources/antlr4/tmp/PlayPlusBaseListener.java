@@ -28,37 +28,37 @@ public class PlayPlusBaseListener implements PlayPlusListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProgramme(PlayPlusParser.ProgrammeContext ctx) { }
+	@Override public void enterMainProgram(PlayPlusParser.MainProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitProgramme(PlayPlusParser.ProgrammeContext ctx) { }
+	@Override public void exitMainProgram(PlayPlusParser.MainProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMapImport(PlayPlusParser.MapImportContext ctx) { }
+	@Override public void enterMapImportation(PlayPlusParser.MapImportationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMapImport(PlayPlusParser.MapImportContext ctx) { }
+	@Override public void exitMapImportation(PlayPlusParser.MapImportationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMainFunction(PlayPlusParser.MainFunctionContext ctx) { }
+	@Override public void enterMainFucntion(PlayPlusParser.MainFucntionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMainFunction(PlayPlusParser.MainFunctionContext ctx) { }
+	@Override public void exitMainFucntion(PlayPlusParser.MainFucntionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
