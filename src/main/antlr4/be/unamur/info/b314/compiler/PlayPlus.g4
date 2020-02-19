@@ -2,12 +2,10 @@ grammar PlayPlus;
 
 import PlayPlusWords;
 
-root: instruction+;
+root: programme;
 
-instruction: AFFECT LPAR ID COMMA expression RPAR   #affectInstr
-           ;
+programme: mapImport ((COMMENT)*)? mainFunction;
 
-expression: NUMBER                                  #constantExpr
-          | ID                                      #variableExpr
-          | left=expression op=(PLUS|MINUS) right=expression   #plusMinusExpr
-          ;
+mapImport: IMPORT QUOTE MAPFILE QUOTE;
+
+mainFunction: MAIN AS FUNCTION LPAR RPAR COLON VOID DO END;
