@@ -1,0 +1,9 @@
+#import "test.map"
+
+testBoolean as boolean;
+testInteger as Integer;
+
+main as function(): void
+do
+    dig();
+end

@@ -4,18 +4,31 @@ lexer grammar PlayPlusWords;
 // Map importation
 IMPORT: '#import';
 QUOTE: '"';
-MAPFILE: ID + '.map';
+MAPFILE: ID'.map';
 
-// Functions
-MAIN: 'main';
-AS: 'as';
-FUNCTION: 'function';
+// Various
 LPAR: '(';
 RPAR: ')';
 COLON: ':';
+COMMA: ',';
+SEMICOLON: ';';
+RCRO: ']';
+LCRO: '[';
+AS: 'as';
+
+// Functions
+MAIN: 'main';
+FUNCTION: 'function';
 VOID: 'void';
 DO: 'do';
 END: 'end';
+
+// Default actions
+DIG: 'dig()';
+
+// Types
+SCALAR: 'boolean' | 'integer' | 'char';
+RECORD: 'record';
 
 // Identifiers
 ID: LETTER (LETTER | DIGIT)* ;

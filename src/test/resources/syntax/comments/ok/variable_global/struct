@@ -1,0 +1,11 @@
+#import "test.map"
+
+testStructure as record
+    testStructBoolean as boolean;
+    testStructInteger as integer;
+end;
+
+main as function(): void
+do
+    dig();
+end

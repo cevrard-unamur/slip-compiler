@@ -18,39 +18,83 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 */
 	void exitRoot(PlayPlusParser.RootContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code mainProgram}
-	 * labeled alternative in {@link PlayPlusParser#programme}.
+	 * Enter a parse tree produced by {@link PlayPlusParser#programme}.
 	 * @param ctx the parse tree
 	 */
-	void enterMainProgram(PlayPlusParser.MainProgramContext ctx);
+	void enterProgramme(PlayPlusParser.ProgrammeContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code mainProgram}
-	 * labeled alternative in {@link PlayPlusParser#programme}.
+	 * Exit a parse tree produced by {@link PlayPlusParser#programme}.
 	 * @param ctx the parse tree
 	 */
-	void exitMainProgram(PlayPlusParser.MainProgramContext ctx);
+	void exitProgramme(PlayPlusParser.ProgrammeContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code mapImportation}
-	 * labeled alternative in {@link PlayPlusParser#mapImport}.
+	 * Enter a parse tree produced by {@link PlayPlusParser#mapImport}.
 	 * @param ctx the parse tree
 	 */
-	void enterMapImportation(PlayPlusParser.MapImportationContext ctx);
+	void enterMapImport(PlayPlusParser.MapImportContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code mapImportation}
-	 * labeled alternative in {@link PlayPlusParser#mapImport}.
+	 * Exit a parse tree produced by {@link PlayPlusParser#mapImport}.
 	 * @param ctx the parse tree
 	 */
-	void exitMapImportation(PlayPlusParser.MapImportationContext ctx);
+	void exitMapImport(PlayPlusParser.MapImportContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code mainFucntion}
-	 * labeled alternative in {@link PlayPlusParser#mainFunction}.
+	 * Enter a parse tree produced by {@link PlayPlusParser#mainFunction}.
 	 * @param ctx the parse tree
 	 */
-	void enterMainFucntion(PlayPlusParser.MainFucntionContext ctx);
+	void enterMainFunction(PlayPlusParser.MainFunctionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code mainFucntion}
-	 * labeled alternative in {@link PlayPlusParser#mainFunction}.
+	 * Exit a parse tree produced by {@link PlayPlusParser#mainFunction}.
 	 * @param ctx the parse tree
 	 */
-	void exitMainFucntion(PlayPlusParser.MainFucntionContext ctx);
+	void exitMainFunction(PlayPlusParser.MainFunctionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PlayPlusParser#instruction}.
+	 * @param ctx the parse tree
+	 */
+	void enterInstruction(PlayPlusParser.InstructionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlayPlusParser#instruction}.
+	 * @param ctx the parse tree
+	 */
+	void exitInstruction(PlayPlusParser.InstructionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PlayPlusParser#variableDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariableDeclaration(PlayPlusParser.VariableDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlayPlusParser#variableDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariableDeclaration(PlayPlusParser.VariableDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PlayPlusParser#variableType}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariableType(PlayPlusParser.VariableTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlayPlusParser#variableType}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariableType(PlayPlusParser.VariableTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PlayPlusParser#arrayType}.
+	 * @param ctx the parse tree
+	 */
+	void enterArrayType(PlayPlusParser.ArrayTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlayPlusParser#arrayType}.
+	 * @param ctx the parse tree
+	 */
+	void exitArrayType(PlayPlusParser.ArrayTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PlayPlusParser#structure}.
+	 * @param ctx the parse tree
+	 */
+	void enterStructure(PlayPlusParser.StructureContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlayPlusParser#structure}.
+	 * @param ctx the parse tree
+	 */
+	void exitStructure(PlayPlusParser.StructureContext ctx);
 }

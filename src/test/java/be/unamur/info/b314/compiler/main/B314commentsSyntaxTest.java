@@ -31,7 +31,7 @@ public class B314commentsSyntaxTest {
     //
     @Test
     public void test_comment_more() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/comments/ok/comment_more", testFolder.newFile(), true, "variables: comment_more");
+        CompilerTestHelper.launchCompilation("/syntax/comments/ok/comment/more", testFolder.newFile(), true, "variables: comment_more");
     }
 
     @Test
@@ -41,12 +41,12 @@ public class B314commentsSyntaxTest {
 
     @Test
     public void test_comment_multiline() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/comments/ok/comment_multiline", testFolder.newFile(), true, "variables: comment_multiline");
+        CompilerTestHelper.launchCompilation("/syntax/comments/ok/comment/multiline", testFolder.newFile(), true, "variables: comment_multiline");
     }
 
     @Test
     public void test_comment_singleline() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/comments/ok/comment_singleline", testFolder.newFile(), true, "variables: comment_singleline");
+        CompilerTestHelper.launchCompilation("/syntax/comments/ok/comment/singleline", testFolder.newFile(), true, "variables: comment_singleline");
     }
 
     //
@@ -65,5 +65,10 @@ public class B314commentsSyntaxTest {
     @Test
     public void test_missing_main_function() throws Exception {
         CompilerTestHelper.launchCompilation("/syntax/comments/ko/missing_main_function", testFolder.newFile(), false, "variables: missing_main_function");
+    }
+
+    @Test
+    public void test_comment_singleline_incorrect() throws Exception {
+        CompilerTestHelper.launchCompilation("/syntax/comments/ko/comment_singleline_incorrect", testFolder.newFile(), false, "variables: comment_singleline_incorrect");
     }
 }

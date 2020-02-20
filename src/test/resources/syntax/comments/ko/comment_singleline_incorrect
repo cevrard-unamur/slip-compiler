@@ -1,10 +1,7 @@
-/*
-    hello
-*/
-
 #import "helloworld.map"
 
-//hello world
+// hello world
+my comment
 
 main as function(): void
 do
