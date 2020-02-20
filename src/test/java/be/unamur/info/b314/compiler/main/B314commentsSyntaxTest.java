@@ -72,6 +72,12 @@ public class B314commentsSyntaxTest {
     }
 
     @Test
+    public void test_variable_global_array_multi_dimension() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/comments/ok/variable_global/array_multi_dimension",
+                testFolder.newFile(), true, "variables: variable_global_array_multi_dimension");
+    }
+
+    @Test
     public void test_variable_global_struct() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/comments/ok/variable_global/struct",
                 testFolder.newFile(), true, "variables: variable_global_struct");
@@ -102,5 +108,35 @@ public class B314commentsSyntaxTest {
     public void test_comment_singleline_incorrect() throws Exception {
         CompilerTestHelper.launchCompilation("/syntax/comments/ko/comment_singleline_incorrect",
                 testFolder.newFile(), false, "variables: comment_singleline_incorrect");
+    }
+
+    @Test
+    public void test_variable_global_array_missing_comma_2d() throws Exception {
+        CompilerTestHelper.launchCompilation("/syntax/comments/ko/variable_global/array_missing_comma_2d",
+                testFolder.newFile(), false, "variables: variable_global_array_missing_comma_2d");
+    }
+
+    @Test
+    public void test_variable_global_array_no_dimension() throws Exception {
+        CompilerTestHelper.launchCompilation("/syntax/comments/ko/variable_global/array_no_dimension",
+                testFolder.newFile(), false, "variables: variable_global_array_no_dimension");
+    }
+
+    @Test
+    public void test_variable_global_incorrect_name() throws Exception {
+        CompilerTestHelper.launchCompilation("/syntax/comments/ko/variable_global/incorrect_name",
+                testFolder.newFile(), false, "variables: variable_global_incorrect_name");
+    }
+
+    @Test
+    public void test_variable_global_missing_semicolon() throws Exception {
+        CompilerTestHelper.launchCompilation("/syntax/comments/ko/variable_global/missing_semicolon",
+                testFolder.newFile(), false, "variables: variable_global_missing_semicolon");
+    }
+
+    @Test
+    public void test_variable_global_non_existant_type() throws Exception {
+        CompilerTestHelper.launchCompilation("/syntax/comments/ko/variable_global/non_existant_type",
+                testFolder.newFile(), false, "variables: variable_global_non_existant_type");
     }
 }

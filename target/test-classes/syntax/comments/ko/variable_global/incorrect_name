@@ -1,0 +1,8 @@
+#import "test.map"
+
+23testArray as integer;
+
+main as function(): void
+do
+    dig();
+end

@@ -64,4 +64,52 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitStructure(PlayPlusParser.StructureContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#initVariable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInitVariable(PlayPlusParser.InitVariableContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#initArray}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInitArray(PlayPlusParser.InitArrayContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#constDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConstDeclaration(PlayPlusParser.ConstDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#enumDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEnumDeclaration(PlayPlusParser.EnumDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRightExpr(PlayPlusParser.RightExprContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#leftExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLeftExpr(PlayPlusParser.LeftExprContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#assignation}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssignation(PlayPlusParser.AssignationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#actionType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitActionType(PlayPlusParser.ActionTypeContext ctx);
 }
