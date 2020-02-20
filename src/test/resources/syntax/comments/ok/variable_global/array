@@ -1,6 +1,6 @@
 #import "test.map"
 
-testArray as integer[3, 4];
+testArray as integer[3];
 
 main as function(): void
 do

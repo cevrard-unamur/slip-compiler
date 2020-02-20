@@ -1,8 +1,10 @@
+be/unamur/info/b314/compiler/PlayPlusParser$InitVariableContext.class
 tmp/PlayPlusParser$InstructionContext.class
 tmp/PlayPlusParser$VariableTypeContext.class
 tmp/PlayPlusParser$VariableDeclarationContext.class
 be/unamur/info/b314/compiler/PlayPlusBaseListener.class
 be/unamur/info/b314/compiler/NBCVisitor.class
+be/unamur/info/b314/compiler/PlayPlusParser$EnumDeclarationContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$VariableTypeContext.class
 tmp/PlayPlusBaseListener.class
 be/unamur/info/b314/compiler/NBCPrinter.class
@@ -13,10 +15,16 @@ be/unamur/info/b314/compiler/SymTableFiller.class
 be/unamur/info/b314/compiler/PlayPlusParser$InstructionContext.class
 tmp/PlayPlusBaseVisitor.class
 be/unamur/info/b314/compiler/exception/ParsingException.class
+tmp/PlayPlusParser$InitVariableContext.class
+tmp/PlayPlusParser$EnumDeclarationContext.class
+be/unamur/info/b314/compiler/PlayPlusParser$ConstDeclarationContext.class
 be/unamur/info/b314/compiler/main/Main.class
 be/unamur/info/b314/compiler/NBCPrinter$NBCCodeTypes.class
+tmp/PlayPlusParser$ConstDeclarationContext.class
 be/unamur/info/b314/compiler/PlayPlusBaseVisitor.class
+tmp/PlayPlusParser$InitArrayContext.class
 be/unamur/info/b314/compiler/main/MyConsoleErrorListener.class
 tmp/PlayPlusParser$ArrayTypeContext.class
 tmp/PlayPlusParser$StructureContext.class
+be/unamur/info/b314/compiler/PlayPlusParser$InitArrayContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$ArrayTypeContext.class

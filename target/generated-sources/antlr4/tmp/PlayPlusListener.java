@@ -97,4 +97,44 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitStructure(PlayPlusParser.StructureContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PlayPlusParser#initVariable}.
+	 * @param ctx the parse tree
+	 */
+	void enterInitVariable(PlayPlusParser.InitVariableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlayPlusParser#initVariable}.
+	 * @param ctx the parse tree
+	 */
+	void exitInitVariable(PlayPlusParser.InitVariableContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PlayPlusParser#initArray}.
+	 * @param ctx the parse tree
+	 */
+	void enterInitArray(PlayPlusParser.InitArrayContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlayPlusParser#initArray}.
+	 * @param ctx the parse tree
+	 */
+	void exitInitArray(PlayPlusParser.InitArrayContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PlayPlusParser#constDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterConstDeclaration(PlayPlusParser.ConstDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlayPlusParser#constDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitConstDeclaration(PlayPlusParser.ConstDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PlayPlusParser#enumDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterEnumDeclaration(PlayPlusParser.EnumDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlayPlusParser#enumDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitEnumDeclaration(PlayPlusParser.EnumDeclarationContext ctx);
 }
