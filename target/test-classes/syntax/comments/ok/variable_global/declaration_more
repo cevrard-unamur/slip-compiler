@@ -1,7 +1,7 @@
 #import "test.map"
 
 testBoolean as boolean;
-testInteger as Integer;
+testInteger as integer;
 
 main as function(): void
 do

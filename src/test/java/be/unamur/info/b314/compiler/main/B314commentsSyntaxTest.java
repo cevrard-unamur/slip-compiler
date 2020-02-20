@@ -30,23 +30,51 @@ public class B314commentsSyntaxTest {
     // Serie variables OK
     //
     @Test
-    public void test_comment_more() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/comments/ok/comment/more", testFolder.newFile(), true, "variables: comment_more");
+    public void test_full_program() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/comments/ok/full_program",
+                testFolder.newFile(), true, "variables: full_program");
     }
 
     @Test
-    public void test_full_program() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/comments/ok/full_program", testFolder.newFile(), true, "variables: full_program");
+    public void test_comment_more() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/comments/ok/comment/more",
+                testFolder.newFile(), true, "variables: comment_more");
     }
 
     @Test
     public void test_comment_multiline() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/comments/ok/comment/multiline", testFolder.newFile(), true, "variables: comment_multiline");
+        CompilerTestHelper.launchCompilation("/syntax/comments/ok/comment/multiline",
+                testFolder.newFile(), true, "variables: comment_multiline");
     }
 
     @Test
     public void test_comment_singleline() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/comments/ok/comment/singleline", testFolder.newFile(), true, "variables: comment_singleline");
+        CompilerTestHelper.launchCompilation("/syntax/comments/ok/comment/singleline",
+                testFolder.newFile(), true, "variables: comment_singleline");
+    }
+
+    @Test
+    public void test_variable_global_declaration() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/comments/ok/variable_global/declaration",
+                testFolder.newFile(), true, "variables: variable_global_declaration");
+    }
+
+    @Test
+    public void test_variable_global_declaration_more() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/comments/ok/variable_global/declaration_more",
+                testFolder.newFile(), true, "variables: variable_global_declaration_more");
+    }
+
+    @Test
+    public void test_variable_global_array() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/comments/ok/variable_global/array",
+                testFolder.newFile(), true, "variables: variable_global_array");
+    }
+
+    @Test
+    public void test_variable_global_struct() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/comments/ok/variable_global/struct",
+                testFolder.newFile(), true, "variables: variable_global_struct");
     }
 
     //
@@ -54,21 +82,25 @@ public class B314commentsSyntaxTest {
     //
     @Test
     public void test_empty_import() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/comments/ko/empty_import", testFolder.newFile(), false, "variables: empty_import");
+        CompilerTestHelper.launchCompilation("/syntax/comments/ko/empty_import",
+                testFolder.newFile(), false, "variables: empty_import");
     }
 
     @Test
     public void test_import_string() throws Exception {
-        CompilerTestHelper.launchCompilation("/syntax/comments/ko/import_string", testFolder.newFile(), false, "variables: import_string");
+        CompilerTestHelper.launchCompilation("/syntax/comments/ko/import_string",
+                testFolder.newFile(), false, "variables: import_string");
     }
 
     @Test
     public void test_missing_main_function() throws Exception {
-        CompilerTestHelper.launchCompilation("/syntax/comments/ko/missing_main_function", testFolder.newFile(), false, "variables: missing_main_function");
+        CompilerTestHelper.launchCompilation("/syntax/comments/ko/missing_main_function",
+                testFolder.newFile(), false, "variables: missing_main_function");
     }
 
     @Test
     public void test_comment_singleline_incorrect() throws Exception {
-        CompilerTestHelper.launchCompilation("/syntax/comments/ko/comment_singleline_incorrect", testFolder.newFile(), false, "variables: comment_singleline_incorrect");
+        CompilerTestHelper.launchCompilation("/syntax/comments/ko/comment_singleline_incorrect",
+                testFolder.newFile(), false, "variables: comment_singleline_incorrect");
     }
 }
