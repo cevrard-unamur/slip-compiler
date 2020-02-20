@@ -88,4 +88,28 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitEnumDeclaration(PlayPlusParser.EnumDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRightExpr(PlayPlusParser.RightExprContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#leftExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLeftExpr(PlayPlusParser.LeftExprContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#assignation}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssignation(PlayPlusParser.AssignationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#actionType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitActionType(PlayPlusParser.ActionTypeContext ctx);
 }

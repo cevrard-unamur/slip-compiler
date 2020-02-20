@@ -11,12 +11,13 @@ RPAR: ')';
 COLON: ':';
 COMMA: ',';
 SEMICOLON: ';';
-RCRO: ']';
-LCRO: '[';
+RBRA: ']';
+LBRA: '[';
 AS: 'as';
 EQUAL: '=';
 QUOTE: '"';
 SINGLE_QUOTE: '\'';
+ASSIGN: ':=';
 
 // Functions
 MAIN: 'main';
@@ -27,14 +28,37 @@ END: 'end';
 CONST: 'const';
 ENUM: 'enum';
 
+// Mathematical signs
+PLUS: '+';
+MINUS: '-';
+MULTI: '*';
+DIV: '/';
+MOD: '%';
+
+// Boolean signs
+TRUE: 'true';
+FALSE: 'false';
+AND: 'and';
+OR: 'or';
+NOT: 'not';
+LESS: '<';
+LESS_EQUAL: '<=';
+GREAT: '>';
+GREAT_EQUAL: '>=';
+NOT_EQUAL: '<>';
+
 // Default actions
-DIG: 'dig()';
+LEFT: 'left';
+RIGHT: 'right';
+UP: 'up';
+DOWN: 'down';
+JUMP: 'jump';
+FIGHT: 'fight';
+DIG: 'dig';
 
 // Types
 SCALAR: 'boolean' | 'integer' | 'char';
 RECORD: 'record';
-TRUE: 'true';
-FALSE: 'false';
 
 // Identifiers
 ID: LETTER (LETTER | DIGIT)* ;

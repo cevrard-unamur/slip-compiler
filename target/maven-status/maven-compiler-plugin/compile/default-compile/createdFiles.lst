@@ -1,3 +1,4 @@
+be/unamur/info/b314/compiler/PlayPlusParser$LeftExprContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$InitVariableContext.class
 tmp/PlayPlusParser$InstructionContext.class
 tmp/PlayPlusParser$VariableTypeContext.class
@@ -11,11 +12,13 @@ be/unamur/info/b314/compiler/NBCPrinter.class
 be/unamur/info/b314/compiler/exception/SymbolNotFoundException.class
 be/unamur/info/b314/compiler/PlayPlusParser$VariableDeclarationContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$StructureContext.class
+tmp/PlayPlusParser$LeftExprContext.class
 be/unamur/info/b314/compiler/SymTableFiller.class
 be/unamur/info/b314/compiler/PlayPlusParser$InstructionContext.class
 tmp/PlayPlusBaseVisitor.class
 be/unamur/info/b314/compiler/exception/ParsingException.class
 tmp/PlayPlusParser$InitVariableContext.class
+be/unamur/info/b314/compiler/PlayPlusParser$RightExprContext.class
 tmp/PlayPlusParser$EnumDeclarationContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$ConstDeclarationContext.class
 be/unamur/info/b314/compiler/main/Main.class
@@ -26,5 +29,10 @@ tmp/PlayPlusParser$InitArrayContext.class
 be/unamur/info/b314/compiler/main/MyConsoleErrorListener.class
 tmp/PlayPlusParser$ArrayTypeContext.class
 tmp/PlayPlusParser$StructureContext.class
+be/unamur/info/b314/compiler/PlayPlusParser$ActionTypeContext.class
+tmp/PlayPlusParser$AssignationContext.class
+tmp/PlayPlusParser$ActionTypeContext.class
+tmp/PlayPlusParser$RightExprContext.class
+be/unamur/info/b314/compiler/PlayPlusParser$AssignationContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$InitArrayContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$ArrayTypeContext.class
