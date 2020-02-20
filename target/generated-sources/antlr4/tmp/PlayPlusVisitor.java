@@ -17,24 +17,51 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitRoot(PlayPlusParser.RootContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code mainProgram}
-	 * labeled alternative in {@link PlayPlusParser#programme}.
+	 * Visit a parse tree produced by {@link PlayPlusParser#programme}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMainProgram(PlayPlusParser.MainProgramContext ctx);
+	T visitProgramme(PlayPlusParser.ProgrammeContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code mapImportation}
-	 * labeled alternative in {@link PlayPlusParser#mapImport}.
+	 * Visit a parse tree produced by {@link PlayPlusParser#mapImport}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMapImportation(PlayPlusParser.MapImportationContext ctx);
+	T visitMapImport(PlayPlusParser.MapImportContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code mainFucntion}
-	 * labeled alternative in {@link PlayPlusParser#mainFunction}.
+	 * Visit a parse tree produced by {@link PlayPlusParser#mainFunction}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMainFucntion(PlayPlusParser.MainFucntionContext ctx);
+	T visitMainFunction(PlayPlusParser.MainFunctionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#instruction}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInstruction(PlayPlusParser.InstructionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#variableDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariableDeclaration(PlayPlusParser.VariableDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#variableType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariableType(PlayPlusParser.VariableTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#arrayType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArrayType(PlayPlusParser.ArrayTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#structure}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStructure(PlayPlusParser.StructureContext ctx);
 }
