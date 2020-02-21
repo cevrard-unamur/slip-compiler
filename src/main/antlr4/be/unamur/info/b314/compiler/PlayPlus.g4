@@ -17,9 +17,9 @@ instruction: (variableDeclaration|assignation|(actionType SEMICOLON));
 
 globalVariable: variableDeclaration|constDeclaration|enumDeclaration;
 
-variableDeclaration: (ID (COMMA ID)* AS variableType (EQUAL initVariable)? SEMICOLON) | structure
+variableDeclaration: (ID (COMMA ID)* AS variableType (EQUAL initVariable)? SEMICOLON)
             ;
-variableType:  SCALAR | arrayType
+variableType:  SCALAR | arrayType | structure
             ;
 arrayType: SCALAR LBRA NUMBER (COMMA NUMBER)* RBRA
             ;

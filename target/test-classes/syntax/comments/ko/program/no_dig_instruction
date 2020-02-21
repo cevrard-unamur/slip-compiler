@@ -1,0 +1,6 @@
+#import "world.map"
+
+main as function(): void
+do
+x:= x + 1;
+end
