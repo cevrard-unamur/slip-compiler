@@ -118,4 +118,16 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitActionType(PlayPlusParser.ActionTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#dig}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDig(PlayPlusParser.DigContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#fight}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFight(PlayPlusParser.FightContext ctx);
 }

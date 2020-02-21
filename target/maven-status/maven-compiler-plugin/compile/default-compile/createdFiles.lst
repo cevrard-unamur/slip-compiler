@@ -11,6 +11,8 @@ tmp/PlayPlusBaseListener.class
 be/unamur/info/b314/compiler/NBCPrinter.class
 be/unamur/info/b314/compiler/exception/SymbolNotFoundException.class
 be/unamur/info/b314/compiler/PlayPlusParser$VariableDeclarationContext.class
+be/unamur/info/b314/compiler/PlayPlusParser$DigContext.class
+tmp/PlayPlusParser$FightContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$StructureContext.class
 tmp/PlayPlusParser$LeftExprContext.class
 be/unamur/info/b314/compiler/SymTableFiller.class
@@ -25,6 +27,7 @@ tmp/PlayPlusParser$EnumDeclarationContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$ConstDeclarationContext.class
 be/unamur/info/b314/compiler/main/Main.class
 be/unamur/info/b314/compiler/NBCPrinter$NBCCodeTypes.class
+be/unamur/info/b314/compiler/PlayPlusParser$FightContext.class
 tmp/PlayPlusParser$ConstDeclarationContext.class
 be/unamur/info/b314/compiler/PlayPlusBaseVisitor.class
 tmp/PlayPlusParser$InitArrayContext.class
@@ -33,6 +36,7 @@ tmp/PlayPlusParser$ArrayTypeContext.class
 tmp/PlayPlusParser$StructureContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$ActionTypeContext.class
 tmp/PlayPlusParser$AssignationContext.class
+tmp/PlayPlusParser$DigContext.class
 tmp/PlayPlusParser$ActionTypeContext.class
 tmp/PlayPlusParser$RightExprContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$AssignationContext.class
