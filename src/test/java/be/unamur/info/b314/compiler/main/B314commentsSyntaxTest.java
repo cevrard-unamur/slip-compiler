@@ -83,6 +83,12 @@ public class B314commentsSyntaxTest {
                 testFolder.newFile(), true, "variables: variable_global_struct");
     }
 
+    @Test
+    public void test_action_jump() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/comments/ok/actions/jump",
+                testFolder.newFile(), true, "variables: actions_jump");
+    }
+
     //
     // Serie variables KO
     //

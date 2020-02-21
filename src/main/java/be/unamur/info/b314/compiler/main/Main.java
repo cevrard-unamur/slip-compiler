@@ -8,10 +8,9 @@ import be.unamur.info.b314.compiler.*;
 import be.unamur.info.b314.compiler.exception.ParsingException;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+
+import java.io.*;
+import java.nio.Buffer;
 import java.util.Map;
 
 import be.unamur.info.b314.compiler.SymTableFiller;
@@ -50,6 +49,25 @@ public class Main {
      * @param args Command line arguments.
      */
     public static void main(String[] args) {
+        // Print the tested file
+        String filename = args[1];
+
+        try {
+            String line = "";
+            BufferedReader br = new BufferedReader(new FileReader(filename));
+            LOG.debug("-- Printing file content --");
+
+            while ((line = br.readLine()) != null) {
+                LOG.debug(line);
+            }
+
+            LOG.debug("-- End of file content --");
+        } catch (FileNotFoundException e) {
+            LOG.error("File not found");
+        } catch (IOException e) {
+            LOG.error("Unable to read the file.");
+        }
+
         Main main = new Main();
         CommandLineParser parser = new DefaultParser();
         CommandLine line = null;
