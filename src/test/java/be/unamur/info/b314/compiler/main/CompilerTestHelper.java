@@ -28,6 +28,7 @@ class CompilerTestHelper {
      */
     public static void launchCompilation(String input, File outputFile, boolean ok, String message) throws URISyntaxException, IOException {
         File inputFile = new File(CompilerTestHelper.class.getResource(input).toURI());
+
         ByteArrayOutputStream errContent = new ByteArrayOutputStream();
         System.setErr(new PrintStream(errContent));
         // Launch main method
