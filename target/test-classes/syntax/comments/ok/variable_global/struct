@@ -1,9 +1,9 @@
 #import "test.map"
 
-testStructure as record
+test as testStructure as record
     testStructBoolean as boolean;
     testStructInteger as integer;
-end;
+end;;
 
 main as function(): void
 do
