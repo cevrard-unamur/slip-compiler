@@ -58,6 +58,16 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 */
 	void exitInstruction(PlayPlusParser.InstructionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link PlayPlusParser#globalVariable}.
+	 * @param ctx the parse tree
+	 */
+	void enterGlobalVariable(PlayPlusParser.GlobalVariableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlayPlusParser#globalVariable}.
+	 * @param ctx the parse tree
+	 */
+	void exitGlobalVariable(PlayPlusParser.GlobalVariableContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link PlayPlusParser#variableDeclaration}.
 	 * @param ctx the parse tree
 	 */
@@ -177,4 +187,24 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitActionType(PlayPlusParser.ActionTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PlayPlusParser#dig}.
+	 * @param ctx the parse tree
+	 */
+	void enterDig(PlayPlusParser.DigContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlayPlusParser#dig}.
+	 * @param ctx the parse tree
+	 */
+	void exitDig(PlayPlusParser.DigContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PlayPlusParser#fight}.
+	 * @param ctx the parse tree
+	 */
+	void enterFight(PlayPlusParser.FightContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlayPlusParser#fight}.
+	 * @param ctx the parse tree
+	 */
+	void exitFight(PlayPlusParser.FightContext ctx);
 }
