@@ -63,7 +63,7 @@ RECORD: 'record';
 // Identifiers
 ID: LETTER (LETTER | DIGIT)* ;
 
-STRING: '"'(LETTER|DIGIT)*'"';
+STRING: '"'(LETTER|DIGIT|[ \t]|(('\r')?'\n'))*'"';
 CHAR: '\''(LETTER|DIGIT)'\'';
 NUMBER: (DIGIT)+;
 
