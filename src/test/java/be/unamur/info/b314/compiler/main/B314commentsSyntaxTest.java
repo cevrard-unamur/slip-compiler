@@ -30,20 +30,9 @@ public class B314commentsSyntaxTest {
     // Serie comments OK
     //
     @Test
-    public void testcomments_variable_global_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/comments/ok/variable_global", testFolder.newFile(), true, "comments: variable_global");
-    }
-
-    @Test
     public void testcomments_full_program_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/comments/ok/full_program", testFolder.newFile(), true, "comments: full_program");
     }
-
-    @Test
-    public void testcomments_comment_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/comments/ok/comment", testFolder.newFile(), true, "comments: comment");
-    }
-
     @Test
     public void testcomments_actions_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/comments/ok/actions", testFolder.newFile(), true, "comments: actions");
@@ -52,11 +41,6 @@ public class B314commentsSyntaxTest {
     //
     // Serie comments KO
     //
-    @Test
-    public void testcomments_variable_global_ko() throws Exception {
-        CompilerTestHelper.launchCompilation("/syntax/comments/ko/variable_global", testFolder.newFile(), false, "comments: variable_global");
-    }
-
     @Test
     public void testcomments_empty_import_ko() throws Exception {
         CompilerTestHelper.launchCompilation("/syntax/comments/ko/empty_import", testFolder.newFile(), false, "comments: empty_import");
@@ -75,11 +59,6 @@ public class B314commentsSyntaxTest {
     @Test
     public void testcomments_missing_main_function_ko() throws Exception {
         CompilerTestHelper.launchCompilation("/syntax/comments/ko/missing_main_function", testFolder.newFile(), false, "comments: missing_main_function");
-    }
-
-    @Test
-    public void testcomments_actions_ko() throws Exception {
-        CompilerTestHelper.launchCompilation("/syntax/comments/ko/actions", testFolder.newFile(), false, "comments: actions");
     }
 
     @Test

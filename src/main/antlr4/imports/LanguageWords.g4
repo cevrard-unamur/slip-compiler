@@ -1,4 +1,6 @@
-lexer grammar PlayPlusWords;
+lexer grammar LanguageWords;
+
+import CommonWords;
 
 // Words
 // Map importation
@@ -65,18 +67,3 @@ ID: LETTER (LETTER | DIGIT)* ;
 
 STRING: '"'(LETTER|DIGIT|[ \t]|(('\r')?'\n'))*'"';
 CHAR: '\''(LETTER|DIGIT)'\'';
-NUMBER: (DIGIT)+;
-
-// Fragments
-fragment LETTER: 'A'..'Z' | 'a'..'z' ;
-fragment DIGIT: '0'..'9' ;
-
-// Comments -> ignored
-
-COMMENT_MULTILINE: '/*' .*? '*/' -> skip;
-COMMENT_SINGLELINE: '//' .*? NEWLINE -> skip;
-
-// Whitespaces -> ignored
-
-NEWLINE: '\r'? '\n'  -> skip ;
-WS: [ \t]+ -> skip ;
