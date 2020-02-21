@@ -76,6 +76,18 @@ public class PlayPlusBaseListener implements PlayPlusListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterGlobalVariable(PlayPlusParser.GlobalVariableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGlobalVariable(PlayPlusParser.GlobalVariableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterVariableDeclaration(PlayPlusParser.VariableDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}

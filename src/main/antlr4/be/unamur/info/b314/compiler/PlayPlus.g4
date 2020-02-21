@@ -4,16 +4,18 @@ import PlayPlusWords;
 
 root: programme;
 
-programme:  mapImport ((COMMENT_MULTILINE)*|(COMMENT_SINGLELINE)*|(variableDeclaration)*)?  mainFunction
+programme:  mapImport ((COMMENT_MULTILINE)*|(COMMENT_SINGLELINE)*|(globalVariable)*)?  mainFunction
             ;
 
 mapImport:  IMPORT QUOTE MAPFILE QUOTE
             ;
 
-mainFunction: MAIN AS FUNCTION LPAR RPAR COLON VOID DO ((DIG LPAR RPAR SEMICOLON)|(instruction)+) END
+mainFunction: MAIN AS FUNCTION LPAR RPAR COLON VOID DO (instruction)* (dig SEMICOLON) (instruction)* END
             ;
 
-instruction: (variableDeclaration|constDeclaration|enumDeclaration|assignation|(actionType SEMICOLON));
+instruction: (variableDeclaration|assignation|(actionType SEMICOLON));
+
+globalVariable: variableDeclaration|constDeclaration|enumDeclaration;
 
 variableDeclaration: (ID (COMMA ID)* AS variableType (EQUAL initVariable)? SEMICOLON) | structure
             ;
@@ -27,7 +29,7 @@ initVariable: TRUE|FALSE|NUMBER|STRING|CHAR|initArray
             ;
 initArray: LPAR initVariable ((COMMA initVariable)*)? RPAR
             ;
-constDeclaration: CONST ID AS (variableType|structure) EQUAL initVariable
+constDeclaration: CONST ID AS (variableType|structure) EQUAL initVariable SEMICOLON
             ;
 enumDeclaration: ENUM ID EQUAL LPAR ID (COMMA ID)* RPAR SEMICOLON
             ;
@@ -65,6 +67,10 @@ actionType: LEFT LPAR (rightExpr)? RPAR
             | UP LPAR (rightExpr)? RPAR
             | DOWN LPAR (rightExpr)? RPAR
             | JUMP LPAR (rightExpr)? RPAR
-            | FIGHT LPAR RPAR
-            | DIG LPAR RPAR
+            | fight
+            | dig
             ;
+dig: DIG LPAR RPAR
+    ;
+fight: FIGHT LPAR RPAR
+    ;

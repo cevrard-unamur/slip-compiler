@@ -41,6 +41,12 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitInstruction(PlayPlusParser.InstructionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#globalVariable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGlobalVariable(PlayPlusParser.GlobalVariableContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PlayPlusParser#variableDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

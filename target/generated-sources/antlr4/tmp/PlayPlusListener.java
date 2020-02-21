@@ -58,6 +58,16 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 */
 	void exitInstruction(PlayPlusParser.InstructionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link PlayPlusParser#globalVariable}.
+	 * @param ctx the parse tree
+	 */
+	void enterGlobalVariable(PlayPlusParser.GlobalVariableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlayPlusParser#globalVariable}.
+	 * @param ctx the parse tree
+	 */
+	void exitGlobalVariable(PlayPlusParser.GlobalVariableContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link PlayPlusParser#variableDeclaration}.
 	 * @param ctx the parse tree
 	 */

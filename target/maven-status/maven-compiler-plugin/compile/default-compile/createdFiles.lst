@@ -19,6 +19,8 @@ tmp/PlayPlusBaseVisitor.class
 be/unamur/info/b314/compiler/exception/ParsingException.class
 tmp/PlayPlusParser$InitVariableContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$RightExprContext.class
+tmp/PlayPlusParser$GlobalVariableContext.class
+be/unamur/info/b314/compiler/PlayPlusParser$GlobalVariableContext.class
 tmp/PlayPlusParser$EnumDeclarationContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$ConstDeclarationContext.class
 be/unamur/info/b314/compiler/main/Main.class
