@@ -2,19 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>be.unamur.info</groupId>
-    <artifactId>demo-compiler</artifactId>
+    <artifactId>compiler-slip</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>DEMO: simple example language</name>
+    <name>SLIP: compiler</name>
     <description>
-        This project is a compiler for DEMO, a simple example language with arithmetic operations.
+        This project is a compiler for SLIP, a language for LEGO robot
     </description>
     <url>http://info.unamur.be/</url>
     <organization>
         <name>University of Namur</name>
         <url>http://www.unamur.be/</url>
     </organization>
-    <inceptionYear>2019</inceptionYear>
+    <inceptionYear>2020</inceptionYear>
     <licenses>
         <license>
             <name>MIT license (also X11)</name>

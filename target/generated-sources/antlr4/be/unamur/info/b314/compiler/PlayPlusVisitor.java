@@ -130,4 +130,10 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFight(PlayPlusParser.FightContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#map}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMap(PlayPlusParser.MapContext ctx);
 }
