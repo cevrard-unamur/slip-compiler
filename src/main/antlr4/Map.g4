@@ -2,7 +2,7 @@ grammar Map;
 
 import MapWords;
 
-map: MAP NUMBER NUMBER (mapsymbols)*;
+map: MAP NUMBER NUMBER ((mapsymbols)* | NEWLINE | EOF);
 
 mapsymbols: ROBOT
            | CHEST
