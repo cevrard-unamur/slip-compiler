@@ -17,6 +17,18 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitRoot(PlayPlusParser.RootContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#map}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMap(PlayPlusParser.MapContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMapSymbols(PlayPlusParser.MapSymbolsContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PlayPlusParser#programme}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -130,10 +142,4 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFight(PlayPlusParser.FightContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link PlayPlusParser#map}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMap(PlayPlusParser.MapContext ctx);
 }

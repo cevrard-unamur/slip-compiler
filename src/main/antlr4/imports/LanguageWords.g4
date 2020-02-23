@@ -10,7 +10,6 @@ MAPFILE: ID'.map';
 // Various
 LPAR: '(';
 RPAR: ')';
-COLON: ':';
 COMMA: ',';
 SEMICOLON: ';';
 RBRA: ']';

@@ -1,5 +1,5 @@
 grammar PlayPlus;
 
-import Language, Map;
+import Map, Language;
 
-root: programme|map;
+root: map|programme;

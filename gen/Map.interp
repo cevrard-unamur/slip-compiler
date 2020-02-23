@@ -1,0 +1,47 @@
+token literal names:
+null
+'map'
+'@'
+'X'
+'G'
+'P'
+'A'
+'B'
+'T'
+'S'
+'_'
+'Q'
+':'
+null
+null
+null
+null
+null
+
+token symbolic names:
+null
+MAP
+ROBOT
+CHEST
+GRASS
+PALMTREE
+BRIDGE
+BUSH
+CASK
+WELL
+EMPTY
+SQUELETON
+COLON
+NUMBER
+COMMENT_MULTILINE
+COMMENT_SINGLELINE
+NEWLINE
+WS
+
+rule names:
+map
+mapSymbols
+
+
+atn:
+[3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 19, 19, 4, 2, 9, 2, 4, 3, 9, 3, 3, 2, 3, 2, 3, 2, 3, 2, 3, 2, 7, 2, 12, 10, 2, 12, 2, 14, 2, 15, 11, 2, 3, 3, 3, 3, 3, 3, 2, 2, 4, 2, 4, 2, 3, 3, 2, 4, 13, 2, 17, 2, 6, 3, 2, 2, 2, 4, 16, 3, 2, 2, 2, 6, 7, 7, 3, 2, 2, 7, 8, 7, 14, 2, 2, 8, 9, 7, 15, 2, 2, 9, 13, 7, 15, 2, 2, 10, 12, 5, 4, 3, 2, 11, 10, 3, 2, 2, 2, 12, 15, 3, 2, 2, 2, 13, 11, 3, 2, 2, 2, 13, 14, 3, 2, 2, 2, 14, 3, 3, 2, 2, 2, 15, 13, 3, 2, 2, 2, 16, 17, 9, 2, 2, 2, 17, 5, 3, 2, 2, 2, 3, 13]
