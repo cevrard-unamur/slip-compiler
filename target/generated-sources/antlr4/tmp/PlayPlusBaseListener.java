@@ -28,6 +28,30 @@ public class PlayPlusBaseListener implements PlayPlusListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMap(PlayPlusParser.MapContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMap(PlayPlusParser.MapContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMapSymbols(PlayPlusParser.MapSymbolsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMapSymbols(PlayPlusParser.MapSymbolsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterProgramme(PlayPlusParser.ProgrammeContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -251,18 +275,6 @@ public class PlayPlusBaseListener implements PlayPlusListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFight(PlayPlusParser.FightContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterMap(PlayPlusParser.MapContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitMap(PlayPlusParser.MapContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

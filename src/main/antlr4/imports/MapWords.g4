@@ -11,5 +11,5 @@ BRIDGE: 'A';
 BUSH: 'B';
 CASK: 'T';
 WELL: 'S';
-VOID: '-';
+EMPTY: '_';
 SQUELETON: 'Q';

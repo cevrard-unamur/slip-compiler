@@ -2,9 +2,9 @@ grammar Map;
 
 import MapWords;
 
-map: MAP NUMBER NUMBER ((mapsymbols)* | NEWLINE | EOF);
+map: MAP COLON NUMBER NUMBER (mapSymbols)*;
 
-mapsymbols: ROBOT
+mapSymbols: ROBOT
            | CHEST
            | GRASS
            | PALMTREE
@@ -12,5 +12,5 @@ mapsymbols: ROBOT
            | BUSH
            | CASK
            | WELL
-           | VOID
+           | EMPTY
            | SQUELETON;

@@ -23,6 +23,18 @@ public class MapBaseListener implements MapListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMap(MapParser.MapContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMapSymbols(MapParser.MapSymbolsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMapSymbols(MapParser.MapSymbolsContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

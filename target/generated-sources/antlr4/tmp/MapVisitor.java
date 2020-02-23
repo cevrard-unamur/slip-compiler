@@ -16,4 +16,10 @@ public interface MapVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitMap(MapParser.MapContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MapParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMapSymbols(MapParser.MapSymbolsContext ctx);
 }

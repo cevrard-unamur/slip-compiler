@@ -17,4 +17,14 @@ public interface MapListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMap(MapParser.MapContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MapParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void enterMapSymbols(MapParser.MapSymbolsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MapParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void exitMapSymbols(MapParser.MapSymbolsContext ctx);
 }

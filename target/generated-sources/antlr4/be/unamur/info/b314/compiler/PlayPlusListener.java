@@ -18,6 +18,26 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 */
 	void exitRoot(PlayPlusParser.RootContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link PlayPlusParser#map}.
+	 * @param ctx the parse tree
+	 */
+	void enterMap(PlayPlusParser.MapContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlayPlusParser#map}.
+	 * @param ctx the parse tree
+	 */
+	void exitMap(PlayPlusParser.MapContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void enterMapSymbols(PlayPlusParser.MapSymbolsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void exitMapSymbols(PlayPlusParser.MapSymbolsContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link PlayPlusParser#programme}.
 	 * @param ctx the parse tree
 	 */
@@ -207,14 +227,4 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFight(PlayPlusParser.FightContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link PlayPlusParser#map}.
-	 * @param ctx the parse tree
-	 */
-	void enterMap(PlayPlusParser.MapContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PlayPlusParser#map}.
-	 * @param ctx the parse tree
-	 */
-	void exitMap(PlayPlusParser.MapContext ctx);
 }

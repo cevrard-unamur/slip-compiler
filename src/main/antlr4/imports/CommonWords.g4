@@ -1,5 +1,7 @@
 lexer grammar CommonWords;
 
+COLON: ':';
+
 NUMBER: (DIGIT)+;
 
 // Fragments
@@ -8,7 +10,7 @@ fragment DIGIT: '0'..'9' ;
 
 // Comments -> ignored
 COMMENT_MULTILINE: '/*' .*? '*/' -> skip;
-COMMENT_SINGLELINE: '//' .*? NEWLINE -> skip;
+COMMENT_SINGLELINE: ('//' .*? NEWLINE|'//' .*? '\r') -> skip;
 
 // Whitespaces -> ignored
 NEWLINE: '\r'? '\n'  -> skip ;

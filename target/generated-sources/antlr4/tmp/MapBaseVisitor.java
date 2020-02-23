@@ -18,4 +18,11 @@ public class MapBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Ma
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitMap(MapParser.MapContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitMapSymbols(MapParser.MapSymbolsContext ctx) { return visitChildren(ctx); }
 }
