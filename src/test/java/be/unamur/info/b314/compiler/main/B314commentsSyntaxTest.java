@@ -75,6 +75,11 @@ public class B314commentsSyntaxTest {
     }
 
     @Test
+    public void testcomments_map2_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/comments/ok/map2", testFolder.newFile(), true, "comments: map2");
+    }
+
+    @Test
     public void testcomments_more_than_one_variable_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/comments/ok/more_than_one_variable", testFolder.newFile(), true, "comments: more_than_one_variable");
     }
@@ -140,6 +145,11 @@ public class B314commentsSyntaxTest {
     @Test
     public void testcomments_non_existant_type_ko() throws Exception {
         CompilerTestHelper.launchCompilation("/syntax/comments/ko/non_existant_type", testFolder.newFile(), false, "comments: non_existant_type");
+    }
+
+    @Test
+    public void testcomments_map_ko() throws Exception {
+        CompilerTestHelper.launchCompilation("/syntax/comments/ko/map", testFolder.newFile(), false, "comments: map");
     }
 
     @Test

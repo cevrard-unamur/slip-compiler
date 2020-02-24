@@ -10,7 +10,7 @@ fragment DIGIT: '0'..'9' ;
 
 // Comments -> ignored
 COMMENT_MULTILINE: '/*' .*? '*/' -> skip;
-COMMENT_SINGLELINE: ('//' .*? NEWLINE|'//' .*? '\r') -> skip;
+COMMENT_SINGLELINE: '//' .*? (NEWLINE|EOF) EOF? -> skip;
 
 // Whitespaces -> ignored
 NEWLINE: '\r'? '\n'  -> skip ;
