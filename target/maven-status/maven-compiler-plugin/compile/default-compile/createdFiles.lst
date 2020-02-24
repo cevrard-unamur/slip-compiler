@@ -3,14 +3,12 @@ tmp/LanguageParser$EnumDeclarationContext.class
 MapVisitor.class
 tmp/PlayPlusParser$VariableTypeContext.class
 tmp/PlayPlusParser$RootContext.class
-tmp/LanguageBaseListener.class
 LanguageParser$EnumDeclarationContext.class
 LanguageParser$InstructionContext.class
 LanguageParser$ArrayTypeContext.class
 tmp/CommonWords.class
 tmp/PlayPlusBaseListener.class
 tmp/LanguageParser$ArrayTypeContext.class
-tmp/MapWords.class
 be/unamur/info/b314/compiler/PlayPlusParser.class
 tmp/LanguageWords.class
 be/unamur/info/b314/compiler/PlayPlusParser$DigContext.class
@@ -18,7 +16,6 @@ tmp/LanguageParser$InstructionContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$StructureContext.class
 LanguageParser$InitVariableContext.class
 tmp/PlayPlusParser$LeftExprContext.class
-tmp/LanguageBaseVisitor.class
 be/unamur/info/b314/compiler/PlayPlusParser$MapContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$InstructionContext.class
 be/unamur/info/b314/compiler/exception/ParsingException.class
@@ -28,7 +25,6 @@ LanguageVisitor.class
 MapParser.class
 be/unamur/info/b314/compiler/PlayPlusParser$RightExprContext.class
 tmp/LanguageParser$GlobalVariableContext.class
-tmp/LanguageVisitor.class
 be/unamur/info/b314/compiler/PlayPlusParser$GlobalVariableContext.class
 tmp/PlayPlusParser$EnumDeclarationContext.class
 tmp/MapParser$MapSymbolsContext.class
@@ -75,6 +71,7 @@ LanguageParser$FightContext.class
 be/unamur/info/b314/compiler/NBCVisitor.class
 LanguageParser$InitArrayContext.class
 be/unamur/info/b314/compiler/PlayPlusListener.class
+MapParser$MapDescriptionContext.class
 MapBaseListener.class
 be/unamur/info/b314/compiler/PlayPlusParser$EnumDeclarationContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$VariableTypeContext.class

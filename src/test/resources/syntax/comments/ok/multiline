@@ -8,3 +8,5 @@ main as function(): void
 do
     dig();
 end
+
+// comment at end

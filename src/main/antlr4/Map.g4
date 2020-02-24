@@ -2,7 +2,11 @@ grammar Map;
 
 import MapWords;
 
-map: MAP COLON NUMBER NUMBER (mapSymbols)*;
+map: (mapDescription)*
+            ;
+
+mapDescription: (MAP COLON NUMBER NUMBER (mapSymbols)+) EOF?
+           ;
 
 mapSymbols: ROBOT
            | CHEST
@@ -13,4 +17,7 @@ mapSymbols: ROBOT
            | CASK
            | WELL
            | EMPTY
-           | SQUELETON;
+           | SQUELETON
+           | COMMENT_SINGLELINE
+           | COMMENT_MULTILINE
+           ;

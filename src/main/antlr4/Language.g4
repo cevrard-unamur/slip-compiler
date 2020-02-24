@@ -4,10 +4,10 @@ import LanguageWords;
 
 root: programme;
 
-programme:  mapImport ((COMMENT_MULTILINE)*|(COMMENT_SINGLELINE)*|(globalVariable)*)?  mainFunction
+programme:  mapImport (globalVariable)*  mainFunction EOF
             ;
 
-mapImport:  IMPORT QUOTE MAPFILE QUOTE
+mapImport:  DASH IMPORT QUOTE MAPFILE QUOTE
             ;
 
 mainFunction: MAIN AS FUNCTION LPAR RPAR COLON VOID DO (instruction)* (dig SEMICOLON) (instruction)* END

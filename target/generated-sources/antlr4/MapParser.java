@@ -20,9 +20,9 @@ public class MapParser extends Parser {
 		WELL=9, EMPTY=10, SQUELETON=11, COLON=12, NUMBER=13, COMMENT_MULTILINE=14, 
 		COMMENT_SINGLELINE=15, NEWLINE=16, WS=17;
 	public static final int
-		RULE_map = 0, RULE_mapSymbols = 1;
+		RULE_map = 0, RULE_mapDescription = 1, RULE_mapSymbols = 2;
 	public static final String[] ruleNames = {
-		"map", "mapSymbols"
+		"map", "mapDescription", "mapSymbols"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
@@ -84,17 +84,11 @@ public class MapParser extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 	public static class MapContext extends ParserRuleContext {
-		public TerminalNode MAP() { return getToken(MapParser.MAP, 0); }
-		public TerminalNode COLON() { return getToken(MapParser.COLON, 0); }
-		public List<TerminalNode> NUMBER() { return getTokens(MapParser.NUMBER); }
-		public TerminalNode NUMBER(int i) {
-			return getToken(MapParser.NUMBER, i);
+		public List<MapDescriptionContext> mapDescription() {
+			return getRuleContexts(MapDescriptionContext.class);
 		}
-		public List<MapSymbolsContext> mapSymbols() {
-			return getRuleContexts(MapSymbolsContext.class);
-		}
-		public MapSymbolsContext mapSymbols(int i) {
-			return getRuleContext(MapSymbolsContext.class,i);
+		public MapDescriptionContext mapDescription(int i) {
+			return getRuleContext(MapDescriptionContext.class,i);
 		}
 		public MapContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -122,27 +116,106 @@ public class MapParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(4);
-			match(MAP);
-			setState(5);
-			match(COLON);
-			setState(6);
-			match(NUMBER);
-			setState(7);
-			match(NUMBER);
-			setState(11);
+			setState(9);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ROBOT) | (1L << CHEST) | (1L << GRASS) | (1L << PALMTREE) | (1L << BRIDGE) | (1L << BUSH) | (1L << CASK) | (1L << WELL) | (1L << EMPTY) | (1L << SQUELETON))) != 0)) {
+			while (_la==MAP) {
 				{
 				{
-				setState(8);
+				setState(6);
+				mapDescription();
+				}
+				}
+				setState(11);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class MapDescriptionContext extends ParserRuleContext {
+		public TerminalNode MAP() { return getToken(MapParser.MAP, 0); }
+		public TerminalNode COLON() { return getToken(MapParser.COLON, 0); }
+		public List<TerminalNode> NUMBER() { return getTokens(MapParser.NUMBER); }
+		public TerminalNode NUMBER(int i) {
+			return getToken(MapParser.NUMBER, i);
+		}
+		public TerminalNode EOF() { return getToken(MapParser.EOF, 0); }
+		public List<MapSymbolsContext> mapSymbols() {
+			return getRuleContexts(MapSymbolsContext.class);
+		}
+		public MapSymbolsContext mapSymbols(int i) {
+			return getRuleContext(MapSymbolsContext.class,i);
+		}
+		public MapDescriptionContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_mapDescription; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).enterMapDescription(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).exitMapDescription(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MapVisitor ) return ((MapVisitor<? extends T>)visitor).visitMapDescription(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final MapDescriptionContext mapDescription() throws RecognitionException {
+		MapDescriptionContext _localctx = new MapDescriptionContext(_ctx, getState());
+		enterRule(_localctx, 2, RULE_mapDescription);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			{
+			setState(12);
+			match(MAP);
+			setState(13);
+			match(COLON);
+			setState(14);
+			match(NUMBER);
+			setState(15);
+			match(NUMBER);
+			setState(17); 
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			do {
+				{
+				{
+				setState(16);
 				mapSymbols();
 				}
 				}
-				setState(13);
+				setState(19); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ROBOT) | (1L << CHEST) | (1L << GRASS) | (1L << PALMTREE) | (1L << BRIDGE) | (1L << BUSH) | (1L << CASK) | (1L << WELL) | (1L << EMPTY) | (1L << SQUELETON) | (1L << COMMENT_MULTILINE) | (1L << COMMENT_SINGLELINE))) != 0) );
+			}
+			setState(22);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
+			case 1:
+				{
+				setState(21);
+				match(EOF);
+				}
+				break;
 			}
 			}
 		}
@@ -168,6 +241,8 @@ public class MapParser extends Parser {
 		public TerminalNode WELL() { return getToken(MapParser.WELL, 0); }
 		public TerminalNode EMPTY() { return getToken(MapParser.EMPTY, 0); }
 		public TerminalNode SQUELETON() { return getToken(MapParser.SQUELETON, 0); }
+		public TerminalNode COMMENT_SINGLELINE() { return getToken(MapParser.COMMENT_SINGLELINE, 0); }
+		public TerminalNode COMMENT_MULTILINE() { return getToken(MapParser.COMMENT_MULTILINE, 0); }
 		public MapSymbolsContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -189,14 +264,14 @@ public class MapParser extends Parser {
 
 	public final MapSymbolsContext mapSymbols() throws RecognitionException {
 		MapSymbolsContext _localctx = new MapSymbolsContext(_ctx, getState());
-		enterRule(_localctx, 2, RULE_mapSymbols);
+		enterRule(_localctx, 4, RULE_mapSymbols);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(14);
+			setState(24);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ROBOT) | (1L << CHEST) | (1L << GRASS) | (1L << PALMTREE) | (1L << BRIDGE) | (1L << BUSH) | (1L << CASK) | (1L << WELL) | (1L << EMPTY) | (1L << SQUELETON))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ROBOT) | (1L << CHEST) | (1L << GRASS) | (1L << PALMTREE) | (1L << BRIDGE) | (1L << BUSH) | (1L << CASK) | (1L << WELL) | (1L << EMPTY) | (1L << SQUELETON) | (1L << COMMENT_MULTILINE) | (1L << COMMENT_SINGLELINE))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -218,12 +293,15 @@ public class MapParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\23\23\4\2\t\2\4\3"+
-		"\t\3\3\2\3\2\3\2\3\2\3\2\7\2\f\n\2\f\2\16\2\17\13\2\3\3\3\3\3\3\2\2\4"+
-		"\2\4\2\3\3\2\4\r\21\2\6\3\2\2\2\4\20\3\2\2\2\6\7\7\3\2\2\7\b\7\16\2\2"+
-		"\b\t\7\17\2\2\t\r\7\17\2\2\n\f\5\4\3\2\13\n\3\2\2\2\f\17\3\2\2\2\r\13"+
-		"\3\2\2\2\r\16\3\2\2\2\16\3\3\2\2\2\17\r\3\2\2\2\20\21\t\2\2\2\21\5\3\2"+
-		"\2\2\3\r";
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\23\35\4\2\t\2\4\3"+
+		"\t\3\4\4\t\4\3\2\7\2\n\n\2\f\2\16\2\r\13\2\3\3\3\3\3\3\3\3\3\3\6\3\24"+
+		"\n\3\r\3\16\3\25\3\3\5\3\31\n\3\3\4\3\4\3\4\2\2\5\2\4\6\2\3\4\2\4\r\20"+
+		"\21\34\2\13\3\2\2\2\4\16\3\2\2\2\6\32\3\2\2\2\b\n\5\4\3\2\t\b\3\2\2\2"+
+		"\n\r\3\2\2\2\13\t\3\2\2\2\13\f\3\2\2\2\f\3\3\2\2\2\r\13\3\2\2\2\16\17"+
+		"\7\3\2\2\17\20\7\16\2\2\20\21\7\17\2\2\21\23\7\17\2\2\22\24\5\6\4\2\23"+
+		"\22\3\2\2\2\24\25\3\2\2\2\25\23\3\2\2\2\25\26\3\2\2\2\26\30\3\2\2\2\27"+
+		"\31\7\2\2\3\30\27\3\2\2\2\30\31\3\2\2\2\31\5\3\2\2\2\32\33\t\2\2\2\33"+
+		"\7\3\2\2\2\5\13\25\30";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

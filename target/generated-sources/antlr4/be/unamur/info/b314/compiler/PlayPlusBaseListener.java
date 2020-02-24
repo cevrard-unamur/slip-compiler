@@ -40,6 +40,18 @@ public class PlayPlusBaseListener implements PlayPlusListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMapDescription(PlayPlusParser.MapDescriptionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMapDescription(PlayPlusParser.MapDescriptionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterMapSymbols(PlayPlusParser.MapSymbolsContext ctx) { }
 	/**
 	 * {@inheritDoc}

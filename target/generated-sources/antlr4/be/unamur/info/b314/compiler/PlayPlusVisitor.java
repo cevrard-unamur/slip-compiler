@@ -23,6 +23,12 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMap(PlayPlusParser.MapContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#mapDescription}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMapDescription(PlayPlusParser.MapDescriptionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link PlayPlusParser#mapSymbols}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
