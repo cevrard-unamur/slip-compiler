@@ -25,23 +25,4 @@ public class B314variablesSemanticsTest {
         }
     ;
     };
-
-    //
-    // Serie variables OK
-    //
-    @Test
-    public void testvariables_id_operationAdd_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/variables/ok/id_operationAdd.b314", testFolder.newFile(), true, "variables: id_operationAdd");
-    }
-
-
-    //
-    // Serie variables KO
-    //
-    @Test
-    public void testvariables_id_operationAdd_mistake_ko() throws Exception {
-        CompilerTestHelper.launchCompilation("/semantics/variables/ko/id_operationAdd_mistake.b314", testFolder.newFile(), false, "variables: id_operationAdd_mistake");
-    }
-
-
 }
