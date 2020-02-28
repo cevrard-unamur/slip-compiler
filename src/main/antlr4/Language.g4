@@ -2,36 +2,55 @@ grammar Language;
 
 import LanguageWords;
 
-root: programme;
-
-programme:  mapImport (globalVariable)*  mainFunction EOF
+programme:  mapImport (globalVariable)* (function)? mainFunction EOF
             ;
 
-mapImport:  DASH IMPORT QUOTE MAPFILE QUOTE
+mapImport:  IMPORT QUOTE MAPFILE QUOTE
             ;
 
-mainFunction: MAIN AS FUNCTION LPAR RPAR COLON VOID DO (instruction)* (dig SEMICOLON) (instruction)* END
+mainFunction: MAIN AS FUNCTION LPAR RPAR COLON VOID DO (instruction)* (digInstruction SEMICOLON) (instruction)* END
             ;
 
-instruction: (variableDeclaration|assignation|(actionType SEMICOLON));
-
-globalVariable: variableDeclaration|constDeclaration|enumDeclaration;
-
-variableDeclaration: (ID (COMMA ID)* AS variableType (EQUAL initVariable)? SEMICOLON)
+function: ID AS FUNCTION LPAR (argumentList)? RPAR COLON (SCALAR|VOID) DO (functionInstruction)+ END
             ;
-variableType:  SCALAR | arrayType | structure
+
+argumentList: argument (COMMA argument)*
+            ;
+
+argument: (ID (COMMA ID)* AS variableType)
+            ;
+
+instruction: (variableDeclaration|assignation|(actionType SEMICOLON))
+            ;
+functionInstruction: ((enumDeclaration)*|(constDeclaration)*|(structureType)*)? (instruction)+
+            ;
+globalVariable: variableDeclaration
+            | constDeclaration
+            | enumDeclaration
+            | structureType;
+
+variableDeclaration: (ID (COMMA ID)* AS variableType (EQUAL initVariable)? SEMICOLON)       #variable
+            ;
+variableType: SCALAR                                                                        #scalar
+            | arrayType                                                                     #array
+            | structureType                                                                 #structure
             ;
 arrayType: SCALAR LBRA NUMBER (COMMA NUMBER)* RBRA
             ;
-structure: ID AS RECORD (variableDeclaration)+ END SEMICOLON
+structureType: ID AS RECORD (variableDeclaration)+ END SEMICOLON
             ;
-initVariable: TRUE|FALSE|NUMBER|STRING|CHAR|initArray
+initVariable: TRUE                                                                          #trueInitialisation
+            | FALSE                                                                         #falseInitialisation
+            | NUMBER                                                                        #numberInitialisation
+            | STRING                                                                        #stringInitialisation
+            | CHAR                                                                          #charInitialisation
+            | initArray                                                                     #arrayInitialisation
             ;
 initArray: LPAR initVariable ((COMMA initVariable)*)? RPAR
             ;
-constDeclaration: CONST ID AS (variableType|structure) EQUAL initVariable SEMICOLON
+constDeclaration: CONST ID AS (variableType|structureType) EQUAL initVariable SEMICOLON     #constant
             ;
-enumDeclaration: ENUM ID EQUAL LPAR ID (COMMA ID)* RPAR SEMICOLON
+enumDeclaration: ENUM ID EQUAL LPAR ID (COMMA ID)* RPAR SEMICOLON                           #enumeration
             ;
 rightExpr: NOT<assoc=left> rightExpr
             | rightExpr AND<assoc=left> rightExpr
@@ -57,20 +76,20 @@ rightExpr: NOT<assoc=left> rightExpr
             | ID LPAR rightExpr ((COMMA rightExpr)*)? RPAR
             | LPAR rightExpr RPAR
             ;
-leftExpr: ID
-            | ID LBRA rightExpr (COMMA rightExpr)? RBRA
-            | leftExpr.ID
+leftExpr: ID                                                    #leftId
+            | ID LBRA rightExpr (COMMA rightExpr)? RBRA         #leftArray
+            | leftExpr.ID                                       #leftProperty
             ;
 assignation: leftExpr ASSIGN (rightExpr)? SEMICOLON;
-actionType: LEFT LPAR (rightExpr)? RPAR
-            | RIGHT LPAR (rightExpr)? RPAR
-            | UP LPAR (rightExpr)? RPAR
-            | DOWN LPAR (rightExpr)? RPAR
-            | JUMP LPAR (rightExpr)? RPAR
-            | fight
-            | dig
+actionType: LEFT LPAR (rightExpr)? RPAR                         #left
+            | RIGHT LPAR (rightExpr)? RPAR                      #right
+            | UP LPAR (rightExpr)? RPAR                         #up
+            | DOWN LPAR (rightExpr)? RPAR                       #down
+            | JUMP LPAR (rightExpr)? RPAR                       #jump
+            | fightInstruction                                  #fight
+            | digInstruction                                    #dig
             ;
-dig: DIG LPAR RPAR
+digInstruction: DIG LPAR RPAR
     ;
-fight: FIGHT LPAR RPAR
+fightInstruction: FIGHT LPAR RPAR
     ;
