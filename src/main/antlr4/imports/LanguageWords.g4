@@ -4,8 +4,7 @@ import CommonWords;
 
 // Words
 // Map importation
-DASH: '#';
-IMPORT: 'import';
+IMPORT: '#'(WS)*'import';
 MAPFILE: ID'.map';
 
 // Various

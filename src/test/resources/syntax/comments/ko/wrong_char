@@ -1,0 +1,19 @@
+/* My comments */
+
+#import "world.map"
+
+     x as integer;
+     y as integer;
+     z as integer[4];
+     t1 as integer[5];
+
+
+main as function():void
+do
+
+t1[0] := (true < false) $$ ;
+
+
+dig();
+
+end

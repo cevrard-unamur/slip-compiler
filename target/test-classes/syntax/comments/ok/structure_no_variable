@@ -1,0 +1,11 @@
+#import "test.map"
+
+testRecord as record
+    number as integer;
+    cArray as char[5];
+end;
+
+main as function(): void
+do
+    dig();
+end

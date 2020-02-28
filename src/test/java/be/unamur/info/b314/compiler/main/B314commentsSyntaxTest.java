@@ -40,6 +40,11 @@ public class B314commentsSyntaxTest {
     }
 
     @Test
+    public void testcomments_structure_no_variable_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/comments/ok/structure_no_variable", testFolder.newFile(), true, "comments: structure_no_variable");
+    }
+
+    @Test
     public void testcomments_jump_incorrect_type_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/comments/ok/jump_incorrect_type", testFolder.newFile(), true, "comments: jump_incorrect_type");
     }
@@ -82,6 +87,11 @@ public class B314commentsSyntaxTest {
     @Test
     public void testcomments_more_than_one_variable_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/comments/ok/more_than_one_variable", testFolder.newFile(), true, "comments: more_than_one_variable");
+    }
+
+    @Test
+    public void testcomments_type_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/comments/ok/type", testFolder.newFile(), true, "comments: type");
     }
 
     @Test
