@@ -2,10 +2,10 @@ grammar Map;
 
 import MapWords;
 
-map: (mapDescription)*
+map: (mapStructure)*
             ;
 
-mapDescription: (MAP COLON NUMBER NUMBER (mapSymbols)+) EOF?        #mapDescription
+mapStructure: (MAP COLON NUMBER NUMBER (mapSymbols)+) EOF?        #mapDescription
            ;
 
 mapSymbols: ROBOT                   #robot

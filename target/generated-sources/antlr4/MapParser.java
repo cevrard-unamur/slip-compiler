@@ -20,9 +20,9 @@ public class MapParser extends Parser {
 		WELL=9, EMPTY=10, SQUELETON=11, COLON=12, NUMBER=13, COMMENT_MULTILINE=14, 
 		COMMENT_SINGLELINE=15, NEWLINE=16, WS=17;
 	public static final int
-		RULE_map = 0, RULE_mapDescription = 1, RULE_mapSymbols = 2;
+		RULE_map = 0, RULE_mapStructure = 1, RULE_mapSymbols = 2;
 	public static final String[] ruleNames = {
-		"map", "mapDescription", "mapSymbols"
+		"map", "mapStructure", "mapSymbols"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
@@ -84,11 +84,11 @@ public class MapParser extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 	public static class MapContext extends ParserRuleContext {
-		public List<MapDescriptionContext> mapDescription() {
-			return getRuleContexts(MapDescriptionContext.class);
+		public List<MapStructureContext> mapStructure() {
+			return getRuleContexts(MapStructureContext.class);
 		}
-		public MapDescriptionContext mapDescription(int i) {
-			return getRuleContext(MapDescriptionContext.class,i);
+		public MapStructureContext mapStructure(int i) {
+			return getRuleContext(MapStructureContext.class,i);
 		}
 		public MapContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -123,7 +123,7 @@ public class MapParser extends Parser {
 				{
 				{
 				setState(6);
-				mapDescription();
+				mapStructure();
 				}
 				}
 				setState(11);
@@ -143,7 +143,18 @@ public class MapParser extends Parser {
 		return _localctx;
 	}
 
-	public static class MapDescriptionContext extends ParserRuleContext {
+	public static class MapStructureContext extends ParserRuleContext {
+		public MapStructureContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_mapStructure; }
+	 
+		public MapStructureContext() { }
+		public void copyFrom(MapStructureContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class MapDescriptionContext extends MapStructureContext {
 		public TerminalNode MAP() { return getToken(MapParser.MAP, 0); }
 		public TerminalNode COLON() { return getToken(MapParser.COLON, 0); }
 		public List<TerminalNode> NUMBER() { return getTokens(MapParser.NUMBER); }
@@ -157,10 +168,7 @@ public class MapParser extends Parser {
 		public MapSymbolsContext mapSymbols(int i) {
 			return getRuleContext(MapSymbolsContext.class,i);
 		}
-		public MapDescriptionContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_mapDescription; }
+		public MapDescriptionContext(MapStructureContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
 			if ( listener instanceof MapListener ) ((MapListener)listener).enterMapDescription(this);
@@ -176,11 +184,12 @@ public class MapParser extends Parser {
 		}
 	}
 
-	public final MapDescriptionContext mapDescription() throws RecognitionException {
-		MapDescriptionContext _localctx = new MapDescriptionContext(_ctx, getState());
-		enterRule(_localctx, 2, RULE_mapDescription);
+	public final MapStructureContext mapStructure() throws RecognitionException {
+		MapStructureContext _localctx = new MapStructureContext(_ctx, getState());
+		enterRule(_localctx, 2, RULE_mapStructure);
 		int _la;
 		try {
+			_localctx = new MapDescriptionContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			{
@@ -231,33 +240,217 @@ public class MapParser extends Parser {
 	}
 
 	public static class MapSymbolsContext extends ParserRuleContext {
-		public TerminalNode ROBOT() { return getToken(MapParser.ROBOT, 0); }
-		public TerminalNode CHEST() { return getToken(MapParser.CHEST, 0); }
-		public TerminalNode GRASS() { return getToken(MapParser.GRASS, 0); }
-		public TerminalNode PALMTREE() { return getToken(MapParser.PALMTREE, 0); }
-		public TerminalNode BRIDGE() { return getToken(MapParser.BRIDGE, 0); }
-		public TerminalNode BUSH() { return getToken(MapParser.BUSH, 0); }
-		public TerminalNode CASK() { return getToken(MapParser.CASK, 0); }
-		public TerminalNode WELL() { return getToken(MapParser.WELL, 0); }
-		public TerminalNode EMPTY() { return getToken(MapParser.EMPTY, 0); }
-		public TerminalNode SQUELETON() { return getToken(MapParser.SQUELETON, 0); }
-		public TerminalNode COMMENT_SINGLELINE() { return getToken(MapParser.COMMENT_SINGLELINE, 0); }
-		public TerminalNode COMMENT_MULTILINE() { return getToken(MapParser.COMMENT_MULTILINE, 0); }
 		public MapSymbolsContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_mapSymbols; }
+	 
+		public MapSymbolsContext() { }
+		public void copyFrom(MapSymbolsContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class RobotContext extends MapSymbolsContext {
+		public TerminalNode ROBOT() { return getToken(MapParser.ROBOT, 0); }
+		public RobotContext(MapSymbolsContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MapListener ) ((MapListener)listener).enterMapSymbols(this);
+			if ( listener instanceof MapListener ) ((MapListener)listener).enterRobot(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MapListener ) ((MapListener)listener).exitMapSymbols(this);
+			if ( listener instanceof MapListener ) ((MapListener)listener).exitRobot(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MapVisitor ) return ((MapVisitor<? extends T>)visitor).visitMapSymbols(this);
+			if ( visitor instanceof MapVisitor ) return ((MapVisitor<? extends T>)visitor).visitRobot(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class PalmtreeContext extends MapSymbolsContext {
+		public TerminalNode PALMTREE() { return getToken(MapParser.PALMTREE, 0); }
+		public PalmtreeContext(MapSymbolsContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).enterPalmtree(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).exitPalmtree(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MapVisitor ) return ((MapVisitor<? extends T>)visitor).visitPalmtree(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class ChestContext extends MapSymbolsContext {
+		public TerminalNode CHEST() { return getToken(MapParser.CHEST, 0); }
+		public ChestContext(MapSymbolsContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).enterChest(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).exitChest(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MapVisitor ) return ((MapVisitor<? extends T>)visitor).visitChest(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class CommentMultiContext extends MapSymbolsContext {
+		public TerminalNode COMMENT_MULTILINE() { return getToken(MapParser.COMMENT_MULTILINE, 0); }
+		public CommentMultiContext(MapSymbolsContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).enterCommentMulti(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).exitCommentMulti(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MapVisitor ) return ((MapVisitor<? extends T>)visitor).visitCommentMulti(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class GrassContext extends MapSymbolsContext {
+		public TerminalNode GRASS() { return getToken(MapParser.GRASS, 0); }
+		public GrassContext(MapSymbolsContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).enterGrass(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).exitGrass(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MapVisitor ) return ((MapVisitor<? extends T>)visitor).visitGrass(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class BushContext extends MapSymbolsContext {
+		public TerminalNode BUSH() { return getToken(MapParser.BUSH, 0); }
+		public BushContext(MapSymbolsContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).enterBush(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).exitBush(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MapVisitor ) return ((MapVisitor<? extends T>)visitor).visitBush(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class CaskContext extends MapSymbolsContext {
+		public TerminalNode CASK() { return getToken(MapParser.CASK, 0); }
+		public CaskContext(MapSymbolsContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).enterCask(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).exitCask(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MapVisitor ) return ((MapVisitor<? extends T>)visitor).visitCask(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class WellContext extends MapSymbolsContext {
+		public TerminalNode WELL() { return getToken(MapParser.WELL, 0); }
+		public WellContext(MapSymbolsContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).enterWell(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).exitWell(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MapVisitor ) return ((MapVisitor<? extends T>)visitor).visitWell(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class SqueletonContext extends MapSymbolsContext {
+		public TerminalNode SQUELETON() { return getToken(MapParser.SQUELETON, 0); }
+		public SqueletonContext(MapSymbolsContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).enterSqueleton(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).exitSqueleton(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MapVisitor ) return ((MapVisitor<? extends T>)visitor).visitSqueleton(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class BridgeContext extends MapSymbolsContext {
+		public TerminalNode BRIDGE() { return getToken(MapParser.BRIDGE, 0); }
+		public BridgeContext(MapSymbolsContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).enterBridge(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).exitBridge(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MapVisitor ) return ((MapVisitor<? extends T>)visitor).visitBridge(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class EmptyContext extends MapSymbolsContext {
+		public TerminalNode EMPTY() { return getToken(MapParser.EMPTY, 0); }
+		public EmptyContext(MapSymbolsContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).enterEmpty(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).exitEmpty(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MapVisitor ) return ((MapVisitor<? extends T>)visitor).visitEmpty(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class CommentSingleContext extends MapSymbolsContext {
+		public TerminalNode COMMENT_SINGLELINE() { return getToken(MapParser.COMMENT_SINGLELINE, 0); }
+		public CommentSingleContext(MapSymbolsContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).enterCommentSingle(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MapListener ) ((MapListener)listener).exitCommentSingle(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MapVisitor ) return ((MapVisitor<? extends T>)visitor).visitCommentSingle(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -265,20 +458,108 @@ public class MapParser extends Parser {
 	public final MapSymbolsContext mapSymbols() throws RecognitionException {
 		MapSymbolsContext _localctx = new MapSymbolsContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_mapSymbols);
-		int _la;
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(24);
-			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ROBOT) | (1L << CHEST) | (1L << GRASS) | (1L << PALMTREE) | (1L << BRIDGE) | (1L << BUSH) | (1L << CASK) | (1L << WELL) | (1L << EMPTY) | (1L << SQUELETON) | (1L << COMMENT_MULTILINE) | (1L << COMMENT_SINGLELINE))) != 0)) ) {
-			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
+			setState(36);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case ROBOT:
+				_localctx = new RobotContext(_localctx);
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(24);
+				match(ROBOT);
+				}
+				break;
+			case CHEST:
+				_localctx = new ChestContext(_localctx);
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(25);
+				match(CHEST);
+				}
+				break;
+			case GRASS:
+				_localctx = new GrassContext(_localctx);
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(26);
+				match(GRASS);
+				}
+				break;
+			case PALMTREE:
+				_localctx = new PalmtreeContext(_localctx);
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(27);
+				match(PALMTREE);
+				}
+				break;
+			case BRIDGE:
+				_localctx = new BridgeContext(_localctx);
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(28);
+				match(BRIDGE);
+				}
+				break;
+			case BUSH:
+				_localctx = new BushContext(_localctx);
+				enterOuterAlt(_localctx, 6);
+				{
+				setState(29);
+				match(BUSH);
+				}
+				break;
+			case CASK:
+				_localctx = new CaskContext(_localctx);
+				enterOuterAlt(_localctx, 7);
+				{
+				setState(30);
+				match(CASK);
+				}
+				break;
+			case WELL:
+				_localctx = new WellContext(_localctx);
+				enterOuterAlt(_localctx, 8);
+				{
+				setState(31);
+				match(WELL);
+				}
+				break;
+			case EMPTY:
+				_localctx = new EmptyContext(_localctx);
+				enterOuterAlt(_localctx, 9);
+				{
+				setState(32);
+				match(EMPTY);
+				}
+				break;
+			case SQUELETON:
+				_localctx = new SqueletonContext(_localctx);
+				enterOuterAlt(_localctx, 10);
+				{
+				setState(33);
+				match(SQUELETON);
+				}
+				break;
+			case COMMENT_SINGLELINE:
+				_localctx = new CommentSingleContext(_localctx);
+				enterOuterAlt(_localctx, 11);
+				{
+				setState(34);
+				match(COMMENT_SINGLELINE);
+				}
+				break;
+			case COMMENT_MULTILINE:
+				_localctx = new CommentMultiContext(_localctx);
+				enterOuterAlt(_localctx, 12);
+				{
+				setState(35);
+				match(COMMENT_MULTILINE);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -293,15 +574,19 @@ public class MapParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\23\35\4\2\t\2\4\3"+
-		"\t\3\4\4\t\4\3\2\7\2\n\n\2\f\2\16\2\r\13\2\3\3\3\3\3\3\3\3\3\3\6\3\24"+
-		"\n\3\r\3\16\3\25\3\3\5\3\31\n\3\3\4\3\4\3\4\2\2\5\2\4\6\2\3\4\2\4\r\20"+
-		"\21\34\2\13\3\2\2\2\4\16\3\2\2\2\6\32\3\2\2\2\b\n\5\4\3\2\t\b\3\2\2\2"+
-		"\n\r\3\2\2\2\13\t\3\2\2\2\13\f\3\2\2\2\f\3\3\2\2\2\r\13\3\2\2\2\16\17"+
-		"\7\3\2\2\17\20\7\16\2\2\20\21\7\17\2\2\21\23\7\17\2\2\22\24\5\6\4\2\23"+
-		"\22\3\2\2\2\24\25\3\2\2\2\25\23\3\2\2\2\25\26\3\2\2\2\26\30\3\2\2\2\27"+
-		"\31\7\2\2\3\30\27\3\2\2\2\30\31\3\2\2\2\31\5\3\2\2\2\32\33\t\2\2\2\33"+
-		"\7\3\2\2\2\5\13\25\30";
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\23)\4\2\t\2\4\3\t"+
+		"\3\4\4\t\4\3\2\7\2\n\n\2\f\2\16\2\r\13\2\3\3\3\3\3\3\3\3\3\3\6\3\24\n"+
+		"\3\r\3\16\3\25\3\3\5\3\31\n\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4"+
+		"\3\4\3\4\5\4\'\n\4\3\4\2\2\5\2\4\6\2\2\63\2\13\3\2\2\2\4\16\3\2\2\2\6"+
+		"&\3\2\2\2\b\n\5\4\3\2\t\b\3\2\2\2\n\r\3\2\2\2\13\t\3\2\2\2\13\f\3\2\2"+
+		"\2\f\3\3\2\2\2\r\13\3\2\2\2\16\17\7\3\2\2\17\20\7\16\2\2\20\21\7\17\2"+
+		"\2\21\23\7\17\2\2\22\24\5\6\4\2\23\22\3\2\2\2\24\25\3\2\2\2\25\23\3\2"+
+		"\2\2\25\26\3\2\2\2\26\30\3\2\2\2\27\31\7\2\2\3\30\27\3\2\2\2\30\31\3\2"+
+		"\2\2\31\5\3\2\2\2\32\'\7\4\2\2\33\'\7\5\2\2\34\'\7\6\2\2\35\'\7\7\2\2"+
+		"\36\'\7\b\2\2\37\'\7\t\2\2 \'\7\n\2\2!\'\7\13\2\2\"\'\7\f\2\2#\'\7\r\2"+
+		"\2$\'\7\21\2\2%\'\7\20\2\2&\32\3\2\2\2&\33\3\2\2\2&\34\3\2\2\2&\35\3\2"+
+		"\2\2&\36\3\2\2\2&\37\3\2\2\2& \3\2\2\2&!\3\2\2\2&\"\3\2\2\2&#\3\2\2\2"+
+		"&$\3\2\2\2&%\3\2\2\2\'\7\3\2\2\2\6\13\25\30&";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

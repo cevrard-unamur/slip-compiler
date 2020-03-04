@@ -28,115 +28,305 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 */
 	void exitMap(PlayPlusParser.MapContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PlayPlusParser#mapDescription}.
+	 * Enter a parse tree produced by the {@code mapDescription}
+	 * labeled alternative in {@link PlayPlusParser#mapStructure}.
 	 * @param ctx the parse tree
 	 */
 	void enterMapDescription(PlayPlusParser.MapDescriptionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PlayPlusParser#mapDescription}.
+	 * Exit a parse tree produced by the {@code mapDescription}
+	 * labeled alternative in {@link PlayPlusParser#mapStructure}.
 	 * @param ctx the parse tree
 	 */
 	void exitMapDescription(PlayPlusParser.MapDescriptionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PlayPlusParser#mapSymbols}.
+	 * Enter a parse tree produced by the {@code robot}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
 	 * @param ctx the parse tree
 	 */
-	void enterMapSymbols(PlayPlusParser.MapSymbolsContext ctx);
+	void enterRobot(PlayPlusParser.RobotContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PlayPlusParser#mapSymbols}.
+	 * Exit a parse tree produced by the {@code robot}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
 	 * @param ctx the parse tree
 	 */
-	void exitMapSymbols(PlayPlusParser.MapSymbolsContext ctx);
+	void exitRobot(PlayPlusParser.RobotContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PlayPlusParser#programme}.
+	 * Enter a parse tree produced by the {@code chest}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void enterChest(PlayPlusParser.ChestContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code chest}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void exitChest(PlayPlusParser.ChestContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code grass}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void enterGrass(PlayPlusParser.GrassContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code grass}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void exitGrass(PlayPlusParser.GrassContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code palmtree}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void enterPalmtree(PlayPlusParser.PalmtreeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code palmtree}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void exitPalmtree(PlayPlusParser.PalmtreeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code bridge}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void enterBridge(PlayPlusParser.BridgeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code bridge}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void exitBridge(PlayPlusParser.BridgeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code bush}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void enterBush(PlayPlusParser.BushContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code bush}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void exitBush(PlayPlusParser.BushContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code cask}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void enterCask(PlayPlusParser.CaskContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code cask}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void exitCask(PlayPlusParser.CaskContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code well}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void enterWell(PlayPlusParser.WellContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code well}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void exitWell(PlayPlusParser.WellContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code empty}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void enterEmpty(PlayPlusParser.EmptyContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code empty}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void exitEmpty(PlayPlusParser.EmptyContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code squeleton}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void enterSqueleton(PlayPlusParser.SqueletonContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code squeleton}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void exitSqueleton(PlayPlusParser.SqueletonContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code commentSingle}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void enterCommentSingle(PlayPlusParser.CommentSingleContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code commentSingle}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void exitCommentSingle(PlayPlusParser.CommentSingleContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code commentMulti}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void enterCommentMulti(PlayPlusParser.CommentMultiContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code commentMulti}
+	 * labeled alternative in {@link PlayPlusParser#mapSymbols}.
+	 * @param ctx the parse tree
+	 */
+	void exitCommentMulti(PlayPlusParser.CommentMultiContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code programme}
+	 * labeled alternative in {@link PlayPlusParser#prog}.
 	 * @param ctx the parse tree
 	 */
 	void enterProgramme(PlayPlusParser.ProgrammeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PlayPlusParser#programme}.
+	 * Exit a parse tree produced by the {@code programme}
+	 * labeled alternative in {@link PlayPlusParser#prog}.
 	 * @param ctx the parse tree
 	 */
 	void exitProgramme(PlayPlusParser.ProgrammeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PlayPlusParser#mapImport}.
+	 * Enter a parse tree produced by the {@code mapImportation}
+	 * labeled alternative in {@link PlayPlusParser#mapImport}.
 	 * @param ctx the parse tree
 	 */
-	void enterMapImport(PlayPlusParser.MapImportContext ctx);
+	void enterMapImportation(PlayPlusParser.MapImportationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PlayPlusParser#mapImport}.
+	 * Exit a parse tree produced by the {@code mapImportation}
+	 * labeled alternative in {@link PlayPlusParser#mapImport}.
 	 * @param ctx the parse tree
 	 */
-	void exitMapImport(PlayPlusParser.MapImportContext ctx);
+	void exitMapImportation(PlayPlusParser.MapImportationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PlayPlusParser#mainFunction}.
+	 * Enter a parse tree produced by the {@code main}
+	 * labeled alternative in {@link PlayPlusParser#mainFunction}.
 	 * @param ctx the parse tree
 	 */
-	void enterMainFunction(PlayPlusParser.MainFunctionContext ctx);
+	void enterMain(PlayPlusParser.MainContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PlayPlusParser#mainFunction}.
+	 * Exit a parse tree produced by the {@code main}
+	 * labeled alternative in {@link PlayPlusParser#mainFunction}.
 	 * @param ctx the parse tree
 	 */
-	void exitMainFunction(PlayPlusParser.MainFunctionContext ctx);
+	void exitMain(PlayPlusParser.MainContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PlayPlusParser#function}.
+	 * Enter a parse tree produced by the {@code function}
+	 * labeled alternative in {@link PlayPlusParser#funct}.
 	 * @param ctx the parse tree
 	 */
 	void enterFunction(PlayPlusParser.FunctionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PlayPlusParser#function}.
+	 * Exit a parse tree produced by the {@code function}
+	 * labeled alternative in {@link PlayPlusParser#funct}.
 	 * @param ctx the parse tree
 	 */
 	void exitFunction(PlayPlusParser.FunctionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PlayPlusParser#argumentList}.
+	 * Enter a parse tree produced by the {@code functionParameters}
+	 * labeled alternative in {@link PlayPlusParser#argumentList}.
 	 * @param ctx the parse tree
 	 */
-	void enterArgumentList(PlayPlusParser.ArgumentListContext ctx);
+	void enterFunctionParameters(PlayPlusParser.FunctionParametersContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PlayPlusParser#argumentList}.
+	 * Exit a parse tree produced by the {@code functionParameters}
+	 * labeled alternative in {@link PlayPlusParser#argumentList}.
 	 * @param ctx the parse tree
 	 */
-	void exitArgumentList(PlayPlusParser.ArgumentListContext ctx);
+	void exitFunctionParameters(PlayPlusParser.FunctionParametersContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PlayPlusParser#argument}.
+	 * Enter a parse tree produced by the {@code functionParameter}
+	 * labeled alternative in {@link PlayPlusParser#argument}.
 	 * @param ctx the parse tree
 	 */
-	void enterArgument(PlayPlusParser.ArgumentContext ctx);
+	void enterFunctionParameter(PlayPlusParser.FunctionParameterContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PlayPlusParser#argument}.
+	 * Exit a parse tree produced by the {@code functionParameter}
+	 * labeled alternative in {@link PlayPlusParser#argument}.
 	 * @param ctx the parse tree
 	 */
-	void exitArgument(PlayPlusParser.ArgumentContext ctx);
+	void exitFunctionParameter(PlayPlusParser.FunctionParameterContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PlayPlusParser#instruction}.
+	 * Enter a parse tree produced by the {@code instruction}
+	 * labeled alternative in {@link PlayPlusParser#inst}.
 	 * @param ctx the parse tree
 	 */
 	void enterInstruction(PlayPlusParser.InstructionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PlayPlusParser#instruction}.
+	 * Exit a parse tree produced by the {@code instruction}
+	 * labeled alternative in {@link PlayPlusParser#inst}.
 	 * @param ctx the parse tree
 	 */
 	void exitInstruction(PlayPlusParser.InstructionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PlayPlusParser#functionInstruction}.
+	 * Enter a parse tree produced by the {@code functionInstruction}
+	 * labeled alternative in {@link PlayPlusParser#functionInst}.
 	 * @param ctx the parse tree
 	 */
 	void enterFunctionInstruction(PlayPlusParser.FunctionInstructionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PlayPlusParser#functionInstruction}.
+	 * Exit a parse tree produced by the {@code functionInstruction}
+	 * labeled alternative in {@link PlayPlusParser#functionInst}.
 	 * @param ctx the parse tree
 	 */
 	void exitFunctionInstruction(PlayPlusParser.FunctionInstructionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PlayPlusParser#globalVariable}.
+	 * Enter a parse tree produced by the {@code globalVariableDeclaration}
+	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
 	 * @param ctx the parse tree
 	 */
-	void enterGlobalVariable(PlayPlusParser.GlobalVariableContext ctx);
+	void enterGlobalVariableDeclaration(PlayPlusParser.GlobalVariableDeclarationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PlayPlusParser#globalVariable}.
+	 * Exit a parse tree produced by the {@code globalVariableDeclaration}
+	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
 	 * @param ctx the parse tree
 	 */
-	void exitGlobalVariable(PlayPlusParser.GlobalVariableContext ctx);
+	void exitGlobalVariableDeclaration(PlayPlusParser.GlobalVariableDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code globalConstantDeclaration}
+	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
+	 * @param ctx the parse tree
+	 */
+	void enterGlobalConstantDeclaration(PlayPlusParser.GlobalConstantDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code globalConstantDeclaration}
+	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
+	 * @param ctx the parse tree
+	 */
+	void exitGlobalConstantDeclaration(PlayPlusParser.GlobalConstantDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code globalEnumDeclaration}
+	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
+	 * @param ctx the parse tree
+	 */
+	void enterGlobalEnumDeclaration(PlayPlusParser.GlobalEnumDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code globalEnumDeclaration}
+	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
+	 * @param ctx the parse tree
+	 */
+	void exitGlobalEnumDeclaration(PlayPlusParser.GlobalEnumDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code globalStructureDeclaration}
+	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
+	 * @param ctx the parse tree
+	 */
+	void enterGlobalStructureDeclaration(PlayPlusParser.GlobalStructureDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code globalStructureDeclaration}
+	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
+	 * @param ctx the parse tree
+	 */
+	void exitGlobalStructureDeclaration(PlayPlusParser.GlobalStructureDeclarationContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code variable}
 	 * labeled alternative in {@link PlayPlusParser#variableDeclaration}.
@@ -186,25 +376,29 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 */
 	void exitStructure(PlayPlusParser.StructureContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PlayPlusParser#arrayType}.
+	 * Enter a parse tree produced by the {@code arrayDefinition}
+	 * labeled alternative in {@link PlayPlusParser#arrayType}.
 	 * @param ctx the parse tree
 	 */
-	void enterArrayType(PlayPlusParser.ArrayTypeContext ctx);
+	void enterArrayDefinition(PlayPlusParser.ArrayDefinitionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PlayPlusParser#arrayType}.
+	 * Exit a parse tree produced by the {@code arrayDefinition}
+	 * labeled alternative in {@link PlayPlusParser#arrayType}.
 	 * @param ctx the parse tree
 	 */
-	void exitArrayType(PlayPlusParser.ArrayTypeContext ctx);
+	void exitArrayDefinition(PlayPlusParser.ArrayDefinitionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PlayPlusParser#structureType}.
+	 * Enter a parse tree produced by the {@code structureDefinition}
+	 * labeled alternative in {@link PlayPlusParser#structureType}.
 	 * @param ctx the parse tree
 	 */
-	void enterStructureType(PlayPlusParser.StructureTypeContext ctx);
+	void enterStructureDefinition(PlayPlusParser.StructureDefinitionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PlayPlusParser#structureType}.
+	 * Exit a parse tree produced by the {@code structureDefinition}
+	 * labeled alternative in {@link PlayPlusParser#structureType}.
 	 * @param ctx the parse tree
 	 */
-	void exitStructureType(PlayPlusParser.StructureTypeContext ctx);
+	void exitStructureDefinition(PlayPlusParser.StructureDefinitionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code trueInitialisation}
 	 * labeled alternative in {@link PlayPlusParser#initVariable}.
@@ -312,15 +506,281 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 */
 	void exitEnumeration(PlayPlusParser.EnumerationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PlayPlusParser#rightExpr}.
+	 * Enter a parse tree produced by the {@code string}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
 	 * @param ctx the parse tree
 	 */
-	void enterRightExpr(PlayPlusParser.RightExprContext ctx);
+	void enterString(PlayPlusParser.StringContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PlayPlusParser#rightExpr}.
+	 * Exit a parse tree produced by the {@code string}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
 	 * @param ctx the parse tree
 	 */
-	void exitRightExpr(PlayPlusParser.RightExprContext ctx);
+	void exitString(PlayPlusParser.StringContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code minusNumbersExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterMinusNumbersExpression(PlayPlusParser.MinusNumbersExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code minusNumbersExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitMinusNumbersExpression(PlayPlusParser.MinusNumbersExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code leftExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterLeftExpression(PlayPlusParser.LeftExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code leftExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitLeftExpression(PlayPlusParser.LeftExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code divideNumbersExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterDivideNumbersExpression(PlayPlusParser.DivideNumbersExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code divideNumbersExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitDivideNumbersExpression(PlayPlusParser.DivideNumbersExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code booleanFalse}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanFalse(PlayPlusParser.BooleanFalseContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code booleanFalse}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanFalse(PlayPlusParser.BooleanFalseContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code booleanEqualExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanEqualExpression(PlayPlusParser.BooleanEqualExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code booleanEqualExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanEqualExpression(PlayPlusParser.BooleanEqualExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code notExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterNotExpression(PlayPlusParser.NotExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code notExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitNotExpression(PlayPlusParser.NotExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code booleanOrExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanOrExpression(PlayPlusParser.BooleanOrExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code booleanOrExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanOrExpression(PlayPlusParser.BooleanOrExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code booleanGreatExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanGreatExpression(PlayPlusParser.BooleanGreatExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code booleanGreatExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanGreatExpression(PlayPlusParser.BooleanGreatExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code booleanLessExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanLessExpression(PlayPlusParser.BooleanLessExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code booleanLessExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanLessExpression(PlayPlusParser.BooleanLessExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code minusNumberExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterMinusNumberExpression(PlayPlusParser.MinusNumberExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code minusNumberExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitMinusNumberExpression(PlayPlusParser.MinusNumberExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code booleanNotEqualExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanNotEqualExpression(PlayPlusParser.BooleanNotEqualExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code booleanNotEqualExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanNotEqualExpression(PlayPlusParser.BooleanNotEqualExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code booleanLessEqualExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanLessEqualExpression(PlayPlusParser.BooleanLessEqualExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code booleanLessEqualExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanLessEqualExpression(PlayPlusParser.BooleanLessEqualExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code number}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumber(PlayPlusParser.NumberContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code number}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumber(PlayPlusParser.NumberContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code parenthesesExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterParenthesesExpression(PlayPlusParser.ParenthesesExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code parenthesesExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitParenthesesExpression(PlayPlusParser.ParenthesesExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code addNumbersExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterAddNumbersExpression(PlayPlusParser.AddNumbersExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code addNumbersExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitAddNumbersExpression(PlayPlusParser.AddNumbersExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code booleanTrue}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanTrue(PlayPlusParser.BooleanTrueContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code booleanTrue}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanTrue(PlayPlusParser.BooleanTrueContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code char}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterChar(PlayPlusParser.CharContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code char}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitChar(PlayPlusParser.CharContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code functionCallExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionCallExpression(PlayPlusParser.FunctionCallExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code functionCallExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionCallExpression(PlayPlusParser.FunctionCallExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code booleanGreatEqualExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanGreatEqualExpression(PlayPlusParser.BooleanGreatEqualExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code booleanGreatEqualExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanGreatEqualExpression(PlayPlusParser.BooleanGreatEqualExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code modNumbersExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterModNumbersExpression(PlayPlusParser.ModNumbersExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code modNumbersExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitModNumbersExpression(PlayPlusParser.ModNumbersExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code multiplyNumbersExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterMultiplyNumbersExpression(PlayPlusParser.MultiplyNumbersExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code multiplyNumbersExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitMultiplyNumbersExpression(PlayPlusParser.MultiplyNumbersExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code booleanAndExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanAndExpression(PlayPlusParser.BooleanAndExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code booleanAndExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanAndExpression(PlayPlusParser.BooleanAndExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code leftProperty}
 	 * labeled alternative in {@link PlayPlusParser#leftExpr}.
@@ -428,47 +888,51 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 */
 	void exitJump(PlayPlusParser.JumpContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code fight}
+	 * Enter a parse tree produced by the {@code fightType}
 	 * labeled alternative in {@link PlayPlusParser#actionType}.
 	 * @param ctx the parse tree
 	 */
-	void enterFight(PlayPlusParser.FightContext ctx);
+	void enterFightType(PlayPlusParser.FightTypeContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code fight}
+	 * Exit a parse tree produced by the {@code fightType}
 	 * labeled alternative in {@link PlayPlusParser#actionType}.
 	 * @param ctx the parse tree
 	 */
-	void exitFight(PlayPlusParser.FightContext ctx);
+	void exitFightType(PlayPlusParser.FightTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code digType}
+	 * labeled alternative in {@link PlayPlusParser#actionType}.
+	 * @param ctx the parse tree
+	 */
+	void enterDigType(PlayPlusParser.DigTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code digType}
+	 * labeled alternative in {@link PlayPlusParser#actionType}.
+	 * @param ctx the parse tree
+	 */
+	void exitDigType(PlayPlusParser.DigTypeContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code dig}
-	 * labeled alternative in {@link PlayPlusParser#actionType}.
+	 * labeled alternative in {@link PlayPlusParser#digInstruction}.
 	 * @param ctx the parse tree
 	 */
 	void enterDig(PlayPlusParser.DigContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code dig}
-	 * labeled alternative in {@link PlayPlusParser#actionType}.
+	 * labeled alternative in {@link PlayPlusParser#digInstruction}.
 	 * @param ctx the parse tree
 	 */
 	void exitDig(PlayPlusParser.DigContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PlayPlusParser#digInstruction}.
+	 * Enter a parse tree produced by the {@code fight}
+	 * labeled alternative in {@link PlayPlusParser#fightInstruction}.
 	 * @param ctx the parse tree
 	 */
-	void enterDigInstruction(PlayPlusParser.DigInstructionContext ctx);
+	void enterFight(PlayPlusParser.FightContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PlayPlusParser#digInstruction}.
+	 * Exit a parse tree produced by the {@code fight}
+	 * labeled alternative in {@link PlayPlusParser#fightInstruction}.
 	 * @param ctx the parse tree
 	 */
-	void exitDigInstruction(PlayPlusParser.DigInstructionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link PlayPlusParser#fightInstruction}.
-	 * @param ctx the parse tree
-	 */
-	void enterFightInstruction(PlayPlusParser.FightInstructionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PlayPlusParser#fightInstruction}.
-	 * @param ctx the parse tree
-	 */
-	void exitFightInstruction(PlayPlusParser.FightInstructionContext ctx);
+	void exitFight(PlayPlusParser.FightContext ctx);
 }
