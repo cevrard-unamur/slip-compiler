@@ -5,19 +5,19 @@ import MapWords;
 map: (mapDescription)*
             ;
 
-mapDescription: (MAP COLON NUMBER NUMBER (mapSymbols)+) EOF?
+mapDescription: (MAP COLON NUMBER NUMBER (mapSymbols)+) EOF?        #mapDescription
            ;
 
-mapSymbols: ROBOT
-           | CHEST
-           | GRASS
-           | PALMTREE
-           | BRIDGE
-           | BUSH
-           | CASK
-           | WELL
-           | EMPTY
-           | SQUELETON
-           | COMMENT_SINGLELINE
-           | COMMENT_MULTILINE
+mapSymbols: ROBOT                   #robot
+           | CHEST                  #chest
+           | GRASS                  #grass
+           | PALMTREE               #palmtree
+           | BRIDGE                 #bridge
+           | BUSH                   #bush
+           | CASK                   #cask
+           | WELL                   #well
+           | EMPTY                  #empty
+           | SQUELETON              #squeleton
+           | COMMENT_SINGLELINE     #commentSingle
+           | COMMENT_MULTILINE      #commentMulti
            ;
