@@ -935,4 +935,64 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFight(PlayPlusParser.FightContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code if}
+	 * labeled alternative in {@link PlayPlusParser#ifBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterIf(PlayPlusParser.IfContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code if}
+	 * labeled alternative in {@link PlayPlusParser#ifBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitIf(PlayPlusParser.IfContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code then}
+	 * labeled alternative in {@link PlayPlusParser#thenBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterThen(PlayPlusParser.ThenContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code then}
+	 * labeled alternative in {@link PlayPlusParser#thenBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitThen(PlayPlusParser.ThenContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code else}
+	 * labeled alternative in {@link PlayPlusParser#elseBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterElse(PlayPlusParser.ElseContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code else}
+	 * labeled alternative in {@link PlayPlusParser#elseBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitElse(PlayPlusParser.ElseContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code while}
+	 * labeled alternative in {@link PlayPlusParser#whileBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhile(PlayPlusParser.WhileContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code while}
+	 * labeled alternative in {@link PlayPlusParser#whileBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhile(PlayPlusParser.WhileContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code do}
+	 * labeled alternative in {@link PlayPlusParser#doBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterDo(PlayPlusParser.DoContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code do}
+	 * labeled alternative in {@link PlayPlusParser#doBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitDo(PlayPlusParser.DoContext ctx);
 }

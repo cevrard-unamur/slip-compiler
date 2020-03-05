@@ -62,6 +62,7 @@ RECORD=61
 ID=62
 STRING=63
 CHAR=64
+ELSE=65
 'map'=1
 '@'=2
 'X'=3

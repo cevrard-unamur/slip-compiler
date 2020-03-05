@@ -552,4 +552,39 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFight(PlayPlusParser.FightContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code if}
+	 * labeled alternative in {@link PlayPlusParser#ifBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIf(PlayPlusParser.IfContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code then}
+	 * labeled alternative in {@link PlayPlusParser#thenBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitThen(PlayPlusParser.ThenContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code else}
+	 * labeled alternative in {@link PlayPlusParser#elseBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElse(PlayPlusParser.ElseContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code while}
+	 * labeled alternative in {@link PlayPlusParser#whileBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhile(PlayPlusParser.WhileContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code do}
+	 * labeled alternative in {@link PlayPlusParser#doBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDo(PlayPlusParser.DoContext ctx);
 }
