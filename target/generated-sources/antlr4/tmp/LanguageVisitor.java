@@ -449,4 +449,39 @@ public interface LanguageVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFight(LanguageParser.FightContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code if}
+	 * labeled alternative in {@link LanguageParser#ifBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIf(LanguageParser.IfContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code then}
+	 * labeled alternative in {@link LanguageParser#thenBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitThen(LanguageParser.ThenContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code else}
+	 * labeled alternative in {@link LanguageParser#elseBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElse(LanguageParser.ElseContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code while}
+	 * labeled alternative in {@link LanguageParser#whileBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhile(LanguageParser.WhileContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code do}
+	 * labeled alternative in {@link LanguageParser#doBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDo(LanguageParser.DoContext ctx);
 }

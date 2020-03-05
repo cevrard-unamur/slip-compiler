@@ -2,27 +2,27 @@ grammar Language;
 
 import LanguageWords;
 
-prog:  mapImport (globalVariable)* (funct)? mainFunction EOF        #programme
+prog:  mapImport (globalVariable)* (funct)? mainFunction EOF                                            #programme
             ;
 
-mapImport:  IMPORT QUOTE MAPFILE QUOTE                              #mapImportation
+mapImport:  IMPORT QUOTE MAPFILE QUOTE                                                                  #mapImportation
             ;
 
 mainFunction: MAIN AS FUNCTION LPAR RPAR COLON VOID DO (inst)* (digInstruction SEMICOLON) (inst)* END   #main
             ;
 
-funct: ID AS FUNCTION LPAR (argumentList)? RPAR COLON (SCALAR|VOID) DO (functionInst)+ END      #function
+funct: ID AS FUNCTION LPAR (argumentList)? RPAR COLON (SCALAR|VOID) DO (functionInst)+ END              #function
             ;
 
-argumentList: argument (COMMA argument)*                                            #functionParameters
+argumentList: argument (COMMA argument)*                                                                #functionParameters
             ;
 
-argument: (ID (COMMA ID)* AS variableType)                                          #functionParameter
+argument: (ID (COMMA ID)* AS variableType)                                                              #functionParameter
             ;
 
-inst:       (variableDeclaration|assignation|(actionType SEMICOLON))                #instruction
+inst:       (variableDeclaration|assignation|(actionType SEMICOLON)|ifBlock|whileBlock)                 #instruction
             ;
-functionInst: ((enumDeclaration)*|(constDeclaration)*|(structureType)*)? (inst)+    #functionInstruction
+functionInst: ((enumDeclaration)*|(constDeclaration)*|(structureType)*)? (inst)+                        #functionInstruction
             ;
 globalVariable: variableDeclaration                             #globalVariableDeclaration
             | constDeclaration                                  #globalConstantDeclaration
@@ -77,20 +77,30 @@ rightExpr: NOT<assoc=left> rightExpr                                #notExpressi
             | ID LPAR rightExpr ((COMMA rightExpr)*)? RPAR          #functionCallExpression
             | LPAR rightExpr RPAR                                   #parenthesesExpression
             ;
-leftExpr: ID                                                    #leftId
-            | ID LBRA rightExpr (COMMA rightExpr)? RBRA         #leftArray
-            | leftExpr.ID                                       #leftProperty
+leftExpr: ID                                                        #leftId
+            | ID LBRA rightExpr (COMMA rightExpr)? RBRA             #leftArray
+            | leftExpr.ID                                           #leftProperty
             ;
 assignation: leftExpr ASSIGN (rightExpr)? SEMICOLON;
-actionType: LEFT LPAR (rightExpr)? RPAR                         #left
-            | RIGHT LPAR (rightExpr)? RPAR                      #right
-            | UP LPAR (rightExpr)? RPAR                         #up
-            | DOWN LPAR (rightExpr)? RPAR                       #down
-            | JUMP LPAR (rightExpr)? RPAR                       #jump
-            | fightInstruction                                  #fightType
-            | digInstruction                                    #digType
+actionType: LEFT LPAR (rightExpr)? RPAR                             #left
+            | RIGHT LPAR (rightExpr)? RPAR                          #right
+            | UP LPAR (rightExpr)? RPAR                             #up
+            | DOWN LPAR (rightExpr)? RPAR                           #down
+            | JUMP LPAR (rightExpr)? RPAR                           #jump
+            | fightInstruction                                      #fightType
+            | digInstruction                                        #digType
             ;
-digInstruction: DIG LPAR RPAR                                   #dig
-    ;
-fightInstruction: FIGHT LPAR RPAR                               #fight
-    ;
+digInstruction: DIG LPAR RPAR                                       #dig
+            ;
+fightInstruction: FIGHT LPAR RPAR                                   #fight
+            ;
+ifBlock: (LPAR rightExpr RPAR thenBlock) END                        #if
+            ;
+thenBlock: (inst)+ elseBlock                                        #then
+            ;
+elseBlock: (ELSE (inst)+)?                                          #else
+            ;
+whileBlock: LPAR rightExpr RPAR doBlock END                         #while
+            ;
+doBlock: (inst)+                                                    #do
+            ;

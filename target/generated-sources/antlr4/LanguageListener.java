@@ -758,4 +758,64 @@ public interface LanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFight(LanguageParser.FightContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code if}
+	 * labeled alternative in {@link LanguageParser#ifBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterIf(LanguageParser.IfContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code if}
+	 * labeled alternative in {@link LanguageParser#ifBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitIf(LanguageParser.IfContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code then}
+	 * labeled alternative in {@link LanguageParser#thenBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterThen(LanguageParser.ThenContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code then}
+	 * labeled alternative in {@link LanguageParser#thenBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitThen(LanguageParser.ThenContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code else}
+	 * labeled alternative in {@link LanguageParser#elseBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterElse(LanguageParser.ElseContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code else}
+	 * labeled alternative in {@link LanguageParser#elseBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitElse(LanguageParser.ElseContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code while}
+	 * labeled alternative in {@link LanguageParser#whileBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhile(LanguageParser.WhileContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code while}
+	 * labeled alternative in {@link LanguageParser#whileBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhile(LanguageParser.WhileContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code do}
+	 * labeled alternative in {@link LanguageParser#doBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterDo(LanguageParser.DoContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code do}
+	 * labeled alternative in {@link LanguageParser#doBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitDo(LanguageParser.DoContext ctx);
 }
