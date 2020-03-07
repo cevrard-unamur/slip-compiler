@@ -40,12 +40,8 @@ arrayType: SCALAR LBRA NUMBER (COMMA NUMBER)* RBRA                              
             ;
 structureType: ID AS RECORD (variableDeclaration)+ END SEMICOLON                            #structureDefinition
             ;
-initVariable: TRUE                                                                          #trueInitialisation
-            | FALSE                                                                         #falseInitialisation
-            | NUMBER                                                                        #numberInitialisation
-            | STRING                                                                        #stringInitialisation
-            | CHAR                                                                          #charInitialisation
-            | initArray                                                                     #arrayInitialisation
+initVariable: initArray                                                                     #arrayInitialisation
+            | rightExpr                                                                     #rightInitialisation
             ;
 initArray: LPAR initVariable ((COMMA initVariable)*)? RPAR
             ;
