@@ -136,47 +136,19 @@ public interface LanguageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStructureDefinition(LanguageParser.StructureDefinitionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code trueInitialisation}
-	 * labeled alternative in {@link LanguageParser#initVariable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitTrueInitialisation(LanguageParser.TrueInitialisationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code falseInitialisation}
-	 * labeled alternative in {@link LanguageParser#initVariable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFalseInitialisation(LanguageParser.FalseInitialisationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code numberInitialisation}
-	 * labeled alternative in {@link LanguageParser#initVariable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNumberInitialisation(LanguageParser.NumberInitialisationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code stringInitialisation}
-	 * labeled alternative in {@link LanguageParser#initVariable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitStringInitialisation(LanguageParser.StringInitialisationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code charInitialisation}
-	 * labeled alternative in {@link LanguageParser#initVariable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCharInitialisation(LanguageParser.CharInitialisationContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code arrayInitialisation}
 	 * labeled alternative in {@link LanguageParser#initVariable}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitArrayInitialisation(LanguageParser.ArrayInitialisationContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code rightInitialisation}
+	 * labeled alternative in {@link LanguageParser#initVariable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRightInitialisation(LanguageParser.RightInitialisationContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link LanguageParser#initArray}.
 	 * @param ctx the parse tree

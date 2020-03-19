@@ -1,5 +1,6 @@
 // Generated from be/unamur/info/b314/compiler/PlayPlus.g4 by ANTLR 4.6
 package be.unamur.info.b314.compiler;
+import be.unamur.info.b314.compiler.exception.ParsingException;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -400,66 +401,6 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 */
 	void exitStructureDefinition(PlayPlusParser.StructureDefinitionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code trueInitialisation}
-	 * labeled alternative in {@link PlayPlusParser#initVariable}.
-	 * @param ctx the parse tree
-	 */
-	void enterTrueInitialisation(PlayPlusParser.TrueInitialisationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code trueInitialisation}
-	 * labeled alternative in {@link PlayPlusParser#initVariable}.
-	 * @param ctx the parse tree
-	 */
-	void exitTrueInitialisation(PlayPlusParser.TrueInitialisationContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code falseInitialisation}
-	 * labeled alternative in {@link PlayPlusParser#initVariable}.
-	 * @param ctx the parse tree
-	 */
-	void enterFalseInitialisation(PlayPlusParser.FalseInitialisationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code falseInitialisation}
-	 * labeled alternative in {@link PlayPlusParser#initVariable}.
-	 * @param ctx the parse tree
-	 */
-	void exitFalseInitialisation(PlayPlusParser.FalseInitialisationContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code numberInitialisation}
-	 * labeled alternative in {@link PlayPlusParser#initVariable}.
-	 * @param ctx the parse tree
-	 */
-	void enterNumberInitialisation(PlayPlusParser.NumberInitialisationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code numberInitialisation}
-	 * labeled alternative in {@link PlayPlusParser#initVariable}.
-	 * @param ctx the parse tree
-	 */
-	void exitNumberInitialisation(PlayPlusParser.NumberInitialisationContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code stringInitialisation}
-	 * labeled alternative in {@link PlayPlusParser#initVariable}.
-	 * @param ctx the parse tree
-	 */
-	void enterStringInitialisation(PlayPlusParser.StringInitialisationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code stringInitialisation}
-	 * labeled alternative in {@link PlayPlusParser#initVariable}.
-	 * @param ctx the parse tree
-	 */
-	void exitStringInitialisation(PlayPlusParser.StringInitialisationContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code charInitialisation}
-	 * labeled alternative in {@link PlayPlusParser#initVariable}.
-	 * @param ctx the parse tree
-	 */
-	void enterCharInitialisation(PlayPlusParser.CharInitialisationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code charInitialisation}
-	 * labeled alternative in {@link PlayPlusParser#initVariable}.
-	 * @param ctx the parse tree
-	 */
-	void exitCharInitialisation(PlayPlusParser.CharInitialisationContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code arrayInitialisation}
 	 * labeled alternative in {@link PlayPlusParser#initVariable}.
 	 * @param ctx the parse tree
@@ -471,6 +412,18 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitArrayInitialisation(PlayPlusParser.ArrayInitialisationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code rightInitialisation}
+	 * labeled alternative in {@link PlayPlusParser#initVariable}.
+	 * @param ctx the parse tree
+	 */
+	void enterRightInitialisation(PlayPlusParser.RightInitialisationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code rightInitialisation}
+	 * labeled alternative in {@link PlayPlusParser#initVariable}.
+	 * @param ctx the parse tree
+	 */
+	void exitRightInitialisation(PlayPlusParser.RightInitialisationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link PlayPlusParser#initArray}.
 	 * @param ctx the parse tree

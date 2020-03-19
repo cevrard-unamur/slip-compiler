@@ -240,47 +240,19 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStructureDefinition(PlayPlusParser.StructureDefinitionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code trueInitialisation}
-	 * labeled alternative in {@link PlayPlusParser#initVariable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitTrueInitialisation(PlayPlusParser.TrueInitialisationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code falseInitialisation}
-	 * labeled alternative in {@link PlayPlusParser#initVariable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFalseInitialisation(PlayPlusParser.FalseInitialisationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code numberInitialisation}
-	 * labeled alternative in {@link PlayPlusParser#initVariable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNumberInitialisation(PlayPlusParser.NumberInitialisationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code stringInitialisation}
-	 * labeled alternative in {@link PlayPlusParser#initVariable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitStringInitialisation(PlayPlusParser.StringInitialisationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code charInitialisation}
-	 * labeled alternative in {@link PlayPlusParser#initVariable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCharInitialisation(PlayPlusParser.CharInitialisationContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code arrayInitialisation}
 	 * labeled alternative in {@link PlayPlusParser#initVariable}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitArrayInitialisation(PlayPlusParser.ArrayInitialisationContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code rightInitialisation}
+	 * labeled alternative in {@link PlayPlusParser#initVariable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRightInitialisation(PlayPlusParser.RightInitialisationContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PlayPlusParser#initArray}.
 	 * @param ctx the parse tree

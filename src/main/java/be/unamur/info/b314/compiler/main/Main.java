@@ -5,6 +5,7 @@ package be.unamur.info.b314.compiler.main;
 import be.unamur.info.b314.compiler.*;
 
 
+import be.unamur.info.b314.compiler.exception.MapException;
 import be.unamur.info.b314.compiler.exception.ParsingException;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -14,6 +15,7 @@ import java.nio.Buffer;
 import java.util.Map;
 
 import be.unamur.info.b314.compiler.SymTableFiller;
+import be.unamur.info.b314.compiler.listener.MapListener;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
@@ -181,14 +183,8 @@ public class Main {
         PlayPlusParser.RootContext tree = parse(new ANTLRInputStream(new FileInputStream(inputFile)));
         LOG.debug("Parsing input: done");
         LOG.debug("AST is {}", tree.toStringTree(parser));
-        // Build symbol table
-        LOG.debug("Building symbol table");
-        Map<String, Integer> symTable = fillSymTable(tree);
-        LOG.debug("Building symbol table: done");
-        // Print NBC Code
-        LOG.debug("Printing NBC Code");
-        printNBCCode(tree, symTable);
-        LOG.debug("Printing NBC Code: done");
+        LOG.debug("Add Listener");
+        mapListener(tree);
 
     }
 
@@ -217,24 +213,17 @@ public class Main {
         return tree;
     }
 
-    /**
-     * Builds symbol table from AST.
-     */
-    private Map<String, Integer> fillSymTable(PlayPlusParser.RootContext tree) {
-        SymTableFiller filler = new SymTableFiller();
+
+    private void mapListener(PlayPlusParser.RootContext tree) {
         ParseTreeWalker walker = new ParseTreeWalker();
-        walker.walk(filler, tree);
-        return filler.getSymTable();
+        MapListener mapListener = new MapListener();
+        walker.walk(mapListener, tree);
+
+        if (mapListener.getErrors().size() != 0) {
+            for (String error : mapListener.getErrors()) {
+                LOG.error(error);
+            }
+            throw new MapException("Error while reading the map.");
+        }
     }
-
-
-    private void printNBCCode(PlayPlusParser.RootContext tree, Map<String, Integer> symTable) throws FileNotFoundException {
-
-        NBCPrinter printer = new NBCPrinter("nbcCode.nbc");
-        NBCVisitor visitor = new NBCVisitor(symTable, printer);
-        tree.accept(visitor);
-        printer.flush();
-        printer.close();
-    }
-
 }
