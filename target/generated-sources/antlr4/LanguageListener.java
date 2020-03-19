@@ -223,66 +223,6 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitStructureDefinition(LanguageParser.StructureDefinitionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code trueInitialisation}
-	 * labeled alternative in {@link LanguageParser#initVariable}.
-	 * @param ctx the parse tree
-	 */
-	void enterTrueInitialisation(LanguageParser.TrueInitialisationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code trueInitialisation}
-	 * labeled alternative in {@link LanguageParser#initVariable}.
-	 * @param ctx the parse tree
-	 */
-	void exitTrueInitialisation(LanguageParser.TrueInitialisationContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code falseInitialisation}
-	 * labeled alternative in {@link LanguageParser#initVariable}.
-	 * @param ctx the parse tree
-	 */
-	void enterFalseInitialisation(LanguageParser.FalseInitialisationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code falseInitialisation}
-	 * labeled alternative in {@link LanguageParser#initVariable}.
-	 * @param ctx the parse tree
-	 */
-	void exitFalseInitialisation(LanguageParser.FalseInitialisationContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code numberInitialisation}
-	 * labeled alternative in {@link LanguageParser#initVariable}.
-	 * @param ctx the parse tree
-	 */
-	void enterNumberInitialisation(LanguageParser.NumberInitialisationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code numberInitialisation}
-	 * labeled alternative in {@link LanguageParser#initVariable}.
-	 * @param ctx the parse tree
-	 */
-	void exitNumberInitialisation(LanguageParser.NumberInitialisationContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code stringInitialisation}
-	 * labeled alternative in {@link LanguageParser#initVariable}.
-	 * @param ctx the parse tree
-	 */
-	void enterStringInitialisation(LanguageParser.StringInitialisationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code stringInitialisation}
-	 * labeled alternative in {@link LanguageParser#initVariable}.
-	 * @param ctx the parse tree
-	 */
-	void exitStringInitialisation(LanguageParser.StringInitialisationContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code charInitialisation}
-	 * labeled alternative in {@link LanguageParser#initVariable}.
-	 * @param ctx the parse tree
-	 */
-	void enterCharInitialisation(LanguageParser.CharInitialisationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code charInitialisation}
-	 * labeled alternative in {@link LanguageParser#initVariable}.
-	 * @param ctx the parse tree
-	 */
-	void exitCharInitialisation(LanguageParser.CharInitialisationContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code arrayInitialisation}
 	 * labeled alternative in {@link LanguageParser#initVariable}.
 	 * @param ctx the parse tree
@@ -294,6 +234,18 @@ public interface LanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitArrayInitialisation(LanguageParser.ArrayInitialisationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code rightInitialisation}
+	 * labeled alternative in {@link LanguageParser#initVariable}.
+	 * @param ctx the parse tree
+	 */
+	void enterRightInitialisation(LanguageParser.RightInitialisationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code rightInitialisation}
+	 * labeled alternative in {@link LanguageParser#initVariable}.
+	 * @param ctx the parse tree
+	 */
+	void exitRightInitialisation(LanguageParser.RightInitialisationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link LanguageParser#initArray}.
 	 * @param ctx the parse tree

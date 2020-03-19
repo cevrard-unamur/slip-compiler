@@ -1,6 +1,7 @@
 // Generated from be/unamur/info/b314/compiler/PlayPlus.g4 by ANTLR 4.6
 package be.unamur.info.b314.compiler;
 
+import be.unamur.info.b314.compiler.exception.ParsingException;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -412,66 +413,6 @@ public class PlayPlusBaseListener implements PlayPlusListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTrueInitialisation(PlayPlusParser.TrueInitialisationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitTrueInitialisation(PlayPlusParser.TrueInitialisationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterFalseInitialisation(PlayPlusParser.FalseInitialisationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFalseInitialisation(PlayPlusParser.FalseInitialisationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterNumberInitialisation(PlayPlusParser.NumberInitialisationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitNumberInitialisation(PlayPlusParser.NumberInitialisationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterStringInitialisation(PlayPlusParser.StringInitialisationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStringInitialisation(PlayPlusParser.StringInitialisationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterCharInitialisation(PlayPlusParser.CharInitialisationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCharInitialisation(PlayPlusParser.CharInitialisationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterArrayInitialisation(PlayPlusParser.ArrayInitialisationContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -479,6 +420,18 @@ public class PlayPlusBaseListener implements PlayPlusListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitArrayInitialisation(PlayPlusParser.ArrayInitialisationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRightInitialisation(PlayPlusParser.RightInitialisationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRightInitialisation(PlayPlusParser.RightInitialisationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
