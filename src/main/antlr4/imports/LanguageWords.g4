@@ -48,6 +48,16 @@ GREAT: '>';
 GREAT_EQUAL: '>=';
 NOT_EQUAL: '<>';
 
+// Loop and condition
+IF: 'if';
+WHILE: 'while';
+TO: 'to';
+UNTIL: 'until';
+THEN: 'then';
+ELSE: 'else';
+REPEAT: 'repeat';
+FOR: 'for';
+
 // Default actions
 LEFT: 'left';
 RIGHT: 'right';

@@ -20,7 +20,13 @@ argumentList: argument (COMMA argument)*                                        
 argument: (ID (COMMA ID)* AS variableType)                                                              #functionParameter
             ;
 
-inst:       (variableDeclaration|assignation|(actionType SEMICOLON)|ifBlock|whileBlock)                 #instruction
+inst:       variableDeclaration                         #instruction
+            | assignation                               #instruction
+            | (actionType SEMICOLON)                    #instruction
+            | ifBlock                                   #instruction
+            | whileBlock                                #instruction
+            | repeatBlock                               #instruction
+            | forBlock                                  #instruction
             ;
 functionInst: ((enumDeclaration)*|(constDeclaration)*|(structureType)*)? (inst)+                        #functionInstruction
             ;
@@ -90,13 +96,11 @@ digInstruction: DIG LPAR RPAR                                       #dig
             ;
 fightInstruction: FIGHT LPAR RPAR                                   #fight
             ;
-ifBlock: (LPAR rightExpr RPAR thenBlock) END                        #if
+ifBlock: IF LPAR rightExpr RPAR THEN (inst)+ (ELSE (inst)+)? END    #if
             ;
-thenBlock: (inst)+ elseBlock                                        #then
+whileBlock: WHILE LPAR rightExpr RPAR DO (inst)+ END                #while
             ;
-elseBlock: (ELSE (inst)+)?                                          #else
+repeatBlock: REPEAT (inst)+ UNTIL LPAR rightExpr RPAR END           #repeat
             ;
-whileBlock: LPAR rightExpr RPAR doBlock END                         #while
-            ;
-doBlock: (inst)+                                                    #do
+forBlock: FOR ID ASSIGN rightExpr TO rightExpr DO (inst)+ END       #for
             ;

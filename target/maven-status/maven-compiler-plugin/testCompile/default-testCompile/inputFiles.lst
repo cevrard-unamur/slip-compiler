@@ -1,3 +1,9 @@
-/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/test/java/be/unamur/info/b314/compiler/main/B314variablesSemanticsTest.java
-/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/test/java/be/unamur/info/b314/compiler/main/B314commentsSyntaxTest.java
+/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/test/java/be/unamur/info/b314/compiler/main/SlipSyntaxVariablesTest.java
+/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/test/java/be/unamur/info/b314/compiler/main/SlipSemanticsMapsTest.java
+/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/test/java/be/unamur/info/b314/compiler/main/SlipSyntaxActionsTest.java
+/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/test/java/be/unamur/info/b314/compiler/main/SlipSyntaxProgramTest.java
+/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/test/java/be/unamur/info/b314/compiler/main/SlipSyntaxCommentsTest.java
+/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/test/java/be/unamur/info/b314/compiler/main/SlipSyntaxMapsTest.java
+/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/test/java/be/unamur/info/b314/compiler/main/SlipSyntaxWhileTest.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/src/test/java/be/unamur/info/b314/compiler/main/CompilerTestHelper.java
+/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/test/java/be/unamur/info/b314/compiler/main/SlipSyntaxArraysTest.java

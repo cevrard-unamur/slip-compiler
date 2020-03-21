@@ -723,30 +723,6 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitIf(LanguageParser.IfContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code then}
-	 * labeled alternative in {@link LanguageParser#thenBlock}.
-	 * @param ctx the parse tree
-	 */
-	void enterThen(LanguageParser.ThenContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code then}
-	 * labeled alternative in {@link LanguageParser#thenBlock}.
-	 * @param ctx the parse tree
-	 */
-	void exitThen(LanguageParser.ThenContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code else}
-	 * labeled alternative in {@link LanguageParser#elseBlock}.
-	 * @param ctx the parse tree
-	 */
-	void enterElse(LanguageParser.ElseContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code else}
-	 * labeled alternative in {@link LanguageParser#elseBlock}.
-	 * @param ctx the parse tree
-	 */
-	void exitElse(LanguageParser.ElseContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code while}
 	 * labeled alternative in {@link LanguageParser#whileBlock}.
 	 * @param ctx the parse tree
@@ -759,15 +735,27 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitWhile(LanguageParser.WhileContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code do}
-	 * labeled alternative in {@link LanguageParser#doBlock}.
+	 * Enter a parse tree produced by the {@code repeat}
+	 * labeled alternative in {@link LanguageParser#repeatBlock}.
 	 * @param ctx the parse tree
 	 */
-	void enterDo(LanguageParser.DoContext ctx);
+	void enterRepeat(LanguageParser.RepeatContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code do}
-	 * labeled alternative in {@link LanguageParser#doBlock}.
+	 * Exit a parse tree produced by the {@code repeat}
+	 * labeled alternative in {@link LanguageParser#repeatBlock}.
 	 * @param ctx the parse tree
 	 */
-	void exitDo(LanguageParser.DoContext ctx);
+	void exitRepeat(LanguageParser.RepeatContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code for}
+	 * labeled alternative in {@link LanguageParser#forBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterFor(LanguageParser.ForContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code for}
+	 * labeled alternative in {@link LanguageParser#forBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitFor(LanguageParser.ForContext ctx);
 }

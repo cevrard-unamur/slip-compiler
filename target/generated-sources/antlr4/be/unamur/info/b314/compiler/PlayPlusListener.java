@@ -1,6 +1,5 @@
 // Generated from be/unamur/info/b314/compiler/PlayPlus.g4 by ANTLR 4.6
 package be.unamur.info.b314.compiler;
-import be.unamur.info.b314.compiler.exception.ParsingException;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -901,30 +900,6 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 */
 	void exitIf(PlayPlusParser.IfContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code then}
-	 * labeled alternative in {@link PlayPlusParser#thenBlock}.
-	 * @param ctx the parse tree
-	 */
-	void enterThen(PlayPlusParser.ThenContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code then}
-	 * labeled alternative in {@link PlayPlusParser#thenBlock}.
-	 * @param ctx the parse tree
-	 */
-	void exitThen(PlayPlusParser.ThenContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code else}
-	 * labeled alternative in {@link PlayPlusParser#elseBlock}.
-	 * @param ctx the parse tree
-	 */
-	void enterElse(PlayPlusParser.ElseContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code else}
-	 * labeled alternative in {@link PlayPlusParser#elseBlock}.
-	 * @param ctx the parse tree
-	 */
-	void exitElse(PlayPlusParser.ElseContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code while}
 	 * labeled alternative in {@link PlayPlusParser#whileBlock}.
 	 * @param ctx the parse tree
@@ -937,15 +912,27 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 */
 	void exitWhile(PlayPlusParser.WhileContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code do}
-	 * labeled alternative in {@link PlayPlusParser#doBlock}.
+	 * Enter a parse tree produced by the {@code repeat}
+	 * labeled alternative in {@link PlayPlusParser#repeatBlock}.
 	 * @param ctx the parse tree
 	 */
-	void enterDo(PlayPlusParser.DoContext ctx);
+	void enterRepeat(PlayPlusParser.RepeatContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code do}
-	 * labeled alternative in {@link PlayPlusParser#doBlock}.
+	 * Exit a parse tree produced by the {@code repeat}
+	 * labeled alternative in {@link PlayPlusParser#repeatBlock}.
 	 * @param ctx the parse tree
 	 */
-	void exitDo(PlayPlusParser.DoContext ctx);
+	void exitRepeat(PlayPlusParser.RepeatContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code for}
+	 * labeled alternative in {@link PlayPlusParser#forBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterFor(PlayPlusParser.ForContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code for}
+	 * labeled alternative in {@link PlayPlusParser#forBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitFor(PlayPlusParser.ForContext ctx);
 }
