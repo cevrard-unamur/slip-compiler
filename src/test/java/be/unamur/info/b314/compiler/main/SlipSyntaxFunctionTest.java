@@ -28,6 +28,12 @@ public class SlipSyntaxFunctionTest {
 
     // tests OK
     @Test
+    public void test_factorial_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/function/ok/factorial.slip", testFolder.newFile(), true, "syntax::function: factorial.slip");
+    }
+
+
+    @Test
     public void test_no_local_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/function/ok/no_local.slip", testFolder.newFile(), true, "syntax::function: no_local.slip");
     }
