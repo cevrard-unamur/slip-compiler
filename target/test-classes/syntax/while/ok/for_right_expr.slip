@@ -1,0 +1,27 @@
+/* Test while playPlus */
+
+ #import "world.map"
+
+     i as integer;
+     s as char;
+     t1 as boolean[20];
+     t2 as integer[42];
+     t3 as integer[10, 10];
+
+main as function():void
+do
+   for i := 0 to (i < 100)
+   do
+       i := i + 1;
+       t1[1] := false;
+   end
+   i := 0;
+    for i:= i + 1 to (i < 10)
+    do
+           i := i + 1;
+    end
+
+
+ dig();
+
+end
