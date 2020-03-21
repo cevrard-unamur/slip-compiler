@@ -44,7 +44,7 @@ variableType: SCALAR                                                            
             ;
 arrayType: SCALAR LBRA NUMBER (COMMA NUMBER)* RBRA                                          #arrayDefinition
             ;
-structureType: ID AS RECORD (variableDeclaration)+ END SEMICOLON                            #structureDefinition
+structureType: ID AS RECORD (variableDeclaration|structureType)+ END SEMICOLON              #structureDefinition
             ;
 initVariable: initArray                                                                     #arrayInitialisation
             | rightExpr                                                                     #rightInitialisation
