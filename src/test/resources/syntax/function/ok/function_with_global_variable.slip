@@ -1,0 +1,81 @@
+/* Test fonction  playPlus */
+
+ #import "world.map"
+
+
+	b1 as boolean;
+	b2 as boolean;
+	b3 as boolean;
+	f1 as char;
+	f2 as char[3,5];
+
+   fct1 as function(x as integer):integer
+    do
+       x := x + 1;
+       x := (x + 1) % (2 + (5 * x));
+       f1 := f2[2,3];
+
+       fct1 := f1;
+    end
+
+    i1 as integer;
+    v2 as boolean[5, 7];
+    v3 as integer[42, 58];
+    v4 as integer[42];
+	b4 as boolean;
+	b5 as boolean;
+
+    fct2 as function(x as integer, y as boolean):integer
+     do
+        x := x - i1;
+    	fct2 := x;
+    end
+
+    f3 as boolean;
+
+    fct3 as function():boolean
+    do
+       f3 := (true and false ) or (not(v2[3,3]));
+       fct3 := f3;
+    end
+
+
+	s1 as boolean;
+	i2 as integer;
+	b6 as boolean;
+    i3 as integer;
+    s2 as char;
+    f4 as char;
+
+   fct4 as function():char
+    do
+      left(5);
+      f4 := 'a';
+      fct4 := f4;
+    end
+
+    fct5 as function(x as integer, y as boolean, z as char):integer
+    do
+        if(y and (x = 2)) then
+    			while (x < 5) do
+    				x := x + 1;
+    			end
+    	 else
+    	 	    if(x = 5) then
+    				x := x + 1;
+    				y := false;
+    				z := 'c';
+    			end
+         end
+    	fct5 := x;
+    end
+
+
+main as function():void
+do
+    if(not(fct1(5) = 'q')) then
+       up(6);
+    end
+dig();
+
+end

@@ -70,6 +70,18 @@ public class SlipSyntaxVariablesTest {
 
 
     @Test
+    public void test_fct_local_var_diff_names_than_global_vars_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/variables/ok/fct_local_var_diff_names_than_global_vars.slip", testFolder.newFile(), true, "syntax::variables: fct_local_var_diff_names_than_global_vars.slip");
+    }
+
+
+    @Test
+    public void test_when_local_var_diff_names_than_global_vars_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/variables/ok/when_local_var_diff_names_than_global_vars.slip", testFolder.newFile(), true, "syntax::variables: when_local_var_diff_names_than_global_vars.slip");
+    }
+
+
+    @Test
     public void test_type_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/variables/ok/type.slip", testFolder.newFile(), true, "syntax::variables: type.slip");
     }

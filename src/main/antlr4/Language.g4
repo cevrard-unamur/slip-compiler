@@ -2,7 +2,7 @@ grammar Language;
 
 import LanguageWords;
 
-prog:  mapImport (globalVariable)* (funct)? mainFunction EOF                                            #programme
+prog:  mapImport (globalVariable|funct)* mainFunction EOF                                            #programme
             ;
 
 mapImport:  IMPORT QUOTE MAPFILE QUOTE                                                                  #mapImportation
@@ -76,14 +76,15 @@ rightExpr: NOT<assoc=left> rightExpr                                #notExpressi
             | FALSE                                                 #booleanFalse
             | STRING                                                #string
             | CHAR                                                  #char
-            | ID LPAR rightExpr ((COMMA rightExpr)*)? RPAR          #functionCallExpression
+            | ID LPAR (rightExpr (COMMA rightExpr)*)? RPAR          #functionCallExpression
             | LPAR rightExpr RPAR                                   #parenthesesExpression
             ;
 leftExpr: ID                                                        #leftId
             | ID LBRA rightExpr (COMMA rightExpr)? RBRA             #leftArray
             | leftExpr.ID                                           #leftProperty
             ;
-assignation: leftExpr ASSIGN (rightExpr)? SEMICOLON;
+assignation: leftExpr ASSIGN rightExpr SEMICOLON
+            ;
 actionType: LEFT LPAR (rightExpr)? RPAR                             #left
             | RIGHT LPAR (rightExpr)? RPAR                          #right
             | UP LPAR (rightExpr)? RPAR                             #up
