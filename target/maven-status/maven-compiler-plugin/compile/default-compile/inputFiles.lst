@@ -1,4 +1,5 @@
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/application/Function.java
+/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/exception/ConstantException.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/be/unamur/info/b314/compiler/PlayPlusVisitor.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/MapVisitor.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/MapLexer.java
@@ -6,8 +7,8 @@
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/PlayPlusBaseVisitor.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/LanguageBaseListener.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/MapBaseVisitor.java
-/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/application/Environment.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/LanguageBaseListener.java
+/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/application/Context.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/MapListener.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/PlayPlusBaseListener.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/MapListener.java
@@ -24,7 +25,6 @@
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/LanguageBaseVisitor.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/MapBaseListener.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/LanguageLexer.java
-/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/exception/MapException.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/MapLexer.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/be/unamur/info/b314/compiler/PlayPlusBaseVisitor.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/LanguageListener.java
@@ -33,11 +33,14 @@
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/application/Application.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/MapWords.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/MapBaseVisitor.java
+/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/listener/LanguageListener.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/be/unamur/info/b314/compiler/PlayPlusBaseListener.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/MapParser.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/exception/ParsingException.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/PlayPlusVisitor.java
+/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/application/Record.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/SymTableFiller.java
+/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/exception/PlayPlusException.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/LanguageVisitor.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/MapVisitor.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/be/unamur/info/b314/compiler/PlayPlusListener.java

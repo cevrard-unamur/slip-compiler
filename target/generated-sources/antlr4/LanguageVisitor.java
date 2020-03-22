@@ -52,12 +52,54 @@ public interface LanguageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunctionParameter(LanguageParser.FunctionParameterContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code instruction}
+	 * Visit a parse tree produced by the {@code variableInstruction}
 	 * labeled alternative in {@link LanguageParser#inst}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitInstruction(LanguageParser.InstructionContext ctx);
+	T visitVariableInstruction(LanguageParser.VariableInstructionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code assignationInstruction}
+	 * labeled alternative in {@link LanguageParser#inst}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssignationInstruction(LanguageParser.AssignationInstructionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code actionInstruction}
+	 * labeled alternative in {@link LanguageParser#inst}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitActionInstruction(LanguageParser.ActionInstructionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ifInstruction}
+	 * labeled alternative in {@link LanguageParser#inst}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfInstruction(LanguageParser.IfInstructionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code whileInstruction}
+	 * labeled alternative in {@link LanguageParser#inst}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhileInstruction(LanguageParser.WhileInstructionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code repeatInstruction}
+	 * labeled alternative in {@link LanguageParser#inst}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRepeatInstruction(LanguageParser.RepeatInstructionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code forInstruction}
+	 * labeled alternative in {@link LanguageParser#inst}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForInstruction(LanguageParser.ForInstructionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code functionInstruction}
 	 * labeled alternative in {@link LanguageParser#functionInst}.
@@ -94,12 +136,12 @@ public interface LanguageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitGlobalStructureDeclaration(LanguageParser.GlobalStructureDeclarationContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code variable}
+	 * Visit a parse tree produced by the {@code variableDefinition}
 	 * labeled alternative in {@link LanguageParser#variableDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVariable(LanguageParser.VariableContext ctx);
+	T visitVariableDefinition(LanguageParser.VariableDefinitionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code scalar}
 	 * labeled alternative in {@link LanguageParser#variableType}.
