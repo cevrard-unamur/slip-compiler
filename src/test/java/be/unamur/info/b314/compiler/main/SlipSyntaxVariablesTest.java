@@ -28,50 +28,8 @@ public class SlipSyntaxVariablesTest {
 
     // tests OK
     @Test
-    public void test_enum_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/variables/ok/enum.slip", testFolder.newFile(), true, "syntax::variables: enum.slip");
-    }
-
-
-    @Test
-    public void test_declaration_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/variables/ok/declaration.slip", testFolder.newFile(), true, "syntax::variables: declaration.slip");
-    }
-
-
-    @Test
-    public void test_structure_no_variable_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/variables/ok/structure_no_variable.slip", testFolder.newFile(), true, "syntax::variables: structure_no_variable.slip");
-    }
-
-
-    @Test
     public void test_and_var_wrong_type_2_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/variables/ok/and_var_wrong_type_2.slip", testFolder.newFile(), true, "syntax::variables: and_var_wrong_type_2.slip");
-    }
-
-
-    @Test
-    public void test_struct_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/variables/ok/struct.slip", testFolder.newFile(), true, "syntax::variables: struct.slip");
-    }
-
-
-    @Test
-    public void test_declaration_more_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/variables/ok/declaration_more.slip", testFolder.newFile(), true, "syntax::variables: declaration_more.slip");
-    }
-
-
-    @Test
-    public void test_more_than_one_variable_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/variables/ok/more_than_one_variable.slip", testFolder.newFile(), true, "syntax::variables: more_than_one_variable.slip");
-    }
-
-
-    @Test
-    public void test_fct_local_var_diff_names_than_global_vars_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/variables/ok/fct_local_var_diff_names_than_global_vars.slip", testFolder.newFile(), true, "syntax::variables: fct_local_var_diff_names_than_global_vars.slip");
     }
 
 
@@ -82,8 +40,50 @@ public class SlipSyntaxVariablesTest {
 
 
     @Test
+    public void test_enum_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/variables/ok/enum.slip", testFolder.newFile(), true, "syntax::variables: enum.slip");
+    }
+
+
+    @Test
+    public void test_fct_local_var_diff_names_than_global_vars_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/variables/ok/fct_local_var_diff_names_than_global_vars.slip", testFolder.newFile(), true, "syntax::variables: fct_local_var_diff_names_than_global_vars.slip");
+    }
+
+
+    @Test
+    public void test_declaration_more_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/variables/ok/declaration_more.slip", testFolder.newFile(), true, "syntax::variables: declaration_more.slip");
+    }
+
+
+    @Test
+    public void test_structure_no_variable_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/variables/ok/structure_no_variable.slip", testFolder.newFile(), true, "syntax::variables: structure_no_variable.slip");
+    }
+
+
+    @Test
     public void test_type_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/variables/ok/type.slip", testFolder.newFile(), true, "syntax::variables: type.slip");
+    }
+
+
+    @Test
+    public void test_struct_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/variables/ok/struct.slip", testFolder.newFile(), true, "syntax::variables: struct.slip");
+    }
+
+
+    @Test
+    public void test_more_than_one_variable_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/variables/ok/more_than_one_variable.slip", testFolder.newFile(), true, "syntax::variables: more_than_one_variable.slip");
+    }
+
+
+    @Test
+    public void test_declaration_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/variables/ok/declaration.slip", testFolder.newFile(), true, "syntax::variables: declaration.slip");
     }
 
 
@@ -95,14 +95,14 @@ public class SlipSyntaxVariablesTest {
 
 
     @Test
-    public void test_non_existant_type_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/variables/ko/non_existant_type.slip", testFolder.newFile(), false, "syntax::variables: non_existant_type.slip");
+    public void test_incorrect_name_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/variables/ko/incorrect_name.slip", testFolder.newFile(), false, "syntax::variables: incorrect_name.slip");
     }
 
 
     @Test
-    public void test_incorrect_name_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/variables/ko/incorrect_name.slip", testFolder.newFile(), false, "syntax::variables: incorrect_name.slip");
+    public void test_non_existant_type_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/variables/ko/non_existant_type.slip", testFolder.newFile(), false, "syntax::variables: non_existant_type.slip");
     }
 
 
