@@ -41,6 +41,12 @@ public class SlipSyntaxProgramTest {
 
 
     @Test
+    public void test_empty_import_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/program/ko/empty_import.slip", testFolder.newFile(), false, "syntax::program: empty_import.slip");
+    }
+
+
+    @Test
     public void test_import_string_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/program/ko/import_string.slip", testFolder.newFile(), false, "syntax::program: import_string.slip");
     }
@@ -49,12 +55,6 @@ public class SlipSyntaxProgramTest {
     @Test
     public void test_no_dig_instruction_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/program/ko/no_dig_instruction.slip", testFolder.newFile(), false, "syntax::program: no_dig_instruction.slip");
-    }
-
-
-    @Test
-    public void test_empty_import_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/program/ko/empty_import.slip", testFolder.newFile(), false, "syntax::program: empty_import.slip");
     }
 
 

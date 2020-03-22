@@ -28,12 +28,19 @@ public class MapListener extends PlayPlusBaseListener {
 
         int currentLine = 0;
         int currentColumn = 0;
+        int numberOfChest = 0;
 
         for (PlayPlusParser.MapSymbolsContext mapItemContext : ctx.mapSymbols()) {
             // If we have the current line is the same as the number of wanted lines and
             //  we still have symbol to process, the map provide is incorrect.
             if (currentLine == lines) {
                 errors.add("The size of the map is not matching the number of symbol.");
+            }
+
+
+            if (mapItemContext instanceof PlayPlusParser.ChestContext)
+            {
+                numberOfChest++;
             }
 
             map[currentLine][currentColumn++] = mapItemContext.getText();
@@ -47,6 +54,16 @@ public class MapListener extends PlayPlusBaseListener {
 
         if (currentLine != lines) {
             errors.add("The size of the map is not matching the number of symbol.");
+        }
+
+        if (numberOfChest < 1)
+        {
+            errors.add("There is no chest on your map.");
+        }
+
+        if (numberOfChest > 1)
+        {
+            errors.add("There is too much chest on your map.");
         }
     }
 }

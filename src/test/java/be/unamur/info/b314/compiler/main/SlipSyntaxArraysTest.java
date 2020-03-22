@@ -28,14 +28,14 @@ public class SlipSyntaxArraysTest {
 
     // tests OK
     @Test
-    public void test_array_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/arrays/ok/array.slip", testFolder.newFile(), true, "syntax::arrays: array.slip");
+    public void test_array_multi_dimension_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/arrays/ok/array_multi_dimension.slip", testFolder.newFile(), true, "syntax::arrays: array_multi_dimension.slip");
     }
 
 
     @Test
-    public void test_array_multi_dimension_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/arrays/ok/array_multi_dimension.slip", testFolder.newFile(), true, "syntax::arrays: array_multi_dimension.slip");
+    public void test_array_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/arrays/ok/array.slip", testFolder.newFile(), true, "syntax::arrays: array.slip");
     }
 
 
