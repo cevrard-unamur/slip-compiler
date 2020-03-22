@@ -3,7 +3,6 @@ package be.unamur.info.b314.compiler.listener;
 
 import be.unamur.info.b314.compiler.PlayPlusBaseListener;
 import be.unamur.info.b314.compiler.PlayPlusParser;
-import be.unamur.info.b314.compiler.exception.MapException;
 
 import java.util.ArrayList;
 import java.util.List;

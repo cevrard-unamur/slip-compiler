@@ -156,12 +156,54 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunctionParameter(PlayPlusParser.FunctionParameterContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code instruction}
+	 * Visit a parse tree produced by the {@code variableInstruction}
 	 * labeled alternative in {@link PlayPlusParser#inst}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitInstruction(PlayPlusParser.InstructionContext ctx);
+	T visitVariableInstruction(PlayPlusParser.VariableInstructionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code assignationInstruction}
+	 * labeled alternative in {@link PlayPlusParser#inst}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssignationInstruction(PlayPlusParser.AssignationInstructionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code actionInstruction}
+	 * labeled alternative in {@link PlayPlusParser#inst}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitActionInstruction(PlayPlusParser.ActionInstructionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ifInstruction}
+	 * labeled alternative in {@link PlayPlusParser#inst}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfInstruction(PlayPlusParser.IfInstructionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code whileInstruction}
+	 * labeled alternative in {@link PlayPlusParser#inst}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhileInstruction(PlayPlusParser.WhileInstructionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code repeatInstruction}
+	 * labeled alternative in {@link PlayPlusParser#inst}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRepeatInstruction(PlayPlusParser.RepeatInstructionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code forInstruction}
+	 * labeled alternative in {@link PlayPlusParser#inst}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForInstruction(PlayPlusParser.ForInstructionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code functionInstruction}
 	 * labeled alternative in {@link PlayPlusParser#functionInst}.
@@ -198,12 +240,12 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitGlobalStructureDeclaration(PlayPlusParser.GlobalStructureDeclarationContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code variable}
+	 * Visit a parse tree produced by the {@code variableDefinition}
 	 * labeled alternative in {@link PlayPlusParser#variableDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVariable(PlayPlusParser.VariableContext ctx);
+	T visitVariableDefinition(PlayPlusParser.VariableDefinitionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code scalar}
 	 * labeled alternative in {@link PlayPlusParser#variableType}.

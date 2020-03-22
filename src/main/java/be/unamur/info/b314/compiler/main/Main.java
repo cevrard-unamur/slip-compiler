@@ -5,22 +5,20 @@ package be.unamur.info.b314.compiler.main;
 import be.unamur.info.b314.compiler.*;
 
 
-import be.unamur.info.b314.compiler.exception.MapException;
-import be.unamur.info.b314.compiler.exception.ParsingException;
-
 import static com.google.common.base.Preconditions.checkArgument;
 
 import java.io.*;
-import java.nio.Buffer;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
-import be.unamur.info.b314.compiler.SymTableFiller;
+import be.unamur.info.b314.compiler.application.Application;
+import be.unamur.info.b314.compiler.exception.PlayPlusException;
+import be.unamur.info.b314.compiler.listener.LanguageListener;
 import be.unamur.info.b314.compiler.listener.MapListener;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.misc.ParseCancellationException;
-import org.antlr.v4.runtime.tree.ParseTreeProperty;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -185,7 +183,7 @@ public class Main {
         LOG.debug("AST is {}", tree.toStringTree(parser));
         LOG.debug("Add Listener");
         mapListener(tree);
-
+        languageListener(tree);
     }
 
     /**
@@ -219,11 +217,26 @@ public class Main {
         MapListener mapListener = new MapListener();
         walker.walk(mapListener, tree);
 
-        if (mapListener.getErrors().size() != 0) {
-            for (String error : mapListener.getErrors()) {
+        handleErrors(mapListener.getErrors(), "An error occurred with the map file");
+    }
+
+    private void languageListener(PlayPlusParser.RootContext tree) {
+        ParseTreeWalker walker = new ParseTreeWalker();
+        LanguageListener languageListener = new LanguageListener();
+        walker.walk(languageListener, tree);
+
+        handleErrors(languageListener.getErrors(), "An error occurred with the language file");
+
+        Application app = languageListener.getApplication();
+    }
+
+    private  void handleErrors(List<String> errors, String errorMessage) {
+        if (errors.size() != 0) {
+            for (String error : errors) {
                 LOG.error(error);
             }
-            throw new MapException("Error while reading the map.");
+
+            throw new PlayPlusException(errorMessage);
         }
     }
 }

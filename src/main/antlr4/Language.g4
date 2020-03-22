@@ -20,13 +20,13 @@ argumentList: argument (COMMA argument)*                                        
 argument: (ID (COMMA ID)* AS variableType)                                                              #functionParameter
             ;
 
-inst:       variableDeclaration                         #instruction
-            | assignation                               #instruction
-            | (actionType SEMICOLON)                    #instruction
-            | ifBlock                                   #instruction
-            | whileBlock                                #instruction
-            | repeatBlock                               #instruction
-            | forBlock                                  #instruction
+inst:       variableDeclaration                         #variableInstruction
+            | assignation                               #assignationInstruction
+            | (actionType SEMICOLON)                    #actionInstruction
+            | ifBlock                                   #ifInstruction
+            | whileBlock                                #whileInstruction
+            | repeatBlock                               #repeatInstruction
+            | forBlock                                  #forInstruction
             ;
 functionInst: ((enumDeclaration)*|(constDeclaration)*|(structureType)*)? (inst)+                        #functionInstruction
             ;
@@ -36,7 +36,7 @@ globalVariable: variableDeclaration                             #globalVariableD
             | structureType                                     #globalStructureDeclaration
             ;
 
-variableDeclaration: (ID (COMMA ID)* AS variableType (EQUAL initVariable)? SEMICOLON)       #variable
+variableDeclaration: (ID (COMMA ID)* AS variableType (EQUAL initVariable)? SEMICOLON)       #variableDefinition
             ;
 variableType: SCALAR                                                                        #scalar
             | arrayType                                                                     #array
