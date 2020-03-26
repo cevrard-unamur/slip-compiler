@@ -29,7 +29,11 @@ public class LanguageListener extends PlayPlusBaseListener {
     @Override
     public void enterVariableDefinition(PlayPlusParser.VariableDefinitionContext ctx) {
         for (TerminalNode id : ctx.ID()) {
-            this.application.addVariable("", id.getText(), "", false);
+
+            if (ctx.variableType() instanceof  PlayPlusParser.ScalarContext)
+            {
+                this.application.addVariable(ctx.variableType().getText(), id.getText(), "", false);
+            }
         }
 
         super.enterVariableDefinition(ctx);
