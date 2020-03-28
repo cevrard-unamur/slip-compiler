@@ -20,6 +20,10 @@ public class Application {
         this.currentContext.updateVariable(name, value);
     }
 
+    public void addArray(String type, String name, int size){
+        this.currentContext.addArray(new Arrays(name,type,size));
+    }
+
     public void addFunction(String name, String value) {
         this.currentContext.addFunction(new Function(name, value));
     }

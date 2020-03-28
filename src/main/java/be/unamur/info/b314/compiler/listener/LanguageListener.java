@@ -34,6 +34,24 @@ public class LanguageListener extends PlayPlusBaseListener {
             {
                 this.application.addVariable(ctx.variableType().getText(), id.getText(), "", false);
             }
+            if (ctx.variableType() instanceof PlayPlusParser.ArrayContext)
+            {
+                String size;
+                size = ctx.variableType().getText().replaceAll("[^\\d]","");
+                size = size.trim();
+                if (ctx.variableType().getText().contains("boolean"))
+                {
+                    this.application.addArray("boolean",id.getText(),Integer.parseUnsignedInt(size));
+                }
+                if (ctx.variableType().getText().contains("char"))
+                {
+                    this.application.addArray("char",id.getText(),Integer.parseUnsignedInt(size));
+                }
+                if (ctx.variableType().getText().contains("integer"))
+                {
+                    this.application.addArray("integer",id.getText(),Integer.parseUnsignedInt(size));
+                }
+            }
         }
 
         super.enterVariableDefinition(ctx);

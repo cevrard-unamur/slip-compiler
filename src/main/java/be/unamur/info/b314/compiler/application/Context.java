@@ -14,16 +14,19 @@ public class Context {
     protected Variable[] variables;
     protected Function[] functions;
     protected Record[] records;
+    protected Arrays[] arrays;
 
     // The functions current index in the stack.
     protected int variableHeapIndex = 0;
     protected int functionHeapIndex = 0;
     protected int recordHeapIndex = 0;
+    protected int arrayHeapIndex = 0;
 
     // The dictionary with the variables and functions symbols for a quick access.
     protected Hashtable<String, Integer> variableSymbols;
     protected Hashtable<String, Integer> functionSymbols;
     protected Hashtable<String, Integer> recordSymbols;
+    protected Hashtable<String, Integer> arraySymbols;
 
     // The list of errors in the environment
     protected ArrayList<String> errors;
@@ -36,10 +39,12 @@ public class Context {
         this.variableSymbols = new Hashtable<>();
         this.functionSymbols = new Hashtable<>();
         this.recordSymbols = new Hashtable<>();
+        this.arraySymbols = new Hashtable<>();
 
         this.variables = new Variable[defaultStackSize];
         this.functions = new Function[defaultStackSize];
         this.records = new Record[defaultStackSize];
+        this.arrays = new Arrays[defaultStackSize];
     }
 
     public void addVariable(Variable variable) {
@@ -66,6 +71,15 @@ public class Context {
             this.records[recordHeapIndex++] = record;
         } else {
             this.errors.add("A record with the name " + record.getName() + " already exist");
+        }
+    }
+
+    public void addArray(Arrays array) {
+        if (!this.variableSymbols.containsKey(array.getName())) {
+            this.variableSymbols.put(array.getName(), this.variableHeapIndex);
+            this.arrays[variableHeapIndex++] = array;
+        } else {
+            this.errors.add("An array with the name " + array.getName() + " already exist");
         }
     }
 
