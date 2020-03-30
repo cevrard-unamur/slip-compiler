@@ -11,7 +11,7 @@ public class Context {
     protected Context parent;
 
     // The variables and functions information.
-    protected Variable[] variables;
+    protected VariableBase[] variables;
     protected Function[] functions;
     protected Record[] records;
 
@@ -37,7 +37,7 @@ public class Context {
         this.functionSymbols = new Hashtable<>();
         this.recordSymbols = new Hashtable<>();
 
-        this.variables = new Variable[defaultStackSize];
+        this.variables = new VariableBase[defaultStackSize];
         this.functions = new Function[defaultStackSize];
         this.records = new Record[defaultStackSize];
     }
@@ -69,11 +69,20 @@ public class Context {
         }
     }
 
+    public void addArray(Array array) {
+        if (!this.variableSymbols.containsKey(array.getName())) {
+            this.variableSymbols.put(array.getName(), this.variableHeapIndex);
+            this.variables[variableHeapIndex++] = array;
+        } else {
+            this.errors.add("An array with the name " + array.getName() + " already exist");
+        }
+    }
+
     public void updateVariable(String name, String value) {
         try {
             if (this.variableSymbols.containsKey(name)) {
                 Integer heapIndex = this.variableSymbols.get(name);
-                this.variables[heapIndex].setValue(value);
+                ((Variable)this.variables[heapIndex]).setValue(value);
             } else {
                 this.errors.add("The variable with the name " + name + " does not exist");
             }

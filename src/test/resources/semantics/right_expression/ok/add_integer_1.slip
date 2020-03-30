@@ -1,0 +1,12 @@
+/* My comments */
+
+#import "world.map"
+
+s1 as integer;
+
+main as function():void
+do
+    s1 := 3 + 4;
+
+    dig();
+end

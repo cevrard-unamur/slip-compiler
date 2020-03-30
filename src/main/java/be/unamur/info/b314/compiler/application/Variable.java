@@ -2,9 +2,7 @@ package be.unamur.info.b314.compiler.application;
 
 import be.unamur.info.b314.compiler.exception.ConstantException;
 
-public class Variable {
-    private String type;
-    private String name;
+public class Variable extends VariableBase {
     private String value;
     private Boolean isConstant;
 
