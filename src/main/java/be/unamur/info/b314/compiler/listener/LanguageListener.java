@@ -73,9 +73,4 @@ public class LanguageListener extends PlayPlusBaseListener {
         this.application.leaveContext();
         super.exitStructureDefinition(ctx);
     }
-
-    @Override
-    public void enterIntegerExpression(PlayPlusParser.IntegerExpressionContext ctx) {
-        super.enterIntegerExpression(ctx);
-    }
 }

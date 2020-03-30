@@ -37,7 +37,7 @@ public class Context {
         this.functionSymbols = new Hashtable<>();
         this.recordSymbols = new Hashtable<>();
 
-        this.variables = new Variable[defaultStackSize];
+        this.variables = new VariableBase[defaultStackSize];
         this.functions = new Function[defaultStackSize];
         this.records = new Record[defaultStackSize];
     }
