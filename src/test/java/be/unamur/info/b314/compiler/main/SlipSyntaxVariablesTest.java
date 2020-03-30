@@ -40,12 +40,6 @@ public class SlipSyntaxVariablesTest {
 
 
     @Test
-    public void test_structure_no_variable_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/variables/ok/structure_no_variable.slip", testFolder.newFile(), true, "syntax::variables: structure_no_variable.slip");
-    }
-
-
-    @Test
     public void test_and_var_wrong_type_2_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/variables/ok/and_var_wrong_type_2.slip", testFolder.newFile(), true, "syntax::variables: and_var_wrong_type_2.slip");
     }
@@ -84,6 +78,12 @@ public class SlipSyntaxVariablesTest {
     @Test
     public void test_type_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/variables/ok/type.slip", testFolder.newFile(), true, "syntax::variables: type.slip");
+    }
+
+
+    @Test
+    public void test_struct_does_not_exist_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/variables/ok/struct_does_not_exist.slip", testFolder.newFile(), true, "syntax::variables: struct_does_not_exist.slip");
     }
 
 

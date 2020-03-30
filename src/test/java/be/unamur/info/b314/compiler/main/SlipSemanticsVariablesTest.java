@@ -34,6 +34,12 @@ public class SlipSemanticsVariablesTest {
 
 
     @Test
+    public void test_struct_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ok/struct.slip", testFolder.newFile(), true, "semantics::variables: struct.slip");
+    }
+
+
+    @Test
     public void test_type_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/variables/ok/type.slip", testFolder.newFile(), true, "semantics::variables: type.slip");
     }

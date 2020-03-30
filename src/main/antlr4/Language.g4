@@ -56,20 +56,20 @@ constDeclaration: CONST ID AS (variableType|structureType) EQUAL initVariable SE
 enumDeclaration: ENUM ID EQUAL LPAR ID (COMMA ID)* RPAR SEMICOLON                           #enumeration
             ;
 rightExpr: NOT<assoc=left> rightExpr                                #notExpression
-            | rightExpr AND<assoc=left> rightExpr                   #booleanAndExpression
-            | rightExpr OR<assoc=left> rightExpr                    #booleanOrExpression
-            | rightExpr EQUAL<assoc=left> rightExpr                 #booleanEqualExpression
-            | rightExpr LESS<assoc=left> rightExpr                  #booleanLessExpression
-            | rightExpr LESS_EQUAL<assoc=left> rightExpr            #booleanLessEqualExpression
-            | rightExpr GREAT<assoc=left> rightExpr                 #booleanGreatExpression
-            | rightExpr GREAT_EQUAL<assoc=left> rightExpr           #booleanGreatEqualExpression
-            | rightExpr NOT_EQUAL<assoc=left> rightExpr             #booleanNotEqualExpression
-            | MINUS<assoc=left> rightExpr                           #minusNumberExpression
-            | rightExpr PLUS<assoc=left> rightExpr                  #addNumbersExpression
-            | rightExpr MINUS<assoc=left> rightExpr                 #minusNumbersExpression
-            | rightExpr MULTI<assoc=left>rightExpr                  #multiplyNumbersExpression
-            | rightExpr DIV<assoc=left> rightExpr                   #divideNumbersExpression
-            | rightExpr MOD<assoc=left>rightExpr                    #modNumbersExpression
+            | rightExpr AND<assoc=left> rightExpr                   #boolExpression
+            | rightExpr OR<assoc=left> rightExpr                    #boolExpression
+            | rightExpr EQUAL<assoc=left> rightExpr                 #boolExpression
+            | rightExpr LESS<assoc=left> rightExpr                  #compExpression
+            | rightExpr LESS_EQUAL<assoc=left> rightExpr            #compExpression
+            | rightExpr GREAT<assoc=left> rightExpr                 #compExpression
+            | rightExpr GREAT_EQUAL<assoc=left> rightExpr           #compExpression
+            | rightExpr NOT_EQUAL<assoc=left> rightExpr             #compExpression
+            | MINUS<assoc=left> rightExpr                           #integerExpression
+            | rightExpr PLUS<assoc=left> rightExpr                  #integerExpression
+            | rightExpr MINUS<assoc=left> rightExpr                 #integerExpression
+            | rightExpr MULTI<assoc=left>rightExpr                  #integerExpression
+            | rightExpr DIV<assoc=left> rightExpr                   #integerExpression
+            | rightExpr MOD<assoc=left>rightExpr                    #integerExpression
             | leftExpr                                              #leftExpression
             | NUMBER                                                #number
             | TRUE                                                  #booleanTrue

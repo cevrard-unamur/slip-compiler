@@ -54,7 +54,10 @@ public class LanguageListener extends PlayPlusBaseListener {
                 size = arraySize.toArray(size);
                 this.application.addArray(variableType.getText(), id.getText(), size);
             } else if (ctx.variableType() instanceof PlayPlusParser.StructureContext) {
+                PlayPlusParser.StructureDefinitionContext structureType = (PlayPlusParser.StructureDefinitionContext)ctx.variableType().children.get(0);
+                TerminalNode structureName = (TerminalNode) structureType.children.get(0);
 
+                this.application.addVariable(structureName.getText(), id.getText(), "", false);
             }
         }
     }
@@ -69,5 +72,10 @@ public class LanguageListener extends PlayPlusBaseListener {
     public void exitStructureDefinition(PlayPlusParser.StructureDefinitionContext ctx) {
         this.application.leaveContext();
         super.exitStructureDefinition(ctx);
+    }
+
+    @Override
+    public void enterIntegerExpression(PlayPlusParser.IntegerExpressionContext ctx) {
+        super.enterIntegerExpression(ctx);
     }
 }

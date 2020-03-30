@@ -2516,283 +2516,6 @@ public class PlayPlusParser extends Parser {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class StringContext extends RightExprContext {
-		public TerminalNode STRING() { return getToken(PlayPlusParser.STRING, 0); }
-		public StringContext(RightExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterString(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitString(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitString(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class MinusNumbersExpressionContext extends RightExprContext {
-		public List<RightExprContext> rightExpr() {
-			return getRuleContexts(RightExprContext.class);
-		}
-		public RightExprContext rightExpr(int i) {
-			return getRuleContext(RightExprContext.class,i);
-		}
-		public TerminalNode MINUS() { return getToken(PlayPlusParser.MINUS, 0); }
-		public MinusNumbersExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterMinusNumbersExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitMinusNumbersExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitMinusNumbersExpression(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class LeftExpressionContext extends RightExprContext {
-		public LeftExprContext leftExpr() {
-			return getRuleContext(LeftExprContext.class,0);
-		}
-		public LeftExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterLeftExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitLeftExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitLeftExpression(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class DivideNumbersExpressionContext extends RightExprContext {
-		public List<RightExprContext> rightExpr() {
-			return getRuleContexts(RightExprContext.class);
-		}
-		public RightExprContext rightExpr(int i) {
-			return getRuleContext(RightExprContext.class,i);
-		}
-		public TerminalNode DIV() { return getToken(PlayPlusParser.DIV, 0); }
-		public DivideNumbersExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterDivideNumbersExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitDivideNumbersExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitDivideNumbersExpression(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BooleanFalseContext extends RightExprContext {
-		public TerminalNode FALSE() { return getToken(PlayPlusParser.FALSE, 0); }
-		public BooleanFalseContext(RightExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterBooleanFalse(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitBooleanFalse(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitBooleanFalse(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BooleanEqualExpressionContext extends RightExprContext {
-		public List<RightExprContext> rightExpr() {
-			return getRuleContexts(RightExprContext.class);
-		}
-		public RightExprContext rightExpr(int i) {
-			return getRuleContext(RightExprContext.class,i);
-		}
-		public TerminalNode EQUAL() { return getToken(PlayPlusParser.EQUAL, 0); }
-		public BooleanEqualExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterBooleanEqualExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitBooleanEqualExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitBooleanEqualExpression(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class NotExpressionContext extends RightExprContext {
-		public TerminalNode NOT() { return getToken(PlayPlusParser.NOT, 0); }
-		public RightExprContext rightExpr() {
-			return getRuleContext(RightExprContext.class,0);
-		}
-		public NotExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterNotExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitNotExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitNotExpression(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BooleanOrExpressionContext extends RightExprContext {
-		public List<RightExprContext> rightExpr() {
-			return getRuleContexts(RightExprContext.class);
-		}
-		public RightExprContext rightExpr(int i) {
-			return getRuleContext(RightExprContext.class,i);
-		}
-		public TerminalNode OR() { return getToken(PlayPlusParser.OR, 0); }
-		public BooleanOrExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterBooleanOrExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitBooleanOrExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitBooleanOrExpression(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BooleanGreatExpressionContext extends RightExprContext {
-		public List<RightExprContext> rightExpr() {
-			return getRuleContexts(RightExprContext.class);
-		}
-		public RightExprContext rightExpr(int i) {
-			return getRuleContext(RightExprContext.class,i);
-		}
-		public TerminalNode GREAT() { return getToken(PlayPlusParser.GREAT, 0); }
-		public BooleanGreatExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterBooleanGreatExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitBooleanGreatExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitBooleanGreatExpression(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BooleanLessExpressionContext extends RightExprContext {
-		public List<RightExprContext> rightExpr() {
-			return getRuleContexts(RightExprContext.class);
-		}
-		public RightExprContext rightExpr(int i) {
-			return getRuleContext(RightExprContext.class,i);
-		}
-		public TerminalNode LESS() { return getToken(PlayPlusParser.LESS, 0); }
-		public BooleanLessExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterBooleanLessExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitBooleanLessExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitBooleanLessExpression(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class MinusNumberExpressionContext extends RightExprContext {
-		public TerminalNode MINUS() { return getToken(PlayPlusParser.MINUS, 0); }
-		public RightExprContext rightExpr() {
-			return getRuleContext(RightExprContext.class,0);
-		}
-		public MinusNumberExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterMinusNumberExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitMinusNumberExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitMinusNumberExpression(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BooleanNotEqualExpressionContext extends RightExprContext {
-		public List<RightExprContext> rightExpr() {
-			return getRuleContexts(RightExprContext.class);
-		}
-		public RightExprContext rightExpr(int i) {
-			return getRuleContext(RightExprContext.class,i);
-		}
-		public TerminalNode NOT_EQUAL() { return getToken(PlayPlusParser.NOT_EQUAL, 0); }
-		public BooleanNotEqualExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterBooleanNotEqualExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitBooleanNotEqualExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitBooleanNotEqualExpression(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BooleanLessEqualExpressionContext extends RightExprContext {
-		public List<RightExprContext> rightExpr() {
-			return getRuleContexts(RightExprContext.class);
-		}
-		public RightExprContext rightExpr(int i) {
-			return getRuleContext(RightExprContext.class,i);
-		}
-		public TerminalNode LESS_EQUAL() { return getToken(PlayPlusParser.LESS_EQUAL, 0); }
-		public BooleanLessEqualExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterBooleanLessEqualExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitBooleanLessEqualExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitBooleanLessEqualExpression(this);
-			else return visitor.visitChildren(this);
-		}
-	}
 	public static class NumberContext extends RightExprContext {
 		public TerminalNode NUMBER() { return getToken(PlayPlusParser.NUMBER, 0); }
 		public NumberContext(RightExprContext ctx) { copyFrom(ctx); }
@@ -2831,26 +2554,91 @@ public class PlayPlusParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class AddNumbersExpressionContext extends RightExprContext {
+	public static class StringContext extends RightExprContext {
+		public TerminalNode STRING() { return getToken(PlayPlusParser.STRING, 0); }
+		public StringContext(RightExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterString(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitString(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitString(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class BoolExpressionContext extends RightExprContext {
 		public List<RightExprContext> rightExpr() {
 			return getRuleContexts(RightExprContext.class);
 		}
 		public RightExprContext rightExpr(int i) {
 			return getRuleContext(RightExprContext.class,i);
 		}
-		public TerminalNode PLUS() { return getToken(PlayPlusParser.PLUS, 0); }
-		public AddNumbersExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
+		public TerminalNode AND() { return getToken(PlayPlusParser.AND, 0); }
+		public TerminalNode OR() { return getToken(PlayPlusParser.OR, 0); }
+		public TerminalNode EQUAL() { return getToken(PlayPlusParser.EQUAL, 0); }
+		public BoolExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterAddNumbersExpression(this);
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterBoolExpression(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitAddNumbersExpression(this);
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitBoolExpression(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitAddNumbersExpression(this);
+			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitBoolExpression(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class CompExpressionContext extends RightExprContext {
+		public List<RightExprContext> rightExpr() {
+			return getRuleContexts(RightExprContext.class);
+		}
+		public RightExprContext rightExpr(int i) {
+			return getRuleContext(RightExprContext.class,i);
+		}
+		public TerminalNode LESS() { return getToken(PlayPlusParser.LESS, 0); }
+		public TerminalNode LESS_EQUAL() { return getToken(PlayPlusParser.LESS_EQUAL, 0); }
+		public TerminalNode GREAT() { return getToken(PlayPlusParser.GREAT, 0); }
+		public TerminalNode GREAT_EQUAL() { return getToken(PlayPlusParser.GREAT_EQUAL, 0); }
+		public TerminalNode NOT_EQUAL() { return getToken(PlayPlusParser.NOT_EQUAL, 0); }
+		public CompExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterCompExpression(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitCompExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitCompExpression(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class LeftExpressionContext extends RightExprContext {
+		public LeftExprContext leftExpr() {
+			return getRuleContext(LeftExprContext.class,0);
+		}
+		public LeftExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterLeftExpression(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitLeftExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitLeftExpression(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2888,6 +2676,23 @@ public class PlayPlusParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
+	public static class BooleanFalseContext extends RightExprContext {
+		public TerminalNode FALSE() { return getToken(PlayPlusParser.FALSE, 0); }
+		public BooleanFalseContext(RightExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterBooleanFalse(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitBooleanFalse(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitBooleanFalse(this);
+			else return visitor.visitChildren(this);
+		}
+	}
 	public static class FunctionCallExpressionContext extends RightExprContext {
 		public TerminalNode ID() { return getToken(PlayPlusParser.ID, 0); }
 		public TerminalNode LPAR() { return getToken(PlayPlusParser.LPAR, 0); }
@@ -2917,95 +2722,50 @@ public class PlayPlusParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class BooleanGreatEqualExpressionContext extends RightExprContext {
-		public List<RightExprContext> rightExpr() {
-			return getRuleContexts(RightExprContext.class);
+	public static class NotExpressionContext extends RightExprContext {
+		public TerminalNode NOT() { return getToken(PlayPlusParser.NOT, 0); }
+		public RightExprContext rightExpr() {
+			return getRuleContext(RightExprContext.class,0);
 		}
-		public RightExprContext rightExpr(int i) {
-			return getRuleContext(RightExprContext.class,i);
-		}
-		public TerminalNode GREAT_EQUAL() { return getToken(PlayPlusParser.GREAT_EQUAL, 0); }
-		public BooleanGreatEqualExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
+		public NotExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterBooleanGreatEqualExpression(this);
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterNotExpression(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitBooleanGreatEqualExpression(this);
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitNotExpression(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitBooleanGreatEqualExpression(this);
+			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitNotExpression(this);
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class ModNumbersExpressionContext extends RightExprContext {
+	public static class IntegerExpressionContext extends RightExprContext {
+		public TerminalNode MINUS() { return getToken(PlayPlusParser.MINUS, 0); }
 		public List<RightExprContext> rightExpr() {
 			return getRuleContexts(RightExprContext.class);
 		}
 		public RightExprContext rightExpr(int i) {
 			return getRuleContext(RightExprContext.class,i);
 		}
-		public TerminalNode MOD() { return getToken(PlayPlusParser.MOD, 0); }
-		public ModNumbersExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterModNumbersExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitModNumbersExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitModNumbersExpression(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class MultiplyNumbersExpressionContext extends RightExprContext {
-		public List<RightExprContext> rightExpr() {
-			return getRuleContexts(RightExprContext.class);
-		}
-		public RightExprContext rightExpr(int i) {
-			return getRuleContext(RightExprContext.class,i);
-		}
+		public TerminalNode PLUS() { return getToken(PlayPlusParser.PLUS, 0); }
 		public TerminalNode MULTI() { return getToken(PlayPlusParser.MULTI, 0); }
-		public MultiplyNumbersExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
+		public TerminalNode DIV() { return getToken(PlayPlusParser.DIV, 0); }
+		public TerminalNode MOD() { return getToken(PlayPlusParser.MOD, 0); }
+		public IntegerExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterMultiplyNumbersExpression(this);
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterIntegerExpression(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitMultiplyNumbersExpression(this);
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitIntegerExpression(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitMultiplyNumbersExpression(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BooleanAndExpressionContext extends RightExprContext {
-		public List<RightExprContext> rightExpr() {
-			return getRuleContexts(RightExprContext.class);
-		}
-		public RightExprContext rightExpr(int i) {
-			return getRuleContext(RightExprContext.class,i);
-		}
-		public TerminalNode AND() { return getToken(PlayPlusParser.AND, 0); }
-		public BooleanAndExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterBooleanAndExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitBooleanAndExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitBooleanAndExpression(this);
+			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitIntegerExpression(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -3043,7 +2803,7 @@ public class PlayPlusParser extends Parser {
 				break;
 			case 2:
 				{
-				_localctx = new MinusNumberExpressionContext(_localctx);
+				_localctx = new IntegerExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
 				setState(309);
@@ -3173,7 +2933,7 @@ public class PlayPlusParser extends Parser {
 					switch ( getInterpreter().adaptivePredict(_input,34,_ctx) ) {
 					case 1:
 						{
-						_localctx = new BooleanAndExpressionContext(new RightExprContext(_parentctx, _parentState));
+						_localctx = new BoolExpressionContext(new RightExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_rightExpr);
 						setState(336);
 						if (!(precpred(_ctx, 22))) throw new FailedPredicateException(this, "precpred(_ctx, 22)");
@@ -3185,7 +2945,7 @@ public class PlayPlusParser extends Parser {
 						break;
 					case 2:
 						{
-						_localctx = new BooleanOrExpressionContext(new RightExprContext(_parentctx, _parentState));
+						_localctx = new BoolExpressionContext(new RightExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_rightExpr);
 						setState(339);
 						if (!(precpred(_ctx, 21))) throw new FailedPredicateException(this, "precpred(_ctx, 21)");
@@ -3197,7 +2957,7 @@ public class PlayPlusParser extends Parser {
 						break;
 					case 3:
 						{
-						_localctx = new BooleanEqualExpressionContext(new RightExprContext(_parentctx, _parentState));
+						_localctx = new BoolExpressionContext(new RightExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_rightExpr);
 						setState(342);
 						if (!(precpred(_ctx, 20))) throw new FailedPredicateException(this, "precpred(_ctx, 20)");
@@ -3209,7 +2969,7 @@ public class PlayPlusParser extends Parser {
 						break;
 					case 4:
 						{
-						_localctx = new BooleanLessExpressionContext(new RightExprContext(_parentctx, _parentState));
+						_localctx = new CompExpressionContext(new RightExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_rightExpr);
 						setState(345);
 						if (!(precpred(_ctx, 19))) throw new FailedPredicateException(this, "precpred(_ctx, 19)");
@@ -3221,7 +2981,7 @@ public class PlayPlusParser extends Parser {
 						break;
 					case 5:
 						{
-						_localctx = new BooleanLessEqualExpressionContext(new RightExprContext(_parentctx, _parentState));
+						_localctx = new CompExpressionContext(new RightExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_rightExpr);
 						setState(348);
 						if (!(precpred(_ctx, 18))) throw new FailedPredicateException(this, "precpred(_ctx, 18)");
@@ -3233,7 +2993,7 @@ public class PlayPlusParser extends Parser {
 						break;
 					case 6:
 						{
-						_localctx = new BooleanGreatExpressionContext(new RightExprContext(_parentctx, _parentState));
+						_localctx = new CompExpressionContext(new RightExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_rightExpr);
 						setState(351);
 						if (!(precpred(_ctx, 17))) throw new FailedPredicateException(this, "precpred(_ctx, 17)");
@@ -3245,7 +3005,7 @@ public class PlayPlusParser extends Parser {
 						break;
 					case 7:
 						{
-						_localctx = new BooleanGreatEqualExpressionContext(new RightExprContext(_parentctx, _parentState));
+						_localctx = new CompExpressionContext(new RightExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_rightExpr);
 						setState(354);
 						if (!(precpred(_ctx, 16))) throw new FailedPredicateException(this, "precpred(_ctx, 16)");
@@ -3257,7 +3017,7 @@ public class PlayPlusParser extends Parser {
 						break;
 					case 8:
 						{
-						_localctx = new BooleanNotEqualExpressionContext(new RightExprContext(_parentctx, _parentState));
+						_localctx = new CompExpressionContext(new RightExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_rightExpr);
 						setState(357);
 						if (!(precpred(_ctx, 15))) throw new FailedPredicateException(this, "precpred(_ctx, 15)");
@@ -3269,7 +3029,7 @@ public class PlayPlusParser extends Parser {
 						break;
 					case 9:
 						{
-						_localctx = new AddNumbersExpressionContext(new RightExprContext(_parentctx, _parentState));
+						_localctx = new IntegerExpressionContext(new RightExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_rightExpr);
 						setState(360);
 						if (!(precpred(_ctx, 13))) throw new FailedPredicateException(this, "precpred(_ctx, 13)");
@@ -3281,7 +3041,7 @@ public class PlayPlusParser extends Parser {
 						break;
 					case 10:
 						{
-						_localctx = new MinusNumbersExpressionContext(new RightExprContext(_parentctx, _parentState));
+						_localctx = new IntegerExpressionContext(new RightExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_rightExpr);
 						setState(363);
 						if (!(precpred(_ctx, 12))) throw new FailedPredicateException(this, "precpred(_ctx, 12)");
@@ -3293,7 +3053,7 @@ public class PlayPlusParser extends Parser {
 						break;
 					case 11:
 						{
-						_localctx = new MultiplyNumbersExpressionContext(new RightExprContext(_parentctx, _parentState));
+						_localctx = new IntegerExpressionContext(new RightExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_rightExpr);
 						setState(366);
 						if (!(precpred(_ctx, 11))) throw new FailedPredicateException(this, "precpred(_ctx, 11)");
@@ -3305,7 +3065,7 @@ public class PlayPlusParser extends Parser {
 						break;
 					case 12:
 						{
-						_localctx = new DivideNumbersExpressionContext(new RightExprContext(_parentctx, _parentState));
+						_localctx = new IntegerExpressionContext(new RightExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_rightExpr);
 						setState(369);
 						if (!(precpred(_ctx, 10))) throw new FailedPredicateException(this, "precpred(_ctx, 10)");
@@ -3317,7 +3077,7 @@ public class PlayPlusParser extends Parser {
 						break;
 					case 13:
 						{
-						_localctx = new ModNumbersExpressionContext(new RightExprContext(_parentctx, _parentState));
+						_localctx = new IntegerExpressionContext(new RightExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_rightExpr);
 						setState(372);
 						if (!(precpred(_ctx, 9))) throw new FailedPredicateException(this, "precpred(_ctx, 9)");

@@ -530,162 +530,6 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 */
 	void exitEnumeration(PlayPlusParser.EnumerationContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code string}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterString(PlayPlusParser.StringContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code string}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitString(PlayPlusParser.StringContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code minusNumbersExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterMinusNumbersExpression(PlayPlusParser.MinusNumbersExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code minusNumbersExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitMinusNumbersExpression(PlayPlusParser.MinusNumbersExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code leftExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterLeftExpression(PlayPlusParser.LeftExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code leftExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitLeftExpression(PlayPlusParser.LeftExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code divideNumbersExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterDivideNumbersExpression(PlayPlusParser.DivideNumbersExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code divideNumbersExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitDivideNumbersExpression(PlayPlusParser.DivideNumbersExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code booleanFalse}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterBooleanFalse(PlayPlusParser.BooleanFalseContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code booleanFalse}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitBooleanFalse(PlayPlusParser.BooleanFalseContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code booleanEqualExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterBooleanEqualExpression(PlayPlusParser.BooleanEqualExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code booleanEqualExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitBooleanEqualExpression(PlayPlusParser.BooleanEqualExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code notExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterNotExpression(PlayPlusParser.NotExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code notExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitNotExpression(PlayPlusParser.NotExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code booleanOrExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterBooleanOrExpression(PlayPlusParser.BooleanOrExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code booleanOrExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitBooleanOrExpression(PlayPlusParser.BooleanOrExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code booleanGreatExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterBooleanGreatExpression(PlayPlusParser.BooleanGreatExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code booleanGreatExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitBooleanGreatExpression(PlayPlusParser.BooleanGreatExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code booleanLessExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterBooleanLessExpression(PlayPlusParser.BooleanLessExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code booleanLessExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitBooleanLessExpression(PlayPlusParser.BooleanLessExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code minusNumberExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterMinusNumberExpression(PlayPlusParser.MinusNumberExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code minusNumberExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitMinusNumberExpression(PlayPlusParser.MinusNumberExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code booleanNotEqualExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterBooleanNotEqualExpression(PlayPlusParser.BooleanNotEqualExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code booleanNotEqualExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitBooleanNotEqualExpression(PlayPlusParser.BooleanNotEqualExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code booleanLessEqualExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterBooleanLessEqualExpression(PlayPlusParser.BooleanLessEqualExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code booleanLessEqualExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitBooleanLessEqualExpression(PlayPlusParser.BooleanLessEqualExpressionContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code number}
 	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
 	 * @param ctx the parse tree
@@ -710,17 +554,53 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 */
 	void exitParenthesesExpression(PlayPlusParser.ParenthesesExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code addNumbersExpression}
+	 * Enter a parse tree produced by the {@code string}
 	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
 	 * @param ctx the parse tree
 	 */
-	void enterAddNumbersExpression(PlayPlusParser.AddNumbersExpressionContext ctx);
+	void enterString(PlayPlusParser.StringContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code addNumbersExpression}
+	 * Exit a parse tree produced by the {@code string}
 	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
 	 * @param ctx the parse tree
 	 */
-	void exitAddNumbersExpression(PlayPlusParser.AddNumbersExpressionContext ctx);
+	void exitString(PlayPlusParser.StringContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code boolExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolExpression(PlayPlusParser.BoolExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code boolExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolExpression(PlayPlusParser.BoolExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code compExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterCompExpression(PlayPlusParser.CompExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code compExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitCompExpression(PlayPlusParser.CompExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code leftExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterLeftExpression(PlayPlusParser.LeftExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code leftExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitLeftExpression(PlayPlusParser.LeftExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code booleanTrue}
 	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
@@ -746,6 +626,18 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 */
 	void exitChar(PlayPlusParser.CharContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code booleanFalse}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanFalse(PlayPlusParser.BooleanFalseContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code booleanFalse}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanFalse(PlayPlusParser.BooleanFalseContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code functionCallExpression}
 	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
 	 * @param ctx the parse tree
@@ -758,53 +650,29 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 */
 	void exitFunctionCallExpression(PlayPlusParser.FunctionCallExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code booleanGreatEqualExpression}
+	 * Enter a parse tree produced by the {@code notExpression}
 	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
 	 * @param ctx the parse tree
 	 */
-	void enterBooleanGreatEqualExpression(PlayPlusParser.BooleanGreatEqualExpressionContext ctx);
+	void enterNotExpression(PlayPlusParser.NotExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code booleanGreatEqualExpression}
+	 * Exit a parse tree produced by the {@code notExpression}
 	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
 	 * @param ctx the parse tree
 	 */
-	void exitBooleanGreatEqualExpression(PlayPlusParser.BooleanGreatEqualExpressionContext ctx);
+	void exitNotExpression(PlayPlusParser.NotExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code modNumbersExpression}
+	 * Enter a parse tree produced by the {@code integerExpression}
 	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
 	 * @param ctx the parse tree
 	 */
-	void enterModNumbersExpression(PlayPlusParser.ModNumbersExpressionContext ctx);
+	void enterIntegerExpression(PlayPlusParser.IntegerExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code modNumbersExpression}
+	 * Exit a parse tree produced by the {@code integerExpression}
 	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
 	 * @param ctx the parse tree
 	 */
-	void exitModNumbersExpression(PlayPlusParser.ModNumbersExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code multiplyNumbersExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterMultiplyNumbersExpression(PlayPlusParser.MultiplyNumbersExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code multiplyNumbersExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitMultiplyNumbersExpression(PlayPlusParser.MultiplyNumbersExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code booleanAndExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterBooleanAndExpression(PlayPlusParser.BooleanAndExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code booleanAndExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitBooleanAndExpression(PlayPlusParser.BooleanAndExpressionContext ctx);
+	void exitIntegerExpression(PlayPlusParser.IntegerExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code leftProperty}
 	 * labeled alternative in {@link PlayPlusParser#leftExpr}.

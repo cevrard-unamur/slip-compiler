@@ -11,22 +11,19 @@ public class Context {
     protected Context parent;
 
     // The variables and functions information.
-    protected Variable[] variables;
+    protected VariableBase[] variables;
     protected Function[] functions;
     protected Record[] records;
-    protected Array[] arrays;
 
     // The functions current index in the stack.
     protected int variableHeapIndex = 0;
     protected int functionHeapIndex = 0;
     protected int recordHeapIndex = 0;
-    protected int arrayHeapIndex = 0;
 
     // The dictionary with the variables and functions symbols for a quick access.
     protected Hashtable<String, Integer> variableSymbols;
     protected Hashtable<String, Integer> functionSymbols;
     protected Hashtable<String, Integer> recordSymbols;
-    protected Hashtable<String, Integer> arraySymbols;
 
     // The list of errors in the environment
     protected ArrayList<String> errors;
@@ -39,12 +36,10 @@ public class Context {
         this.variableSymbols = new Hashtable<>();
         this.functionSymbols = new Hashtable<>();
         this.recordSymbols = new Hashtable<>();
-        this.arraySymbols = new Hashtable<>();
 
         this.variables = new Variable[defaultStackSize];
         this.functions = new Function[defaultStackSize];
         this.records = new Record[defaultStackSize];
-        this.arrays = new Array[defaultStackSize];
     }
 
     public void addVariable(Variable variable) {
@@ -77,7 +72,7 @@ public class Context {
     public void addArray(Array array) {
         if (!this.variableSymbols.containsKey(array.getName())) {
             this.variableSymbols.put(array.getName(), this.variableHeapIndex);
-            this.arrays[variableHeapIndex++] = array;
+            this.variables[variableHeapIndex++] = array;
         } else {
             this.errors.add("An array with the name " + array.getName() + " already exist");
         }
@@ -87,7 +82,7 @@ public class Context {
         try {
             if (this.variableSymbols.containsKey(name)) {
                 Integer heapIndex = this.variableSymbols.get(name);
-                this.variables[heapIndex].setValue(value);
+                ((Variable)this.variables[heapIndex]).setValue(value);
             } else {
                 this.errors.add("The variable with the name " + name + " does not exist");
             }
