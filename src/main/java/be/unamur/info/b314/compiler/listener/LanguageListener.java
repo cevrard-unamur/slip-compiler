@@ -3,6 +3,7 @@ package be.unamur.info.b314.compiler.listener;
 import be.unamur.info.b314.compiler.PlayPlusBaseListener;
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
+import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.util.ArrayList;
@@ -32,29 +33,30 @@ public class LanguageListener extends PlayPlusBaseListener {
 
             if (ctx.variableType() instanceof  PlayPlusParser.ScalarContext)
             {
-                this.application.addVariable(ctx.variableType().getText(), id.getText(), "", false);
+                TerminalNode variableType = (TerminalNode)ctx.variableType().children.get(0);
+
+                this.application.addVariable(variableType.getText(), id.getText(), "", false);
             }
-            if (ctx.variableType() instanceof PlayPlusParser.ArrayContext)
+            else if (ctx.variableType() instanceof PlayPlusParser.ArrayContext)
             {
-                String size;
-                size = ctx.variableType().getText().replaceAll("[^\\d]","");
-                size = size.trim();
-                if (ctx.variableType().getText().contains("boolean"))
-                {
-                    this.application.addArray("boolean",id.getText(),Integer.parseUnsignedInt(size));
+                PlayPlusParser.ArrayDefinitionContext arrayType = (PlayPlusParser.ArrayDefinitionContext)ctx.variableType().children.get(0);
+                TerminalNode variableType = (TerminalNode)arrayType.children.get(0);
+
+                List<Integer> arraySize = new ArrayList<>();
+
+                for (Object node : arrayType.children) {
+                    if (((TerminalNode)node).getSymbol().getType() == PlayPlusParser.NUMBER) {
+                        arraySize.add(Integer.parseUnsignedInt(((TerminalNode) node).getText()));
+                    }
                 }
-                if (ctx.variableType().getText().contains("char"))
-                {
-                    this.application.addArray("char",id.getText(),Integer.parseUnsignedInt(size));
-                }
-                if (ctx.variableType().getText().contains("integer"))
-                {
-                    this.application.addArray("integer",id.getText(),Integer.parseUnsignedInt(size));
-                }
+
+                Integer size[] = new Integer[arraySize.size()];
+                size = arraySize.toArray(size);
+                this.application.addArray(variableType.getText(), id.getText(), size);
+            } else if (ctx.variableType() instanceof PlayPlusParser.StructureContext) {
+
             }
         }
-
-        super.enterVariableDefinition(ctx);
     }
 
     @Override

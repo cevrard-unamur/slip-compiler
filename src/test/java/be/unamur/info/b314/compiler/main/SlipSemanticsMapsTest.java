@@ -35,14 +35,8 @@ public class SlipSemanticsMapsTest {
 
     // tests KO
     @Test
-    public void test_incorrect_size_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/maps/ko/incorrect_size.slip", testFolder.newFile(), false, "semantics::maps: incorrect_size.slip");
-    }
-
-
-    @Test
-    public void test_no_chest_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/maps/ko/no_chest.slip", testFolder.newFile(), false, "semantics::maps: no_chest.slip");
+    public void test_to_much_chest_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/maps/ko/to_much_chest.slip", testFolder.newFile(), false, "semantics::maps: to_much_chest.slip");
     }
 
 
@@ -53,14 +47,20 @@ public class SlipSemanticsMapsTest {
 
 
     @Test
-    public void test_to_much_chest_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/maps/ko/to_much_chest.slip", testFolder.newFile(), false, "semantics::maps: to_much_chest.slip");
+    public void test_incorrect_size_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/maps/ko/incorrect_size.slip", testFolder.newFile(), false, "semantics::maps: incorrect_size.slip");
     }
 
 
     @Test
     public void test_incorrect_number_of_symbols_2_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/maps/ko/incorrect_number_of_symbols_2.slip", testFolder.newFile(), false, "semantics::maps: incorrect_number_of_symbols_2.slip");
+    }
+
+
+    @Test
+    public void test_no_chest_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/maps/ko/no_chest.slip", testFolder.newFile(), false, "semantics::maps: no_chest.slip");
     }
 
 

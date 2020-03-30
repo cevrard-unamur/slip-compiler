@@ -2,9 +2,6 @@ package be.unamur.info.b314.compiler.application;
 
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Application {
     private Context currentContext;
 
@@ -20,8 +17,8 @@ public class Application {
         this.currentContext.updateVariable(name, value);
     }
 
-    public void addArray(String type, String name, int size){
-        this.currentContext.addArray(new Arrays(name,type,size));
+    public void addArray(String type, String name, Integer[] size){
+        this.currentContext.addArray(new Array(name, type, size));
     }
 
     public void addFunction(String name, String value) {

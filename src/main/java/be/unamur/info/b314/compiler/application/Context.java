@@ -14,7 +14,7 @@ public class Context {
     protected Variable[] variables;
     protected Function[] functions;
     protected Record[] records;
-    protected Arrays[] arrays;
+    protected Array[] arrays;
 
     // The functions current index in the stack.
     protected int variableHeapIndex = 0;
@@ -44,7 +44,7 @@ public class Context {
         this.variables = new Variable[defaultStackSize];
         this.functions = new Function[defaultStackSize];
         this.records = new Record[defaultStackSize];
-        this.arrays = new Arrays[defaultStackSize];
+        this.arrays = new Array[defaultStackSize];
     }
 
     public void addVariable(Variable variable) {
@@ -74,7 +74,7 @@ public class Context {
         }
     }
 
-    public void addArray(Arrays array) {
+    public void addArray(Array array) {
         if (!this.variableSymbols.containsKey(array.getName())) {
             this.variableSymbols.put(array.getName(), this.variableHeapIndex);
             this.arrays[variableHeapIndex++] = array;
