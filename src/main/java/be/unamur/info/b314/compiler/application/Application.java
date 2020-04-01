@@ -9,19 +9,10 @@ import java.util.List;
 public class Application {
     private List<String> errors = new ArrayList();
 
-    private static Application instance;
     private Context currentContext;
 
-    private Application() {
+    public Application() {
         this.currentContext = new Context();
-    }
-
-    public static Application getInstance() {
-        if (instance == null) {
-            instance = new Application();
-        }
-
-        return instance;
     }
 
     public void addError(String error) {

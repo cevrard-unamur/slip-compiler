@@ -221,16 +221,16 @@ public class Main {
     }
 
     private void languageParser(PlayPlusParser.RootContext tree) {
+        Application application = new Application();
+
         ParseTreeWalker walker = new ParseTreeWalker();
-        LanguageListener languageListener = new LanguageListener();
+        LanguageListener languageListener = new LanguageListener(application);
         walker.walk(languageListener, tree);
 
-        IntegerRightExpressionVisitor rightExpressionVisitor = new IntegerRightExpressionVisitor();
+        IntegerRightExpressionVisitor rightExpressionVisitor = new IntegerRightExpressionVisitor(application);
         rightExpressionVisitor.visit(tree);
 
-        Application app = languageListener.getApplication();
-
-        handleErrors(app.getErrors(), "An error occurred with the language file");
+        handleErrors(application.getErrors(), "An error occurred with the language file");
     }
 
     private  void handleErrors(List<String> errors, String errorMessage) {
