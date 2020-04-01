@@ -1,8 +1,6 @@
 
 package be.unamur.info.b314.compiler.main;
 
-import be.unamur.info.b314.compiler.application.Application;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
@@ -12,18 +10,9 @@ import org.junit.runner.Description;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.Field;
-
 public class SlipSyntaxWhileTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(SlipSyntaxWhileTest.class);
-
-    @Before
-    public void resetSingleton() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
-        Field instance = Application.class.getDeclaredField("instance");
-        instance.setAccessible(true);
-        instance.set(null, null);
-    }
 
     @Rule
     public TemporaryFolder testFolder = new TemporaryFolder(); // Create a temporary folder for outputs deleted after tests

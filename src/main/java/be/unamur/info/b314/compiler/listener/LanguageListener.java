@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LanguageListener extends PlayPlusBaseListener {
-    private Application application = Application.getInstance();
+    private Application application;
 
-    public Application getApplication() {
-        return application;
+    public LanguageListener(Application application) {
+        this.application = application;
     }
 
     @Override

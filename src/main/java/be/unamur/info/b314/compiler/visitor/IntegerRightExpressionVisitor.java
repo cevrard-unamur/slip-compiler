@@ -11,12 +11,12 @@ import java.util.Map;
 import java.util.function.BiFunction;
 
 public class IntegerRightExpressionVisitor extends PlayPlusBaseVisitor {
-    private Application application = Application.getInstance();
+    private Application application;
 
     private Map<String, BiFunction<Integer, Integer, Integer>> operations = new HashMap<>();
 
-    public IntegerRightExpressionVisitor() {
-        super();
+    public IntegerRightExpressionVisitor(Application application) {
+        this.application = application;
 
         operations.put("+", IntegerRightExpressionVisitor::add);
         operations.put("-", IntegerRightExpressionVisitor::minus);
@@ -47,7 +47,7 @@ public class IntegerRightExpressionVisitor extends PlayPlusBaseVisitor {
             if (ctx instanceof PlayPlusParser.NumberContext) {
                 value = Integer.parseUnsignedInt(((PlayPlusParser.NumberContext) ctx).NUMBER().getText());
             } else if (ctx instanceof PlayPlusParser.IntegerExpressionContext) {
-                IntegerRightExpressionVisitor visitor = new IntegerRightExpressionVisitor();
+                IntegerRightExpressionVisitor visitor = new IntegerRightExpressionVisitor(this.application);
                 value = (Integer)visitor.visitIntegerExpression((PlayPlusParser.IntegerExpressionContext)ctx);
             } else if (ctx instanceof PlayPlusParser.ParenthesesExpressionContext) {
                 System.out.println("Test");
