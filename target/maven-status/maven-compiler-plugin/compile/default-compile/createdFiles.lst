@@ -424,6 +424,7 @@ be/unamur/info/b314/compiler/PlayPlusParser$FunctionParameterContext.class
 be/unamur/info/b314/compiler/exception/SymbolNotFoundException.class
 MapParser$WellContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$ArrayInitialisationContext.class
+be/unamur/info/b314/compiler/visitor/RightExpressionVisitor.class
 LanguageParser$IntegerExpressionContext.class
 tmp/LanguageParser$ForContext.class
 LanguageParser$RightExprContext.class
