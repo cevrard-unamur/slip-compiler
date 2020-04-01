@@ -2,22 +2,13 @@ package be.unamur.info.b314.compiler.application;
 
 public class Function extends Context {
     private String name;
-    private String value;
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
 
     public String getName() {
         return name;
     }
 
-    public Function(String name, String value) {
+    public Function(String name, Context parent) {
         this.name = name;
-        this.value = value;
+        super.parent = parent;
     }
 }

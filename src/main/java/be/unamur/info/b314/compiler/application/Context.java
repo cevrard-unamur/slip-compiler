@@ -1,6 +1,7 @@
 package be.unamur.info.b314.compiler.application;
 
 import be.unamur.info.b314.compiler.exception.ConstantException;
+import be.unamur.info.b314.compiler.exception.VariableException;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -25,13 +26,8 @@ public class Context {
     protected Hashtable<String, Integer> functionSymbols;
     protected Hashtable<String, Integer> recordSymbols;
 
-    // The list of errors in the environment
-    protected ArrayList<String> errors;
-
     protected Context() {
         this.parent = null;
-        
-        this.errors = new ArrayList<>();
 
         this.variableSymbols = new Hashtable<>();
         this.functionSymbols = new Hashtable<>();
@@ -47,7 +43,7 @@ public class Context {
             this.variableSymbols.put(variable.getName(), this.variableHeapIndex);
             this.variables[variableHeapIndex++] = variable;
         } else {
-            this.errors.add("A variable with the name " + variable.getName() + " already exist");
+            throw new VariableException("A variable with the name " + variable.getName() + " already exist");
         }
     }
 
@@ -56,7 +52,7 @@ public class Context {
             this.functionSymbols.put(function.getName(), this.functionHeapIndex);
             this.functions[functionHeapIndex++] = function;
         } else {
-            this.errors.add("A function with the name " + function.getName() + " already exist");
+            throw new VariableException("A function with the name " + function.getName() + " already exist");
         }
     }
 
@@ -65,7 +61,7 @@ public class Context {
             this.recordSymbols.put(record.getName(), this.functionHeapIndex);
             this.records[recordHeapIndex++] = record;
         } else {
-            this.errors.add("A record with the name " + record.getName() + " already exist");
+            throw new VariableException("A variable with the name " + record.getName() + " already exist");
         }
     }
 
@@ -74,7 +70,7 @@ public class Context {
             this.variableSymbols.put(array.getName(), this.variableHeapIndex);
             this.variables[variableHeapIndex++] = array;
         } else {
-            this.errors.add("An array with the name " + array.getName() + " already exist");
+            throw new VariableException("An variable with the name " + array.getName() + " already exist");
         }
     }
 
@@ -84,10 +80,10 @@ public class Context {
                 Integer heapIndex = this.variableSymbols.get(name);
                 ((Variable)this.variables[heapIndex]).setValue(value);
             } else {
-                this.errors.add("The variable with the name " + name + " does not exist");
+                throw new VariableException("The variable with the name " + name + " does not exist");
             }
         } catch (ConstantException ex) {
-            this.errors.add(ex.getMessage());
+            throw new VariableException(ex.getMessage());
         }
     }
 }

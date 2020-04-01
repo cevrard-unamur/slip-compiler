@@ -6,6 +6,8 @@ s1 as integer;
 
 main as function():void
 do
+    s2 := 3;
+    s3 := s2 + 5;
     s1 := 3 + 4;
 
     dig();

@@ -1,16 +1,43 @@
 package be.unamur.info.b314.compiler.application;
 
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
+import be.unamur.info.b314.compiler.exception.VariableException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
+    private List<String> errors = new ArrayList();
+
+    private static Application instance;
     private Context currentContext;
 
-    public Application() {
+    private Application() {
         this.currentContext = new Context();
     }
 
+    public static Application getInstance() {
+        if (instance == null) {
+            instance = new Application();
+        }
+
+        return instance;
+    }
+
+    public void addError(String error) {
+        this.errors.add(error);
+    }
+
+    public List<String> getErrors() {
+        return this.errors;
+    }
+
     public void addVariable(String type, String name, String value, Boolean isConstant) {
-        this.currentContext.addVariable(new Variable(type, name, value, isConstant));
+        try {
+            this.currentContext.addVariable(new Variable(type, name, value, isConstant)); }
+        catch (VariableException ex) {
+            this.addError(ex.getMessage());
+        }
     }
 
     public void updateVariable(String name, String value) {
@@ -21,8 +48,10 @@ public class Application {
         this.currentContext.addArray(new Array(name, type, size));
     }
 
-    public void addFunction(String name, String value) {
-        this.currentContext.addFunction(new Function(name, value));
+    public void addFunction(String name) {
+        Function function = new Function(name, this.currentContext);
+        this.currentContext.addFunction(function);
+        this.currentContext = function;
     }
 
     public void addRecord(String name) {

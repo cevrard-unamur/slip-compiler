@@ -8,13 +8,13 @@ import be.unamur.info.b314.compiler.*;
 import static com.google.common.base.Preconditions.checkArgument;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 import be.unamur.info.b314.compiler.application.Application;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
 import be.unamur.info.b314.compiler.listener.LanguageListener;
 import be.unamur.info.b314.compiler.listener.MapListener;
+import be.unamur.info.b314.compiler.visitor.IntegerRightExpressionVisitor;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
@@ -182,8 +182,8 @@ public class Main {
         LOG.debug("Parsing input: done");
         LOG.debug("AST is {}", tree.toStringTree(parser));
         LOG.debug("Add Listener");
-        mapListener(tree);
-        languageListener(tree);
+        mapParser(tree);
+        languageParser(tree);
     }
 
     /**
@@ -212,7 +212,7 @@ public class Main {
     }
 
 
-    private void mapListener(PlayPlusParser.RootContext tree) {
+    private void mapParser(PlayPlusParser.RootContext tree) {
         ParseTreeWalker walker = new ParseTreeWalker();
         MapListener mapListener = new MapListener();
         walker.walk(mapListener, tree);
@@ -220,14 +220,17 @@ public class Main {
         handleErrors(mapListener.getErrors(), "An error occurred with the map file");
     }
 
-    private void languageListener(PlayPlusParser.RootContext tree) {
+    private void languageParser(PlayPlusParser.RootContext tree) {
         ParseTreeWalker walker = new ParseTreeWalker();
         LanguageListener languageListener = new LanguageListener();
         walker.walk(languageListener, tree);
 
-        handleErrors(languageListener.getErrors(), "An error occurred with the language file");
+        IntegerRightExpressionVisitor rightExpressionVisitor = new IntegerRightExpressionVisitor();
+        rightExpressionVisitor.visit(tree);
 
         Application app = languageListener.getApplication();
+
+        handleErrors(app.getErrors(), "An error occurred with the language file");
     }
 
     private  void handleErrors(List<String> errors, String errorMessage) {

@@ -10,12 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LanguageListener extends PlayPlusBaseListener {
-    private List<String> errors = new ArrayList();
-    private Application application = new Application();
-
-    public List<String> getErrors() {
-        return errors;
-    }
+    private Application application = Application.getInstance();
 
     public Application getApplication() {
         return application;
@@ -65,12 +60,20 @@ public class LanguageListener extends PlayPlusBaseListener {
     @Override
     public void enterStructureDefinition(PlayPlusParser.StructureDefinitionContext ctx) {
         this.application.addRecord(ctx.ID().getText());
-        super.enterStructureDefinition(ctx);
     }
 
     @Override
     public void exitStructureDefinition(PlayPlusParser.StructureDefinitionContext ctx) {
         this.application.leaveContext();
-        super.exitStructureDefinition(ctx);
+    }
+
+    @Override
+    public void enterFunction(PlayPlusParser.FunctionContext ctx) {
+        this.application.addFunction(ctx.ID().getText());
+    }
+
+    @Override
+    public void exitFunction(PlayPlusParser.FunctionContext ctx) {
+        this.application.leaveContext();
     }
 }
