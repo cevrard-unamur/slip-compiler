@@ -10,6 +10,8 @@ main as function():void
 do
     s2 := 3;
     s3 := (4 + 5) + 5;
+    s3 := (s3) + 5;
+    s3 := (s3 + s3) + 5;
     s1 := 3 + 4;
 
     dig();

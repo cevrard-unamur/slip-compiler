@@ -50,6 +50,7 @@ LanguageParser$ForInstructionContext.class
 LanguageParser$ArrayInitialisationContext.class
 tmp/LanguageParser$DownContext.class
 tmp/PlayPlusParser$NotExpressionContext.class
+be/unamur/info/b314/compiler/helper/Calculator.class
 LanguageParser$LeftArrayContext.class
 tmp/MapParser$BushContext.class
 be/unamur/info/b314/compiler/application/VariableBase.class
@@ -156,6 +157,7 @@ tmp/PlayPlusParser$ConstantContext.class
 tmp/PlayPlusParser$MapDescriptionContext.class
 be/unamur/info/b314/compiler/application/Record.class
 tmp/LanguageParser$StringContext.class
+be/unamur/info/b314/compiler/exception/IntegerRightExpressionException.class
 tmp/PlayPlusParser$AssignationContext.class
 tmp/PlayPlusParser$MapImportContext.class
 tmp/MapParser$MapDescriptionContext.class
@@ -200,6 +202,7 @@ LanguageParser$ProgContext.class
 LanguageParser$MapImportationContext.class
 tmp/PlayPlusParser$ArrayTypeContext.class
 tmp/LanguageParser$AssignationContext.class
+be/unamur/info/b314/compiler/exception/VariableException.class
 LanguageParser$IfContext.class
 tmp/PlayPlusParser$DigTypeContext.class
 tmp/PlayPlusParser$CommentMultiContext.class

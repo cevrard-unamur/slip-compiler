@@ -11,7 +11,7 @@ mapImport:  IMPORT QUOTE MAPFILE QUOTE                                          
 mainFunction: MAIN AS FUNCTION LPAR RPAR COLON VOID DO (inst)* (digInstruction SEMICOLON) (inst)* END   #main
             ;
 
-funct: ID AS FUNCTION LPAR (argumentList)? RPAR COLON (SCALAR|VOID) DO (functionInst)+ END              #function
+    funct: ID AS FUNCTION LPAR (argumentList)? RPAR COLON (SCALAR|VOID) DO (functionInst)+ END              #function
             ;
 
 argumentList: argument (COMMA argument)*                                                                #functionParameters
@@ -58,7 +58,7 @@ enumDeclaration: ENUM ID EQUAL LPAR ID (COMMA ID)* RPAR SEMICOLON               
 rightExpr: NOT<assoc=left> rightExpr                                #notExpression
             | rightExpr AND<assoc=left> rightExpr                   #boolExpression
             | rightExpr OR<assoc=left> rightExpr                    #boolExpression
-            | rightExpr EQUAL<assoc=left> rightExpr                 #boolExpression
+            | rightExpr EQUAL<assoc=left> rightExpr                 #compExpression
             | rightExpr LESS<assoc=left> rightExpr                  #compExpression
             | rightExpr LESS_EQUAL<assoc=left> rightExpr            #compExpression
             | rightExpr GREAT<assoc=left> rightExpr                 #compExpression
@@ -81,7 +81,7 @@ rightExpr: NOT<assoc=left> rightExpr                                #notExpressi
             ;
 leftExpr: ID                                                        #leftId
             | ID LBRA rightExpr (COMMA rightExpr)? RBRA             #leftArray
-            | leftExpr.ID                                           #leftProperty
+            | leftExpr'.'ID                                           #leftProperty
             ;
 assignation: leftExpr ASSIGN rightExpr SEMICOLON
             ;

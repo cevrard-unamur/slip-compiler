@@ -31,10 +31,6 @@ public class Application {
         }
     }
 
-    public void updateVariable(String name, String value) {
-        this.currentContext.updateVariable(name, value);
-    }
-
     public void addArray(String type, String name, Integer[] size){
         this.currentContext.addArray(new Array(name, type, size));
     }
@@ -57,5 +53,37 @@ public class Application {
         }
 
         this.currentContext = this.currentContext.parent;
+    }
+
+    public Variable getVariable(String name) {
+        Context context = this.currentContext;
+
+        while (context != null) {
+            VariableBase variable = context.getVariable(name);
+
+            if (variable != null && variable instanceof Variable) {
+                return (Variable)variable;
+            }
+
+            context = context.parent;
+        }
+
+        throw new VariableException("The variable does not exist");
+    }
+
+    public Array getArray(String name) {
+        Context context = this.currentContext;
+
+        while (context != null) {
+            VariableBase variable = context.getVariable(name);
+
+            if (variable != null && variable instanceof Array) {
+                return (Array)variable;
+            }
+
+            context = context.parent;
+        }
+
+        throw new VariableException("The variable does not exist");
     }
 }

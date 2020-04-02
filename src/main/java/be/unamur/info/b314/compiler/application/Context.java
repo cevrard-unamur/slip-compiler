@@ -86,4 +86,12 @@ public class Context {
             throw new VariableException(ex.getMessage());
         }
     }
+
+    public VariableBase getVariable(String name) {
+        try {
+            return this.variables[this.variableSymbols.get(name).intValue()];
+        } catch (Exception ex) {
+            return null;
+        }
+    }
 }

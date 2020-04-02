@@ -14,10 +14,12 @@
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/MapListener.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/PlayPlusParser.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/CommonWords.java
+/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/visitor/RightExpressionVisitor.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/exception/SymbolNotFoundException.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/main/Main.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/PlayPlusLexer.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/LanguageLexer.java
+/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/exception/VariableException.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/application/Variable.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/be/unamur/info/b314/compiler/PlayPlusParser.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/LanguageListener.java
@@ -35,12 +37,14 @@
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/MapWords.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/MapBaseVisitor.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/listener/LanguageListener.java
+/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/helper/Calculator.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/be/unamur/info/b314/compiler/PlayPlusBaseListener.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/MapParser.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/exception/ParsingException.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/application/Array.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/PlayPlusVisitor.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/application/Record.java
+/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/exception/IntegerRightExpressionException.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/SymTableFiller.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/exception/PlayPlusException.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/LanguageVisitor.java

@@ -3,6 +3,8 @@
 #import "world.map"
 
 s1 as integer;
+s2 as integer;
+s3 as integer;
 
 main as function():void
 do
