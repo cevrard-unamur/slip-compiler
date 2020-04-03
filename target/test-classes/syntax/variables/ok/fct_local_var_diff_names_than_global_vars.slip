@@ -55,7 +55,7 @@
 
 main as function():void
 do
-	while((true and b1) or (v1[0, i1 + 2 * 1] = true))
+	while((true and b1))
 	do
 		if(b1 and (i1 = 2)) then
 			while(i1 < i3) do

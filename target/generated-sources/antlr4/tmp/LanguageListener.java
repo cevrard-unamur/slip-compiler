@@ -390,18 +390,6 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitString(LanguageParser.StringContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code boolExpression}
-	 * labeled alternative in {@link LanguageParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterBoolExpression(LanguageParser.BoolExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code boolExpression}
-	 * labeled alternative in {@link LanguageParser#rightExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitBoolExpression(LanguageParser.BoolExpressionContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code compExpression}
 	 * labeled alternative in {@link LanguageParser#rightExpr}.
 	 * @param ctx the parse tree
@@ -413,6 +401,18 @@ public interface LanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCompExpression(LanguageParser.CompExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code boolExpression}
+	 * labeled alternative in {@link LanguageParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolExpression(LanguageParser.BoolExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code boolExpression}
+	 * labeled alternative in {@link LanguageParser#rightExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolExpression(LanguageParser.BoolExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code leftExpression}
 	 * labeled alternative in {@link LanguageParser#rightExpr}.
@@ -544,113 +544,61 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitAssignation(LanguageParser.AssignationContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code left}
+	 * Enter a parse tree produced by the {@code action}
 	 * labeled alternative in {@link LanguageParser#actionType}.
 	 * @param ctx the parse tree
 	 */
-	void enterLeft(LanguageParser.LeftContext ctx);
+	void enterAction(LanguageParser.ActionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code left}
+	 * Exit a parse tree produced by the {@code action}
 	 * labeled alternative in {@link LanguageParser#actionType}.
 	 * @param ctx the parse tree
 	 */
-	void exitLeft(LanguageParser.LeftContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code right}
-	 * labeled alternative in {@link LanguageParser#actionType}.
-	 * @param ctx the parse tree
-	 */
-	void enterRight(LanguageParser.RightContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code right}
-	 * labeled alternative in {@link LanguageParser#actionType}.
-	 * @param ctx the parse tree
-	 */
-	void exitRight(LanguageParser.RightContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code up}
-	 * labeled alternative in {@link LanguageParser#actionType}.
-	 * @param ctx the parse tree
-	 */
-	void enterUp(LanguageParser.UpContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code up}
-	 * labeled alternative in {@link LanguageParser#actionType}.
-	 * @param ctx the parse tree
-	 */
-	void exitUp(LanguageParser.UpContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code down}
-	 * labeled alternative in {@link LanguageParser#actionType}.
-	 * @param ctx the parse tree
-	 */
-	void enterDown(LanguageParser.DownContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code down}
-	 * labeled alternative in {@link LanguageParser#actionType}.
-	 * @param ctx the parse tree
-	 */
-	void exitDown(LanguageParser.DownContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code jump}
-	 * labeled alternative in {@link LanguageParser#actionType}.
-	 * @param ctx the parse tree
-	 */
-	void enterJump(LanguageParser.JumpContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code jump}
-	 * labeled alternative in {@link LanguageParser#actionType}.
-	 * @param ctx the parse tree
-	 */
-	void exitJump(LanguageParser.JumpContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code fightType}
-	 * labeled alternative in {@link LanguageParser#actionType}.
-	 * @param ctx the parse tree
-	 */
-	void enterFightType(LanguageParser.FightTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code fightType}
-	 * labeled alternative in {@link LanguageParser#actionType}.
-	 * @param ctx the parse tree
-	 */
-	void exitFightType(LanguageParser.FightTypeContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code digType}
-	 * labeled alternative in {@link LanguageParser#actionType}.
-	 * @param ctx the parse tree
-	 */
-	void enterDigType(LanguageParser.DigTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code digType}
-	 * labeled alternative in {@link LanguageParser#actionType}.
-	 * @param ctx the parse tree
-	 */
-	void exitDigType(LanguageParser.DigTypeContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code dig}
-	 * labeled alternative in {@link LanguageParser#digInstruction}.
-	 * @param ctx the parse tree
-	 */
-	void enterDig(LanguageParser.DigContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code dig}
-	 * labeled alternative in {@link LanguageParser#digInstruction}.
-	 * @param ctx the parse tree
-	 */
-	void exitDig(LanguageParser.DigContext ctx);
+	void exitAction(LanguageParser.ActionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code fight}
-	 * labeled alternative in {@link LanguageParser#fightInstruction}.
+	 * labeled alternative in {@link LanguageParser#actionType}.
 	 * @param ctx the parse tree
 	 */
 	void enterFight(LanguageParser.FightContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code fight}
-	 * labeled alternative in {@link LanguageParser#fightInstruction}.
+	 * labeled alternative in {@link LanguageParser#actionType}.
 	 * @param ctx the parse tree
 	 */
 	void exitFight(LanguageParser.FightContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code dig}
+	 * labeled alternative in {@link LanguageParser#actionType}.
+	 * @param ctx the parse tree
+	 */
+	void enterDig(LanguageParser.DigContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code dig}
+	 * labeled alternative in {@link LanguageParser#actionType}.
+	 * @param ctx the parse tree
+	 */
+	void exitDig(LanguageParser.DigContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LanguageParser#digInstruction}.
+	 * @param ctx the parse tree
+	 */
+	void enterDigInstruction(LanguageParser.DigInstructionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LanguageParser#digInstruction}.
+	 * @param ctx the parse tree
+	 */
+	void exitDigInstruction(LanguageParser.DigInstructionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LanguageParser#fightInstruction}.
+	 * @param ctx the parse tree
+	 */
+	void enterFightInstruction(LanguageParser.FightInstructionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LanguageParser#fightInstruction}.
+	 * @param ctx the parse tree
+	 */
+	void exitFightInstruction(LanguageParser.FightInstructionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code if}
 	 * labeled alternative in {@link LanguageParser#ifBlock}.

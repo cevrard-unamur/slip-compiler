@@ -28,12 +28,6 @@ public class SlipSyntaxActionsTest {
 
     // tests OK
     @Test
-    public void test_jump_incorrect_type_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/actions/ok/jump_incorrect_type.slip", testFolder.newFile(), true, "syntax::actions: jump_incorrect_type.slip");
-    }
-
-
-    @Test
     public void test_jump_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/actions/ok/jump.slip", testFolder.newFile(), true, "syntax::actions: jump.slip");
     }

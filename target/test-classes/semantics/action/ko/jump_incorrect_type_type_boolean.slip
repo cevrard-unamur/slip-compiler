@@ -1,0 +1,13 @@
+/* My comments */
+
+#import "world.map"
+
+    b as boolean;
+    x as integer;
+    s as boolean[2, 5];
+
+main as function():void
+do
+    dig();
+    jump(x and 2);
+end

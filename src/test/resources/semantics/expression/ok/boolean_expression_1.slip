@@ -1,0 +1,14 @@
+/* My comments */
+
+#import "world.map"
+
+s1 as boolean;
+s2 as boolean;
+s3 as boolean;
+
+main as function():void
+do
+    s2 := true and false;
+
+    dig();
+end

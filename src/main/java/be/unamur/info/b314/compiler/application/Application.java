@@ -68,7 +68,7 @@ public class Application {
             context = context.parent;
         }
 
-        throw new VariableException("The variable does not exist");
+        throw new VariableException("The variable " + name + " does not exist");
     }
 
     public Array getArray(String name) {
@@ -84,6 +84,6 @@ public class Application {
             context = context.parent;
         }
 
-        throw new VariableException("The variable does not exist");
+        throw new VariableException("The array " + name + " does not exist");
     }
 }
