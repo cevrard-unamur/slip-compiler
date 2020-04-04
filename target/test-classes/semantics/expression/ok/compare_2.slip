@@ -1,0 +1,14 @@
+/* My comments */
+
+#import "world.map"
+
+s1 as boolean;
+s4 as boolean;
+
+main as function():void
+do
+    s4 := 3 > 10;
+    s1 := s4 and (3 < 10);
+
+    dig();
+end

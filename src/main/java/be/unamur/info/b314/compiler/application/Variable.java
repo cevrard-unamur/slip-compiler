@@ -18,14 +18,6 @@ public class Variable extends VariableBase {
         this.value = value;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
     public Variable(String type, String name, String value, Boolean isConstant) {
         this.type = type;
         this.name = name;

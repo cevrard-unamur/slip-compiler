@@ -1,0 +1,17 @@
+/* My comments */
+
+#import "world.map"
+
+s1 as integer;
+s2 as integer;
+s3 as boolean;
+b4 as boolean;
+
+main as function():void
+do
+    s2 := 3;
+    s3 := (true and false) and b4;
+    s1 := 3 + 4;
+
+    dig();
+end

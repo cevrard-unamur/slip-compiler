@@ -232,13 +232,25 @@ public class PlayPlusBaseListener implements PlayPlusListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunction(PlayPlusParser.FunctionContext ctx) { }
+	@Override public void enterMainInstruction(PlayPlusParser.MainInstructionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunction(PlayPlusParser.FunctionContext ctx) { }
+	@Override public void exitMainInstruction(PlayPlusParser.MainInstructionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunctionDefinition(PlayPlusParser.FunctionDefinitionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctionDefinition(PlayPlusParser.FunctionDefinitionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -364,49 +376,13 @@ public class PlayPlusBaseListener implements PlayPlusListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterGlobalVariableDeclaration(PlayPlusParser.GlobalVariableDeclarationContext ctx) { }
+	@Override public void enterGlobalDeclaration(PlayPlusParser.GlobalDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitGlobalVariableDeclaration(PlayPlusParser.GlobalVariableDeclarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterGlobalConstantDeclaration(PlayPlusParser.GlobalConstantDeclarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitGlobalConstantDeclaration(PlayPlusParser.GlobalConstantDeclarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterGlobalEnumDeclaration(PlayPlusParser.GlobalEnumDeclarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitGlobalEnumDeclaration(PlayPlusParser.GlobalEnumDeclarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterGlobalStructureDeclaration(PlayPlusParser.GlobalStructureDeclarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitGlobalStructureDeclaration(PlayPlusParser.GlobalStructureDeclarationContext ctx) { }
+	@Override public void exitGlobalDeclaration(PlayPlusParser.GlobalDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -580,18 +556,6 @@ public class PlayPlusBaseListener implements PlayPlusListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBoolExpression(PlayPlusParser.BoolExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitBoolExpression(PlayPlusParser.BoolExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterCompExpression(PlayPlusParser.CompExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -599,6 +563,18 @@ public class PlayPlusBaseListener implements PlayPlusListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCompExpression(PlayPlusParser.CompExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBoolExpression(PlayPlusParser.BoolExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBoolExpression(PlayPlusParser.BoolExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -736,85 +712,25 @@ public class PlayPlusBaseListener implements PlayPlusListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLeft(PlayPlusParser.LeftContext ctx) { }
+	@Override public void enterAction(PlayPlusParser.ActionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLeft(PlayPlusParser.LeftContext ctx) { }
+	@Override public void exitAction(PlayPlusParser.ActionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRight(PlayPlusParser.RightContext ctx) { }
+	@Override public void enterFight(PlayPlusParser.FightContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRight(PlayPlusParser.RightContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterUp(PlayPlusParser.UpContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitUp(PlayPlusParser.UpContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterDown(PlayPlusParser.DownContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitDown(PlayPlusParser.DownContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterJump(PlayPlusParser.JumpContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitJump(PlayPlusParser.JumpContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterFightType(PlayPlusParser.FightTypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFightType(PlayPlusParser.FightTypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterDigType(PlayPlusParser.DigTypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitDigType(PlayPlusParser.DigTypeContext ctx) { }
+	@Override public void exitFight(PlayPlusParser.FightContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -832,13 +748,25 @@ public class PlayPlusBaseListener implements PlayPlusListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFight(PlayPlusParser.FightContext ctx) { }
+	@Override public void enterDigInstruction(PlayPlusParser.DigInstructionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFight(PlayPlusParser.FightContext ctx) { }
+	@Override public void exitDigInstruction(PlayPlusParser.DigInstructionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFightInstruction(PlayPlusParser.FightInstructionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFightInstruction(PlayPlusParser.FightInstructionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
