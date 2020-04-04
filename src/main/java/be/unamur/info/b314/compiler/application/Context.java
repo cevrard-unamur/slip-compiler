@@ -74,22 +74,17 @@ public class Context {
         }
     }
 
-    public void updateVariable(String name, String value) {
-        try {
-            if (this.variableSymbols.containsKey(name)) {
-                Integer heapIndex = this.variableSymbols.get(name);
-                ((Variable)this.variables[heapIndex]).setValue(value);
-            } else {
-                throw new VariableException("The variable with the name " + name + " does not exist");
-            }
-        } catch (ConstantException ex) {
-            throw new VariableException(ex.getMessage());
-        }
-    }
-
     public VariableBase getVariable(String name) {
         try {
             return this.variables[this.variableSymbols.get(name).intValue()];
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    public Function getFunction(String name) {
+        try {
+            return this.functions[this.functionSymbols.get(name).intValue()];
         } catch (Exception ex) {
             return null;
         }
