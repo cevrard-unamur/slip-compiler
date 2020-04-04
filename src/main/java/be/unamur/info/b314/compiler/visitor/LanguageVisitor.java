@@ -139,6 +139,11 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         return parseLeftExpression(ctx, "integer");
     }
 
+    // Parse char expression
+    private Object parseCharExpression(PlayPlusParser.CharContext ctx) {
+        return ctx;
+    }
+
     // Parse generic expression
     private Object parseLeftExpression(PlayPlusParser.LeftExpressionContext ctx, String type) {
         PlayPlusParser.LeftExprContext leftContext = (PlayPlusParser.LeftExprContext)ctx.children.get(0);
@@ -166,8 +171,13 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         PlayPlusParser.RightExprContext leftChild = (PlayPlusParser.RightExprContext)ctx.children.get(0);
         PlayPlusParser.RightExprContext rightChild = (PlayPlusParser.RightExprContext)ctx.children.get(2);
 
-        parseIntegerRightExpression(leftChild).toString();
-        parseIntegerRightExpression(rightChild).toString();
+        if (leftChild instanceof PlayPlusParser.CharContext && rightChild instanceof PlayPlusParser.CharContext) {
+            parseCharExpression((PlayPlusParser.CharContext)leftChild);
+            parseCharExpression((PlayPlusParser.CharContext)rightChild);
+        } else {
+            parseIntegerRightExpression(leftChild);
+            parseIntegerRightExpression(rightChild);
+        }
 
         return ctx;
     }
