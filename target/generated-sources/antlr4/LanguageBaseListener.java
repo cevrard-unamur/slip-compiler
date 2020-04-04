@@ -531,6 +531,18 @@ public class LanguageBaseListener implements LanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterLeftPropertyArray(LanguageParser.LeftPropertyArrayContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLeftPropertyArray(LanguageParser.LeftPropertyArrayContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterLeftArray(LanguageParser.LeftArrayContext ctx) { }
 	/**
 	 * {@inheritDoc}

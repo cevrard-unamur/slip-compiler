@@ -47,6 +47,7 @@ tmp/PlayPlusParser$MapStructureContext.class
 tmp/LanguageParser$FunctContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$AssignationContext.class
 LanguageParser$ForInstructionContext.class
+tmp/LanguageParser$LeftPropertyArrayContext.class
 LanguageParser$ArrayInitialisationContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$MainFunctionInstructionContext.class
 tmp/PlayPlusParser$NotExpressionContext.class
@@ -174,6 +175,7 @@ tmp/PlayPlusParser$ChestContext.class
 tmp/LanguageParser$StructureTypeContext.class
 tmp/MapParser.class
 tmp/LanguageLexer.class
+tmp/PlayPlusParser$LeftPropertyArrayContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$BooleanTrueContext.class
 tmp/LanguageParser$MapImportContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$ConstantContext.class
@@ -381,6 +383,7 @@ be/unamur/info/b314/compiler/PlayPlusParser$ActionTypeContext.class
 LanguageLexer.class
 LanguageParser$NotExpressionContext.class
 MapParser$PalmtreeContext.class
+LanguageParser$LeftPropertyArrayContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$MainFunctionContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$WellContext.class
 tmp/LanguageParser$ForInstructionContext.class
@@ -434,6 +437,7 @@ tmp/LanguageParser$ArrayContext.class
 tmp/PlayPlusParser$GlobalDeclarationContext.class
 be/unamur/info/b314/compiler/PlayPlusVisitor.class
 tmp/PlayPlusParser$RepeatBlockContext.class
+be/unamur/info/b314/compiler/PlayPlusParser$LeftPropertyArrayContext.class
 LanguageParser$BoolExpressionContext.class
 tmp/PlayPlusParser$ProgrammeContext.class
 LanguageParser$RepeatBlockContext.class

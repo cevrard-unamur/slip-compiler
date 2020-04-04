@@ -28,6 +28,12 @@ public class SlipSyntaxFunctionTest {
 
     // tests OK
     @Test
+    public void test_fonct_with_var_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/function/ok/fonct_with_var.slip", testFolder.newFile(), true, "syntax::function: fonct_with_var.slip");
+    }
+
+
+    @Test
     public void test_factorial_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/function/ok/factorial.slip", testFolder.newFile(), true, "syntax::function: factorial.slip");
     }
