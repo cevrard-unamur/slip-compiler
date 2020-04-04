@@ -110,6 +110,8 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
                 return parseIntegerLeftExpression((PlayPlusParser.LeftExpressionContext)ctx);
             } else if (ctx instanceof PlayPlusParser.CompExpressionContext) {
                 return parseCompExpression((PlayPlusParser.CompExpressionContext)ctx);
+            } else if (ctx instanceof PlayPlusParser.NegativeIntegerExpressionContext) {
+                return parseIntegerRightExpression((PlayPlusParser.RightExprContext)ctx.children.get(1));
             } else {
                 throw new IntegerRightExpressionException("Cannot parse this as an integer expression");
             }
@@ -170,15 +172,15 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         return ctx;
     }
 
-    private Object parseParenthesesExpression(PlayPlusParser.ParenthesesExpressionContext ctx) {
+    private Object parseParenthesesExpression(PlayPlusParser.ParenthesesExpressionContext ctx, String type) {
         if (ctx.children.get(0) instanceof PlayPlusParser.ParenthesesExpressionContext) {
-            parseParenthesesExpression((PlayPlusParser.ParenthesesExpressionContext)ctx.children.get(0));
+            parseParenthesesExpression((PlayPlusParser.ParenthesesExpressionContext)ctx.children.get(0), type);
         } else {
-            if (ctx.children.get(1) instanceof PlayPlusParser.BoolExpressionContext) {
+            if (ctx.children.get(1) instanceof PlayPlusParser.BoolExpressionContext && type.equals("boolean")) {
                 parseBooleanExpression((PlayPlusParser.BoolExpressionContext)ctx.children.get(1));
-            } else if (ctx.children.get(1) instanceof PlayPlusParser.IntegerExpressionContext) {
+            } else if (ctx.children.get(1) instanceof PlayPlusParser.IntegerExpressionContext && type.equals("integer")) {
                 parseIntegerExpression((PlayPlusParser.IntegerExpressionContext)ctx.children.get(1));
-            } else if (ctx.children.get(1) instanceof PlayPlusParser.CompExpressionContext) {
+            } else if (ctx.children.get(1) instanceof PlayPlusParser.CompExpressionContext && type.equals("boolean")) {
                 parseIntegerRightExpression((PlayPlusParser.CompExpressionContext)ctx.children.get(1));
             } else {
                 throw new PlayPlusException("This parentheses construction is not known");
@@ -308,6 +310,8 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
             }
 
             parseIntegerRightExpression(rightExpression);
+        } else if (rightExpression instanceof PlayPlusParser.NegativeIntegerExpressionContext) {
+            parseIntegerRightExpression((PlayPlusParser.RightExprContext)rightExpression.children.get(1));
         } else if (rightExpression instanceof PlayPlusParser.CompExpressionContext) {
             if (!leftVariable.getType().equals("boolean")) {
                 throw new PlayPlusException("The left type is not a boolean but we compare the value");
@@ -325,10 +329,17 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
             parseBooleanRightExpression(rightExpression);
         } else if (rightExpression instanceof PlayPlusParser.FunctionCallExpressionContext) {
             // TODO
+        } else if (rightExpression instanceof PlayPlusParser.ParenthesesExpressionContext) {
+            parseParenthesesExpression((PlayPlusParser.ParenthesesExpressionContext)rightExpression, leftVariable.getType());
+        } else if (rightExpression instanceof PlayPlusParser.CharContext) {
+            if (!leftVariable.getType().equals("char")) {
+                throw new PlayPlusException("The left and right type are not both char");
+            }
+        } else if (rightExpression instanceof PlayPlusParser.LeftExpressionContext) {
+            parseLeftExpression((PlayPlusParser.LeftExpressionContext)rightExpression, leftVariable.getType());
         } else {
             throw new PlayPlusException("This right expression as an assignation is not known");
         }
-
 
         // We check the type concordance
 

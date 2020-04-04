@@ -64,7 +64,7 @@ rightExpr: LPAR rightExpr RPAR                                      #parentheses
             | rightExpr MOD<assoc=left>rightExpr                    #integerExpression
             | rightExpr PLUS<assoc=left> rightExpr                  #integerExpression
             | rightExpr MINUS<assoc=left> rightExpr                 #integerExpression
-            | MINUS<assoc=left> rightExpr                           #integerExpression
+            | MINUS<assoc=left> rightExpr                           #negativeIntegerExpression
             | rightExpr EQUAL<assoc=left> rightExpr                 #compExpression
             | rightExpr LESS<assoc=left> rightExpr                  #compExpression
             | rightExpr LESS_EQUAL<assoc=left> rightExpr            #compExpression

@@ -1,0 +1,21 @@
+/* My comments */
+
+#import "world.map"
+
+    b as boolean = false;
+    i as boolean[42];
+    i2 as boolean[42, 42];
+
+main as function():void
+do
+
+   b := false;
+   i[0] := false;
+   i[1] := true and false;
+   i[2] := b;
+   i2[2 + 1, 1 + 1] := i[0] or false;
+   i2[2 + 1, 1 + 5] := true and b;
+
+dig();
+
+end

@@ -302,19 +302,12 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitEnumeration(PlayPlusParser.EnumerationContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code number}
+	 * Visit a parse tree produced by the {@code negativeIntegerExpression}
 	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitNumber(PlayPlusParser.NumberContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code parenthesesExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParenthesesExpression(PlayPlusParser.ParenthesesExpressionContext ctx);
+	T visitNegativeIntegerExpression(PlayPlusParser.NegativeIntegerExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code string}
 	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
@@ -322,13 +315,6 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitString(PlayPlusParser.StringContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code compExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCompExpression(PlayPlusParser.CompExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code boolExpression}
 	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
@@ -344,33 +330,12 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLeftExpression(PlayPlusParser.LeftExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code booleanTrue}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBooleanTrue(PlayPlusParser.BooleanTrueContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code char}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitChar(PlayPlusParser.CharContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code booleanFalse}
 	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitBooleanFalse(PlayPlusParser.BooleanFalseContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code functionCallExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFunctionCallExpression(PlayPlusParser.FunctionCallExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code notExpression}
 	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
@@ -385,6 +350,48 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitIntegerExpression(PlayPlusParser.IntegerExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code number}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNumber(PlayPlusParser.NumberContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code parenthesesExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParenthesesExpression(PlayPlusParser.ParenthesesExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code compExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCompExpression(PlayPlusParser.CompExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code booleanTrue}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBooleanTrue(PlayPlusParser.BooleanTrueContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code char}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitChar(PlayPlusParser.CharContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code functionCallExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionCallExpression(PlayPlusParser.FunctionCallExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code leftProperty}
 	 * labeled alternative in {@link PlayPlusParser#leftExpr}.

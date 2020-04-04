@@ -1966,41 +1966,23 @@ public class LanguageParser extends Parser {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class NumberContext extends RightExprContext {
-		public TerminalNode NUMBER() { return getToken(LanguageParser.NUMBER, 0); }
-		public NumberContext(RightExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterNumber(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitNumber(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof LanguageVisitor ) return ((LanguageVisitor<? extends T>)visitor).visitNumber(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ParenthesesExpressionContext extends RightExprContext {
-		public TerminalNode LPAR() { return getToken(LanguageParser.LPAR, 0); }
+	public static class NegativeIntegerExpressionContext extends RightExprContext {
+		public TerminalNode MINUS() { return getToken(LanguageParser.MINUS, 0); }
 		public RightExprContext rightExpr() {
 			return getRuleContext(RightExprContext.class,0);
 		}
-		public TerminalNode RPAR() { return getToken(LanguageParser.RPAR, 0); }
-		public ParenthesesExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
+		public NegativeIntegerExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterParenthesesExpression(this);
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterNegativeIntegerExpression(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitParenthesesExpression(this);
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitNegativeIntegerExpression(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof LanguageVisitor ) return ((LanguageVisitor<? extends T>)visitor).visitParenthesesExpression(this);
+			if ( visitor instanceof LanguageVisitor ) return ((LanguageVisitor<? extends T>)visitor).visitNegativeIntegerExpression(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2018,34 +2000,6 @@ public class LanguageParser extends Parser {
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof LanguageVisitor ) return ((LanguageVisitor<? extends T>)visitor).visitString(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class CompExpressionContext extends RightExprContext {
-		public List<RightExprContext> rightExpr() {
-			return getRuleContexts(RightExprContext.class);
-		}
-		public RightExprContext rightExpr(int i) {
-			return getRuleContext(RightExprContext.class,i);
-		}
-		public TerminalNode EQUAL() { return getToken(LanguageParser.EQUAL, 0); }
-		public TerminalNode LESS() { return getToken(LanguageParser.LESS, 0); }
-		public TerminalNode LESS_EQUAL() { return getToken(LanguageParser.LESS_EQUAL, 0); }
-		public TerminalNode GREAT() { return getToken(LanguageParser.GREAT, 0); }
-		public TerminalNode GREAT_EQUAL() { return getToken(LanguageParser.GREAT_EQUAL, 0); }
-		public TerminalNode NOT_EQUAL() { return getToken(LanguageParser.NOT_EQUAL, 0); }
-		public CompExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterCompExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitCompExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof LanguageVisitor ) return ((LanguageVisitor<? extends T>)visitor).visitCompExpression(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2092,6 +2046,136 @@ public class LanguageParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
+	public static class BooleanFalseContext extends RightExprContext {
+		public TerminalNode FALSE() { return getToken(LanguageParser.FALSE, 0); }
+		public BooleanFalseContext(RightExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterBooleanFalse(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitBooleanFalse(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LanguageVisitor ) return ((LanguageVisitor<? extends T>)visitor).visitBooleanFalse(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class NotExpressionContext extends RightExprContext {
+		public TerminalNode NOT() { return getToken(LanguageParser.NOT, 0); }
+		public RightExprContext rightExpr() {
+			return getRuleContext(RightExprContext.class,0);
+		}
+		public NotExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterNotExpression(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitNotExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LanguageVisitor ) return ((LanguageVisitor<? extends T>)visitor).visitNotExpression(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class IntegerExpressionContext extends RightExprContext {
+		public List<RightExprContext> rightExpr() {
+			return getRuleContexts(RightExprContext.class);
+		}
+		public RightExprContext rightExpr(int i) {
+			return getRuleContext(RightExprContext.class,i);
+		}
+		public TerminalNode MULTI() { return getToken(LanguageParser.MULTI, 0); }
+		public TerminalNode DIV() { return getToken(LanguageParser.DIV, 0); }
+		public TerminalNode MOD() { return getToken(LanguageParser.MOD, 0); }
+		public TerminalNode PLUS() { return getToken(LanguageParser.PLUS, 0); }
+		public TerminalNode MINUS() { return getToken(LanguageParser.MINUS, 0); }
+		public IntegerExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterIntegerExpression(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitIntegerExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LanguageVisitor ) return ((LanguageVisitor<? extends T>)visitor).visitIntegerExpression(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class NumberContext extends RightExprContext {
+		public TerminalNode NUMBER() { return getToken(LanguageParser.NUMBER, 0); }
+		public NumberContext(RightExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterNumber(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitNumber(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LanguageVisitor ) return ((LanguageVisitor<? extends T>)visitor).visitNumber(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class ParenthesesExpressionContext extends RightExprContext {
+		public TerminalNode LPAR() { return getToken(LanguageParser.LPAR, 0); }
+		public RightExprContext rightExpr() {
+			return getRuleContext(RightExprContext.class,0);
+		}
+		public TerminalNode RPAR() { return getToken(LanguageParser.RPAR, 0); }
+		public ParenthesesExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterParenthesesExpression(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitParenthesesExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LanguageVisitor ) return ((LanguageVisitor<? extends T>)visitor).visitParenthesesExpression(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class CompExpressionContext extends RightExprContext {
+		public List<RightExprContext> rightExpr() {
+			return getRuleContexts(RightExprContext.class);
+		}
+		public RightExprContext rightExpr(int i) {
+			return getRuleContext(RightExprContext.class,i);
+		}
+		public TerminalNode EQUAL() { return getToken(LanguageParser.EQUAL, 0); }
+		public TerminalNode LESS() { return getToken(LanguageParser.LESS, 0); }
+		public TerminalNode LESS_EQUAL() { return getToken(LanguageParser.LESS_EQUAL, 0); }
+		public TerminalNode GREAT() { return getToken(LanguageParser.GREAT, 0); }
+		public TerminalNode GREAT_EQUAL() { return getToken(LanguageParser.GREAT_EQUAL, 0); }
+		public TerminalNode NOT_EQUAL() { return getToken(LanguageParser.NOT_EQUAL, 0); }
+		public CompExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterCompExpression(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitCompExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LanguageVisitor ) return ((LanguageVisitor<? extends T>)visitor).visitCompExpression(this);
+			else return visitor.visitChildren(this);
+		}
+	}
 	public static class BooleanTrueContext extends RightExprContext {
 		public TerminalNode TRUE() { return getToken(LanguageParser.TRUE, 0); }
 		public BooleanTrueContext(RightExprContext ctx) { copyFrom(ctx); }
@@ -2126,23 +2210,6 @@ public class LanguageParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class BooleanFalseContext extends RightExprContext {
-		public TerminalNode FALSE() { return getToken(LanguageParser.FALSE, 0); }
-		public BooleanFalseContext(RightExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterBooleanFalse(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitBooleanFalse(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof LanguageVisitor ) return ((LanguageVisitor<? extends T>)visitor).visitBooleanFalse(this);
-			else return visitor.visitChildren(this);
-		}
-	}
 	public static class FunctionCallExpressionContext extends RightExprContext {
 		public TerminalNode ID() { return getToken(LanguageParser.ID, 0); }
 		public TerminalNode LPAR() { return getToken(LanguageParser.LPAR, 0); }
@@ -2169,53 +2236,6 @@ public class LanguageParser extends Parser {
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof LanguageVisitor ) return ((LanguageVisitor<? extends T>)visitor).visitFunctionCallExpression(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class NotExpressionContext extends RightExprContext {
-		public TerminalNode NOT() { return getToken(LanguageParser.NOT, 0); }
-		public RightExprContext rightExpr() {
-			return getRuleContext(RightExprContext.class,0);
-		}
-		public NotExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterNotExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitNotExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof LanguageVisitor ) return ((LanguageVisitor<? extends T>)visitor).visitNotExpression(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class IntegerExpressionContext extends RightExprContext {
-		public TerminalNode MINUS() { return getToken(LanguageParser.MINUS, 0); }
-		public List<RightExprContext> rightExpr() {
-			return getRuleContexts(RightExprContext.class);
-		}
-		public RightExprContext rightExpr(int i) {
-			return getRuleContext(RightExprContext.class,i);
-		}
-		public TerminalNode MULTI() { return getToken(LanguageParser.MULTI, 0); }
-		public TerminalNode DIV() { return getToken(LanguageParser.DIV, 0); }
-		public TerminalNode MOD() { return getToken(LanguageParser.MOD, 0); }
-		public TerminalNode PLUS() { return getToken(LanguageParser.PLUS, 0); }
-		public IntegerExpressionContext(RightExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).enterIntegerExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof LanguageListener ) ((LanguageListener)listener).exitIntegerExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof LanguageVisitor ) return ((LanguageVisitor<? extends T>)visitor).visitIntegerExpression(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2255,7 +2275,7 @@ public class LanguageParser extends Parser {
 				break;
 			case 2:
 				{
-				_localctx = new IntegerExpressionContext(_localctx);
+				_localctx = new NegativeIntegerExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
 				setState(270);

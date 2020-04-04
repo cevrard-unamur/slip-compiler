@@ -339,25 +339,13 @@ public class LanguageBaseListener implements LanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNumber(LanguageParser.NumberContext ctx) { }
+	@Override public void enterNegativeIntegerExpression(LanguageParser.NegativeIntegerExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNumber(LanguageParser.NumberContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterParenthesesExpression(LanguageParser.ParenthesesExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitParenthesesExpression(LanguageParser.ParenthesesExpressionContext ctx) { }
+	@Override public void exitNegativeIntegerExpression(LanguageParser.NegativeIntegerExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -370,18 +358,6 @@ public class LanguageBaseListener implements LanguageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitString(LanguageParser.StringContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterCompExpression(LanguageParser.CompExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCompExpression(LanguageParser.CompExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -411,30 +387,6 @@ public class LanguageBaseListener implements LanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBooleanTrue(LanguageParser.BooleanTrueContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitBooleanTrue(LanguageParser.BooleanTrueContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterChar(LanguageParser.CharContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitChar(LanguageParser.CharContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterBooleanFalse(LanguageParser.BooleanFalseContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -442,18 +394,6 @@ public class LanguageBaseListener implements LanguageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitBooleanFalse(LanguageParser.BooleanFalseContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterFunctionCallExpression(LanguageParser.FunctionCallExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFunctionCallExpression(LanguageParser.FunctionCallExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -478,6 +418,78 @@ public class LanguageBaseListener implements LanguageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitIntegerExpression(LanguageParser.IntegerExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNumber(LanguageParser.NumberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNumber(LanguageParser.NumberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterParenthesesExpression(LanguageParser.ParenthesesExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParenthesesExpression(LanguageParser.ParenthesesExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCompExpression(LanguageParser.CompExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCompExpression(LanguageParser.CompExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBooleanTrue(LanguageParser.BooleanTrueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBooleanTrue(LanguageParser.BooleanTrueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterChar(LanguageParser.CharContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitChar(LanguageParser.CharContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunctionCallExpression(LanguageParser.FunctionCallExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctionCallExpression(LanguageParser.FunctionCallExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
