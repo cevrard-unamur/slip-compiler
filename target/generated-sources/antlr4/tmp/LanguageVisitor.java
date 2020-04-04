@@ -32,12 +32,19 @@ public interface LanguageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMain(LanguageParser.MainContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code function}
+	 * Visit a parse tree produced by the {@code mainInstruction}
+	 * labeled alternative in {@link LanguageParser#mainFunctionInstruction}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMainInstruction(LanguageParser.MainInstructionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code functionDefinition}
 	 * labeled alternative in {@link LanguageParser#funct}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunction(LanguageParser.FunctionContext ctx);
+	T visitFunctionDefinition(LanguageParser.FunctionDefinitionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code functionParameters}
 	 * labeled alternative in {@link LanguageParser#argumentList}.
@@ -109,33 +116,12 @@ public interface LanguageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunctionInstruction(LanguageParser.FunctionInstructionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code globalVariableDeclaration}
+	 * Visit a parse tree produced by the {@code globalDeclaration}
 	 * labeled alternative in {@link LanguageParser#globalVariable}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitGlobalVariableDeclaration(LanguageParser.GlobalVariableDeclarationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code globalConstantDeclaration}
-	 * labeled alternative in {@link LanguageParser#globalVariable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGlobalConstantDeclaration(LanguageParser.GlobalConstantDeclarationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code globalEnumDeclaration}
-	 * labeled alternative in {@link LanguageParser#globalVariable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGlobalEnumDeclaration(LanguageParser.GlobalEnumDeclarationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code globalStructureDeclaration}
-	 * labeled alternative in {@link LanguageParser#globalVariable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGlobalStructureDeclaration(LanguageParser.GlobalStructureDeclarationContext ctx);
+	T visitGlobalDeclaration(LanguageParser.GlobalDeclarationContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code variableDefinition}
 	 * labeled alternative in {@link LanguageParser#variableDeclaration}.

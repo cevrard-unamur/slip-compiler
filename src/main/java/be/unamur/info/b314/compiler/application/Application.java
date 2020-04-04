@@ -35,8 +35,8 @@ public class Application {
         this.currentContext.addArray(new Array(name, type, size));
     }
 
-    public void addFunction(String name) {
-        Function function = new Function(name, this.currentContext);
+    public void addFunction(String name, String returnType) {
+        Function function = new Function(name, returnType, this.currentContext);
         this.currentContext.addFunction(function);
         this.currentContext = function;
     }

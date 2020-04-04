@@ -43,17 +43,29 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitMain(LanguageParser.MainContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code function}
-	 * labeled alternative in {@link LanguageParser#funct}.
+	 * Enter a parse tree produced by the {@code mainInstruction}
+	 * labeled alternative in {@link LanguageParser#mainFunctionInstruction}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunction(LanguageParser.FunctionContext ctx);
+	void enterMainInstruction(LanguageParser.MainInstructionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code function}
+	 * Exit a parse tree produced by the {@code mainInstruction}
+	 * labeled alternative in {@link LanguageParser#mainFunctionInstruction}.
+	 * @param ctx the parse tree
+	 */
+	void exitMainInstruction(LanguageParser.MainInstructionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code functionDefinition}
 	 * labeled alternative in {@link LanguageParser#funct}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunction(LanguageParser.FunctionContext ctx);
+	void enterFunctionDefinition(LanguageParser.FunctionDefinitionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code functionDefinition}
+	 * labeled alternative in {@link LanguageParser#funct}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionDefinition(LanguageParser.FunctionDefinitionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code functionParameters}
 	 * labeled alternative in {@link LanguageParser#argumentList}.
@@ -175,53 +187,17 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitFunctionInstruction(LanguageParser.FunctionInstructionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code globalVariableDeclaration}
+	 * Enter a parse tree produced by the {@code globalDeclaration}
 	 * labeled alternative in {@link LanguageParser#globalVariable}.
 	 * @param ctx the parse tree
 	 */
-	void enterGlobalVariableDeclaration(LanguageParser.GlobalVariableDeclarationContext ctx);
+	void enterGlobalDeclaration(LanguageParser.GlobalDeclarationContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code globalVariableDeclaration}
+	 * Exit a parse tree produced by the {@code globalDeclaration}
 	 * labeled alternative in {@link LanguageParser#globalVariable}.
 	 * @param ctx the parse tree
 	 */
-	void exitGlobalVariableDeclaration(LanguageParser.GlobalVariableDeclarationContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code globalConstantDeclaration}
-	 * labeled alternative in {@link LanguageParser#globalVariable}.
-	 * @param ctx the parse tree
-	 */
-	void enterGlobalConstantDeclaration(LanguageParser.GlobalConstantDeclarationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code globalConstantDeclaration}
-	 * labeled alternative in {@link LanguageParser#globalVariable}.
-	 * @param ctx the parse tree
-	 */
-	void exitGlobalConstantDeclaration(LanguageParser.GlobalConstantDeclarationContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code globalEnumDeclaration}
-	 * labeled alternative in {@link LanguageParser#globalVariable}.
-	 * @param ctx the parse tree
-	 */
-	void enterGlobalEnumDeclaration(LanguageParser.GlobalEnumDeclarationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code globalEnumDeclaration}
-	 * labeled alternative in {@link LanguageParser#globalVariable}.
-	 * @param ctx the parse tree
-	 */
-	void exitGlobalEnumDeclaration(LanguageParser.GlobalEnumDeclarationContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code globalStructureDeclaration}
-	 * labeled alternative in {@link LanguageParser#globalVariable}.
-	 * @param ctx the parse tree
-	 */
-	void enterGlobalStructureDeclaration(LanguageParser.GlobalStructureDeclarationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code globalStructureDeclaration}
-	 * labeled alternative in {@link LanguageParser#globalVariable}.
-	 * @param ctx the parse tree
-	 */
-	void exitGlobalStructureDeclaration(LanguageParser.GlobalStructureDeclarationContext ctx);
+	void exitGlobalDeclaration(LanguageParser.GlobalDeclarationContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code variableDefinition}
 	 * labeled alternative in {@link LanguageParser#variableDeclaration}.

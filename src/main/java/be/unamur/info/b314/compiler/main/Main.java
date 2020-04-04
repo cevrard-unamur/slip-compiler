@@ -14,7 +14,7 @@ import be.unamur.info.b314.compiler.application.Application;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
 import be.unamur.info.b314.compiler.listener.LanguageListener;
 import be.unamur.info.b314.compiler.listener.MapListener;
-import be.unamur.info.b314.compiler.visitor.ExpressionVisitor;
+import be.unamur.info.b314.compiler.visitor.LanguageVisitor;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
@@ -223,12 +223,8 @@ public class Main {
     private void languageParser(PlayPlusParser.RootContext tree) {
         Application application = new Application();
 
-        ParseTreeWalker walker = new ParseTreeWalker();
-        LanguageListener languageListener = new LanguageListener(application);
-        walker.walk(languageListener, tree);
-
-        ExpressionVisitor rightExpressionVisitor = new ExpressionVisitor(application);
-        rightExpressionVisitor.visit(tree);
+        LanguageVisitor languageVisitor = new LanguageVisitor(application);
+        languageVisitor.visit(tree);
 
         handleErrors(application.getErrors(), "An error occurred with the language file");
     }

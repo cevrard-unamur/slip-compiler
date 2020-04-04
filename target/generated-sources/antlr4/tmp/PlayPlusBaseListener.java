@@ -232,13 +232,25 @@ public class PlayPlusBaseListener implements PlayPlusListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunction(PlayPlusParser.FunctionContext ctx) { }
+	@Override public void enterMainInstruction(PlayPlusParser.MainInstructionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunction(PlayPlusParser.FunctionContext ctx) { }
+	@Override public void exitMainInstruction(PlayPlusParser.MainInstructionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunctionDefinition(PlayPlusParser.FunctionDefinitionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctionDefinition(PlayPlusParser.FunctionDefinitionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -364,49 +376,13 @@ public class PlayPlusBaseListener implements PlayPlusListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterGlobalVariableDeclaration(PlayPlusParser.GlobalVariableDeclarationContext ctx) { }
+	@Override public void enterGlobalDeclaration(PlayPlusParser.GlobalDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitGlobalVariableDeclaration(PlayPlusParser.GlobalVariableDeclarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterGlobalConstantDeclaration(PlayPlusParser.GlobalConstantDeclarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitGlobalConstantDeclaration(PlayPlusParser.GlobalConstantDeclarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterGlobalEnumDeclaration(PlayPlusParser.GlobalEnumDeclarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitGlobalEnumDeclaration(PlayPlusParser.GlobalEnumDeclarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterGlobalStructureDeclaration(PlayPlusParser.GlobalStructureDeclarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitGlobalStructureDeclaration(PlayPlusParser.GlobalStructureDeclarationContext ctx) { }
+	@Override public void exitGlobalDeclaration(PlayPlusParser.GlobalDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -135,12 +135,19 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMain(PlayPlusParser.MainContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code function}
+	 * Visit a parse tree produced by the {@code mainInstruction}
+	 * labeled alternative in {@link PlayPlusParser#mainFunctionInstruction}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMainInstruction(PlayPlusParser.MainInstructionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code functionDefinition}
 	 * labeled alternative in {@link PlayPlusParser#funct}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunction(PlayPlusParser.FunctionContext ctx);
+	T visitFunctionDefinition(PlayPlusParser.FunctionDefinitionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code functionParameters}
 	 * labeled alternative in {@link PlayPlusParser#argumentList}.
@@ -212,33 +219,12 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunctionInstruction(PlayPlusParser.FunctionInstructionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code globalVariableDeclaration}
+	 * Visit a parse tree produced by the {@code globalDeclaration}
 	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitGlobalVariableDeclaration(PlayPlusParser.GlobalVariableDeclarationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code globalConstantDeclaration}
-	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGlobalConstantDeclaration(PlayPlusParser.GlobalConstantDeclarationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code globalEnumDeclaration}
-	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGlobalEnumDeclaration(PlayPlusParser.GlobalEnumDeclarationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code globalStructureDeclaration}
-	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGlobalStructureDeclaration(PlayPlusParser.GlobalStructureDeclarationContext ctx);
+	T visitGlobalDeclaration(PlayPlusParser.GlobalDeclarationContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code variableDefinition}
 	 * labeled alternative in {@link PlayPlusParser#variableDeclaration}.

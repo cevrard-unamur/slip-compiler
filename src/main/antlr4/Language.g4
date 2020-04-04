@@ -2,16 +2,19 @@ grammar Language;
 
 import LanguageWords;
 
-prog:  mapImport (globalVariable|funct)* mainFunction EOF                                            #programme
+prog:  mapImport (globalVariable|funct)* mainFunction EOF                                               #programme
             ;
 
 mapImport:  IMPORT QUOTE MAPFILE QUOTE                                                                  #mapImportation
             ;
 
-mainFunction: MAIN AS FUNCTION LPAR RPAR COLON VOID DO (inst)* (digInstruction SEMICOLON) (inst)* END   #main
+mainFunction: MAIN AS FUNCTION LPAR RPAR COLON VOID DO mainFunctionInstruction END                      #main
             ;
 
-    funct: ID AS FUNCTION LPAR (argumentList)? RPAR COLON (SCALAR|VOID) DO (functionInst)+ END              #function
+mainFunctionInstruction: ((inst)* (digInstruction SEMICOLON) (inst)*)                                   #mainInstruction
+            ;
+
+funct: ID AS FUNCTION LPAR (argumentList)? RPAR COLON (SCALAR|VOID) DO (functionInst)+ END              #functionDefinition
             ;
 
 argumentList: argument (COMMA argument)*                                                                #functionParameters
@@ -30,10 +33,10 @@ inst:       variableDeclaration                         #variableInstruction
             ;
 functionInst: ((enumDeclaration)*|(constDeclaration)*|(structureType)*)? (inst)+                        #functionInstruction
             ;
-globalVariable: variableDeclaration                             #globalVariableDeclaration
-            | constDeclaration                                  #globalConstantDeclaration
-            | enumDeclaration                                   #globalEnumDeclaration
-            | structureType                                     #globalStructureDeclaration
+globalVariable: variableDeclaration                             #globalDeclaration
+            | constDeclaration                                  #globalDeclaration
+            | enumDeclaration                                   #globalDeclaration
+            | structureType                                     #globalDeclaration
             ;
 
 variableDeclaration: (ID (COMMA ID)* AS variableType (EQUAL initVariable)? SEMICOLON)       #variableDefinition

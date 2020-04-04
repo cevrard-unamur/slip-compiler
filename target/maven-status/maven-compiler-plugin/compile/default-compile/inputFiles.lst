@@ -7,7 +7,6 @@
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/PlayPlusBaseVisitor.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/LanguageBaseListener.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/MapBaseVisitor.java
-/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/visitor/ExpressionVisitor.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/LanguageBaseListener.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/application/Context.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/MapListener.java
@@ -42,6 +41,7 @@
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/MapParser.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/exception/BooleanRightExpressionException.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/exception/ParsingException.java
+/Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/visitor/LanguageVisitor.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/application/Array.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/target/generated-sources/antlr4/tmp/PlayPlusVisitor.java
 /Users/patmol/repos/1920_IHDCB332_GROUPE19/src/main/java/be/unamur/info/b314/compiler/application/Type.java

@@ -220,17 +220,29 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 */
 	void exitMain(PlayPlusParser.MainContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code function}
-	 * labeled alternative in {@link PlayPlusParser#funct}.
+	 * Enter a parse tree produced by the {@code mainInstruction}
+	 * labeled alternative in {@link PlayPlusParser#mainFunctionInstruction}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunction(PlayPlusParser.FunctionContext ctx);
+	void enterMainInstruction(PlayPlusParser.MainInstructionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code function}
+	 * Exit a parse tree produced by the {@code mainInstruction}
+	 * labeled alternative in {@link PlayPlusParser#mainFunctionInstruction}.
+	 * @param ctx the parse tree
+	 */
+	void exitMainInstruction(PlayPlusParser.MainInstructionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code functionDefinition}
 	 * labeled alternative in {@link PlayPlusParser#funct}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunction(PlayPlusParser.FunctionContext ctx);
+	void enterFunctionDefinition(PlayPlusParser.FunctionDefinitionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code functionDefinition}
+	 * labeled alternative in {@link PlayPlusParser#funct}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionDefinition(PlayPlusParser.FunctionDefinitionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code functionParameters}
 	 * labeled alternative in {@link PlayPlusParser#argumentList}.
@@ -352,53 +364,17 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 */
 	void exitFunctionInstruction(PlayPlusParser.FunctionInstructionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code globalVariableDeclaration}
+	 * Enter a parse tree produced by the {@code globalDeclaration}
 	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
 	 * @param ctx the parse tree
 	 */
-	void enterGlobalVariableDeclaration(PlayPlusParser.GlobalVariableDeclarationContext ctx);
+	void enterGlobalDeclaration(PlayPlusParser.GlobalDeclarationContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code globalVariableDeclaration}
+	 * Exit a parse tree produced by the {@code globalDeclaration}
 	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
 	 * @param ctx the parse tree
 	 */
-	void exitGlobalVariableDeclaration(PlayPlusParser.GlobalVariableDeclarationContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code globalConstantDeclaration}
-	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
-	 * @param ctx the parse tree
-	 */
-	void enterGlobalConstantDeclaration(PlayPlusParser.GlobalConstantDeclarationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code globalConstantDeclaration}
-	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
-	 * @param ctx the parse tree
-	 */
-	void exitGlobalConstantDeclaration(PlayPlusParser.GlobalConstantDeclarationContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code globalEnumDeclaration}
-	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
-	 * @param ctx the parse tree
-	 */
-	void enterGlobalEnumDeclaration(PlayPlusParser.GlobalEnumDeclarationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code globalEnumDeclaration}
-	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
-	 * @param ctx the parse tree
-	 */
-	void exitGlobalEnumDeclaration(PlayPlusParser.GlobalEnumDeclarationContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code globalStructureDeclaration}
-	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
-	 * @param ctx the parse tree
-	 */
-	void enterGlobalStructureDeclaration(PlayPlusParser.GlobalStructureDeclarationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code globalStructureDeclaration}
-	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
-	 * @param ctx the parse tree
-	 */
-	void exitGlobalStructureDeclaration(PlayPlusParser.GlobalStructureDeclarationContext ctx);
+	void exitGlobalDeclaration(PlayPlusParser.GlobalDeclarationContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code variableDefinition}
 	 * labeled alternative in {@link PlayPlusParser#variableDeclaration}.

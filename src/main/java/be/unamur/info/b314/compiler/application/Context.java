@@ -70,7 +70,7 @@ public class Context {
             this.variableSymbols.put(array.getName(), this.variableHeapIndex);
             this.variables[variableHeapIndex++] = array;
         } else {
-            throw new VariableException("An variable with the name " + array.getName() + " already exist");
+            throw new VariableException("A variable with the name " + array.getName() + " already exist");
         }
     }
 

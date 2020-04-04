@@ -9,42 +9,43 @@ import be.unamur.info.b314.compiler.exception.BooleanRightExpressionException;
 import be.unamur.info.b314.compiler.exception.IncorrectTypeException;
 import be.unamur.info.b314.compiler.exception.IntegerRightExpressionException;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
+import be.unamur.info.b314.compiler.helper.ArrayHelper;
+import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-public class ExpressionVisitor extends PlayPlusBaseVisitor {
+public class LanguageVisitor extends PlayPlusBaseVisitor {
     private Application application;
 
-    public ExpressionVisitor(Application application) {
+    public LanguageVisitor(Application application) {
         this.application = application;
     }
 
     @Override
-    public Object visitIntegerExpression(PlayPlusParser.IntegerExpressionContext ctx) {
-        return parseIntegerExpression(ctx);
-    }
+    public Object visitGlobalDeclaration(PlayPlusParser.GlobalDeclarationContext ctx) {
+        Object declaration = ctx.children.get(0);
 
-    @Override
-    public Object visitParenthesesExpression(PlayPlusParser.ParenthesesExpressionContext ctx) {
-        return parseParenthesesExpression(ctx);
-    }
-
-    @Override
-    public Object visitBoolExpression(PlayPlusParser.BoolExpressionContext ctx) {
-        return parseBooleanExpression(ctx);
-    }
-
-    @Override
-    public Object visitAction(PlayPlusParser.ActionContext ctx) {
-        if (ctx.children.size() == 3) {
-            return super.visitAction(ctx);
+        if (declaration instanceof PlayPlusParser.VariableDefinitionContext) {
+            parseVariableDefinition((PlayPlusParser.VariableDefinitionContext)declaration);
+        } else if (declaration instanceof PlayPlusParser.StructureDefinitionContext) {
+            parseStructureDefinition((PlayPlusParser.StructureDefinitionContext)declaration);
+        } else if (declaration instanceof PlayPlusParser.EnumDeclarationContext) {
+            // TODO
+        } else if (declaration instanceof PlayPlusParser.FunctionDefinitionContext) {
+            parseFunctionDefinition((PlayPlusParser.FunctionDefinitionContext)declaration);
+        } else {
+            throw new PlayPlusException("This global declaration is not managed");
         }
 
-        return parseIntegerRightExpression((PlayPlusParser.RightExprContext)ctx.children.get(2));
+        return super.visitGlobalDeclaration(ctx);
     }
 
     @Override
-    public Object visitNotExpression(PlayPlusParser.NotExpressionContext ctx) {
-        return parseBooleanRightExpression((PlayPlusParser.RightExprContext)ctx.children.get(1));
+    public Object visitMain(PlayPlusParser.MainContext ctx) {
+        PlayPlusParser.MainInstructionContext instructions = (PlayPlusParser.MainInstructionContext)ctx.children.get(8);
+
+        parseMainInstructionContext(instructions);
+
+        return super.visitMain(ctx);
     }
 
     // Parse a boolean expression
@@ -164,12 +165,126 @@ public class ExpressionVisitor extends PlayPlusBaseVisitor {
         if (ctx.children.get(0) instanceof PlayPlusParser.ParenthesesExpressionContext) {
             parseParenthesesExpression((PlayPlusParser.ParenthesesExpressionContext)ctx.children.get(0));
         } else {
+
+
             if (ctx.children.get(1) instanceof PlayPlusParser.BoolExpressionContext) {
                 parseBooleanExpression((PlayPlusParser.BoolExpressionContext)ctx.children.get(1));
             } else if (ctx.children.get(1) instanceof PlayPlusParser.IntegerExpressionContext) {
                 parseIntegerExpression((PlayPlusParser.IntegerExpressionContext)ctx.children.get(1));
+            } else if (ctx.children.get(1) instanceof PlayPlusParser.CompExpressionContext) {
+                parseIntegerRightExpression((PlayPlusParser.CompExpressionContext)ctx.children.get(1));
             } else {
                 throw new PlayPlusException("This parentheses construction is not known");
+            }
+        }
+
+        return ctx;
+    }
+
+    // Parse action
+    private Object parseAction(PlayPlusParser.ActionInstructionContext ctx) {
+        if (ctx.children.size() == 3) {
+            return ctx;
+        }
+
+        return parseIntegerRightExpression((PlayPlusParser.RightExprContext)ctx.children.get(2));
+    }
+
+    // Parse declaration
+    private Object parseVariableDefinition(PlayPlusParser.VariableDefinitionContext ctx) {
+        for (TerminalNode id : ctx.ID()) {
+
+            if (ctx.variableType() instanceof  PlayPlusParser.ScalarContext)
+            {
+                TerminalNode variableType = (TerminalNode)ctx.variableType().children.get(0);
+
+                this.application.addVariable(variableType.getText(), id.getText(), "", false);
+            }
+            else if (ctx.variableType() instanceof PlayPlusParser.ArrayContext)
+            {
+                PlayPlusParser.ArrayDefinitionContext arrayType = (PlayPlusParser.ArrayDefinitionContext)ctx.variableType().children.get(0);
+                TerminalNode variableType = (TerminalNode)arrayType.children.get(0);
+
+                this.application.addArray(variableType.getText(), id.getText(), ArrayHelper.getSize(arrayType));
+            } else if (ctx.variableType() instanceof PlayPlusParser.StructureContext) {
+                PlayPlusParser.StructureDefinitionContext structureType = (PlayPlusParser.StructureDefinitionContext)ctx.variableType().children.get(0);
+                TerminalNode structureName = (TerminalNode) structureType.children.get(0);
+
+                this.application.addVariable(structureName.getText(), id.getText(), "", false);
+            }
+        }
+
+        return ctx;
+    }
+
+    private Object parseStructureDefinition(PlayPlusParser.StructureDefinitionContext ctx) {
+        this.application.addRecord(ctx.ID().getText());
+
+        for (ParseTree node : ctx.children) {
+            if (node instanceof PlayPlusParser.VariableDefinitionContext) {
+                parseVariableDefinition((PlayPlusParser.VariableDefinitionContext)node);
+            } else if (node instanceof PlayPlusParser.StructureDefinitionContext) {
+                visitStructureDefinition((PlayPlusParser.StructureDefinitionContext)node);
+            }
+        }
+
+        this.application.leaveContext();
+
+        return  ctx;
+    }
+
+    private Object parseFunctionDefinition(PlayPlusParser.FunctionDefinitionContext ctx) {
+        TerminalNode returnTypeNode = null;
+        PlayPlusParser.FunctionInstructionContext functionInstructionContext = null;
+
+        for (int i = 0; i < ctx.children.size(); i++) {
+            ParseTree node = ctx.children.get(i);
+
+            if (node instanceof TerminalNode && ((TerminalNode) node).getSymbol().getType() == PlayPlusParser.COLON) {
+                returnTypeNode = (TerminalNode) ctx.children.get(i + 1);
+            } else if (node instanceof PlayPlusParser.FunctionInstructionContext) {
+                functionInstructionContext = (PlayPlusParser.FunctionInstructionContext)node;
+            }
+        }
+
+        this.application.addFunction(ctx.ID().getText(), returnTypeNode.getText());
+
+        parseFunctionInstruction(functionInstructionContext);
+
+        this.application.leaveContext();
+
+        return ctx;
+    }
+
+    private Object parseFunctionInstruction(PlayPlusParser.FunctionInstructionContext ctx) {
+        return ctx;
+    }
+
+    private Object parseAssignationInstruction(PlayPlusParser.AssignationInstructionContext ctx) {
+        return parseAssignation((PlayPlusParser.AssignationContext)ctx.children.get(0));
+    }
+
+    private Object parseAssignation(PlayPlusParser.AssignationContext ctx) {
+        // We check the validity of both expression
+
+        // We check the type concordance
+
+        return ctx;
+    }
+
+    private Object parseMainInstructionContext(PlayPlusParser.MainInstructionContext ctx) {
+        for (Object node : ctx.children) {
+            if (node instanceof PlayPlusParser.ActionInstructionContext) {
+                parseAction((PlayPlusParser.ActionInstructionContext)node);
+            } else if (node instanceof PlayPlusParser.AssignationInstructionContext) {
+                parseAssignationInstruction((PlayPlusParser.AssignationInstructionContext)node);
+            } else if (node instanceof PlayPlusParser.IfInstructionContext) {
+            } else if (node instanceof PlayPlusParser.WhileInstructionContext) {
+            } else if (node instanceof PlayPlusParser.ForInstructionContext) {
+            } else if (node instanceof PlayPlusParser.DigInstructionContext) {
+            } else if (node instanceof TerminalNode) {
+            } else {
+                throw new PlayPlusException("Not manage");
             }
         }
 
