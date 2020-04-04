@@ -519,6 +519,18 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitLeftId(LanguageParser.LeftIdContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code leftPropertyArray}
+	 * labeled alternative in {@link LanguageParser#leftExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterLeftPropertyArray(LanguageParser.LeftPropertyArrayContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code leftPropertyArray}
+	 * labeled alternative in {@link LanguageParser#leftExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitLeftPropertyArray(LanguageParser.LeftPropertyArrayContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code leftArray}
 	 * labeled alternative in {@link LanguageParser#leftExpr}.
 	 * @param ctx the parse tree

@@ -696,6 +696,18 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 */
 	void exitLeftId(PlayPlusParser.LeftIdContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code leftPropertyArray}
+	 * labeled alternative in {@link PlayPlusParser#leftExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterLeftPropertyArray(PlayPlusParser.LeftPropertyArrayContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code leftPropertyArray}
+	 * labeled alternative in {@link PlayPlusParser#leftExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitLeftPropertyArray(PlayPlusParser.LeftPropertyArrayContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code leftArray}
 	 * labeled alternative in {@link PlayPlusParser#leftExpr}.
 	 * @param ctx the parse tree

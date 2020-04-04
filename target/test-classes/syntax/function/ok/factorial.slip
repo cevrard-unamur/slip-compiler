@@ -4,6 +4,7 @@
 
     z as integer;
     f as integer;
+    x as integer;
 
 facto as function(x as integer):integer
 do
@@ -39,8 +40,6 @@ enum NUMBER = (ONE, TWO, THREE);
            d as boolean;
          end;
    end;
-
-  x as integer;
 
 main as function():void
 do

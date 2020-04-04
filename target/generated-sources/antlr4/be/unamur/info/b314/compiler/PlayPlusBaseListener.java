@@ -712,6 +712,18 @@ public class PlayPlusBaseListener implements PlayPlusListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterLeftPropertyArray(PlayPlusParser.LeftPropertyArrayContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLeftPropertyArray(PlayPlusParser.LeftPropertyArrayContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterLeftArray(PlayPlusParser.LeftArrayContext ctx) { }
 	/**
 	 * {@inheritDoc}

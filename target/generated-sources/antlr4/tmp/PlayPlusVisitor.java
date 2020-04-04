@@ -413,6 +413,13 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLeftId(PlayPlusParser.LeftIdContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code leftPropertyArray}
+	 * labeled alternative in {@link PlayPlusParser#leftExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLeftPropertyArray(PlayPlusParser.LeftPropertyArrayContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code leftArray}
 	 * labeled alternative in {@link PlayPlusParser#leftExpr}.
 	 * @param ctx the parse tree

@@ -236,6 +236,8 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
                 parseIntegerExpression((PlayPlusParser.IntegerExpressionContext)ctx.rightExpr());
             } else if (ctx.rightExpr() instanceof PlayPlusParser.CompExpressionContext && expectedType.equals("boolean")) {
                 parseIntegerRightExpression(ctx.rightExpr());
+            } else if (ctx.rightExpr() instanceof PlayPlusParser.NotExpressionContext && expectedType.equals("boolean")) {
+                parseNotExpression((PlayPlusParser.NotExpressionContext)ctx.rightExpr());
             } else {
                 throw new PlayPlusException("This parentheses construction is not known");
             }
@@ -373,7 +375,10 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
     }
 
     private Object parseFunctionInstruction(PlayPlusParser.FunctionInstructionContext ctx) {
-        // TODO
+        for (PlayPlusParser.InstContext instruction : ctx.inst()) {
+            parseInstruction(instruction);
+        }
+
         return ctx;
     }
 
@@ -390,7 +395,12 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         return ctx;
     }
 
-    // Parse declaration
+    // Parse variable
+    private Object parseVariableInstruction(PlayPlusParser.VariableInstructionContext ctx) {
+        parseVariableDefinition((PlayPlusParser.VariableDefinitionContext)ctx.variableDeclaration());
+        return ctx;
+    }
+
     private Object parseVariableDefinition(PlayPlusParser.VariableDefinitionContext ctx) {
         for (TerminalNode id : ctx.ID()) {
             if (ctx.variableType() instanceof  PlayPlusParser.ScalarContext)
@@ -416,6 +426,7 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         return ctx;
     }
 
+    // Parse declaration
     private Object parseStructureDefinition(PlayPlusParser.StructureDefinitionContext ctx) {
         this.application.addRecord(ctx.ID().getText());
 
@@ -499,6 +510,21 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
     }
 
     private Object parseInstruction(PlayPlusParser.InstContext ctx) {
+        if (ctx instanceof PlayPlusParser.ActionInstructionContext) {
+            parseActionInstruction((PlayPlusParser.ActionInstructionContext)ctx);
+        } else if (ctx instanceof PlayPlusParser.AssignationInstructionContext) {
+            parseAssignationInstruction((PlayPlusParser.AssignationInstructionContext)ctx);
+        } else if (ctx instanceof PlayPlusParser.VariableInstructionContext) {
+            parseVariableInstruction((PlayPlusParser.VariableInstructionContext)ctx);
+        } else if (ctx instanceof PlayPlusParser.IfInstructionContext) {
+            parseIfInstruction((PlayPlusParser.IfInstructionContext)ctx);
+        } else if (ctx instanceof PlayPlusParser.WhileInstructionContext) {
+            parseWhileInstruction((PlayPlusParser.WhileInstructionContext)ctx);
+        } else if (ctx instanceof PlayPlusParser.RepeatInstructionContext) {
+            parseRepeatInstruction((PlayPlusParser.RepeatInstructionContext)ctx);
+        } else if (ctx instanceof PlayPlusParser.ForInstructionContext) {
+            parseForInstruction((PlayPlusParser.ForInstructionContext)ctx);
+        }
         return ctx;
     }
 

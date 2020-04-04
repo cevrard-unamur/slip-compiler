@@ -85,9 +85,10 @@ rightExpr: LPAR rightExpr RPAR                                      #parentheses
             | CHAR                                                  #char
             | ID LPAR (rightExpr (COMMA rightExpr)*)? RPAR          #functionCallExpression
             ;
-leftExpr: ID                                                        #leftId
-            | ID LBRA rightExpr (COMMA rightExpr)? RBRA             #leftArray
-            | leftExpr'.'ID                                           #leftProperty
+leftExpr: ID                                                            #leftId
+            | ID LBRA rightExpr (COMMA rightExpr)? RBRA                 #leftArray
+            | leftExpr'.'ID                                             #leftProperty
+            | leftExpr'.'ID LBRA rightExpr (COMMA rightExpr)? RBRA      #leftPropertyArray
             ;
 assignation: leftExpr ASSIGN rightExpr SEMICOLON
             ;

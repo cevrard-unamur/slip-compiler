@@ -309,6 +309,13 @@ public interface LanguageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLeftId(LanguageParser.LeftIdContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code leftPropertyArray}
+	 * labeled alternative in {@link LanguageParser#leftExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLeftPropertyArray(LanguageParser.LeftPropertyArrayContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code leftArray}
 	 * labeled alternative in {@link LanguageParser#leftExpr}.
 	 * @param ctx the parse tree

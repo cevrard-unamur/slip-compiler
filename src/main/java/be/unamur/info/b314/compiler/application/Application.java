@@ -40,7 +40,7 @@ public class Application {
         this.currentContext.addFunction(function);
         this.currentContext = function;
         // We add a first variable in the function context for the return of it
-        this.currentContext.addVariable(new Variable(name, returnType, false));
+        this.currentContext.addVariable(new Variable(returnType, name, false));
     }
 
     public void addRecord(String name) {
