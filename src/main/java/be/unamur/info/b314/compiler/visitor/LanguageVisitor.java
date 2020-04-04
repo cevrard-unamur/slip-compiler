@@ -33,13 +33,16 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
             // TODO
         } else if (declaration instanceof PlayPlusParser.ConstDeclarationContext) {
             // TODO
-        } else if (declaration instanceof PlayPlusParser.FunctionDefinitionContext) {
-            parseFunctionDefinition((PlayPlusParser.FunctionDefinitionContext)declaration);
         } else {
             throw new PlayPlusException("This global declaration is not managed");
         }
 
         return super.visitGlobalDeclaration(ctx);
+    }
+
+    @Override
+    public Object visitFunctionDefinition(PlayPlusParser.FunctionDefinitionContext ctx) {
+        return parseFunctionDefinition(ctx);
     }
 
     @Override
@@ -367,6 +370,8 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
             } else if (node instanceof PlayPlusParser.WhileInstructionContext) {
                 // TODO
             } else if (node instanceof PlayPlusParser.ForInstructionContext) {
+                // TODO
+            } else if (node instanceof PlayPlusParser.RepeatInstructionContext) {
                 // TODO
             } else if (node instanceof PlayPlusParser.DigInstructionContext) {
             } else if (node instanceof TerminalNode) {
