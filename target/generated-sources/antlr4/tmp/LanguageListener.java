@@ -68,6 +68,16 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitFunctionDefinition(LanguageParser.FunctionDefinitionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link LanguageParser#returnType}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturnType(LanguageParser.ReturnTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LanguageParser#returnType}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturnType(LanguageParser.ReturnTypeContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code functionParameters}
 	 * labeled alternative in {@link LanguageParser#argumentList}.
 	 * @param ctx the parse tree

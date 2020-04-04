@@ -46,6 +46,12 @@ public interface LanguageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunctionDefinition(LanguageParser.FunctionDefinitionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link LanguageParser#returnType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturnType(LanguageParser.ReturnTypeContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code functionParameters}
 	 * labeled alternative in {@link LanguageParser#argumentList}.
 	 * @param ctx the parse tree

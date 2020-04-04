@@ -63,6 +63,7 @@ tmp/PlayPlusParser$IntegerExpressionContext.class
 tmp/PlayPlusParser$RepeatContext.class
 tmp/LanguageParser$GlobalDeclarationContext.class
 LanguageParser$StructureDefinitionContext.class
+be/unamur/info/b314/compiler/PlayPlusParser$ReturnTypeContext.class
 LanguageParser$BooleanFalseContext.class
 LanguageParser$MainContext.class
 tmp/PlayPlusParser$LeftIdContext.class
@@ -181,6 +182,7 @@ tmp/PlayPlusParser$ActionContext.class
 tmp/LanguageParser$NegativeIntegerExpressionContext.class
 LanguageParser$NumberContext.class
 MapLexer.class
+LanguageParser$ReturnTypeContext.class
 LanguageParser$RepeatInstructionContext.class
 tmp/LanguageParser$DigContext.class
 LanguageParser$MapImportContext.class
@@ -296,6 +298,7 @@ tmp/LanguageParser$ParenthesesExpressionContext.class
 tmp/PlayPlusParser$WhileInstructionContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$LeftIdContext.class
 be/unamur/info/b314/compiler/application/Context.class
+tmp/PlayPlusParser$ReturnTypeContext.class
 MapParser$RobotContext.class
 tmp/PlayPlusParser$WhileContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$RepeatContext.class
@@ -425,6 +428,7 @@ tmp/LanguageParser$ConstDeclarationContext.class
 tmp/PlayPlusParser$StructureContext.class
 MapParser$CommentMultiContext.class
 be/unamur/info/b314/compiler/exception/BooleanRightExpressionException.class
+tmp/LanguageParser$ReturnTypeContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$ArgumentContext.class
 tmp/LanguageParser$ArrayContext.class
 tmp/PlayPlusParser$GlobalDeclarationContext.class
