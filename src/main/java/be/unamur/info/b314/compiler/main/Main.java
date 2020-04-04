@@ -12,9 +12,8 @@ import java.util.List;
 
 import be.unamur.info.b314.compiler.application.Application;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
-import be.unamur.info.b314.compiler.listener.LanguageListener;
 import be.unamur.info.b314.compiler.listener.MapListener;
-import be.unamur.info.b314.compiler.visitor.IntegerRightExpressionVisitor;
+import be.unamur.info.b314.compiler.visitor.LanguageVisitor;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
@@ -221,16 +220,12 @@ public class Main {
     }
 
     private void languageParser(PlayPlusParser.RootContext tree) {
-        ParseTreeWalker walker = new ParseTreeWalker();
-        LanguageListener languageListener = new LanguageListener();
-        walker.walk(languageListener, tree);
+        Application application = new Application();
 
-        IntegerRightExpressionVisitor rightExpressionVisitor = new IntegerRightExpressionVisitor();
-        rightExpressionVisitor.visit(tree);
+        LanguageVisitor languageVisitor = new LanguageVisitor(application);
+        languageVisitor.visit(tree);
 
-        Application app = languageListener.getApplication();
-
-        handleErrors(app.getErrors(), "An error occurred with the language file");
+        handleErrors(application.getErrors(), "An error occurred with the language file");
     }
 
     private  void handleErrors(List<String> errors, String errorMessage) {

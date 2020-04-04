@@ -135,12 +135,19 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMain(PlayPlusParser.MainContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code function}
+	 * Visit a parse tree produced by the {@code mainInstruction}
+	 * labeled alternative in {@link PlayPlusParser#mainFunctionInstruction}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMainInstruction(PlayPlusParser.MainInstructionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code functionDefinition}
 	 * labeled alternative in {@link PlayPlusParser#funct}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunction(PlayPlusParser.FunctionContext ctx);
+	T visitFunctionDefinition(PlayPlusParser.FunctionDefinitionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code functionParameters}
 	 * labeled alternative in {@link PlayPlusParser#argumentList}.
@@ -212,33 +219,12 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunctionInstruction(PlayPlusParser.FunctionInstructionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code globalVariableDeclaration}
+	 * Visit a parse tree produced by the {@code globalDeclaration}
 	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitGlobalVariableDeclaration(PlayPlusParser.GlobalVariableDeclarationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code globalConstantDeclaration}
-	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGlobalConstantDeclaration(PlayPlusParser.GlobalConstantDeclarationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code globalEnumDeclaration}
-	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGlobalEnumDeclaration(PlayPlusParser.GlobalEnumDeclarationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code globalStructureDeclaration}
-	 * labeled alternative in {@link PlayPlusParser#globalVariable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGlobalStructureDeclaration(PlayPlusParser.GlobalStructureDeclarationContext ctx);
+	T visitGlobalDeclaration(PlayPlusParser.GlobalDeclarationContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code variableDefinition}
 	 * labeled alternative in {@link PlayPlusParser#variableDeclaration}.
@@ -337,19 +323,19 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitString(PlayPlusParser.StringContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code boolExpression}
-	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBoolExpression(PlayPlusParser.BoolExpressionContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code compExpression}
 	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitCompExpression(PlayPlusParser.CompExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code boolExpression}
+	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBoolExpression(PlayPlusParser.BoolExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code leftExpression}
 	 * labeled alternative in {@link PlayPlusParser#rightExpr}.
@@ -427,68 +413,38 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAssignation(PlayPlusParser.AssignationContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code left}
+	 * Visit a parse tree produced by the {@code action}
 	 * labeled alternative in {@link PlayPlusParser#actionType}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitLeft(PlayPlusParser.LeftContext ctx);
+	T visitAction(PlayPlusParser.ActionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code right}
+	 * Visit a parse tree produced by the {@code fight}
 	 * labeled alternative in {@link PlayPlusParser#actionType}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitRight(PlayPlusParser.RightContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code up}
-	 * labeled alternative in {@link PlayPlusParser#actionType}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitUp(PlayPlusParser.UpContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code down}
-	 * labeled alternative in {@link PlayPlusParser#actionType}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDown(PlayPlusParser.DownContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code jump}
-	 * labeled alternative in {@link PlayPlusParser#actionType}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitJump(PlayPlusParser.JumpContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code fightType}
-	 * labeled alternative in {@link PlayPlusParser#actionType}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFightType(PlayPlusParser.FightTypeContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code digType}
-	 * labeled alternative in {@link PlayPlusParser#actionType}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDigType(PlayPlusParser.DigTypeContext ctx);
+	T visitFight(PlayPlusParser.FightContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code dig}
-	 * labeled alternative in {@link PlayPlusParser#digInstruction}.
+	 * labeled alternative in {@link PlayPlusParser#actionType}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitDig(PlayPlusParser.DigContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code fight}
-	 * labeled alternative in {@link PlayPlusParser#fightInstruction}.
+	 * Visit a parse tree produced by {@link PlayPlusParser#digInstruction}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFight(PlayPlusParser.FightContext ctx);
+	T visitDigInstruction(PlayPlusParser.DigInstructionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#fightInstruction}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFightInstruction(PlayPlusParser.FightInstructionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code if}
 	 * labeled alternative in {@link PlayPlusParser#ifBlock}.

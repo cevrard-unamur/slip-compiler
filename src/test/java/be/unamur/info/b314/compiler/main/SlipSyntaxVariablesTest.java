@@ -1,8 +1,6 @@
 
 package be.unamur.info.b314.compiler.main;
 
-import be.unamur.info.b314.compiler.application.Application;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
@@ -12,18 +10,9 @@ import org.junit.runner.Description;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.Field;
-
 public class SlipSyntaxVariablesTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(SlipSyntaxVariablesTest.class);
-
-    @Before
-    public void resetSingleton() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
-        Field instance = Application.class.getDeclaredField("instance");
-        instance.setAccessible(true);
-        instance.set(null, null);
-    }
 
     @Rule
     public TemporaryFolder testFolder = new TemporaryFolder(); // Create a temporary folder for outputs deleted after tests
@@ -47,12 +36,6 @@ public class SlipSyntaxVariablesTest {
     @Test
     public void test_declaration_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/variables/ok/declaration.slip", testFolder.newFile(), true, "syntax::variables: declaration.slip");
-    }
-
-
-    @Test
-    public void test_and_var_wrong_type_2_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/variables/ok/and_var_wrong_type_2.slip", testFolder.newFile(), true, "syntax::variables: and_var_wrong_type_2.slip");
     }
 
 
@@ -102,6 +85,12 @@ public class SlipSyntaxVariablesTest {
     @Test
     public void test_missing_semicolon_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/variables/ko/missing_semicolon.slip", testFolder.newFile(), false, "syntax::variables: missing_semicolon.slip");
+    }
+
+
+    @Test
+    public void test_and_var_wrong_type_2_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/variables/ko/and_var_wrong_type_2.slip", testFolder.newFile(), false, "syntax::variables: and_var_wrong_type_2.slip");
     }
 
 

@@ -14,12 +14,4 @@ public class Array extends VariableBase {
         this.size = size;
         this.values = new ArrayList<>();
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getType() {
-        return type;
-    }
 }

@@ -32,12 +32,19 @@ public interface LanguageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMain(LanguageParser.MainContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code function}
+	 * Visit a parse tree produced by the {@code mainInstruction}
+	 * labeled alternative in {@link LanguageParser#mainFunctionInstruction}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMainInstruction(LanguageParser.MainInstructionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code functionDefinition}
 	 * labeled alternative in {@link LanguageParser#funct}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunction(LanguageParser.FunctionContext ctx);
+	T visitFunctionDefinition(LanguageParser.FunctionDefinitionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code functionParameters}
 	 * labeled alternative in {@link LanguageParser#argumentList}.
@@ -109,33 +116,12 @@ public interface LanguageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunctionInstruction(LanguageParser.FunctionInstructionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code globalVariableDeclaration}
+	 * Visit a parse tree produced by the {@code globalDeclaration}
 	 * labeled alternative in {@link LanguageParser#globalVariable}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitGlobalVariableDeclaration(LanguageParser.GlobalVariableDeclarationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code globalConstantDeclaration}
-	 * labeled alternative in {@link LanguageParser#globalVariable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGlobalConstantDeclaration(LanguageParser.GlobalConstantDeclarationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code globalEnumDeclaration}
-	 * labeled alternative in {@link LanguageParser#globalVariable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGlobalEnumDeclaration(LanguageParser.GlobalEnumDeclarationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code globalStructureDeclaration}
-	 * labeled alternative in {@link LanguageParser#globalVariable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGlobalStructureDeclaration(LanguageParser.GlobalStructureDeclarationContext ctx);
+	T visitGlobalDeclaration(LanguageParser.GlobalDeclarationContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code variableDefinition}
 	 * labeled alternative in {@link LanguageParser#variableDeclaration}.
@@ -234,19 +220,19 @@ public interface LanguageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitString(LanguageParser.StringContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code boolExpression}
-	 * labeled alternative in {@link LanguageParser#rightExpr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBoolExpression(LanguageParser.BoolExpressionContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code compExpression}
 	 * labeled alternative in {@link LanguageParser#rightExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitCompExpression(LanguageParser.CompExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code boolExpression}
+	 * labeled alternative in {@link LanguageParser#rightExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBoolExpression(LanguageParser.BoolExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code leftExpression}
 	 * labeled alternative in {@link LanguageParser#rightExpr}.
@@ -324,68 +310,38 @@ public interface LanguageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAssignation(LanguageParser.AssignationContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code left}
+	 * Visit a parse tree produced by the {@code action}
 	 * labeled alternative in {@link LanguageParser#actionType}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitLeft(LanguageParser.LeftContext ctx);
+	T visitAction(LanguageParser.ActionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code right}
+	 * Visit a parse tree produced by the {@code fight}
 	 * labeled alternative in {@link LanguageParser#actionType}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitRight(LanguageParser.RightContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code up}
-	 * labeled alternative in {@link LanguageParser#actionType}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitUp(LanguageParser.UpContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code down}
-	 * labeled alternative in {@link LanguageParser#actionType}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDown(LanguageParser.DownContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code jump}
-	 * labeled alternative in {@link LanguageParser#actionType}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitJump(LanguageParser.JumpContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code fightType}
-	 * labeled alternative in {@link LanguageParser#actionType}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFightType(LanguageParser.FightTypeContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code digType}
-	 * labeled alternative in {@link LanguageParser#actionType}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDigType(LanguageParser.DigTypeContext ctx);
+	T visitFight(LanguageParser.FightContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code dig}
-	 * labeled alternative in {@link LanguageParser#digInstruction}.
+	 * labeled alternative in {@link LanguageParser#actionType}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitDig(LanguageParser.DigContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code fight}
-	 * labeled alternative in {@link LanguageParser#fightInstruction}.
+	 * Visit a parse tree produced by {@link LanguageParser#digInstruction}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFight(LanguageParser.FightContext ctx);
+	T visitDigInstruction(LanguageParser.DigInstructionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LanguageParser#fightInstruction}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFightInstruction(LanguageParser.FightInstructionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code if}
 	 * labeled alternative in {@link LanguageParser#ifBlock}.

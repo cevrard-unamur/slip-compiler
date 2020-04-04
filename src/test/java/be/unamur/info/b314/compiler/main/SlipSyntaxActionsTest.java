@@ -1,8 +1,6 @@
 
 package be.unamur.info.b314.compiler.main;
 
-import be.unamur.info.b314.compiler.application.Application;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
@@ -12,18 +10,9 @@ import org.junit.runner.Description;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.Field;
-
 public class SlipSyntaxActionsTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(SlipSyntaxActionsTest.class);
-
-    @Before
-    public void resetSingleton() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
-        Field instance = Application.class.getDeclaredField("instance");
-        instance.setAccessible(true);
-        instance.set(null, null);
-    }
 
     @Rule
     public TemporaryFolder testFolder = new TemporaryFolder(); // Create a temporary folder for outputs deleted after tests
@@ -38,12 +27,6 @@ public class SlipSyntaxActionsTest {
     };
 
     // tests OK
-    @Test
-    public void test_jump_incorrect_type_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/actions/ok/jump_incorrect_type.slip", testFolder.newFile(), true, "syntax::actions: jump_incorrect_type.slip");
-    }
-
-
     @Test
     public void test_jump_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/actions/ok/jump.slip", testFolder.newFile(), true, "syntax::actions: jump.slip");

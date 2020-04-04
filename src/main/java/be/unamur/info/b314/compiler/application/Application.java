@@ -9,19 +9,10 @@ import java.util.List;
 public class Application {
     private List<String> errors = new ArrayList();
 
-    private static Application instance;
     private Context currentContext;
 
-    private Application() {
+    public Application() {
         this.currentContext = new Context();
-    }
-
-    public static Application getInstance() {
-        if (instance == null) {
-            instance = new Application();
-        }
-
-        return instance;
     }
 
     public void addError(String error) {
@@ -40,16 +31,12 @@ public class Application {
         }
     }
 
-    public void updateVariable(String name, String value) {
-        this.currentContext.updateVariable(name, value);
-    }
-
     public void addArray(String type, String name, Integer[] size){
         this.currentContext.addArray(new Array(name, type, size));
     }
 
-    public void addFunction(String name) {
-        Function function = new Function(name, this.currentContext);
+    public void addFunction(String name, String returnType) {
+        Function function = new Function(name, returnType, this.currentContext);
         this.currentContext.addFunction(function);
         this.currentContext = function;
     }
@@ -66,5 +53,37 @@ public class Application {
         }
 
         this.currentContext = this.currentContext.parent;
+    }
+
+    public Variable getVariable(String name) {
+        Context context = this.currentContext;
+
+        while (context != null) {
+            VariableBase variable = context.getVariable(name);
+
+            if (variable != null && variable instanceof Variable) {
+                return (Variable)variable;
+            }
+
+            context = context.parent;
+        }
+
+        throw new VariableException("The variable " + name + " does not exist");
+    }
+
+    public Array getArray(String name) {
+        Context context = this.currentContext;
+
+        while (context != null) {
+            VariableBase variable = context.getVariable(name);
+
+            if (variable != null && variable instanceof Array) {
+                return (Array)variable;
+            }
+
+            context = context.parent;
+        }
+
+        throw new VariableException("The array " + name + " does not exist");
     }
 }
