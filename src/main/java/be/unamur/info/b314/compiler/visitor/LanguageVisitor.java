@@ -269,22 +269,11 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
     }
 
     private Object parseFunctionDefinition(PlayPlusParser.FunctionDefinitionContext ctx) {
-        TerminalNode returnTypeNode = null;
-        PlayPlusParser.FunctionInstructionContext functionInstructionContext = null;
+        this.application.addFunction(ctx.ID().getText(), ctx.returnType().getText());
 
-        for (int i = 0; i < ctx.children.size(); i++) {
-            ParseTree node = ctx.children.get(i);
-
-            if (node instanceof TerminalNode && ((TerminalNode) node).getSymbol().getType() == PlayPlusParser.COLON) {
-                returnTypeNode = (TerminalNode) ctx.children.get(i + 1);
-            } else if (node instanceof PlayPlusParser.FunctionInstructionContext) {
-                functionInstructionContext = (PlayPlusParser.FunctionInstructionContext)node;
-            }
+        if (ctx.functionInst().size() > 0) {
+            parseFunctionInstruction((PlayPlusParser.FunctionInstructionContext)ctx.functionInst().get(0));
         }
-
-        this.application.addFunction(ctx.ID().getText(), returnTypeNode.getText());
-
-        parseFunctionInstruction(functionInstructionContext);
 
         this.application.leaveContext();
 

@@ -149,6 +149,12 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunctionDefinition(PlayPlusParser.FunctionDefinitionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#returnType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturnType(PlayPlusParser.ReturnTypeContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code functionParameters}
 	 * labeled alternative in {@link PlayPlusParser#argumentList}.
 	 * @param ctx the parse tree
