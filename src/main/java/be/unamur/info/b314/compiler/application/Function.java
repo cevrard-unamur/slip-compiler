@@ -8,6 +8,8 @@ public class Function extends Context {
         return name;
     }
 
+    public String getReturnType() { return returnType; }
+
     public Function(String name, String returnType, Context parent) {
         this.name = name;
         this.returnType = returnType;

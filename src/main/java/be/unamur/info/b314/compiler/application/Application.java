@@ -23,9 +23,9 @@ public class Application {
         return this.errors;
     }
 
-    public void addVariable(String type, String name, String value, Boolean isConstant) {
+    public void addVariable(String type, String name, Boolean isConstant) {
         try {
-            this.currentContext.addVariable(new Variable(type, name, value, isConstant)); }
+            this.currentContext.addVariable(new Variable(type, name, isConstant)); }
         catch (VariableException ex) {
             this.addError(ex.getMessage());
         }
@@ -39,6 +39,8 @@ public class Application {
         Function function = new Function(name, returnType, this.currentContext);
         this.currentContext.addFunction(function);
         this.currentContext = function;
+        // We add a first variable in the function context for the return of it
+        this.currentContext.addVariable(new Variable(name, returnType, false));
     }
 
     public void addRecord(String name) {
@@ -85,5 +87,21 @@ public class Application {
         }
 
         throw new VariableException("The array " + name + " does not exist");
+    }
+
+    public Function getFunction(String name) {
+        Context context = this.currentContext;
+
+        while (context != null) {
+            Function function = context.getFunction(name);
+
+            if (function != null) {
+                return function;
+            }
+
+            context = context.parent;
+        }
+
+        throw new VariableException("The function " + name + " does not exist");
     }
 }

@@ -40,16 +40,16 @@ public class SlipSyntaxFunctionTest {
 
 
     @Test
-    public void test_function_with_global_variable_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/function/ok/function_with_global_variable.slip", testFolder.newFile(), true, "syntax::function: function_with_global_variable.slip");
-    }
-
-
-    @Test
     public void test_global_no_local_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/function/ok/global_no_local.slip", testFolder.newFile(), true, "syntax::function: global_no_local.slip");
     }
 
 
     // tests KO
+    @Test
+    public void test_function_integer_char_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/function/ko/function_integer_char.slip", testFolder.newFile(), false, "syntax::function: function_integer_char.slip");
+    }
+
+
 }
