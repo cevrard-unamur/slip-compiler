@@ -10,6 +10,8 @@ public class Variable extends VariableBase {
         return value;
     }
 
+    public Boolean getConstant() { return isConstant; }
+
     public void setValue(String value) {
         if (this.isConstant) {
             throw new ConstantException("A constant cannot be modified");

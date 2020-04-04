@@ -45,10 +45,22 @@ public class SlipSemanticsVariablesTest {
     }
 
 
+    @Test
+    public void test_constant_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ok/constant.slip", testFolder.newFile(), true, "semantics::variables: constant.slip");
+    }
+
+
     // tests KO
     @Test
     public void test_already_define_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/variables/ko/already_define.slip", testFolder.newFile(), false, "semantics::variables: already_define.slip");
+    }
+
+
+    @Test
+    public void test_constant_assigns_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ko/constant_assigns.slip", testFolder.newFile(), false, "semantics::variables: constant_assigns.slip");
     }
 
 
