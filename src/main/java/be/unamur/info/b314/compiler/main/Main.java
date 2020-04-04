@@ -12,7 +12,6 @@ import java.util.List;
 
 import be.unamur.info.b314.compiler.application.Application;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
-import be.unamur.info.b314.compiler.listener.LanguageListener;
 import be.unamur.info.b314.compiler.listener.MapListener;
 import be.unamur.info.b314.compiler.visitor.LanguageVisitor;
 import org.antlr.v4.runtime.ANTLRInputStream;

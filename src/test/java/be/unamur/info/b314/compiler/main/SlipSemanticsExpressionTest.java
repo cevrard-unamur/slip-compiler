@@ -81,10 +81,22 @@ public class SlipSemanticsExpressionTest {
     }
 
 
+    @Test
+    public void test_boolean_parentheses_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/expression/ok/boolean_parentheses.slip", testFolder.newFile(), true, "semantics::expression: boolean_parentheses.slip");
+    }
+
+
     // tests KO
     @Test
     public void test_add_different_type_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/expression/ko/add_different_type.slip", testFolder.newFile(), false, "semantics::expression: add_different_type.slip");
+    }
+
+
+    @Test
+    public void test_add_parenthsesis_incorrect_type_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/expression/ko/add_parenthsesis_incorrect_type.slip", testFolder.newFile(), false, "semantics::expression: add_parenthsesis_incorrect_type.slip");
     }
 
 

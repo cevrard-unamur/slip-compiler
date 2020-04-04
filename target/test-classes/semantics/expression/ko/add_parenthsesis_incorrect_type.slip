@@ -2,15 +2,15 @@
 
 #import "world.map"
 
-s1 as integer;
-s2 as integer[3];
+s1 as boolean;
+s2 as integer;
 s3 as integer;
 
 main as function():void
 do
-    s2[1] := 3;
-    s3 := s2[2] + 5;
-    s1 := 3 + 4;
+    s2 := 3;
+    s3 := 4 + 5 + 5;
+    s1 := (3 + 4);
 
     dig();
 end

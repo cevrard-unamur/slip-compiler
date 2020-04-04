@@ -5,6 +5,7 @@ import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
 import be.unamur.info.b314.compiler.application.Array;
 import be.unamur.info.b314.compiler.application.Variable;
+import be.unamur.info.b314.compiler.application.VariableBase;
 import be.unamur.info.b314.compiler.exception.BooleanRightExpressionException;
 import be.unamur.info.b314.compiler.exception.IncorrectTypeException;
 import be.unamur.info.b314.compiler.exception.IntegerRightExpressionException;
@@ -30,6 +31,8 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
             parseStructureDefinition((PlayPlusParser.StructureDefinitionContext)declaration);
         } else if (declaration instanceof PlayPlusParser.EnumDeclarationContext) {
             // TODO
+        } else if (declaration instanceof PlayPlusParser.ConstDeclarationContext) {
+            // TODO
         } else if (declaration instanceof PlayPlusParser.FunctionDefinitionContext) {
             parseFunctionDefinition((PlayPlusParser.FunctionDefinitionContext)declaration);
         } else {
@@ -49,16 +52,6 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
     }
 
     // Parse a boolean expression
-    private Object parseBooleanExpression(PlayPlusParser.BoolExpressionContext ctx) {
-        PlayPlusParser.RightExprContext leftChild = (PlayPlusParser.RightExprContext)ctx.children.get(0);
-        PlayPlusParser.RightExprContext rightChild = (PlayPlusParser.RightExprContext)ctx.children.get(2);
-
-        parseBooleanRightExpression(leftChild);
-        parseBooleanRightExpression(rightChild);
-
-        return ctx;
-    }
-
     private Object parseBooleanRightExpression(PlayPlusParser.RightExprContext ctx) {
         try {
             if (ctx instanceof PlayPlusParser.BooleanTrueContext || ctx instanceof PlayPlusParser.BooleanFalseContext) {
@@ -71,6 +64,8 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
                 return parseCompExpression((PlayPlusParser.CompExpressionContext)ctx);
             } else if (ctx instanceof PlayPlusParser.BoolExpressionContext) {
                 return parseBooleanExpression((PlayPlusParser.BoolExpressionContext)ctx);
+            } else if (ctx instanceof PlayPlusParser.NotExpressionContext) {
+                return parseNotExpression((PlayPlusParser.NotExpressionContext)ctx);
             } else {
                 throw new BooleanRightExpressionException("Cannot parse this as a boolean expression");
             }
@@ -78,6 +73,16 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
             this.application.addError(ex.getMessage());
             return null;
         }
+    }
+
+    private Object parseBooleanExpression(PlayPlusParser.BoolExpressionContext ctx) {
+        PlayPlusParser.RightExprContext leftChild = (PlayPlusParser.RightExprContext)ctx.children.get(0);
+        PlayPlusParser.RightExprContext rightChild = (PlayPlusParser.RightExprContext)ctx.children.get(2);
+
+        parseBooleanRightExpression(leftChild);
+        parseBooleanRightExpression(rightChild);
+
+        return ctx;
     }
 
     private Object parseBooleanLeftExpression(PlayPlusParser.LeftExpressionContext ctx) {
@@ -88,17 +93,11 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         return parseBooleanRightExpression((PlayPlusParser.RightExprContext)ctx.children.get(1));
     }
 
-    // Parse a integer expression
-    private Object parseIntegerExpression(PlayPlusParser.IntegerExpressionContext ctx) {
-        PlayPlusParser.RightExprContext leftChild = (PlayPlusParser.RightExprContext)ctx.children.get(0);
-        PlayPlusParser.RightExprContext rightChild = (PlayPlusParser.RightExprContext)ctx.children.get(2);
-
-        parseIntegerRightExpression(leftChild);
-        parseIntegerRightExpression(rightChild);
-
-        return ctx;
+    private Object parseNotExpression(PlayPlusParser.NotExpressionContext ctx) {
+        return parseBooleanRightExpression((PlayPlusParser.RightExprContext)ctx.children.get(1));
     }
 
+    // Parse a integer expression
     private Object parseIntegerRightExpression(PlayPlusParser.RightExprContext ctx) {
         try {
             if (ctx instanceof PlayPlusParser.NumberContext) {
@@ -118,6 +117,16 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
             this.application.addError(ex.getMessage());
             return null;
         }
+    }
+
+    private Object parseIntegerExpression(PlayPlusParser.IntegerExpressionContext ctx) {
+        PlayPlusParser.RightExprContext leftChild = (PlayPlusParser.RightExprContext)ctx.children.get(0);
+        PlayPlusParser.RightExprContext rightChild = (PlayPlusParser.RightExprContext)ctx.children.get(2);
+
+        parseIntegerRightExpression(leftChild);
+        parseIntegerRightExpression(rightChild);
+
+        return ctx;
     }
 
     private Object parseIntegerParenthesesExpression(PlayPlusParser.ParenthesesExpressionContext ctx) {
@@ -165,8 +174,6 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         if (ctx.children.get(0) instanceof PlayPlusParser.ParenthesesExpressionContext) {
             parseParenthesesExpression((PlayPlusParser.ParenthesesExpressionContext)ctx.children.get(0));
         } else {
-
-
             if (ctx.children.get(1) instanceof PlayPlusParser.BoolExpressionContext) {
                 parseBooleanExpression((PlayPlusParser.BoolExpressionContext)ctx.children.get(1));
             } else if (ctx.children.get(1) instanceof PlayPlusParser.IntegerExpressionContext) {
@@ -182,7 +189,20 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
     }
 
     // Parse action
-    private Object parseAction(PlayPlusParser.ActionInstructionContext ctx) {
+    private Object parseActionInstruction(PlayPlusParser.ActionInstructionContext ctx) {
+        PlayPlusParser.ActionTypeContext action = (PlayPlusParser.ActionTypeContext)ctx.children.get(0);
+
+        if (action instanceof PlayPlusParser.DigContext ||
+            action instanceof PlayPlusParser.FightContext) {
+            return ctx;
+        }
+
+        parseAction((PlayPlusParser.ActionContext)action);
+
+        return ctx;
+    }
+
+    private Object parseAction(PlayPlusParser.ActionContext ctx) {
         if (ctx.children.size() == 3) {
             return ctx;
         }
@@ -266,6 +286,49 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
 
     private Object parseAssignation(PlayPlusParser.AssignationContext ctx) {
         // We check the validity of both expression
+        PlayPlusParser.LeftExprContext leftExpression = (PlayPlusParser.LeftExprContext) ctx.children.get(0);
+        PlayPlusParser.RightExprContext rightExpression = (PlayPlusParser.RightExprContext) ctx.children.get(2);
+
+        VariableBase leftVariable = null;
+
+        if (leftExpression instanceof PlayPlusParser.LeftIdContext) {
+            TerminalNode id = ((PlayPlusParser.LeftIdContext) leftExpression).ID();
+            leftVariable = this.application.getVariable(id.getText());
+        } else if (leftExpression instanceof PlayPlusParser.LeftArrayContext) {
+            TerminalNode id = ((PlayPlusParser.LeftArrayContext) leftExpression).ID();
+            leftVariable = this.application.getArray(id.getText());
+        } else {
+            throw new PlayPlusException("This left expression as an assignation is not known");
+        }
+
+        if (rightExpression instanceof PlayPlusParser.NumberContext ||
+                rightExpression instanceof PlayPlusParser.IntegerExpressionContext) {
+            if (!leftVariable.getType().equals("integer")) {
+                throw new PlayPlusException("The left and right type are not both integer");
+            }
+
+            parseIntegerRightExpression(rightExpression);
+        } else if (rightExpression instanceof PlayPlusParser.CompExpressionContext) {
+            if (!leftVariable.getType().equals("boolean")) {
+                throw new PlayPlusException("The left type is not a boolean but we compare the value");
+            }
+
+            parseIntegerRightExpression(rightExpression);
+        } else if (rightExpression instanceof PlayPlusParser.BoolExpressionContext ||
+                rightExpression instanceof PlayPlusParser.BooleanFalseContext ||
+                rightExpression instanceof PlayPlusParser.BooleanTrueContext ||
+                rightExpression instanceof PlayPlusParser.NotExpressionContext) {
+            if (!leftVariable.getType().equals("boolean")) {
+                throw new PlayPlusException("The left and right type are not both boolean");
+            }
+
+            parseBooleanRightExpression(rightExpression);
+        } else if (rightExpression instanceof PlayPlusParser.FunctionCallExpressionContext) {
+            // TODO
+        } else {
+            throw new PlayPlusException("This right expression as an assignation is not known");
+        }
+
 
         // We check the type concordance
 
@@ -275,12 +338,15 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
     private Object parseMainInstructionContext(PlayPlusParser.MainInstructionContext ctx) {
         for (Object node : ctx.children) {
             if (node instanceof PlayPlusParser.ActionInstructionContext) {
-                parseAction((PlayPlusParser.ActionInstructionContext)node);
+                parseActionInstruction((PlayPlusParser.ActionInstructionContext)node);
             } else if (node instanceof PlayPlusParser.AssignationInstructionContext) {
                 parseAssignationInstruction((PlayPlusParser.AssignationInstructionContext)node);
             } else if (node instanceof PlayPlusParser.IfInstructionContext) {
+                // TODO
             } else if (node instanceof PlayPlusParser.WhileInstructionContext) {
+                // TODO
             } else if (node instanceof PlayPlusParser.ForInstructionContext) {
+                // TODO
             } else if (node instanceof PlayPlusParser.DigInstructionContext) {
             } else if (node instanceof TerminalNode) {
             } else {

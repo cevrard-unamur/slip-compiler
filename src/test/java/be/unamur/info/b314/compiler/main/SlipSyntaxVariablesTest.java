@@ -40,12 +40,6 @@ public class SlipSyntaxVariablesTest {
 
 
     @Test
-    public void test_and_var_wrong_type_2_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/variables/ok/and_var_wrong_type_2.slip", testFolder.newFile(), true, "syntax::variables: and_var_wrong_type_2.slip");
-    }
-
-
-    @Test
     public void test_struct_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/variables/ok/struct.slip", testFolder.newFile(), true, "syntax::variables: struct.slip");
     }
@@ -91,6 +85,12 @@ public class SlipSyntaxVariablesTest {
     @Test
     public void test_missing_semicolon_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/variables/ko/missing_semicolon.slip", testFolder.newFile(), false, "syntax::variables: missing_semicolon.slip");
+    }
+
+
+    @Test
+    public void test_and_var_wrong_type_2_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/variables/ko/and_var_wrong_type_2.slip", testFolder.newFile(), false, "syntax::variables: and_var_wrong_type_2.slip");
     }
 
 
