@@ -28,8 +28,26 @@ public class SlipSyntaxProgramTest {
 
     // tests OK
     @Test
+    public void test_operations_with_arrays_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/program/ok/operations_with_arrays.slip", testFolder.newFile(), true, "syntax::program: operations_with_arrays.slip");
+    }
+
+
+    @Test
+    public void test_operations_only_env_vars_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/program/ok/operations_only_env_vars.slip", testFolder.newFile(), true, "syntax::program: operations_only_env_vars.slip");
+    }
+
+
+    @Test
     public void test_full_program_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/program/ok/full_program.slip", testFolder.newFile(), true, "syntax::program: full_program.slip");
+    }
+
+
+    @Test
+    public void test_environment_var_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/program/ok/environment_var.slip", testFolder.newFile(), true, "syntax::program: environment_var.slip");
     }
 
 

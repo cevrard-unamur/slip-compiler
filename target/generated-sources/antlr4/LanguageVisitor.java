@@ -198,19 +198,12 @@ public interface LanguageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitEnumeration(LanguageParser.EnumerationContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code number}
+	 * Visit a parse tree produced by the {@code negativeIntegerExpression}
 	 * labeled alternative in {@link LanguageParser#rightExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitNumber(LanguageParser.NumberContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code parenthesesExpression}
-	 * labeled alternative in {@link LanguageParser#rightExpr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParenthesesExpression(LanguageParser.ParenthesesExpressionContext ctx);
+	T visitNegativeIntegerExpression(LanguageParser.NegativeIntegerExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code string}
 	 * labeled alternative in {@link LanguageParser#rightExpr}.
@@ -218,13 +211,6 @@ public interface LanguageVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitString(LanguageParser.StringContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code compExpression}
-	 * labeled alternative in {@link LanguageParser#rightExpr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCompExpression(LanguageParser.CompExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code boolExpression}
 	 * labeled alternative in {@link LanguageParser#rightExpr}.
@@ -240,33 +226,12 @@ public interface LanguageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLeftExpression(LanguageParser.LeftExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code booleanTrue}
-	 * labeled alternative in {@link LanguageParser#rightExpr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBooleanTrue(LanguageParser.BooleanTrueContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code char}
-	 * labeled alternative in {@link LanguageParser#rightExpr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitChar(LanguageParser.CharContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code booleanFalse}
 	 * labeled alternative in {@link LanguageParser#rightExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitBooleanFalse(LanguageParser.BooleanFalseContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code functionCallExpression}
-	 * labeled alternative in {@link LanguageParser#rightExpr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFunctionCallExpression(LanguageParser.FunctionCallExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code notExpression}
 	 * labeled alternative in {@link LanguageParser#rightExpr}.
@@ -281,6 +246,48 @@ public interface LanguageVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitIntegerExpression(LanguageParser.IntegerExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code number}
+	 * labeled alternative in {@link LanguageParser#rightExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNumber(LanguageParser.NumberContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code parenthesesExpression}
+	 * labeled alternative in {@link LanguageParser#rightExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParenthesesExpression(LanguageParser.ParenthesesExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code compExpression}
+	 * labeled alternative in {@link LanguageParser#rightExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCompExpression(LanguageParser.CompExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code booleanTrue}
+	 * labeled alternative in {@link LanguageParser#rightExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBooleanTrue(LanguageParser.BooleanTrueContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code char}
+	 * labeled alternative in {@link LanguageParser#rightExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitChar(LanguageParser.CharContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code functionCallExpression}
+	 * labeled alternative in {@link LanguageParser#rightExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionCallExpression(LanguageParser.FunctionCallExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code leftProperty}
 	 * labeled alternative in {@link LanguageParser#leftExpr}.

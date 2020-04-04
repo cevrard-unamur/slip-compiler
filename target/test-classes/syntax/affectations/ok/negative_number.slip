@@ -1,0 +1,14 @@
+/* My comments */
+
+#import "world.map"
+
+    i as integer;
+
+main as function():void
+do
+
+   i := -34 - 2;
+
+dig();
+
+end
