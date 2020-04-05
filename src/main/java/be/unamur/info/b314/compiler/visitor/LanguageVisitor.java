@@ -8,8 +8,11 @@ import be.unamur.info.b314.compiler.exception.IncorrectTypeException;
 import be.unamur.info.b314.compiler.exception.IntegerRightExpressionException;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
 import be.unamur.info.b314.compiler.helper.ArrayHelper;
+import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
+
+import java.util.ArrayList;
 
 public class LanguageVisitor extends PlayPlusBaseVisitor {
     private Application application;
@@ -361,15 +364,59 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
 
     // Parse function
     private Object parseFunctionDefinition(PlayPlusParser.FunctionDefinitionContext ctx) {
+
         this.application.addFunction(ctx.ID().getText(), ctx.returnType().getText());
-
-        // TODO Parameters
-
+        // Check if there is any argument
+        if (ctx.children.get(4) instanceof PlayPlusParser.FunctionParametersContext){
+            parseFunctionArguments((PlayPlusParser.FunctionParametersContext)ctx.argumentList());
+        }
+        // Check if there is any instructions
         if (ctx.functionInst().size() > 0) {
             parseFunctionInstruction((PlayPlusParser.FunctionInstructionContext)ctx.functionInst().get(0));
         }
 
         this.application.leaveContext();
+
+        return ctx;
+    }
+
+    private Object parseFunctionArguments(PlayPlusParser.FunctionParametersContext ctx) {
+        // Parse all the arguments
+        for (PlayPlusParser.ArgumentContext argument : ctx.argument()){
+            parseArgument((PlayPlusParser.FunctionParameterContext) argument);
+        }
+
+        return ctx;
+    }
+
+    private Object parseArgument(PlayPlusParser.FunctionParameterContext ctx) {
+
+        ArrayList<VariableBase> arguments = new ArrayList<>();
+
+        for (TerminalNode id : ctx.ID()){
+            if (ctx.variableType() instanceof PlayPlusParser.ScalarContext)
+            {
+                arguments.add(new Variable(ctx.variableType().getText(), id.getText(), false));
+
+            }else if (ctx.variableType() instanceof PlayPlusParser.ArrayContext)
+            {
+                PlayPlusParser.ArrayDefinitionContext arrayType = (PlayPlusParser.ArrayDefinitionContext)((PlayPlusParser.ArrayContext) ctx.variableType()).arrayType();
+                TerminalNode variableType = arrayType.SCALAR();
+
+                arguments.add(new Array(variableType.getText(), id.getText(),ArrayHelper.getSize(arrayType)));
+            }else if (ctx.variableType() instanceof PlayPlusParser.StructureContext)
+            {
+                PlayPlusParser.StructureDefinitionContext structureType = (PlayPlusParser.StructureDefinitionContext)((PlayPlusParser.StructureContext) ctx.variableType()).structureType();
+                TerminalNode structureName = structureType.ID();
+
+                arguments.add(new Variable(structureName.getText(),id.getText(), false));
+            }
+        }
+
+        PlayPlusParser.FunctionParametersContext ctxParent = (PlayPlusParser.FunctionParametersContext)ctx.parent;
+        PlayPlusParser.FunctionDefinitionContext function = (PlayPlusParser.FunctionDefinitionContext)ctxParent.parent;
+
+        this.application.getFunction(function.ID().getText()).addArguments(arguments);
 
         return ctx;
     }
