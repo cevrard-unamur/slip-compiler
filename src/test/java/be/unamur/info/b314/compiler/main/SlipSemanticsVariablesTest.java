@@ -58,6 +58,12 @@ public class SlipSemanticsVariablesTest {
 
 
     @Test
+    public void test_assign_function_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ok/assign_function.slip", testFolder.newFile(), true, "semantics::variables: assign_function.slip");
+    }
+
+
+    @Test
     public void test_constant_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/variables/ok/constant.slip", testFolder.newFile(), true, "semantics::variables: constant.slip");
     }

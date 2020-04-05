@@ -33,6 +33,7 @@ inst:       variableDeclaration                         #variableInstruction
             | whileBlock                                #whileInstruction
             | repeatBlock                               #repeatInstruction
             | forBlock                                  #forInstruction
+            | (functionCall SEMICOLON)                  #functionCallInstruction
             ;
 functionInst: ((enumDeclaration)*|(constDeclaration)*|(structureDeclaration)*)? (inst)+                        #functionInstruction
             ;
@@ -83,13 +84,14 @@ rightExpr: LPAR rightExpr RPAR                                      #parentheses
             | FALSE                                                 #booleanFalse
             | STRING                                                #string
             | CHAR                                                  #char
-            | ID LPAR (rightExpr (COMMA rightExpr)*)? RPAR          #functionCallExpression
+            | functionCall                                          #functionCallExpression
+            ;
+functionCall: ID LPAR (rightExpr (COMMA rightExpr)*)? RPAR
             ;
 leftExpr: ID                                                            #leftId
             | ID LBRA rightExpr (COMMA rightExpr)? RBRA                 #leftArray
             | leftExpr'.'ID                                             #leftProperty
             | leftExpr'.'ID LBRA rightExpr (COMMA rightExpr)? RBRA      #leftPropertyArray
-            | ID LPAR (rightExpr (COMMA rightExpr)*)? RPAR              #functionVoidCallExpression
             ;
 assignation: leftExpr ASSIGN rightExpr SEMICOLON
             ;

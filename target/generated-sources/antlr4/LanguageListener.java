@@ -185,6 +185,18 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitForInstruction(LanguageParser.ForInstructionContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code functionCallInstruction}
+	 * labeled alternative in {@link LanguageParser#inst}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionCallInstruction(LanguageParser.FunctionCallInstructionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code functionCallInstruction}
+	 * labeled alternative in {@link LanguageParser#inst}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionCallInstruction(LanguageParser.FunctionCallInstructionContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code functionInstruction}
 	 * labeled alternative in {@link LanguageParser#functionInst}.
 	 * @param ctx the parse tree
@@ -494,6 +506,16 @@ public interface LanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunctionCallExpression(LanguageParser.FunctionCallExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LanguageParser#functionCall}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionCall(LanguageParser.FunctionCallContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LanguageParser#functionCall}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionCall(LanguageParser.FunctionCallContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code leftProperty}
 	 * labeled alternative in {@link LanguageParser#leftExpr}.

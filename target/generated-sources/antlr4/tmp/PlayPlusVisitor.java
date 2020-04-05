@@ -218,6 +218,13 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitForInstruction(PlayPlusParser.ForInstructionContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code functionCallInstruction}
+	 * labeled alternative in {@link PlayPlusParser#inst}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionCallInstruction(PlayPlusParser.FunctionCallInstructionContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code functionInstruction}
 	 * labeled alternative in {@link PlayPlusParser#functionInst}.
 	 * @param ctx the parse tree
@@ -398,6 +405,12 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFunctionCallExpression(PlayPlusParser.FunctionCallExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PlayPlusParser#functionCall}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionCall(PlayPlusParser.FunctionCallContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code leftProperty}
 	 * labeled alternative in {@link PlayPlusParser#leftExpr}.
