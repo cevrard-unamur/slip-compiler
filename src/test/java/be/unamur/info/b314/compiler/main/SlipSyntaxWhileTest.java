@@ -57,11 +57,11 @@ public class SlipSyntaxWhileTest {
     }
 
 
+    // tests KO
     @Test
-    public void test_for_with_sub_while_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/while/ok/for_with_sub_while.slip", testFolder.newFile(), true, "syntax::while: for_with_sub_while.slip");
+    public void test_for_with_sub_while_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/while/ko/for_with_sub_while.slip", testFolder.newFile(), false, "syntax::while: for_with_sub_while.slip");
     }
 
 
-    // tests KO
 }

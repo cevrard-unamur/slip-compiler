@@ -8,11 +8,11 @@ import be.unamur.info.b314.compiler.exception.IncorrectTypeException;
 import be.unamur.info.b314.compiler.exception.IntegerRightExpressionException;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
 import be.unamur.info.b314.compiler.helper.ArrayHelper;
-import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LanguageVisitor extends PlayPlusBaseVisitor {
     private Application application;
@@ -28,10 +28,10 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
 
             if (declaration instanceof PlayPlusParser.VariableDefinitionContext) {
                 parseVariableDefinition((PlayPlusParser.VariableDefinitionContext)declaration);
-            } else if (declaration instanceof PlayPlusParser.StructureDefinitionContext) {
-                parseStructureDefinition((PlayPlusParser.StructureDefinitionContext)declaration);
+            } else if (declaration instanceof PlayPlusParser.StructureDeclarationContext) {
+                parseStructureDeclaration((PlayPlusParser.StructureDeclarationContext)declaration);
             } else if (declaration instanceof PlayPlusParser.EnumDeclarationContext) {
-                // TODO
+                parseEnumeration((PlayPlusParser.EnumerationContext)declaration);
             } else if (declaration instanceof PlayPlusParser.ConstantContext) {
                 parseConstant((PlayPlusParser.ConstantContext)declaration);
             } else {
@@ -84,7 +84,7 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         } else if (ctx instanceof PlayPlusParser.NotExpressionContext) {
             return parseNotExpression((PlayPlusParser.NotExpressionContext)ctx);
         } else if (ctx instanceof PlayPlusParser.FunctionCallExpressionContext) {
-            return parseFunctionCall((PlayPlusParser.FunctionCallExpressionContext)ctx, "boolean");
+            return parseFunctionCall(((PlayPlusParser.FunctionCallExpressionContext) ctx).functionCall(), "boolean");
         } else {
             throw new BooleanRightExpressionException("Cannot parse this as a boolean expression");
         }
@@ -127,7 +127,7 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         } else if (ctx instanceof PlayPlusParser.NegativeIntegerExpressionContext) {
             return parseIntegerRightExpression(((PlayPlusParser.NegativeIntegerExpressionContext) ctx).rightExpr());
         } else if (ctx instanceof PlayPlusParser.FunctionCallExpressionContext) {
-            return parseFunctionCall((PlayPlusParser.FunctionCallExpressionContext)ctx, "integer");
+            return parseFunctionCall(((PlayPlusParser.FunctionCallExpressionContext) ctx).functionCall(), "integer");
         } else {
             throw new IntegerRightExpressionException("Cannot parse this as an integer expression");
         }
@@ -156,7 +156,7 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         if (ctx instanceof PlayPlusParser.CharContext) {
             return parseCharExpression((PlayPlusParser.CharContext)ctx);
         } else if (ctx instanceof PlayPlusParser.FunctionCallExpressionContext) {
-            return parseFunctionCall((PlayPlusParser.FunctionCallExpressionContext)ctx, "char");
+            return parseFunctionCall(((PlayPlusParser.FunctionCallExpressionContext) ctx).functionCall(), "char");
         } else {
             throw new IntegerRightExpressionException("Cannot parse this as a char expression");
         }
@@ -164,6 +164,48 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
 
     private Object parseCharExpression(PlayPlusParser.CharContext ctx) {
         return ctx;
+    }
+
+    // Parse enum expression
+    private Object parseEnumerationDeclaration(PlayPlusParser.EnumDeclarationContext ctx) {
+        parseEnumeration((PlayPlusParser.EnumerationContext)ctx);
+
+        return ctx;
+    }
+
+    private Object parseEnumeration(PlayPlusParser.EnumerationContext ctx) {
+        List<String> values = new ArrayList<>();
+
+        for (int i = 1; i < ctx.ID().size(); i++) {
+            values.add(ctx.ID(i).getText());
+        }
+
+        this.application.addEnum(ctx.ID(0).getText(), values);
+
+        return ctx;
+    }
+
+    // Parse structure expression
+    private Object parseStructureDeclaration(PlayPlusParser.StructureDeclarationContext ctx) {
+        parseStructure((PlayPlusParser.StructureContext)ctx);
+
+        return ctx;
+    }
+
+    private Object parseStructure(PlayPlusParser.StructureContext ctx) {
+        this.application.addRecord(ctx.ID().getText());
+
+        for (ParseTree node : ctx.children) {
+            if (node instanceof PlayPlusParser.VariableDefinitionContext) {
+                parseVariableDefinition((PlayPlusParser.VariableDefinitionContext)node);
+            } else if (node instanceof PlayPlusParser.StructureDeclarationContext) {
+                parseStructureDeclaration((PlayPlusParser.StructureDeclarationContext)node);
+            }
+        }
+
+        this.application.leaveContext();
+
+        return  ctx;
     }
 
     // Parse generic expression
@@ -184,6 +226,25 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
                 throw new IncorrectTypeException("The type of the variable " + array.getName() + " is incorrect - Array Context");
             }
         } else if (leftContext instanceof PlayPlusParser.LeftPropertyContext) {
+            PlayPlusParser.LeftExprContext recordExpression = ((PlayPlusParser.LeftPropertyContext) leftContext).leftExpr();
+            TerminalNode arrayId = ((PlayPlusParser.LeftPropertyContext) leftContext).ID();
+
+            Variable variable  = this.application.getVariableOfRecord(recordExpression.getText(), arrayId.getText());
+
+            if (!variable.getType().equals(expectedType)) {
+                throw new IncorrectTypeException("The type of the variable " + variable.getName() + " is incorrect - Record ID Context");
+            }
+        } else if (leftContext instanceof PlayPlusParser.LeftPropertyArrayContext) {
+            PlayPlusParser.LeftExprContext recordExpression = ((PlayPlusParser.LeftPropertyArrayContext) leftContext).leftExpr();
+            TerminalNode arrayId = ((PlayPlusParser.LeftPropertyArrayContext) leftContext).ID();
+
+            Array array = this.application.getArrayOfRecord(recordExpression.getText(), arrayId.getText());
+
+            if (!array.getType().equals(expectedType)) {
+                throw new IncorrectTypeException("The type of the variable " + array.getName() + " is incorrect - Record Array Context");
+            }
+        } else {
+            throw new PlayPlusException("This parsing of the left expression is not handle");
         }
 
         return ctx;
@@ -272,26 +333,24 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
     }
 
     // Parse constant
+    private Object parseConstantDeclaration(PlayPlusParser.ConstDeclarationContext ctx) {
+        parseConstant((PlayPlusParser.ConstantContext)ctx);
+
+        return ctx;
+    }
+
     private Object parseConstant(PlayPlusParser.ConstantContext ctx) {
-        if (ctx.variableType() instanceof  PlayPlusParser.ScalarContext)
+        if (ctx.variableType() instanceof PlayPlusParser.ScalarTypeContext)
         {
-            TerminalNode variableType = ((PlayPlusParser.ScalarContext) ctx.variableType()).SCALAR();
-
-            this.application.addVariable(variableType.getText(), ctx.ID().getText(), true);
+            addVariable((PlayPlusParser.ScalarTypeContext)ctx.variableType(), ctx.ID(), true);
         }
-        else if (ctx.variableType() instanceof PlayPlusParser.ArrayContext)
+        else if (ctx.variableType() instanceof PlayPlusParser.ArrayTypeContext)
         {
-            PlayPlusParser.ArrayDefinitionContext arrayType = (PlayPlusParser.ArrayDefinitionContext)((PlayPlusParser.ArrayContext) ctx.variableType()).arrayType();
-            TerminalNode variableType = arrayType.SCALAR();
+            addArray((PlayPlusParser.ArrayTypeContext)ctx.variableType(), ctx.ID());
 
-            this.application.addArray(variableType.getText(), ctx.ID().getText(), ArrayHelper.getSize(arrayType));
-        } else if (ctx.variableType() instanceof PlayPlusParser.StructureContext) {
-            PlayPlusParser.StructureDefinitionContext structureType = (PlayPlusParser.StructureDefinitionContext)((PlayPlusParser.StructureContext) ctx.variableType()).structureType();
-            TerminalNode structureName = structureType.ID();
-
-            this.application.addVariable(structureName.getText(), ctx.ID().getText(), true);
+        } else if (ctx.variableType() instanceof PlayPlusParser.StructureTypeContext) {
+            addStructure(ctx.ID());
         }
-
 
         return ctx;
     }
@@ -364,13 +423,10 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
 
     // Parse function
     private Object parseFunctionDefinition(PlayPlusParser.FunctionDefinitionContext ctx) {
-
         this.application.addFunction(ctx.ID().getText(), ctx.returnType().getText());
-        // Check if there is any argument
-        if (ctx.children.get(4) instanceof PlayPlusParser.FunctionParametersContext){
-            parseFunctionArguments((PlayPlusParser.FunctionParametersContext)ctx.argumentList());
-        }
-        // Check if there is any instructions
+
+        // TODO Save parameters of the function
+
         if (ctx.functionInst().size() > 0) {
             parseFunctionInstruction((PlayPlusParser.FunctionInstructionContext)ctx.functionInst().get(0));
         }
@@ -380,48 +436,23 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         return ctx;
     }
 
-    private Object parseFunctionArguments(PlayPlusParser.FunctionParametersContext ctx) {
-        // Parse all the arguments
-        for (PlayPlusParser.ArgumentContext argument : ctx.argument()){
-            parseArgument((PlayPlusParser.FunctionParameterContext) argument);
-        }
-
-        return ctx;
-    }
-
-    private Object parseArgument(PlayPlusParser.FunctionParameterContext ctx) {
-
-        ArrayList<VariableBase> arguments = new ArrayList<>();
-
-        for (TerminalNode id : ctx.ID()){
-            if (ctx.variableType() instanceof PlayPlusParser.ScalarContext)
-            {
-                arguments.add(new Variable(ctx.variableType().getText(), id.getText(), false));
-
-            }else if (ctx.variableType() instanceof PlayPlusParser.ArrayContext)
-            {
-                PlayPlusParser.ArrayDefinitionContext arrayType = (PlayPlusParser.ArrayDefinitionContext)((PlayPlusParser.ArrayContext) ctx.variableType()).arrayType();
-                TerminalNode variableType = arrayType.SCALAR();
-
-                arguments.add(new Array(variableType.getText(), id.getText(),ArrayHelper.getSize(arrayType)));
-            }else if (ctx.variableType() instanceof PlayPlusParser.StructureContext)
-            {
-                PlayPlusParser.StructureDefinitionContext structureType = (PlayPlusParser.StructureDefinitionContext)((PlayPlusParser.StructureContext) ctx.variableType()).structureType();
-                TerminalNode structureName = structureType.ID();
-
-                arguments.add(new Variable(structureName.getText(),id.getText(), false));
-            }
-        }
-
-        PlayPlusParser.FunctionParametersContext ctxParent = (PlayPlusParser.FunctionParametersContext)ctx.parent;
-        PlayPlusParser.FunctionDefinitionContext function = (PlayPlusParser.FunctionDefinitionContext)ctxParent.parent;
-
-        this.application.getFunction(function.ID().getText()).addArguments(arguments);
-
-        return ctx;
-    }
-
     private Object parseFunctionInstruction(PlayPlusParser.FunctionInstructionContext ctx) {
+        // Handle enumeration declaration
+        for (PlayPlusParser.EnumDeclarationContext enumeration : ctx.enumDeclaration()) {
+            parseEnumerationDeclaration(enumeration);
+        }
+
+        // Handle constant declaration
+        for (PlayPlusParser.ConstDeclarationContext constant : ctx.constDeclaration()) {
+            parseConstantDeclaration(constant);
+        }
+
+        // Handle structure declaration
+        for (PlayPlusParser.StructureDeclarationContext structure : ctx.structureDeclaration()) {
+            parseStructureDeclaration(structure);
+        }
+
+        // Handle instruction
         for (PlayPlusParser.InstContext instruction : ctx.inst()) {
             parseInstruction(instruction);
         }
@@ -429,7 +460,14 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         return ctx;
     }
 
-    private Object parseFunctionCall(PlayPlusParser.FunctionCallExpressionContext ctx, String expectedType) {
+    // Parse function
+    private Object parseFunctionCallInstruction(PlayPlusParser.FunctionCallInstructionContext ctx, String expectedType) {
+        parseFunctionCall(ctx.functionCall(), expectedType);
+
+        return ctx;
+    }
+
+    private Object parseFunctionCall(PlayPlusParser.FunctionCallContext ctx, String expectedType) {
         // Check if the return type of the function is matching
         Function function = this.application.getFunction(ctx.ID().getText());
 
@@ -438,6 +476,7 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         }
 
         // Check if the parameters are matching
+        // TODO Check if the parameters are matching
 
         return ctx;
     }
@@ -450,23 +489,12 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
 
     private Object parseVariableDefinition(PlayPlusParser.VariableDefinitionContext ctx) {
         for (TerminalNode id : ctx.ID()) {
-            if (ctx.variableType() instanceof  PlayPlusParser.ScalarContext)
-            {
-                TerminalNode variableType = ((PlayPlusParser.ScalarContext) ctx.variableType()).SCALAR();
-
-                this.application.addVariable(variableType.getText(), id.getText(), false);
-            }
-            else if (ctx.variableType() instanceof PlayPlusParser.ArrayContext)
-            {
-                PlayPlusParser.ArrayDefinitionContext arrayType = (PlayPlusParser.ArrayDefinitionContext)((PlayPlusParser.ArrayContext) ctx.variableType()).arrayType();
-                TerminalNode variableType = arrayType.SCALAR();
-
-                this.application.addArray(variableType.getText(), id.getText(), ArrayHelper.getSize(arrayType));
-            } else if (ctx.variableType() instanceof PlayPlusParser.StructureContext) {
-                PlayPlusParser.StructureDefinitionContext structureType = (PlayPlusParser.StructureDefinitionContext)((PlayPlusParser.StructureContext) ctx.variableType()).structureType();
-                TerminalNode structureName = structureType.ID();
-
-                this.application.addVariable(structureName.getText(), id.getText(), false);
+            if (ctx.variableType() instanceof PlayPlusParser.ScalarTypeContext) {
+                addVariable((PlayPlusParser.ScalarTypeContext)ctx.variableType(), id, false);
+            } else if (ctx.variableType() instanceof PlayPlusParser.ArrayTypeContext) {
+                addArray((PlayPlusParser.ArrayTypeContext)ctx.variableType(), id);
+            } else if (ctx.variableType() instanceof PlayPlusParser.StructureTypeContext) {
+                addStructure(id);
             }
         }
 
@@ -474,22 +502,6 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
     }
 
     // Parse declaration
-    private Object parseStructureDefinition(PlayPlusParser.StructureDefinitionContext ctx) {
-        this.application.addRecord(ctx.ID().getText());
-
-        for (ParseTree node : ctx.children) {
-            if (node instanceof PlayPlusParser.VariableDefinitionContext) {
-                parseVariableDefinition((PlayPlusParser.VariableDefinitionContext)node);
-            } else if (node instanceof PlayPlusParser.StructureDefinitionContext) {
-                visitStructureDefinition((PlayPlusParser.StructureDefinitionContext)node);
-            }
-        }
-
-        this.application.leaveContext();
-
-        return  ctx;
-    }
-
     private Object parseAssignationInstruction(PlayPlusParser.AssignationInstructionContext ctx) {
         return parseAssignation(ctx.assignation());
     }
@@ -507,6 +519,14 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         } else if (leftExpression instanceof PlayPlusParser.LeftArrayContext) {
             TerminalNode id = ((PlayPlusParser.LeftArrayContext) leftExpression).ID();
             leftVariable = this.application.getArray(id.getText());
+        } else if (leftExpression instanceof PlayPlusParser.LeftPropertyArrayContext) {
+            PlayPlusParser.LeftExprContext recordExpression = ((PlayPlusParser.LeftPropertyArrayContext) leftExpression).leftExpr();
+            TerminalNode arrayId = ((PlayPlusParser.LeftPropertyArrayContext) leftExpression).ID();
+            leftVariable = this.application.getArrayOfRecord(recordExpression.getText(), arrayId.getText());
+        }else if (leftExpression instanceof PlayPlusParser.LeftPropertyContext) {
+            PlayPlusParser.LeftExprContext recordExpression = ((PlayPlusParser.LeftPropertyContext) leftExpression).leftExpr();
+            TerminalNode arrayId = ((PlayPlusParser.LeftPropertyContext) leftExpression).ID();
+            leftVariable = this.application.getVariableOfRecord(recordExpression.getText(), arrayId.getText());
         } else {
             throw new PlayPlusException("This left expression as an assignation is not known");
         }
@@ -539,8 +559,6 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
             }
 
             parseBooleanRightExpression(rightExpression);
-        } else if (rightExpression instanceof PlayPlusParser.FunctionCallExpressionContext) {
-            // TODO
         } else if (rightExpression instanceof PlayPlusParser.ParenthesesExpressionContext) {
             parseParenthesesExpression((PlayPlusParser.ParenthesesExpressionContext)rightExpression, leftVariable.getType());
         } else if (rightExpression instanceof PlayPlusParser.CharContext) {
@@ -549,6 +567,8 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
             }
         } else if (rightExpression instanceof PlayPlusParser.LeftExpressionContext) {
             parseLeftExpression((PlayPlusParser.LeftExpressionContext)rightExpression, leftVariable.getType());
+        } else if (rightExpression instanceof PlayPlusParser.FunctionCallExpressionContext) {
+            parseFunctionCall(((PlayPlusParser.FunctionCallExpressionContext) rightExpression).functionCall(), leftVariable.getType());
         } else {
             throw new PlayPlusException("This right expression as an assignation is not known");
         }
@@ -589,6 +609,8 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
                 parseForInstruction((PlayPlusParser.ForInstructionContext)node);
             } else if (node instanceof PlayPlusParser.RepeatInstructionContext) {
                 parseRepeatInstruction((PlayPlusParser.RepeatInstructionContext)node);
+            } else if (node instanceof PlayPlusParser.FunctionCallInstructionContext) {
+                parseFunctionCallInstruction((PlayPlusParser.FunctionCallInstructionContext)node, "void");
             } else if (node instanceof PlayPlusParser.DigInstructionContext) {
             } else if (node instanceof TerminalNode) {
             } else {
@@ -597,5 +619,21 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         }
 
         return ctx;
+    }
+
+    private void addVariable(PlayPlusParser.ScalarTypeContext ctx, TerminalNode id, boolean isConstant) {
+        TerminalNode variableType = ctx.SCALAR();
+
+        this.application.addVariable(variableType.getText(), id.getText(), isConstant);
+    }
+
+    private void addArray(PlayPlusParser.ArrayTypeContext ctx, TerminalNode id) {
+        PlayPlusParser.ArrayContext arrayType = (PlayPlusParser.ArrayContext)ctx.children.get(0);
+
+        this.application.addArray(arrayType.SCALAR().getText(), id.getText(), ArrayHelper.getSize(arrayType));
+    }
+
+    private void addStructure(TerminalNode id) {
+        this.application.addRecord(id.getText());
     }
 }

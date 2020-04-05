@@ -34,6 +34,12 @@ public class SlipSemanticsVariablesTest {
 
 
     @Test
+    public void test_enum_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ok/enum.slip", testFolder.newFile(), true, "semantics::variables: enum.slip");
+    }
+
+
+    @Test
     public void test_mixing_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/variables/ok/mixing.slip", testFolder.newFile(), true, "semantics::variables: mixing.slip");
     }
@@ -48,6 +54,12 @@ public class SlipSemanticsVariablesTest {
     @Test
     public void test_type_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/variables/ok/type.slip", testFolder.newFile(), true, "semantics::variables: type.slip");
+    }
+
+
+    @Test
+    public void test_assign_function_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ok/assign_function.slip", testFolder.newFile(), true, "semantics::variables: assign_function.slip");
     }
 
 
