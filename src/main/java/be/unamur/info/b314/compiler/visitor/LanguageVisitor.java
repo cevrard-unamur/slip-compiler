@@ -11,6 +11,9 @@ import be.unamur.info.b314.compiler.helper.ArrayHelper;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LanguageVisitor extends PlayPlusBaseVisitor {
     private Application application;
 
@@ -25,10 +28,10 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
 
             if (declaration instanceof PlayPlusParser.VariableDefinitionContext) {
                 parseVariableDefinition((PlayPlusParser.VariableDefinitionContext)declaration);
-            } else if (declaration instanceof PlayPlusParser.StructureDefinitionContext) {
-                parseStructureDefinition((PlayPlusParser.StructureDefinitionContext)declaration);
+            } else if (declaration instanceof PlayPlusParser.StructureDeclarationContext) {
+                parseStructureDeclaration((PlayPlusParser.StructureDeclarationContext)declaration);
             } else if (declaration instanceof PlayPlusParser.EnumDeclarationContext) {
-                // TODO
+                parseEnumeration((PlayPlusParser.EnumerationContext)declaration);
             } else if (declaration instanceof PlayPlusParser.ConstantContext) {
                 parseConstant((PlayPlusParser.ConstantContext)declaration);
             } else {
@@ -163,6 +166,48 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         return ctx;
     }
 
+    // Parse enum expression
+    private Object parseEnumerationDeclaration(PlayPlusParser.EnumDeclarationContext ctx) {
+        parseEnumeration((PlayPlusParser.EnumerationContext)ctx);
+
+        return ctx;
+    }
+
+    private Object parseEnumeration(PlayPlusParser.EnumerationContext ctx) {
+        List<String> values = new ArrayList<>();
+
+        for (int i = 1; i < ctx.ID().size(); i++) {
+            values.add(ctx.ID(i).getText());
+        }
+
+        this.application.addEnum(ctx.ID(0).getText(), values);
+
+        return ctx;
+    }
+
+    // Parse structure expression
+    private Object parseStructureDeclaration(PlayPlusParser.StructureDeclarationContext ctx) {
+        parseStructure((PlayPlusParser.StructureContext)ctx);
+
+        return ctx;
+    }
+
+    private Object parseStructure(PlayPlusParser.StructureContext ctx) {
+        this.application.addRecord(ctx.ID().getText());
+
+        for (ParseTree node : ctx.children) {
+            if (node instanceof PlayPlusParser.VariableDefinitionContext) {
+                parseVariableDefinition((PlayPlusParser.VariableDefinitionContext)node);
+            } else if (node instanceof PlayPlusParser.StructureDeclarationContext) {
+                parseStructureDeclaration((PlayPlusParser.StructureDeclarationContext)node);
+            }
+        }
+
+        this.application.leaveContext();
+
+        return  ctx;
+    }
+
     // Parse generic expression
     private Object parseLeftExpression(PlayPlusParser.LeftExpressionContext ctx, String expectedType) {
         PlayPlusParser.LeftExprContext leftContext = ctx.leftExpr();
@@ -269,26 +314,24 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
     }
 
     // Parse constant
+    private Object parseConstantDeclaration(PlayPlusParser.ConstDeclarationContext ctx) {
+        parseConstant((PlayPlusParser.ConstantContext)ctx);
+
+        return ctx;
+    }
+
     private Object parseConstant(PlayPlusParser.ConstantContext ctx) {
-        if (ctx.variableType() instanceof  PlayPlusParser.ScalarContext)
+        if (ctx.variableType() instanceof PlayPlusParser.ScalarTypeContext)
         {
-            TerminalNode variableType = ((PlayPlusParser.ScalarContext) ctx.variableType()).SCALAR();
-
-            this.application.addVariable(variableType.getText(), ctx.ID().getText(), true);
+            addVariable((PlayPlusParser.ScalarTypeContext)ctx.variableType(), ctx.ID(), true);
         }
-        else if (ctx.variableType() instanceof PlayPlusParser.ArrayContext)
+        else if (ctx.variableType() instanceof PlayPlusParser.ArrayTypeContext)
         {
-            PlayPlusParser.ArrayDefinitionContext arrayType = (PlayPlusParser.ArrayDefinitionContext)((PlayPlusParser.ArrayContext) ctx.variableType()).arrayType();
-            TerminalNode variableType = arrayType.SCALAR();
+            addArray((PlayPlusParser.ArrayTypeContext)ctx.variableType(), ctx.ID());
 
-            this.application.addArray(variableType.getText(), ctx.ID().getText(), ArrayHelper.getSize(arrayType));
-        } else if (ctx.variableType() instanceof PlayPlusParser.StructureContext) {
-            PlayPlusParser.StructureDefinitionContext structureType = (PlayPlusParser.StructureDefinitionContext)((PlayPlusParser.StructureContext) ctx.variableType()).structureType();
-            TerminalNode structureName = structureType.ID();
-
-            this.application.addVariable(structureName.getText(), ctx.ID().getText(), true);
+        } else if (ctx.variableType() instanceof PlayPlusParser.StructureTypeContext) {
+            addStructure(ctx.ID());
         }
-
 
         return ctx;
     }
@@ -375,6 +418,22 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
     }
 
     private Object parseFunctionInstruction(PlayPlusParser.FunctionInstructionContext ctx) {
+        // Handle enumeration declaration
+        for (PlayPlusParser.EnumDeclarationContext enumeration : ctx.enumDeclaration()) {
+            parseEnumerationDeclaration(enumeration);
+        }
+
+        // Handle constant declaration
+        for (PlayPlusParser.ConstDeclarationContext constant : ctx.constDeclaration()) {
+            parseConstantDeclaration(constant);
+        }
+
+        // Handle structure declaration
+        for (PlayPlusParser.StructureDeclarationContext structure : ctx.structureDeclaration()) {
+            parseStructureDeclaration(structure);
+        }
+
+        // Handle instruction
         for (PlayPlusParser.InstContext instruction : ctx.inst()) {
             parseInstruction(instruction);
         }
@@ -403,23 +462,12 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
 
     private Object parseVariableDefinition(PlayPlusParser.VariableDefinitionContext ctx) {
         for (TerminalNode id : ctx.ID()) {
-            if (ctx.variableType() instanceof  PlayPlusParser.ScalarContext)
-            {
-                TerminalNode variableType = ((PlayPlusParser.ScalarContext) ctx.variableType()).SCALAR();
-
-                this.application.addVariable(variableType.getText(), id.getText(), false);
-            }
-            else if (ctx.variableType() instanceof PlayPlusParser.ArrayContext)
-            {
-                PlayPlusParser.ArrayDefinitionContext arrayType = (PlayPlusParser.ArrayDefinitionContext)((PlayPlusParser.ArrayContext) ctx.variableType()).arrayType();
-                TerminalNode variableType = arrayType.SCALAR();
-
-                this.application.addArray(variableType.getText(), id.getText(), ArrayHelper.getSize(arrayType));
-            } else if (ctx.variableType() instanceof PlayPlusParser.StructureContext) {
-                PlayPlusParser.StructureDefinitionContext structureType = (PlayPlusParser.StructureDefinitionContext)((PlayPlusParser.StructureContext) ctx.variableType()).structureType();
-                TerminalNode structureName = structureType.ID();
-
-                this.application.addVariable(structureName.getText(), id.getText(), false);
+            if (ctx.variableType() instanceof PlayPlusParser.ScalarTypeContext) {
+                addVariable((PlayPlusParser.ScalarTypeContext)ctx.variableType(), id, false);
+            } else if (ctx.variableType() instanceof PlayPlusParser.ArrayTypeContext) {
+                addArray((PlayPlusParser.ArrayTypeContext)ctx.variableType(), id);
+            } else if (ctx.variableType() instanceof PlayPlusParser.StructureTypeContext) {
+                addStructure(id);
             }
         }
 
@@ -427,22 +475,6 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
     }
 
     // Parse declaration
-    private Object parseStructureDefinition(PlayPlusParser.StructureDefinitionContext ctx) {
-        this.application.addRecord(ctx.ID().getText());
-
-        for (ParseTree node : ctx.children) {
-            if (node instanceof PlayPlusParser.VariableDefinitionContext) {
-                parseVariableDefinition((PlayPlusParser.VariableDefinitionContext)node);
-            } else if (node instanceof PlayPlusParser.StructureDefinitionContext) {
-                visitStructureDefinition((PlayPlusParser.StructureDefinitionContext)node);
-            }
-        }
-
-        this.application.leaveContext();
-
-        return  ctx;
-    }
-
     private Object parseAssignationInstruction(PlayPlusParser.AssignationInstructionContext ctx) {
         return parseAssignation(ctx.assignation());
     }
@@ -460,6 +492,14 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         } else if (leftExpression instanceof PlayPlusParser.LeftArrayContext) {
             TerminalNode id = ((PlayPlusParser.LeftArrayContext) leftExpression).ID();
             leftVariable = this.application.getArray(id.getText());
+        } else if (leftExpression instanceof PlayPlusParser.LeftPropertyArrayContext) {
+            PlayPlusParser.LeftExprContext recordExpression = ((PlayPlusParser.LeftPropertyArrayContext) leftExpression).leftExpr();
+            TerminalNode arrayId = ((PlayPlusParser.LeftPropertyArrayContext) leftExpression).ID();
+            leftVariable = this.application.getArrayOfRecord(recordExpression.getText(), arrayId.getText());
+        }else if (leftExpression instanceof PlayPlusParser.LeftPropertyContext) {
+            PlayPlusParser.LeftExprContext recordExpression = ((PlayPlusParser.LeftPropertyContext) leftExpression).leftExpr();
+            TerminalNode arrayId = ((PlayPlusParser.LeftPropertyContext) leftExpression).ID();
+            leftVariable = this.application.getVariableOfRecord(recordExpression.getText(), arrayId.getText());
         } else {
             throw new PlayPlusException("This left expression as an assignation is not known");
         }
@@ -550,5 +590,21 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         }
 
         return ctx;
+    }
+
+    private void addVariable(PlayPlusParser.ScalarTypeContext ctx, TerminalNode id, boolean isConstant) {
+        TerminalNode variableType = ctx.SCALAR();
+
+        this.application.addVariable(variableType.getText(), id.getText(), isConstant);
+    }
+
+    private void addArray(PlayPlusParser.ArrayTypeContext ctx, TerminalNode id) {
+        PlayPlusParser.ArrayContext arrayType = (PlayPlusParser.ArrayContext)ctx.children.get(0);
+
+        this.application.addArray(arrayType.SCALAR().getText(), id.getText(), ArrayHelper.getSize(arrayType));
+    }
+
+    private void addStructure(TerminalNode id) {
+        this.application.addRecord(id.getText());
     }
 }

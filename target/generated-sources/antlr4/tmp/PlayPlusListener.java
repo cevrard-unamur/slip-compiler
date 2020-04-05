@@ -398,65 +398,65 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 */
 	void exitVariableDefinition(PlayPlusParser.VariableDefinitionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code scalar}
+	 * Enter a parse tree produced by the {@code scalarType}
 	 * labeled alternative in {@link PlayPlusParser#variableType}.
 	 * @param ctx the parse tree
 	 */
-	void enterScalar(PlayPlusParser.ScalarContext ctx);
+	void enterScalarType(PlayPlusParser.ScalarTypeContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code scalar}
+	 * Exit a parse tree produced by the {@code scalarType}
 	 * labeled alternative in {@link PlayPlusParser#variableType}.
 	 * @param ctx the parse tree
 	 */
-	void exitScalar(PlayPlusParser.ScalarContext ctx);
+	void exitScalarType(PlayPlusParser.ScalarTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code arrayType}
+	 * labeled alternative in {@link PlayPlusParser#variableType}.
+	 * @param ctx the parse tree
+	 */
+	void enterArrayType(PlayPlusParser.ArrayTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code arrayType}
+	 * labeled alternative in {@link PlayPlusParser#variableType}.
+	 * @param ctx the parse tree
+	 */
+	void exitArrayType(PlayPlusParser.ArrayTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code structureType}
+	 * labeled alternative in {@link PlayPlusParser#variableType}.
+	 * @param ctx the parse tree
+	 */
+	void enterStructureType(PlayPlusParser.StructureTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code structureType}
+	 * labeled alternative in {@link PlayPlusParser#variableType}.
+	 * @param ctx the parse tree
+	 */
+	void exitStructureType(PlayPlusParser.StructureTypeContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code array}
-	 * labeled alternative in {@link PlayPlusParser#variableType}.
+	 * labeled alternative in {@link PlayPlusParser#arrayDeclaration}.
 	 * @param ctx the parse tree
 	 */
 	void enterArray(PlayPlusParser.ArrayContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code array}
-	 * labeled alternative in {@link PlayPlusParser#variableType}.
+	 * labeled alternative in {@link PlayPlusParser#arrayDeclaration}.
 	 * @param ctx the parse tree
 	 */
 	void exitArray(PlayPlusParser.ArrayContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code structure}
-	 * labeled alternative in {@link PlayPlusParser#variableType}.
+	 * labeled alternative in {@link PlayPlusParser#structureDeclaration}.
 	 * @param ctx the parse tree
 	 */
 	void enterStructure(PlayPlusParser.StructureContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code structure}
-	 * labeled alternative in {@link PlayPlusParser#variableType}.
+	 * labeled alternative in {@link PlayPlusParser#structureDeclaration}.
 	 * @param ctx the parse tree
 	 */
 	void exitStructure(PlayPlusParser.StructureContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code arrayDefinition}
-	 * labeled alternative in {@link PlayPlusParser#arrayType}.
-	 * @param ctx the parse tree
-	 */
-	void enterArrayDefinition(PlayPlusParser.ArrayDefinitionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code arrayDefinition}
-	 * labeled alternative in {@link PlayPlusParser#arrayType}.
-	 * @param ctx the parse tree
-	 */
-	void exitArrayDefinition(PlayPlusParser.ArrayDefinitionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code structureDefinition}
-	 * labeled alternative in {@link PlayPlusParser#structureType}.
-	 * @param ctx the parse tree
-	 */
-	void enterStructureDefinition(PlayPlusParser.StructureDefinitionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code structureDefinition}
-	 * labeled alternative in {@link PlayPlusParser#structureType}.
-	 * @param ctx the parse tree
-	 */
-	void exitStructureDefinition(PlayPlusParser.StructureDefinitionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code arrayInitialisation}
 	 * labeled alternative in {@link PlayPlusParser#initVariable}.

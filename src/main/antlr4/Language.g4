@@ -34,30 +34,30 @@ inst:       variableDeclaration                         #variableInstruction
             | repeatBlock                               #repeatInstruction
             | forBlock                                  #forInstruction
             ;
-functionInst: ((enumDeclaration)*|(constDeclaration)*|(structureType)*)? (inst)+                        #functionInstruction
+functionInst: ((enumDeclaration)*|(constDeclaration)*|(structureDeclaration)*)? (inst)+                        #functionInstruction
             ;
 globalVariable: variableDeclaration                             #globalDeclaration
             | constDeclaration                                  #globalDeclaration
             | enumDeclaration                                   #globalDeclaration
-            | structureType                                     #globalDeclaration
+            | structureDeclaration                                     #globalDeclaration
             ;
 
 variableDeclaration: (ID (COMMA ID)* AS variableType (EQUAL initVariable)? SEMICOLON)       #variableDefinition
             ;
-variableType: SCALAR                                                                        #scalar
-            | arrayType                                                                     #array
-            | structureType                                                                 #structure
+variableType: SCALAR                                                                        #scalarType
+            | arrayDeclaration                                                              #arrayType
+            | structureDeclaration                                                          #structureType
             ;
-arrayType: SCALAR LBRA NUMBER (COMMA NUMBER)* RBRA                                          #arrayDefinition
+arrayDeclaration: SCALAR LBRA NUMBER (COMMA NUMBER)* RBRA                                          #array
             ;
-structureType: ID AS RECORD (variableDeclaration|structureType)+ END SEMICOLON              #structureDefinition
+structureDeclaration: ID AS RECORD (variableDeclaration|structureDeclaration)+ END SEMICOLON       #structure
             ;
 initVariable: initArray                                                                     #arrayInitialisation
             | rightExpr                                                                     #rightInitialisation
             ;
 initArray: LPAR initVariable ((COMMA initVariable)*)? RPAR
             ;
-constDeclaration: CONST ID AS (variableType|structureType) EQUAL initVariable SEMICOLON     #constant
+constDeclaration: CONST ID AS (variableType|structureDeclaration) EQUAL initVariable SEMICOLON     #constant
             ;
 enumDeclaration: ENUM ID EQUAL LPAR ID (COMMA ID)* RPAR SEMICOLON                           #enumeration
             ;
@@ -89,6 +89,7 @@ leftExpr: ID                                                            #leftId
             | ID LBRA rightExpr (COMMA rightExpr)? RBRA                 #leftArray
             | leftExpr'.'ID                                             #leftProperty
             | leftExpr'.'ID LBRA rightExpr (COMMA rightExpr)? RBRA      #leftPropertyArray
+            | ID LPAR (rightExpr (COMMA rightExpr)*)? RPAR              #functionVoidCallExpression
             ;
 assignation: leftExpr ASSIGN rightExpr SEMICOLON
             ;

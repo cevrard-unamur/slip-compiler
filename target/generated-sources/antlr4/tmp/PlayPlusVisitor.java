@@ -239,40 +239,40 @@ public interface PlayPlusVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitVariableDefinition(PlayPlusParser.VariableDefinitionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code scalar}
+	 * Visit a parse tree produced by the {@code scalarType}
 	 * labeled alternative in {@link PlayPlusParser#variableType}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitScalar(PlayPlusParser.ScalarContext ctx);
+	T visitScalarType(PlayPlusParser.ScalarTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code arrayType}
+	 * labeled alternative in {@link PlayPlusParser#variableType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArrayType(PlayPlusParser.ArrayTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code structureType}
+	 * labeled alternative in {@link PlayPlusParser#variableType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStructureType(PlayPlusParser.StructureTypeContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code array}
-	 * labeled alternative in {@link PlayPlusParser#variableType}.
+	 * labeled alternative in {@link PlayPlusParser#arrayDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitArray(PlayPlusParser.ArrayContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code structure}
-	 * labeled alternative in {@link PlayPlusParser#variableType}.
+	 * labeled alternative in {@link PlayPlusParser#structureDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitStructure(PlayPlusParser.StructureContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code arrayDefinition}
-	 * labeled alternative in {@link PlayPlusParser#arrayType}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitArrayDefinition(PlayPlusParser.ArrayDefinitionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code structureDefinition}
-	 * labeled alternative in {@link PlayPlusParser#structureType}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitStructureDefinition(PlayPlusParser.StructureDefinitionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code arrayInitialisation}
 	 * labeled alternative in {@link PlayPlusParser#initVariable}.

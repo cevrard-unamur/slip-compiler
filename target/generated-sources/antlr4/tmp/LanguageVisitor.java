@@ -136,40 +136,40 @@ public interface LanguageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitVariableDefinition(LanguageParser.VariableDefinitionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code scalar}
+	 * Visit a parse tree produced by the {@code scalarType}
 	 * labeled alternative in {@link LanguageParser#variableType}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitScalar(LanguageParser.ScalarContext ctx);
+	T visitScalarType(LanguageParser.ScalarTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code arrayType}
+	 * labeled alternative in {@link LanguageParser#variableType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArrayType(LanguageParser.ArrayTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code structureType}
+	 * labeled alternative in {@link LanguageParser#variableType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStructureType(LanguageParser.StructureTypeContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code array}
-	 * labeled alternative in {@link LanguageParser#variableType}.
+	 * labeled alternative in {@link LanguageParser#arrayDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitArray(LanguageParser.ArrayContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code structure}
-	 * labeled alternative in {@link LanguageParser#variableType}.
+	 * labeled alternative in {@link LanguageParser#structureDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitStructure(LanguageParser.StructureContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code arrayDefinition}
-	 * labeled alternative in {@link LanguageParser#arrayType}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitArrayDefinition(LanguageParser.ArrayDefinitionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code structureDefinition}
-	 * labeled alternative in {@link LanguageParser#structureType}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitStructureDefinition(LanguageParser.StructureDefinitionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code arrayInitialisation}
 	 * labeled alternative in {@link LanguageParser#initVariable}.

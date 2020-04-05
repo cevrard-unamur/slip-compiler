@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArrayHelper {
-    public static Integer[] getSize(PlayPlusParser.ArrayDefinitionContext ctx) {
+    public static Integer[] getSize(PlayPlusParser.ArrayContext ctx) {
         List<Integer> arraySize = new ArrayList<>();
 
         for (Object node : ctx.children) {

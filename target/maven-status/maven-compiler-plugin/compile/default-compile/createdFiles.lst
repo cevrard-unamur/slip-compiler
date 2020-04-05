@@ -6,6 +6,7 @@ tmp/LanguageParser$LeftExpressionContext.class
 tmp/LanguageParser$NotExpressionContext.class
 LanguageParser$CharContext.class
 tmp/PlayPlusParser$ArgumentContext.class
+LanguageParser$ScalarTypeContext.class
 tmp/CommonWords.class
 tmp/PlayPlusBaseListener.class
 LanguageParser$ActionContext.class
@@ -63,7 +64,6 @@ be/unamur/info/b314/compiler/PlayPlusBaseListener.class
 tmp/PlayPlusParser$IntegerExpressionContext.class
 tmp/PlayPlusParser$RepeatContext.class
 tmp/LanguageParser$GlobalDeclarationContext.class
-LanguageParser$StructureDefinitionContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$ReturnTypeContext.class
 LanguageParser$BooleanFalseContext.class
 LanguageParser$MainContext.class
@@ -96,7 +96,6 @@ be/unamur/info/b314/compiler/main/MyConsoleErrorListener.class
 tmp/LanguageParser$NumberContext.class
 tmp/MapBaseListener.class
 tmp/LanguageParser$MainFunctionContext.class
-tmp/PlayPlusParser$ArrayDefinitionContext.class
 MapParser$MapContext.class
 tmp/PlayPlusParser$RightExprContext.class
 tmp/PlayPlusParser$PalmtreeContext.class
@@ -109,7 +108,6 @@ be/unamur/info/b314/compiler/PlayPlusParser$CommentMultiContext.class
 LanguageParser.class
 be/unamur/info/b314/compiler/PlayPlusParser$ChestContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$ArgumentListContext.class
-tmp/LanguageParser$ScalarContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$MapStructureContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$RightInitialisationContext.class
 tmp/LanguageParser$ActionInstructionContext.class
@@ -119,8 +117,8 @@ MapParser$BridgeContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$FunctionInstContext.class
 tmp/LanguageParser$WhileInstructionContext.class
 tmp/MapWords.class
-be/unamur/info/b314/compiler/PlayPlusParser$ArrayDefinitionContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$GrassContext.class
+tmp/LanguageParser$ArrayDeclarationContext.class
 tmp/LanguageParser$MainInstructionContext.class
 tmp/LanguageParser$BooleanFalseContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$ForContext.class
@@ -208,7 +206,6 @@ be/unamur/info/b314/compiler/PlayPlusParser$MainInstructionContext.class
 tmp/MapParser$SqueletonContext.class
 tmp/LanguageParser$FunctionDefinitionContext.class
 tmp/PlayPlusParser$MapContext.class
-tmp/LanguageParser$ArrayDefinitionContext.class
 tmp/PlayPlusParser$FightInstructionContext.class
 MapParser$CommentSingleContext.class
 tmp/PlayPlusListener.class
@@ -224,10 +221,12 @@ MapParser$GrassContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$ProgContext.class
 LanguageParser$ArrayTypeContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$IfBlockContext.class
+LanguageParser$StructureDeclarationContext.class
 LanguageParser$FightInstructionContext.class
 tmp/PlayPlusParser$IfInstructionContext.class
 LanguageParser$ForBlockContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$ParenthesesExpressionContext.class
+be/unamur/info/b314/compiler/application/Enumeration.class
 tmp/PlayPlusParser$IfContext.class
 tmp/PlayPlusParser$LeftExprContext.class
 tmp/LanguageParser$MainContext.class
@@ -247,7 +246,6 @@ tmp/PlayPlusParser$RepeatInstructionContext.class
 LanguageParser$LeftExprContext.class
 tmp/LanguageParser$VariableTypeContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$ActionInstructionContext.class
-LanguageParser$ScalarContext.class
 tmp/MapBaseVisitor.class
 MapParser$MapStructureContext.class
 tmp/PlayPlusParser$ForContext.class
@@ -256,17 +254,18 @@ tmp/PlayPlusParser$ActionInstructionContext.class
 tmp/PlayPlusParser$DigContext.class
 LanguageParser$WhileInstructionContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$ArrayContext.class
+be/unamur/info/b314/compiler/PlayPlusParser$ScalarTypeContext.class
 tmp/MapParser$MapContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$FunctionInstructionContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$WhileContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$ArrayTypeContext.class
 tmp/LanguageParser$VariableDefinitionContext.class
 tmp/LanguageParser$DigInstructionContext.class
-tmp/PlayPlusParser$StructureDefinitionContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$IfContext.class
 LanguageBaseVisitor.class
 be/unamur/info/b314/compiler/PlayPlusParser$LeftExprContext.class
 LanguageParser$EnumerationContext.class
+LanguageParser$ArrayDeclarationContext.class
 tmp/LanguageParser$LeftIdContext.class
 tmp/LanguageParser$IfContext.class
 tmp/LanguageParser$ConstantContext.class
@@ -275,6 +274,7 @@ LanguageParser$MainFunctionInstructionContext.class
 tmp/PlayPlusParser$WellContext.class
 tmp/LanguageParser$RepeatContext.class
 tmp/LanguageParser$AssignationInstructionContext.class
+be/unamur/info/b314/compiler/PlayPlusParser$StructureDeclarationContext.class
 tmp/PlayPlusParser$FunctionDefinitionContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$VariableDefinitionContext.class
 tmp/LanguageParser$ActionTypeContext.class
@@ -317,7 +317,6 @@ tmp/LanguageParser$MapImportationContext.class
 tmp/PlayPlusParser$BridgeContext.class
 LanguageParser$FunctionInstructionContext.class
 tmp/PlayPlusParser$MapSymbolsContext.class
-tmp/LanguageParser$StructureDefinitionContext.class
 tmp/PlayPlusParser$ParenthesesExpressionContext.class
 tmp/PlayPlusParser$MainInstructionContext.class
 tmp/PlayPlusParser$NumberContext.class
@@ -349,7 +348,6 @@ tmp/PlayPlusParser$FunctionCallExpressionContext.class
 tmp/PlayPlusParser$RootContext.class
 tmp/LanguageParser$FunctionInstructionContext.class
 tmp/PlayPlusParser$FunctionInstructionContext.class
-be/unamur/info/b314/compiler/PlayPlusParser$ScalarContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$ForBlockContext.class
 be/unamur/info/b314/compiler/application/Array.class
 tmp/MapParser$CommentSingleContext.class
@@ -360,14 +358,15 @@ tmp/LanguageWords.class
 LanguageParser$CompExpressionContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$DigContext.class
 LanguageParser$LeftExpressionContext.class
-tmp/PlayPlusParser$ScalarContext.class
 tmp/LanguageBaseVisitor.class
 be/unamur/info/b314/compiler/PlayPlusParser$WhileInstructionContext.class
+be/unamur/info/b314/compiler/PlayPlusParser$ArrayDeclarationContext.class
 LanguageParser$MainInstructionContext.class
 tmp/MapLexer.class
 tmp/PlayPlusParser$InitVariableContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$StringContext.class
 MapParser.class
+tmp/PlayPlusParser$StructureDeclarationContext.class
 tmp/LanguageParser$EnumerationContext.class
 LanguageParser$LeftPropertyContext.class
 tmp/PlayPlusParser$EmptyContext.class
@@ -377,7 +376,6 @@ LanguageBaseListener.class
 LanguageParser$ArrayContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$FunctionDefinitionContext.class
 tmp/PlayPlusLexer.class
-be/unamur/info/b314/compiler/PlayPlusParser$StructureDefinitionContext.class
 MapParser$SqueletonContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$ActionTypeContext.class
 LanguageLexer.class
@@ -385,6 +383,7 @@ LanguageParser$NotExpressionContext.class
 MapParser$PalmtreeContext.class
 LanguageParser$LeftPropertyArrayContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$MainFunctionContext.class
+tmp/PlayPlusParser$ScalarTypeContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$WellContext.class
 tmp/LanguageParser$ForInstructionContext.class
 MapParser$ChestContext.class
@@ -393,9 +392,9 @@ LanguageParser$InstContext.class
 tmp/LanguageParser$ProgContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$InitArrayContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$LeftExpressionContext.class
+tmp/LanguageParser$StructureDeclarationContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$InitVariableContext.class
 LanguageParser$StringContext.class
-LanguageParser$ArrayDefinitionContext.class
 tmp/LanguageParser$ActionContext.class
 tmp/PlayPlusParser$ProgContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$FightInstructionContext.class
@@ -403,10 +402,12 @@ tmp/LanguageListener.class
 tmp/PlayPlusParser$VariableDeclarationContext.class
 tmp/LanguageParser$IfInstructionContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$CharContext.class
+tmp/LanguageParser$ScalarTypeContext.class
 LanguageParser$ConstantContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$EnumDeclarationContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$WhileBlockContext.class
 MapParser$MapSymbolsContext.class
+tmp/PlayPlusParser$ArrayDeclarationContext.class
 be/unamur/info/b314/compiler/PlayPlusParser$FunctionParameterContext.class
 be/unamur/info/b314/compiler/exception/SymbolNotFoundException.class
 MapParser$WellContext.class
