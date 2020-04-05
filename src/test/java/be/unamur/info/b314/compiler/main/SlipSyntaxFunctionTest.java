@@ -51,6 +51,12 @@ public class SlipSyntaxFunctionTest {
     }
 
 
+    @Test
+    public void test_void_function_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/function/ok/void_function.slip", testFolder.newFile(), true, "syntax::function: void_function.slip");
+    }
+
+
     // tests KO
     @Test
     public void test_function_integer_char_ko() throws Exception{

@@ -84,7 +84,7 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         } else if (ctx instanceof PlayPlusParser.NotExpressionContext) {
             return parseNotExpression((PlayPlusParser.NotExpressionContext)ctx);
         } else if (ctx instanceof PlayPlusParser.FunctionCallExpressionContext) {
-            return parseFunctionCall((PlayPlusParser.FunctionCallExpressionContext)ctx, "boolean");
+            return parseFunctionCall(((PlayPlusParser.FunctionCallExpressionContext) ctx).functionCall(), "boolean");
         } else {
             throw new BooleanRightExpressionException("Cannot parse this as a boolean expression");
         }
@@ -127,7 +127,7 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         } else if (ctx instanceof PlayPlusParser.NegativeIntegerExpressionContext) {
             return parseIntegerRightExpression(((PlayPlusParser.NegativeIntegerExpressionContext) ctx).rightExpr());
         } else if (ctx instanceof PlayPlusParser.FunctionCallExpressionContext) {
-            return parseFunctionCall((PlayPlusParser.FunctionCallExpressionContext)ctx, "integer");
+            return parseFunctionCall(((PlayPlusParser.FunctionCallExpressionContext) ctx).functionCall(), "integer");
         } else {
             throw new IntegerRightExpressionException("Cannot parse this as an integer expression");
         }
@@ -156,7 +156,7 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         if (ctx instanceof PlayPlusParser.CharContext) {
             return parseCharExpression((PlayPlusParser.CharContext)ctx);
         } else if (ctx instanceof PlayPlusParser.FunctionCallExpressionContext) {
-            return parseFunctionCall((PlayPlusParser.FunctionCallExpressionContext)ctx, "char");
+            return parseFunctionCall(((PlayPlusParser.FunctionCallExpressionContext) ctx).functionCall(), "char");
         } else {
             throw new IntegerRightExpressionException("Cannot parse this as a char expression");
         }
@@ -226,6 +226,25 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
                 throw new IncorrectTypeException("The type of the variable " + array.getName() + " is incorrect - Array Context");
             }
         } else if (leftContext instanceof PlayPlusParser.LeftPropertyContext) {
+            PlayPlusParser.LeftExprContext recordExpression = ((PlayPlusParser.LeftPropertyContext) leftContext).leftExpr();
+            TerminalNode arrayId = ((PlayPlusParser.LeftPropertyContext) leftContext).ID();
+
+            Variable variable  = this.application.getVariableOfRecord(recordExpression.getText(), arrayId.getText());
+
+            if (!variable.getType().equals(expectedType)) {
+                throw new IncorrectTypeException("The type of the variable " + variable.getName() + " is incorrect - Record ID Context");
+            }
+        } else if (leftContext instanceof PlayPlusParser.LeftPropertyArrayContext) {
+            PlayPlusParser.LeftExprContext recordExpression = ((PlayPlusParser.LeftPropertyArrayContext) leftContext).leftExpr();
+            TerminalNode arrayId = ((PlayPlusParser.LeftPropertyArrayContext) leftContext).ID();
+
+            Array array = this.application.getArrayOfRecord(recordExpression.getText(), arrayId.getText());
+
+            if (!array.getType().equals(expectedType)) {
+                throw new IncorrectTypeException("The type of the variable " + array.getName() + " is incorrect - Record Array Context");
+            }
+        } else {
+            throw new PlayPlusException("This parsing of the left expression is not handle");
         }
 
         return ctx;
@@ -406,7 +425,7 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
     private Object parseFunctionDefinition(PlayPlusParser.FunctionDefinitionContext ctx) {
         this.application.addFunction(ctx.ID().getText(), ctx.returnType().getText());
 
-        // TODO Parameters
+        // TODO Save parameters of the function
 
         if (ctx.functionInst().size() > 0) {
             parseFunctionInstruction((PlayPlusParser.FunctionInstructionContext)ctx.functionInst().get(0));
@@ -441,7 +460,14 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         return ctx;
     }
 
-    private Object parseFunctionCall(PlayPlusParser.FunctionCallExpressionContext ctx, String expectedType) {
+    // Parse function
+    private Object parseFunctionCallInstruction(PlayPlusParser.FunctionCallInstructionContext ctx, String expectedType) {
+        parseFunctionCall(ctx.functionCall(), expectedType);
+
+        return ctx;
+    }
+
+    private Object parseFunctionCall(PlayPlusParser.FunctionCallContext ctx, String expectedType) {
         // Check if the return type of the function is matching
         Function function = this.application.getFunction(ctx.ID().getText());
 
@@ -450,6 +476,7 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         }
 
         // Check if the parameters are matching
+        // TODO Check if the parameters are matching
 
         return ctx;
     }
@@ -532,8 +559,6 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
             }
 
             parseBooleanRightExpression(rightExpression);
-        } else if (rightExpression instanceof PlayPlusParser.FunctionCallExpressionContext) {
-            // TODO
         } else if (rightExpression instanceof PlayPlusParser.ParenthesesExpressionContext) {
             parseParenthesesExpression((PlayPlusParser.ParenthesesExpressionContext)rightExpression, leftVariable.getType());
         } else if (rightExpression instanceof PlayPlusParser.CharContext) {
@@ -542,6 +567,8 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
             }
         } else if (rightExpression instanceof PlayPlusParser.LeftExpressionContext) {
             parseLeftExpression((PlayPlusParser.LeftExpressionContext)rightExpression, leftVariable.getType());
+        } else if (rightExpression instanceof PlayPlusParser.FunctionCallExpressionContext) {
+            parseFunctionCall(((PlayPlusParser.FunctionCallExpressionContext) rightExpression).functionCall(), leftVariable.getType());
         } else {
             throw new PlayPlusException("This right expression as an assignation is not known");
         }
@@ -582,6 +609,8 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
                 parseForInstruction((PlayPlusParser.ForInstructionContext)node);
             } else if (node instanceof PlayPlusParser.RepeatInstructionContext) {
                 parseRepeatInstruction((PlayPlusParser.RepeatInstructionContext)node);
+            } else if (node instanceof PlayPlusParser.FunctionCallInstructionContext) {
+                parseFunctionCallInstruction((PlayPlusParser.FunctionCallInstructionContext)node, "void");
             } else if (node instanceof PlayPlusParser.DigInstructionContext) {
             } else if (node instanceof TerminalNode) {
             } else {

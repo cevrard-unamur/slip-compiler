@@ -362,6 +362,18 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 */
 	void exitForInstruction(PlayPlusParser.ForInstructionContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code functionCallInstruction}
+	 * labeled alternative in {@link PlayPlusParser#inst}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionCallInstruction(PlayPlusParser.FunctionCallInstructionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code functionCallInstruction}
+	 * labeled alternative in {@link PlayPlusParser#inst}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionCallInstruction(PlayPlusParser.FunctionCallInstructionContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code functionInstruction}
 	 * labeled alternative in {@link PlayPlusParser#functionInst}.
 	 * @param ctx the parse tree
@@ -671,6 +683,16 @@ public interface PlayPlusListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunctionCallExpression(PlayPlusParser.FunctionCallExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PlayPlusParser#functionCall}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionCall(PlayPlusParser.FunctionCallContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlayPlusParser#functionCall}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionCall(PlayPlusParser.FunctionCallContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code leftProperty}
 	 * labeled alternative in {@link PlayPlusParser#leftExpr}.

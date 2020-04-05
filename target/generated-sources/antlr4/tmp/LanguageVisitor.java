@@ -115,6 +115,13 @@ public interface LanguageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitForInstruction(LanguageParser.ForInstructionContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code functionCallInstruction}
+	 * labeled alternative in {@link LanguageParser#inst}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionCallInstruction(LanguageParser.FunctionCallInstructionContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code functionInstruction}
 	 * labeled alternative in {@link LanguageParser#functionInst}.
 	 * @param ctx the parse tree
@@ -295,6 +302,12 @@ public interface LanguageVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFunctionCallExpression(LanguageParser.FunctionCallExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LanguageParser#functionCall}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionCall(LanguageParser.FunctionCallContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code leftProperty}
 	 * labeled alternative in {@link LanguageParser#leftExpr}.
