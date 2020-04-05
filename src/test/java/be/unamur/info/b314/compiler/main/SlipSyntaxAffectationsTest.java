@@ -28,32 +28,8 @@ public class SlipSyntaxAffectationsTest {
 
     // tests OK
     @Test
-    public void test_square_array_right_expressions_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/affectations/ok/square_array_right_expressions.slip", testFolder.newFile(), true, "syntax::affectations: square_array_right_expressions.slip");
-    }
-
-
-    @Test
-    public void test_bool_constant_values_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/affectations/ok/bool_constant_values.slip", testFolder.newFile(), true, "syntax::affectations: bool_constant_values.slip");
-    }
-
-
-    @Test
     public void test_bool_array_constant_values_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/affectations/ok/bool_array_constant_values.slip", testFolder.newFile(), true, "syntax::affectations: bool_array_constant_values.slip");
-    }
-
-
-    @Test
-    public void test_square_constant_values_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/affectations/ok/square_constant_values.slip", testFolder.newFile(), true, "syntax::affectations: square_constant_values.slip");
-    }
-
-
-    @Test
-    public void test_negative_number_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/affectations/ok/negative_number.slip", testFolder.newFile(), true, "syntax::affectations: negative_number.slip");
     }
 
 
@@ -64,14 +40,38 @@ public class SlipSyntaxAffectationsTest {
 
 
     @Test
-    public void test_int_array_right_expressions_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/affectations/ok/int_array_right_expressions.slip", testFolder.newFile(), true, "syntax::affectations: int_array_right_expressions.slip");
+    public void test_square_constant_values_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/affectations/ok/square_constant_values.slip", testFolder.newFile(), true, "syntax::affectations: square_constant_values.slip");
+    }
+
+
+    @Test
+    public void test_square_array_right_expressions_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/affectations/ok/square_array_right_expressions.slip", testFolder.newFile(), true, "syntax::affectations: square_array_right_expressions.slip");
     }
 
 
     @Test
     public void test_int_right_expression_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/affectations/ok/int_right_expression.slip", testFolder.newFile(), true, "syntax::affectations: int_right_expression.slip");
+    }
+
+
+    @Test
+    public void test_bool_constant_values_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/affectations/ok/bool_constant_values.slip", testFolder.newFile(), true, "syntax::affectations: bool_constant_values.slip");
+    }
+
+
+    @Test
+    public void test_negative_number_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/affectations/ok/negative_number.slip", testFolder.newFile(), true, "syntax::affectations: negative_number.slip");
+    }
+
+
+    @Test
+    public void test_int_array_right_expressions_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/affectations/ok/int_array_right_expressions.slip", testFolder.newFile(), true, "syntax::affectations: int_array_right_expressions.slip");
     }
 
 

@@ -35,12 +35,6 @@ public class SlipSemanticsInstructionsTest {
 
     // tests KO
     @Test
-    public void test_mistake_fct_local_variable_diff_names_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/instructions/ko/mistake_fct_local_variable_diff_names.slip", testFolder.newFile(), false, "semantics::instructions: mistake_fct_local_variable_diff_names.slip");
-    }
-
-
-    @Test
     public void test_mistake_global_vars_and_functions_no_local_var_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/instructions/ko/mistake_global_vars_and_functions_no_local_var.slip", testFolder.newFile(), false, "semantics::instructions: mistake_global_vars_and_functions_no_local_var.slip");
     }
@@ -53,14 +47,20 @@ public class SlipSemanticsInstructionsTest {
 
 
     @Test
+    public void test_no_local_var_2_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/instructions/ko/no_local_var_2.slip", testFolder.newFile(), false, "semantics::instructions: no_local_var_2.slip");
+    }
+
+
+    @Test
     public void test_mistake_void_function_no_local_var_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/instructions/ko/mistake_void_function_no_local_var.slip", testFolder.newFile(), false, "semantics::instructions: mistake_void_function_no_local_var.slip");
     }
 
 
     @Test
-    public void test_no_local_var_2_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/instructions/ko/no_local_var_2.slip", testFolder.newFile(), false, "semantics::instructions: no_local_var_2.slip");
+    public void test_mistake_fct_local_variable_diff_names_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/instructions/ko/mistake_fct_local_variable_diff_names.slip", testFolder.newFile(), false, "semantics::instructions: mistake_fct_local_variable_diff_names.slip");
     }
 
 

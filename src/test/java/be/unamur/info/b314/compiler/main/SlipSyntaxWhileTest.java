@@ -28,20 +28,14 @@ public class SlipSyntaxWhileTest {
 
     // tests OK
     @Test
-    public void test_for_for_3_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/while/ok/for_for_3.slip", testFolder.newFile(), true, "syntax::while: for_for_3.slip");
-    }
-
-
-    @Test
-    public void test_for_for_2_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/while/ok/for_for_2.slip", testFolder.newFile(), true, "syntax::while: for_for_2.slip");
-    }
-
-
-    @Test
     public void test_for_right_expr_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/while/ok/for_right_expr.slip", testFolder.newFile(), true, "syntax::while: for_right_expr.slip");
+    }
+
+
+    @Test
+    public void test_for_for_3_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/while/ok/for_for_3.slip", testFolder.newFile(), true, "syntax::while: for_for_3.slip");
     }
 
 
@@ -54,6 +48,12 @@ public class SlipSyntaxWhileTest {
     @Test
     public void test_for_for_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/while/ok/for_for.slip", testFolder.newFile(), true, "syntax::while: for_for.slip");
+    }
+
+
+    @Test
+    public void test_for_for_2_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/while/ok/for_for_2.slip", testFolder.newFile(), true, "syntax::while: for_for_2.slip");
     }
 
 
