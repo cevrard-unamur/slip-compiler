@@ -25,6 +25,10 @@ public class Application {
 
     public void addVariable(String type, String name, Boolean isConstant) {
         try {
+            if (name.equals("import")) {
+                throw new VariableException("The name import cannot be used as a variable name");
+            }
+
             this.currentContext.addVariable(new Variable(type, name, isConstant)); }
         catch (VariableException ex) {
             this.addError(ex.getMessage());
@@ -35,12 +39,18 @@ public class Application {
         this.currentContext.addArray(new Array(name, type, size));
     }
 
+    public void addEnum(String name, List<String> values) {
+        this.currentContext.addEnum(new Enumeration(name, values));
+    }
+
     public void addFunction(String name, String returnType) {
         Function function = new Function(name, returnType, this.currentContext);
         this.currentContext.addFunction(function);
         this.currentContext = function;
         // We add a first variable in the function context for the return of it
-        this.currentContext.addVariable(new Variable(returnType, name, false));
+        if (returnType != "void") {
+            this.currentContext.addVariable(new Variable(returnType, name, false));
+        }
     }
 
     public void addRecord(String name) {
@@ -87,6 +97,46 @@ public class Application {
         }
 
         throw new VariableException("The array " + name + " does not exist");
+    }
+
+    public Array getArrayOfRecord(String name, String propertyName) {
+        Context context = this.currentContext;
+
+        while (context != null) {
+            Record record = context.getRecord(name);
+
+            if (record != null) {
+                VariableBase variable = record.getVariable(propertyName);
+
+                if (variable != null && variable instanceof Array) {
+                    return (Array)variable;
+                }
+            }
+
+            context = context.parent;
+        }
+
+        throw new VariableException("The array " + propertyName + " does not exist in the record " + name);
+    }
+
+    public Variable getVariableOfRecord(String name, String propertyName) {
+        Context context = this.currentContext;
+
+        while (context != null) {
+            Record record = context.getRecord(name);
+
+            if (record != null) {
+                VariableBase variable = record.getVariable(propertyName);
+
+                if (variable != null && variable instanceof Variable) {
+                    return (Variable)variable;
+                }
+            }
+
+            context = context.parent;
+        }
+
+        throw new VariableException("The variable " + propertyName + " does not exist in the record " + name);
     }
 
     public Function getFunction(String name) {

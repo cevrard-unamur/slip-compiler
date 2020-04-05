@@ -15,16 +15,19 @@ public class Context {
     protected VariableBase[] variables;
     protected Function[] functions;
     protected Record[] records;
+    protected Enumeration[] enums;
 
     // The functions current index in the stack.
     protected int variableHeapIndex = 0;
     protected int functionHeapIndex = 0;
     protected int recordHeapIndex = 0;
+    protected int enumHeapIndex = 0;
 
     // The dictionary with the variables and functions symbols for a quick access.
     protected Hashtable<String, Integer> variableSymbols;
     protected Hashtable<String, Integer> functionSymbols;
     protected Hashtable<String, Integer> recordSymbols;
+    protected Hashtable<String, Integer> enumSymbols;
 
     protected Context() {
         this.parent = null;
@@ -32,23 +35,31 @@ public class Context {
         this.variableSymbols = new Hashtable<>();
         this.functionSymbols = new Hashtable<>();
         this.recordSymbols = new Hashtable<>();
+        this.enumSymbols = new Hashtable<>();
 
         this.variables = new VariableBase[defaultStackSize];
         this.functions = new Function[defaultStackSize];
         this.records = new Record[defaultStackSize];
+        this.enums = new Enumeration[defaultStackSize];
     }
 
-    public void addVariable(Variable variable) {
-        if (!this.variableSymbols.containsKey(variable.getName())) {
-            this.variableSymbols.put(variable.getName(), this.variableHeapIndex);
-            this.variables[variableHeapIndex++] = variable;
+    public void addVariable(Variable variable) { this.addVariableBase(variable); }
+
+    public void addArray(Array array) {
+        this.addVariableBase(array);
+    }
+
+    public void addEnum(Enumeration enumeration) {
+        if (!this.enumSymbols.containsKey(enumeration.getName())) {
+            this.enumSymbols.put(enumeration.getName(), this.enumHeapIndex);
+            this.enums[enumHeapIndex++] = enumeration;
         } else {
-            throw new VariableException("A variable with the name " + variable.getName() + " already exist");
+            throw new VariableException("An enumeration with the name " + enumeration.getName() + " already exist");
         }
     }
 
     public void addFunction(Function function) {
-        if (!this.functionSymbols.containsKey(function.getName())) {
+        if (!isExistingInSymbolTables(function.getName())) {
             this.functionSymbols.put(function.getName(), this.functionHeapIndex);
             this.functions[functionHeapIndex++] = function;
         } else {
@@ -58,19 +69,10 @@ public class Context {
 
     public void addRecord(Record record) {
         if (!this.recordSymbols.containsKey(record.getName())) {
-            this.recordSymbols.put(record.getName(), this.functionHeapIndex);
+            this.recordSymbols.put(record.getName(), this.recordHeapIndex);
             this.records[recordHeapIndex++] = record;
         } else {
-            throw new VariableException("A variable with the name " + record.getName() + " already exist");
-        }
-    }
-
-    public void addArray(Array array) {
-        if (!this.variableSymbols.containsKey(array.getName())) {
-            this.variableSymbols.put(array.getName(), this.variableHeapIndex);
-            this.variables[variableHeapIndex++] = array;
-        } else {
-            throw new VariableException("A variable with the name " + array.getName() + " already exist");
+            throw new VariableException("A record with the name " + record.getName() + " already exist");
         }
     }
 
@@ -88,5 +90,26 @@ public class Context {
         } catch (Exception ex) {
             return null;
         }
+    }
+
+    public Record getRecord(String name) {
+        try {
+            return this.records[this.recordSymbols.get(name).intValue()];
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    private void addVariableBase(VariableBase variable) {
+        if (!isExistingInSymbolTables(variable.getName())) {
+            this.variableSymbols.put(variable.getName(), this.variableHeapIndex);
+            this.variables[variableHeapIndex++] = variable;
+        } else {
+            throw new VariableException("A variable with the name " + variable.getName() + " already exist");
+        }
+    }
+
+    private boolean isExistingInSymbolTables(String name) {
+        return this.variableSymbols.containsKey(name) || this.functionSymbols.containsKey(name);
     }
 }

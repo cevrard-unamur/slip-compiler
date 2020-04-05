@@ -32,7 +32,7 @@ public class PlayPlusParser extends Parser {
 		RULE_prog = 4, RULE_mapImport = 5, RULE_mainFunction = 6, RULE_mainFunctionInstruction = 7, 
 		RULE_funct = 8, RULE_returnType = 9, RULE_argumentList = 10, RULE_argument = 11, 
 		RULE_inst = 12, RULE_functionInst = 13, RULE_globalVariable = 14, RULE_variableDeclaration = 15, 
-		RULE_variableType = 16, RULE_arrayType = 17, RULE_structureType = 18, 
+		RULE_variableType = 16, RULE_arrayDeclaration = 17, RULE_structureDeclaration = 18, 
 		RULE_initVariable = 19, RULE_initArray = 20, RULE_constDeclaration = 21, 
 		RULE_enumDeclaration = 22, RULE_rightExpr = 23, RULE_leftExpr = 24, RULE_assignation = 25, 
 		RULE_actionType = 26, RULE_digInstruction = 27, RULE_fightInstruction = 28, 
@@ -41,10 +41,10 @@ public class PlayPlusParser extends Parser {
 		"root", "map", "mapStructure", "mapSymbols", "prog", "mapImport", "mainFunction", 
 		"mainFunctionInstruction", "funct", "returnType", "argumentList", "argument", 
 		"inst", "functionInst", "globalVariable", "variableDeclaration", "variableType", 
-		"arrayType", "structureType", "initVariable", "initArray", "constDeclaration", 
-		"enumDeclaration", "rightExpr", "leftExpr", "assignation", "actionType", 
-		"digInstruction", "fightInstruction", "ifBlock", "whileBlock", "repeatBlock", 
-		"forBlock"
+		"arrayDeclaration", "structureDeclaration", "initVariable", "initArray", 
+		"constDeclaration", "enumDeclaration", "rightExpr", "leftExpr", "assignation", 
+		"actionType", "digInstruction", "fightInstruction", "ifBlock", "whileBlock", 
+		"repeatBlock", "forBlock"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
@@ -1591,11 +1591,11 @@ public class PlayPlusParser extends Parser {
 		public ConstDeclarationContext constDeclaration(int i) {
 			return getRuleContext(ConstDeclarationContext.class,i);
 		}
-		public List<StructureTypeContext> structureType() {
-			return getRuleContexts(StructureTypeContext.class);
+		public List<StructureDeclarationContext> structureDeclaration() {
+			return getRuleContexts(StructureDeclarationContext.class);
 		}
-		public StructureTypeContext structureType(int i) {
-			return getRuleContext(StructureTypeContext.class,i);
+		public StructureDeclarationContext structureDeclaration(int i) {
+			return getRuleContext(StructureDeclarationContext.class,i);
 		}
 		public FunctionInstructionContext(FunctionInstContext ctx) { copyFrom(ctx); }
 		@Override
@@ -1671,7 +1671,7 @@ public class PlayPlusParser extends Parser {
 						{
 						{
 						setState(206);
-						structureType();
+						structureDeclaration();
 						}
 						} 
 					}
@@ -1736,8 +1736,8 @@ public class PlayPlusParser extends Parser {
 		public EnumDeclarationContext enumDeclaration() {
 			return getRuleContext(EnumDeclarationContext.class,0);
 		}
-		public StructureTypeContext structureType() {
-			return getRuleContext(StructureTypeContext.class,0);
+		public StructureDeclarationContext structureDeclaration() {
+			return getRuleContext(StructureDeclarationContext.class,0);
 		}
 		public GlobalDeclarationContext(GlobalVariableContext ctx) { copyFrom(ctx); }
 		@Override
@@ -1791,7 +1791,7 @@ public class PlayPlusParser extends Parser {
 				enterOuterAlt(_localctx, 4);
 				{
 				setState(222);
-				structureType();
+				structureDeclaration();
 				}
 				break;
 			}
@@ -1922,58 +1922,58 @@ public class PlayPlusParser extends Parser {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class ScalarContext extends VariableTypeContext {
+	public static class ArrayTypeContext extends VariableTypeContext {
+		public ArrayDeclarationContext arrayDeclaration() {
+			return getRuleContext(ArrayDeclarationContext.class,0);
+		}
+		public ArrayTypeContext(VariableTypeContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterArrayType(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitArrayType(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitArrayType(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class StructureTypeContext extends VariableTypeContext {
+		public StructureDeclarationContext structureDeclaration() {
+			return getRuleContext(StructureDeclarationContext.class,0);
+		}
+		public StructureTypeContext(VariableTypeContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterStructureType(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitStructureType(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitStructureType(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class ScalarTypeContext extends VariableTypeContext {
 		public TerminalNode SCALAR() { return getToken(PlayPlusParser.SCALAR, 0); }
-		public ScalarContext(VariableTypeContext ctx) { copyFrom(ctx); }
+		public ScalarTypeContext(VariableTypeContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterScalar(this);
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterScalarType(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitScalar(this);
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitScalarType(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitScalar(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ArrayContext extends VariableTypeContext {
-		public ArrayTypeContext arrayType() {
-			return getRuleContext(ArrayTypeContext.class,0);
-		}
-		public ArrayContext(VariableTypeContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterArray(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitArray(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitArray(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class StructureContext extends VariableTypeContext {
-		public StructureTypeContext structureType() {
-			return getRuleContext(StructureTypeContext.class,0);
-		}
-		public StructureContext(VariableTypeContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterStructure(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitStructure(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitStructure(this);
+			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitScalarType(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1986,7 +1986,7 @@ public class PlayPlusParser extends Parser {
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,22,_ctx) ) {
 			case 1:
-				_localctx = new ScalarContext(_localctx);
+				_localctx = new ScalarTypeContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(241);
@@ -1994,19 +1994,19 @@ public class PlayPlusParser extends Parser {
 				}
 				break;
 			case 2:
-				_localctx = new ArrayContext(_localctx);
+				_localctx = new ArrayTypeContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(242);
-				arrayType();
+				arrayDeclaration();
 				}
 				break;
 			case 3:
-				_localctx = new StructureContext(_localctx);
+				_localctx = new StructureTypeContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(243);
-				structureType();
+				structureDeclaration();
 				}
 				break;
 			}
@@ -2022,18 +2022,18 @@ public class PlayPlusParser extends Parser {
 		return _localctx;
 	}
 
-	public static class ArrayTypeContext extends ParserRuleContext {
-		public ArrayTypeContext(ParserRuleContext parent, int invokingState) {
+	public static class ArrayDeclarationContext extends ParserRuleContext {
+		public ArrayDeclarationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_arrayType; }
+		@Override public int getRuleIndex() { return RULE_arrayDeclaration; }
 	 
-		public ArrayTypeContext() { }
-		public void copyFrom(ArrayTypeContext ctx) {
+		public ArrayDeclarationContext() { }
+		public void copyFrom(ArrayDeclarationContext ctx) {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class ArrayDefinitionContext extends ArrayTypeContext {
+	public static class ArrayContext extends ArrayDeclarationContext {
 		public TerminalNode SCALAR() { return getToken(PlayPlusParser.SCALAR, 0); }
 		public TerminalNode LBRA() { return getToken(PlayPlusParser.LBRA, 0); }
 		public List<TerminalNode> NUMBER() { return getTokens(PlayPlusParser.NUMBER); }
@@ -2045,28 +2045,28 @@ public class PlayPlusParser extends Parser {
 		public TerminalNode COMMA(int i) {
 			return getToken(PlayPlusParser.COMMA, i);
 		}
-		public ArrayDefinitionContext(ArrayTypeContext ctx) { copyFrom(ctx); }
+		public ArrayContext(ArrayDeclarationContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterArrayDefinition(this);
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterArray(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitArrayDefinition(this);
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitArray(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitArrayDefinition(this);
+			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitArray(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final ArrayTypeContext arrayType() throws RecognitionException {
-		ArrayTypeContext _localctx = new ArrayTypeContext(_ctx, getState());
-		enterRule(_localctx, 34, RULE_arrayType);
+	public final ArrayDeclarationContext arrayDeclaration() throws RecognitionException {
+		ArrayDeclarationContext _localctx = new ArrayDeclarationContext(_ctx, getState());
+		enterRule(_localctx, 34, RULE_arrayDeclaration);
 		int _la;
 		try {
-			_localctx = new ArrayDefinitionContext(_localctx);
+			_localctx = new ArrayContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(246);
@@ -2106,18 +2106,18 @@ public class PlayPlusParser extends Parser {
 		return _localctx;
 	}
 
-	public static class StructureTypeContext extends ParserRuleContext {
-		public StructureTypeContext(ParserRuleContext parent, int invokingState) {
+	public static class StructureDeclarationContext extends ParserRuleContext {
+		public StructureDeclarationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_structureType; }
+		@Override public int getRuleIndex() { return RULE_structureDeclaration; }
 	 
-		public StructureTypeContext() { }
-		public void copyFrom(StructureTypeContext ctx) {
+		public StructureDeclarationContext() { }
+		public void copyFrom(StructureDeclarationContext ctx) {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class StructureDefinitionContext extends StructureTypeContext {
+	public static class StructureContext extends StructureDeclarationContext {
 		public TerminalNode ID() { return getToken(PlayPlusParser.ID, 0); }
 		public TerminalNode AS() { return getToken(PlayPlusParser.AS, 0); }
 		public TerminalNode RECORD() { return getToken(PlayPlusParser.RECORD, 0); }
@@ -2129,34 +2129,34 @@ public class PlayPlusParser extends Parser {
 		public VariableDeclarationContext variableDeclaration(int i) {
 			return getRuleContext(VariableDeclarationContext.class,i);
 		}
-		public List<StructureTypeContext> structureType() {
-			return getRuleContexts(StructureTypeContext.class);
+		public List<StructureDeclarationContext> structureDeclaration() {
+			return getRuleContexts(StructureDeclarationContext.class);
 		}
-		public StructureTypeContext structureType(int i) {
-			return getRuleContext(StructureTypeContext.class,i);
+		public StructureDeclarationContext structureDeclaration(int i) {
+			return getRuleContext(StructureDeclarationContext.class,i);
 		}
-		public StructureDefinitionContext(StructureTypeContext ctx) { copyFrom(ctx); }
+		public StructureContext(StructureDeclarationContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterStructureDefinition(this);
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).enterStructure(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitStructureDefinition(this);
+			if ( listener instanceof PlayPlusListener ) ((PlayPlusListener)listener).exitStructure(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitStructureDefinition(this);
+			if ( visitor instanceof PlayPlusVisitor ) return ((PlayPlusVisitor<? extends T>)visitor).visitStructure(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final StructureTypeContext structureType() throws RecognitionException {
-		StructureTypeContext _localctx = new StructureTypeContext(_ctx, getState());
-		enterRule(_localctx, 36, RULE_structureType);
+	public final StructureDeclarationContext structureDeclaration() throws RecognitionException {
+		StructureDeclarationContext _localctx = new StructureDeclarationContext(_ctx, getState());
+		enterRule(_localctx, 36, RULE_structureDeclaration);
 		int _la;
 		try {
-			_localctx = new StructureDefinitionContext(_localctx);
+			_localctx = new StructureContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(258);
@@ -2182,7 +2182,7 @@ public class PlayPlusParser extends Parser {
 				case 2:
 					{
 					setState(262);
-					structureType();
+					structureDeclaration();
 					}
 					break;
 				}
@@ -2399,8 +2399,8 @@ public class PlayPlusParser extends Parser {
 		public VariableTypeContext variableType() {
 			return getRuleContext(VariableTypeContext.class,0);
 		}
-		public StructureTypeContext structureType() {
-			return getRuleContext(StructureTypeContext.class,0);
+		public StructureDeclarationContext structureDeclaration() {
+			return getRuleContext(StructureDeclarationContext.class,0);
 		}
 		public ConstantContext(ConstDeclarationContext ctx) { copyFrom(ctx); }
 		@Override
@@ -2443,7 +2443,7 @@ public class PlayPlusParser extends Parser {
 			case 2:
 				{
 				setState(291);
-				structureType();
+				structureDeclaration();
 				}
 				break;
 			}

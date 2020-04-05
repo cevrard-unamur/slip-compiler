@@ -221,65 +221,65 @@ public interface LanguageListener extends ParseTreeListener {
 	 */
 	void exitVariableDefinition(LanguageParser.VariableDefinitionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code scalar}
+	 * Enter a parse tree produced by the {@code scalarType}
 	 * labeled alternative in {@link LanguageParser#variableType}.
 	 * @param ctx the parse tree
 	 */
-	void enterScalar(LanguageParser.ScalarContext ctx);
+	void enterScalarType(LanguageParser.ScalarTypeContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code scalar}
+	 * Exit a parse tree produced by the {@code scalarType}
 	 * labeled alternative in {@link LanguageParser#variableType}.
 	 * @param ctx the parse tree
 	 */
-	void exitScalar(LanguageParser.ScalarContext ctx);
+	void exitScalarType(LanguageParser.ScalarTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code arrayType}
+	 * labeled alternative in {@link LanguageParser#variableType}.
+	 * @param ctx the parse tree
+	 */
+	void enterArrayType(LanguageParser.ArrayTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code arrayType}
+	 * labeled alternative in {@link LanguageParser#variableType}.
+	 * @param ctx the parse tree
+	 */
+	void exitArrayType(LanguageParser.ArrayTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code structureType}
+	 * labeled alternative in {@link LanguageParser#variableType}.
+	 * @param ctx the parse tree
+	 */
+	void enterStructureType(LanguageParser.StructureTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code structureType}
+	 * labeled alternative in {@link LanguageParser#variableType}.
+	 * @param ctx the parse tree
+	 */
+	void exitStructureType(LanguageParser.StructureTypeContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code array}
-	 * labeled alternative in {@link LanguageParser#variableType}.
+	 * labeled alternative in {@link LanguageParser#arrayDeclaration}.
 	 * @param ctx the parse tree
 	 */
 	void enterArray(LanguageParser.ArrayContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code array}
-	 * labeled alternative in {@link LanguageParser#variableType}.
+	 * labeled alternative in {@link LanguageParser#arrayDeclaration}.
 	 * @param ctx the parse tree
 	 */
 	void exitArray(LanguageParser.ArrayContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code structure}
-	 * labeled alternative in {@link LanguageParser#variableType}.
+	 * labeled alternative in {@link LanguageParser#structureDeclaration}.
 	 * @param ctx the parse tree
 	 */
 	void enterStructure(LanguageParser.StructureContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code structure}
-	 * labeled alternative in {@link LanguageParser#variableType}.
+	 * labeled alternative in {@link LanguageParser#structureDeclaration}.
 	 * @param ctx the parse tree
 	 */
 	void exitStructure(LanguageParser.StructureContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code arrayDefinition}
-	 * labeled alternative in {@link LanguageParser#arrayType}.
-	 * @param ctx the parse tree
-	 */
-	void enterArrayDefinition(LanguageParser.ArrayDefinitionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code arrayDefinition}
-	 * labeled alternative in {@link LanguageParser#arrayType}.
-	 * @param ctx the parse tree
-	 */
-	void exitArrayDefinition(LanguageParser.ArrayDefinitionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code structureDefinition}
-	 * labeled alternative in {@link LanguageParser#structureType}.
-	 * @param ctx the parse tree
-	 */
-	void enterStructureDefinition(LanguageParser.StructureDefinitionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code structureDefinition}
-	 * labeled alternative in {@link LanguageParser#structureType}.
-	 * @param ctx the parse tree
-	 */
-	void exitStructureDefinition(LanguageParser.StructureDefinitionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code arrayInitialisation}
 	 * labeled alternative in {@link LanguageParser#initVariable}.
