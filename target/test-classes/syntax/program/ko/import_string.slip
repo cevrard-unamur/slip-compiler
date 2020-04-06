@@ -1,6 +1,0 @@
-#import "helloworld"
-
-main as function(): void
-do
-
-end

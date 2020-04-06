@@ -77,6 +77,12 @@ public class SlipSemanticsVariablesTest {
 
 
     @Test
+    public void test_enum_duplicate_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ko/enum_duplicate.slip", testFolder.newFile(), false, "semantics::variables: enum_duplicate.slip");
+    }
+
+
+    @Test
     public void test_constant_assigns_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/variables/ko/constant_assigns.slip", testFolder.newFile(), false, "semantics::variables: constant_assigns.slip");
     }

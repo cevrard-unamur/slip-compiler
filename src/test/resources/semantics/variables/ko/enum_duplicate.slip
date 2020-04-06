@@ -1,0 +1,18 @@
+/* My comments */
+
+#import "world.map"
+
+enum COLOR = (RED, GREEN, BLUE);
+
+fct1 as function(): void
+do
+    enum COLOR2 = (RED, RED, BLUE);
+    jump();
+end
+
+main as function():void
+do
+
+dig();
+
+end
