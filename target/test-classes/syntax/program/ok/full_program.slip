@@ -1,6 +1,0 @@
-#import "helloworld.map"
-
-main as function(): void
-do
-    dig();
-end

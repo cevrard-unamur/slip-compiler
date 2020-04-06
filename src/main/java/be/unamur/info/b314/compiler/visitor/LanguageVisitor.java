@@ -177,6 +177,10 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         List<String> values = new ArrayList<>();
 
         for (int i = 1; i < ctx.ID().size(); i++) {
+            if (values.contains(ctx.ID(i).getText())) {
+                throw new PlayPlusException("Cannot have duplicate value in an enumeration - Enum: " + ctx.ID(0).getText() + " Value: " + ctx.ID(i).getText());
+            }
+
             values.add(ctx.ID(i).getText());
         }
 

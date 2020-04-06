@@ -1,8 +1,0 @@
-#import "test.map"
-
-testBoolean as boolean;
-
-main as function(): void
-do
-    dig();
-end
