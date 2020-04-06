@@ -425,8 +425,11 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
     private Object parseFunctionDefinition(PlayPlusParser.FunctionDefinitionContext ctx) {
         this.application.addFunction(ctx.ID().getText(), ctx.returnType().getText());
 
-        // TODO Save parameters of the function
-
+        // Check if there is any argument
+        if (ctx.children.get(4) instanceof PlayPlusParser.FunctionParametersContext){
+            parseFunctionArguments((PlayPlusParser.FunctionParametersContext)ctx.argumentList());
+        }
+        // Check if there is any instructions
         if (ctx.functionInst().size() > 0) {
             parseFunctionInstruction((PlayPlusParser.FunctionInstructionContext)ctx.functionInst().get(0));
         }
@@ -434,6 +437,39 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         this.application.leaveContext();
 
         return ctx;
+    }
+
+    private Object parseFunctionArguments(PlayPlusParser.FunctionParametersContext ctx) {
+        // Parse all the arguments
+        for (PlayPlusParser.ArgumentContext argument : ctx.argument()) {
+            parseArgument((PlayPlusParser.FunctionParameterContext) argument);
+            }
+        return ctx;
+    }
+
+        private Object parseArgument(PlayPlusParser.FunctionParameterContext ctx){
+
+            ArrayList<VariableBase> arguments = new ArrayList<>();
+
+            for (TerminalNode id : ctx.ID()) {
+                if (ctx.variableType() instanceof PlayPlusParser.ScalarTypeContext) {
+                    arguments.add(new Variable(ctx.variableType().getText(), id.getText(), false));
+
+                } else if (ctx.variableType() instanceof PlayPlusParser.ArrayTypeContext) {
+                    PlayPlusParser.ArrayContext arrayType = (PlayPlusParser.ArrayContext)ctx.children.get(0);
+
+                    arguments.add(new Array(arrayType.SCALAR().getText(), id.getText(), ArrayHelper.getSize(arrayType)));
+                } else if (ctx.variableType() instanceof PlayPlusParser.StructureTypeContext) {
+                    throw new PlayPlusException("The function argument is invalid");
+                }
+            }
+
+            PlayPlusParser.FunctionParametersContext ctxParent = (PlayPlusParser.FunctionParametersContext)ctx.parent;
+            PlayPlusParser.FunctionDefinitionContext function = (PlayPlusParser.FunctionDefinitionContext)ctxParent.parent;
+
+            this.application.getFunction(function.ID().getText()).addArguments(arguments);
+
+            return ctx;
     }
 
     private Object parseFunctionInstruction(PlayPlusParser.FunctionInstructionContext ctx) {

@@ -28,6 +28,12 @@ public class SlipSemanticsActionTest {
 
     // tests OK
     @Test
+    public void test_action_correct_type_operation_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/action/ok/action_correct_type_operation.slip", testFolder.newFile(), true, "semantics::action: action_correct_type_operation.slip");
+    }
+
+
+    @Test
     public void test_action_correct_type_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/action/ok/action_correct_type.slip", testFolder.newFile(), true, "semantics::action: action_correct_type.slip");
     }
@@ -39,22 +45,16 @@ public class SlipSemanticsActionTest {
     }
 
 
-    @Test
-    public void test_action_correct_type_operation_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/action/ok/action_correct_type_operation.slip", testFolder.newFile(), true, "semantics::action: action_correct_type_operation.slip");
-    }
-
-
     // tests KO
-    @Test
-    public void test_jump_incorrect_type_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/action/ko/jump_incorrect_type.slip", testFolder.newFile(), false, "semantics::action: jump_incorrect_type.slip");
-    }
-
-
     @Test
     public void test_jump_incorrect_type_type_boolean_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/action/ko/jump_incorrect_type_type_boolean.slip", testFolder.newFile(), false, "semantics::action: jump_incorrect_type_type_boolean.slip");
+    }
+
+
+    @Test
+    public void test_jump_incorrect_type_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/action/ko/jump_incorrect_type.slip", testFolder.newFile(), false, "semantics::action: jump_incorrect_type.slip");
     }
 
 

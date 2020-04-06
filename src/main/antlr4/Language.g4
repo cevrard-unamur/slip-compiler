@@ -14,7 +14,7 @@ mainFunction: MAIN AS FUNCTION LPAR RPAR COLON VOID DO mainFunctionInstruction E
 mainFunctionInstruction: ((inst)* (digInstruction SEMICOLON) (inst)*)                                   #mainInstruction
             ;
 
-funct: ID AS FUNCTION LPAR (argumentList)? RPAR COLON returnType DO (functionInst)+ END              #functionDefinition
+funct: ID AS FUNCTION LPAR (argumentList)? RPAR COLON returnType DO (functionInst)+ END                 #functionDefinition
             ;
 
 returnType: SCALAR|VOID                                                                                 #returnType
