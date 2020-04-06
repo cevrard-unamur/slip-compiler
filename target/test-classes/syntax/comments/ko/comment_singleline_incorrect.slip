@@ -1,9 +1,0 @@
-#import "helloworld.map"
-
-// hello world
-my comment
-
-main as function(): void
-do
-
-end
