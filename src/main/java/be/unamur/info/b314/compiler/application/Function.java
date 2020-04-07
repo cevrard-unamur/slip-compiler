@@ -14,6 +14,21 @@ public class Function extends Context {
 
     public String getReturnType() { return returnType; }
 
+    public boolean isEmpty()
+    {
+        return arguments.isEmpty();
+    }
+
+    public String getArgType(int i)
+    {
+        return arguments.get(i).getType();
+    }
+
+    public VariableBase getVar(int i)
+    {
+        return arguments.get(i);
+    }
+
     public void addArguments(ArrayList<VariableBase> arguments){
         this.arguments = arguments;
     }

@@ -71,14 +71,14 @@ public class SlipSemanticsVariablesTest {
 
     // tests KO
     @Test
-    public void test_already_define_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/variables/ko/already_define.slip", testFolder.newFile(), false, "semantics::variables: already_define.slip");
+    public void test_enum_duplicate_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ko/enum_duplicate.slip", testFolder.newFile(), false, "semantics::variables: enum_duplicate.slip");
     }
 
 
     @Test
-    public void test_enum_duplicate_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/variables/ko/enum_duplicate.slip", testFolder.newFile(), false, "semantics::variables: enum_duplicate.slip");
+    public void test_already_define_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ko/already_define.slip", testFolder.newFile(), false, "semantics::variables: already_define.slip");
     }
 
 
