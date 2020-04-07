@@ -78,7 +78,17 @@ public class Context {
 
     public VariableBase getVariable(String name) {
         try {
-            return this.variables[this.variableSymbols.get(name).intValue()];
+            Integer variableIndex = this.variableSymbols.get(name);
+
+            if (variableIndex != null) {
+                return this.variables[variableIndex];
+            }
+
+            if (this instanceof Function) {
+                return ((Function)this).getArgument(name);
+            }
+
+            return null;
         } catch (Exception ex) {
             return null;
         }

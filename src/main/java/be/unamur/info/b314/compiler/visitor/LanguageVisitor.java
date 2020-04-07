@@ -159,6 +159,8 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
             return parseCharExpression((PlayPlusParser.CharContext)ctx);
         } else if (ctx instanceof PlayPlusParser.FunctionCallExpressionContext) {
             return parseFunctionCall(((PlayPlusParser.FunctionCallExpressionContext) ctx).functionCall(), "char");
+        } else if (ctx instanceof PlayPlusParser.LeftExpressionContext) {
+            return parseLeftExpression((PlayPlusParser.LeftExpressionContext)ctx, "char");
         } else {
             throw new IntegerRightExpressionException("Cannot parse this as a char expression");
         }
@@ -449,33 +451,33 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         // Parse all the arguments
         for (PlayPlusParser.ArgumentContext argument : ctx.argument()) {
             parseArgument((PlayPlusParser.FunctionParameterContext) argument);
-            }
+        }
+
         return ctx;
     }
 
-        private Object parseArgument(PlayPlusParser.FunctionParameterContext ctx){
+    private Object parseArgument(PlayPlusParser.FunctionParameterContext ctx){
 
-            ArrayList<VariableBase> arguments = new ArrayList<>();
+        ArrayList<VariableBase> arguments = new ArrayList<>();
 
-            for (TerminalNode id : ctx.ID()) {
-                if (ctx.variableType() instanceof PlayPlusParser.ScalarTypeContext) {
-                    arguments.add(new Variable(ctx.variableType().getText(), id.getText(), false));
+        for (TerminalNode id : ctx.ID()) {
+            if (ctx.variableType() instanceof PlayPlusParser.ScalarTypeContext) {
+                arguments.add(new Variable(ctx.variableType().getText(), id.getText(), false));
+            } else if (ctx.variableType() instanceof PlayPlusParser.ArrayTypeContext) {
+                PlayPlusParser.ArrayContext arrayType = (PlayPlusParser.ArrayContext)ctx.variableType().children.get(0);
 
-                } else if (ctx.variableType() instanceof PlayPlusParser.ArrayTypeContext) {
-                    PlayPlusParser.ArrayContext arrayType = (PlayPlusParser.ArrayContext)ctx.variableType().children.get(0);
-
-                    arguments.add(new Array(arrayType.SCALAR().getText(), id.getText(), ArrayHelper.getSize(arrayType)));
-                } else if (ctx.variableType() instanceof PlayPlusParser.StructureTypeContext) {
-                    throw new PlayPlusException("The function argument is invalid");
-                }
+                arguments.add(new Array(arrayType.SCALAR().getText(), id.getText(), ArrayHelper.getSize(arrayType)));
+            } else if (ctx.variableType() instanceof PlayPlusParser.StructureTypeContext) {
+                throw new PlayPlusException("The function argument is invalid");
             }
+        }
 
-            PlayPlusParser.FunctionParametersContext ctxParent = (PlayPlusParser.FunctionParametersContext)ctx.parent;
-            PlayPlusParser.FunctionDefinitionContext function = (PlayPlusParser.FunctionDefinitionContext)ctxParent.parent;
+        PlayPlusParser.FunctionParametersContext ctxParent = (PlayPlusParser.FunctionParametersContext)ctx.parent;
+        PlayPlusParser.FunctionDefinitionContext function = (PlayPlusParser.FunctionDefinitionContext)ctxParent.parent;
 
-            this.application.getFunction(function.ID().getText()).addArguments(arguments);
+        this.application.getFunction(function.ID().getText()).addArguments(arguments);
 
-            return ctx;
+        return ctx;
     }
 
     private Object parseFunctionInstruction(PlayPlusParser.FunctionInstructionContext ctx) {
@@ -519,14 +521,14 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
 
         // Check if the parameters are matching
 
-        if (ctx.rightExpr().size() != function.getSize())
+        if (ctx.rightExpr().size() != function.getNumberOfArguments())
         {
             throw new PlayPlusException("The number of arguments is not matching the functions argument requirement");
         }else
         {
-            for (int i = 0; i < function.getSize(); i++)
+            for (int i = 0; i < function.getNumberOfArguments(); i++)
             {
-                String argumentType = function.getArgType(i);
+                String argumentType = function.getArgumentType(i);
 
                 switch (argumentType) {
                     case "integer":

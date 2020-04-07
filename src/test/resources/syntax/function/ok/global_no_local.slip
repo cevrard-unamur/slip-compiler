@@ -19,7 +19,7 @@
 	s2 as char;
 	f4 as char;
 
-   fct1 as function(x as integer): integer
+   fct1 as function(x as integer): char
     do
         x := 5;
     	x := x - i1;
