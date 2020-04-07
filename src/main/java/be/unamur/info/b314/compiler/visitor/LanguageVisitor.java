@@ -461,7 +461,7 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
                     arguments.add(new Variable(ctx.variableType().getText(), id.getText(), false));
 
                 } else if (ctx.variableType() instanceof PlayPlusParser.ArrayTypeContext) {
-                    PlayPlusParser.ArrayContext arrayType = (PlayPlusParser.ArrayContext)ctx.children.get(0);
+                    PlayPlusParser.ArrayContext arrayType = (PlayPlusParser.ArrayContext)ctx.variableType().children.get(0);
 
                     arguments.add(new Array(arrayType.SCALAR().getText(), id.getText(), ArrayHelper.getSize(arrayType)));
                 } else if (ctx.variableType() instanceof PlayPlusParser.StructureTypeContext) {
