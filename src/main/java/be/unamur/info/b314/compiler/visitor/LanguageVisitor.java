@@ -524,24 +524,24 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
             throw new PlayPlusException("The number of arguments is not matching the functions argument requirement");
         }else
         {
-            for (int i = 0; i < ctx.rightExpr().size(); i++)
+            for (int i = 0; i < function.getSize(); i++)
             {
-                PlayPlusParser.RightExprContext exp = ctx.rightExpr(i);
-                if (exp instanceof PlayPlusParser.FunctionCallExpressionContext)
-                {
-                    parseFunctionCall(((PlayPlusParser.FunctionCallExpressionContext) exp).functionCall(),expectedType);
-                }
-                if (exp instanceof PlayPlusParser.ParenthesesExpressionContext)
-                {
-                    throw new PlayPlusException("Invalid argument - ParenthesesExpression");
-                }
-                if (!((exp instanceof PlayPlusParser.IntegerExpressionContext || exp instanceof PlayPlusParser.NegativeIntegerExpressionContext ||
-                        exp instanceof PlayPlusParser.NumberContext) && function.getArgType(i).equals("integer")))
-                {
-                    throw new PlayPlusException("The function argument does not match - integer");
+                String argumentType = function.getArgType(i);
+
+                switch (argumentType) {
+                    case "integer":
+                        parseIntegerRightExpression(ctx.rightExpr(i));
+                        break;
+                    case "boolean":
+                        parseBooleanRightExpression(ctx.rightExpr(i));
+                        break;
+                    case "char":
+                        parseCharRightExpression(ctx.rightExpr(i));
+                        break;
+                    default:
+                        throw new PlayPlusException("This argument type is not handle");
                 }
             }
-
         }
         return ctx;
     }
