@@ -11,6 +11,7 @@ import be.unamur.info.b314.compiler.helper.ArrayHelper;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import sun.reflect.generics.tree.VoidDescriptor;
+import tmp.LanguageParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -517,37 +518,31 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         }
 
         // Check if the parameters are matching
-        if (!(function.isEmpty() && (ctx.getChildCount() == 3)))
+
+        if (ctx.rightExpr().size() != function.getSize())
         {
-            throw new PlayPlusException("The function call does not match the function");
-        }else{
-            int i = 0;
-            for (PlayPlusParser.RightExprContext exp : ctx.rightExpr())
+            throw new PlayPlusException("The number of arguments is not matching the functions argument requirement");
+        }else
+        {
+            for (int i = 0; i < ctx.rightExpr().size(); i++)
             {
-                if (!((exp instanceof PlayPlusParser.IntegerExpressionContext || exp instanceof PlayPlusParser.NumberContext) && function.getArgType(i).equals("integer")))
+                PlayPlusParser.RightExprContext exp = ctx.rightExpr(i);
+                if (exp instanceof PlayPlusParser.FunctionCallExpressionContext)
                 {
-                    throw new PlayPlusException("The function call does not match the function");
+                    parseFunctionCall(((PlayPlusParser.FunctionCallExpressionContext) exp).functionCall(),expectedType);
                 }
-
-                if (!((exp instanceof PlayPlusParser.BoolExpressionContext || exp instanceof PlayPlusParser.BooleanFalseContext ||
-                        exp instanceof PlayPlusParser.BooleanTrueContext || exp instanceof PlayPlusParser.CompExpressionContext) && function.getArgType(i).equals("boolean")))
+                if (exp instanceof PlayPlusParser.ParenthesesExpressionContext)
                 {
-                    throw new PlayPlusException("The function call does not match the function");
+                    throw new PlayPlusException("Invalid argument - ParenthesesExpression");
                 }
-
-                if (!((exp instanceof PlayPlusParser.StringContext || exp instanceof PlayPlusParser.CharContext) && function.getArgType(i).equals("char")))
+                if (!((exp instanceof PlayPlusParser.IntegerExpressionContext || exp instanceof PlayPlusParser.NegativeIntegerExpressionContext ||
+                        exp instanceof PlayPlusParser.NumberContext) && function.getArgType(i).equals("integer")))
                 {
-                    throw new PlayPlusException("The function call does not match the function");
+                    throw new PlayPlusException("The function argument does not match - integer");
                 }
-
-                if (!((exp instanceof PlayPlusParser.LeftExpressionContext) && function.getVar(i) instanceof Array))
-                {
-                    throw new PlayPlusException("The function call does not match the function");
-                }
-                i++;
             }
-        }
 
+        }
         return ctx;
     }
 

@@ -14,9 +14,9 @@ public class Function extends Context {
 
     public String getReturnType() { return returnType; }
 
-    public boolean isEmpty()
+    public int getSize()
     {
-        return arguments.isEmpty();
+        return arguments.size();
     }
 
     public String getArgType(int i)
