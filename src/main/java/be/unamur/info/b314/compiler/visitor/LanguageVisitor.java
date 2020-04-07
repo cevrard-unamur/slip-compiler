@@ -539,6 +539,12 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
                 {
                     throw new PlayPlusException("The function call does not match the function");
                 }
+
+                if (!((exp instanceof PlayPlusParser.LeftExpressionContext) && function.getVar(i) instanceof Array))
+                {
+                    throw new PlayPlusException("The function call does not match the function");
+                }
+                i++;
             }
         }
 
