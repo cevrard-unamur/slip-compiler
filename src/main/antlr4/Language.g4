@@ -31,7 +31,7 @@ inst:       variableDeclaration                         #variableInstruction
             | (actionType SEMICOLON)                    #actionInstruction
             | ifBlock                                   #ifInstruction
             | whileBlock                                #whileInstruction
-            | repeatBlock                               #repeatInstruction
+            | repeatBlock                                #repeatInstruction
             | forBlock                                  #forInstruction
             | (functionCall SEMICOLON)                  #functionCallInstruction
             ;
