@@ -39,16 +39,21 @@ public class Function extends Context {
 
     public void addArguments(ArrayList<VariableBase> arguments){
         for (VariableBase argument : arguments) {
-            addVariableBase(argument);
+            addArgument(argument);
         }
     }
-    private void addVariableBase(VariableBase variable) {
+    private void addArgument(VariableBase variable) {
         if (!isExistingInSymbolTables(variable.getName())) {
             this.argumentSymbols.put(variable.getName(), this.argumentHeapIndex);
             this.arguments[argumentHeapIndex++] = variable;
         } else {
             throw new VariableException("An argument with the name " + variable.getName() + " already exist");
         }
+    }
+
+    public boolean isAnArgument(String name)
+    {
+        return this.argumentSymbols.containsKey(name);
     }
 
     private boolean isExistingInSymbolTables(String name) {
