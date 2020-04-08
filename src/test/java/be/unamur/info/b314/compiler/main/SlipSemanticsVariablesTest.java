@@ -107,6 +107,12 @@ public class SlipSemanticsVariablesTest {
 
 
     @Test
+    public void test_incorrect_var_init_2d_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ko/incorrect_var_init_2d.slip", testFolder.newFile(), false, "semantics::variables: incorrect_var_init_2d.slip");
+    }
+
+
+    @Test
     public void test_already_define_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/variables/ko/already_define.slip", testFolder.newFile(), false, "semantics::variables: already_define.slip");
     }
@@ -127,6 +133,12 @@ public class SlipSemanticsVariablesTest {
     @Test
     public void test_variable_init_2_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/variables/ko/variable_init_2.slip", testFolder.newFile(), false, "semantics::variables: variable_init_2.slip");
+    }
+
+
+    @Test
+    public void test_incorrect_var_init_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ko/incorrect_var_init.slip", testFolder.newFile(), false, "semantics::variables: incorrect_var_init.slip");
     }
 
 

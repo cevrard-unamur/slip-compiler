@@ -2,6 +2,7 @@ package be.unamur.info.b314.compiler.helper;
 
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
+import javafx.util.Pair;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class VariableHelper {
@@ -13,12 +14,14 @@ public class VariableHelper {
         return variableType.getText();
     }
 
-    protected static String addArray(PlayPlusParser.ArrayTypeContext ctx, TerminalNode id, Application application) {
+    protected static Pair<String, Integer[]> addArray(PlayPlusParser.ArrayTypeContext ctx, TerminalNode id, Application application) {
         PlayPlusParser.ArrayContext arrayType = (PlayPlusParser.ArrayContext)ctx.children.get(0);
 
-        application.addArray(arrayType.SCALAR().getText(), id.getText(), ArrayHelper.getSize(arrayType));
+        Integer[] arraySize = ArrayHelper.getSize(arrayType);
 
-        return arrayType.SCALAR().getText();
+        application.addArray(arrayType.SCALAR().getText(), id.getText(), arraySize);
+
+        return new Pair<>(arrayType.SCALAR().getText(), arraySize);
 
     }
 
