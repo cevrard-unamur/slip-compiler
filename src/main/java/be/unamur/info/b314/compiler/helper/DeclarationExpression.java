@@ -24,6 +24,9 @@ public class DeclarationExpression {
             throw new PlayPlusException("This global declaration is not managed");
         }
 
+        // We check if we have an assignation
+
+
         return ctx;
     }
 

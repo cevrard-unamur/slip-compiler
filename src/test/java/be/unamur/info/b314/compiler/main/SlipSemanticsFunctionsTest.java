@@ -28,12 +28,6 @@ public class SlipSemanticsFunctionsTest {
 
     // tests OK
     @Test
-    public void test_void_function_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/functions/ok/void_function.slip", testFolder.newFile(), true, "semantics::functions: void_function.slip");
-    }
-
-
-    @Test
     public void test_function_with_array_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/functions/ok/function_with_array.slip", testFolder.newFile(), true, "semantics::functions: function_with_array.slip");
     }
@@ -45,10 +39,16 @@ public class SlipSemanticsFunctionsTest {
     }
 
 
+    @Test
+    public void test_void_function_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/functions/ok/void_function.slip", testFolder.newFile(), true, "semantics::functions: void_function.slip");
+    }
+
+
     // tests KO
     @Test
-    public void test_void_function_assign_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/functions/ko/void_function_assign.slip", testFolder.newFile(), false, "semantics::functions: void_function_assign.slip");
+    public void test_void_function_return_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/functions/ko/void_function_return.slip", testFolder.newFile(), false, "semantics::functions: void_function_return.slip");
     }
 
 
@@ -59,8 +59,8 @@ public class SlipSemanticsFunctionsTest {
 
 
     @Test
-    public void test_void_function_return_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/functions/ko/void_function_return.slip", testFolder.newFile(), false, "semantics::functions: void_function_return.slip");
+    public void test_void_function_assign_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/functions/ko/void_function_assign.slip", testFolder.newFile(), false, "semantics::functions: void_function_assign.slip");
     }
 
 
