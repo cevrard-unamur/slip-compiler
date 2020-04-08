@@ -15,7 +15,7 @@
 
     main as function():void
       do
-        b := 3
+        b := 3;
         a := fct2(b);
         dig();
 

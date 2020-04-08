@@ -39,6 +39,14 @@ public class Application {
             {
                 throw new VariableException("The name of a constant cannot be the same as an existing function");
             }
+            if (this.currentContext instanceof Function)
+            {
+                Function fct = (Function)this.currentContext;
+                if (fct.isAnArgument(name))
+                {
+                    throw new VariableException("A local variable cannot be named as fct argument");
+                }
+            }
             this.currentContext.addVariable(new Variable(type, name, isConstant)); }
         catch (VariableException ex) {
             this.addError(ex.getMessage());
