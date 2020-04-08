@@ -1,0 +1,22 @@
+/* Test fonction  playPlus */
+
+   #import "world.map"
+
+    a as integer;
+    b as integer;
+
+    fct2 as function(y as integer): integer
+      do
+        y as integer;
+        y := 5;
+        up(2);
+        fct2 := y;
+      end
+
+    main as function():void
+      do
+        b := 3
+        a := fct2(b);
+        dig();
+
+   end

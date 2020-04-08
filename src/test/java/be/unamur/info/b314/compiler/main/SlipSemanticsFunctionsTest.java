@@ -47,6 +47,12 @@ public class SlipSemanticsFunctionsTest {
 
     // tests KO
     @Test
+    public void test_local_var_with_param_name_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/functions/ko/local_var_with_param_name.slip", testFolder.newFile(), false, "semantics::functions: local_var_with_param_name.slip");
+    }
+
+
+    @Test
     public void test_void_function_assign_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/functions/ko/void_function_assign.slip", testFolder.newFile(), false, "semantics::functions: void_function_assign.slip");
     }
