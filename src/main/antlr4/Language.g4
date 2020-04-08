@@ -53,10 +53,8 @@ arrayDeclaration: SCALAR LBRA NUMBER (COMMA NUMBER)* RBRA                       
             ;
 structureDeclaration: ID AS RECORD (variableDeclaration|structureDeclaration)+ END SEMICOLON       #structure
             ;
-initVariable: initArray                                                                     #arrayInitialisation
+initVariable: LPAR initVariable ((COMMA initVariable)*)? RPAR                               #arrayInitialisation
             | rightExpr                                                                     #rightInitialisation
-            ;
-initArray: LPAR initVariable ((COMMA initVariable)*)? RPAR
             ;
 constDeclaration: CONST ID AS (variableType|structureDeclaration) EQUAL initVariable SEMICOLON     #constant
             ;
