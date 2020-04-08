@@ -39,11 +39,14 @@ public class Function extends Context {
 
     public void addArguments(ArrayList<VariableBase> arguments){
         for (VariableBase argument : arguments) {
-            addVariableBase(argument);
+            addArgument(argument);
         }
     }
-    private void addVariableBase(VariableBase variable) {
-        if (!isExistingInSymbolTables(variable.getName())) {
+    private void addArgument(VariableBase variable) {
+        if (variable.getName().equals(this.name))
+        {
+            throw new VariableException("An argument's name cannot match his function's name");
+        }else if (!isExistingInSymbolTables(variable.getName())) {
             this.argumentSymbols.put(variable.getName(), this.argumentHeapIndex);
             this.arguments[argumentHeapIndex++] = variable;
         } else {

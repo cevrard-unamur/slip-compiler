@@ -1,5 +1,6 @@
 package be.unamur.info.b314.compiler.application;
 
+import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
 import be.unamur.info.b314.compiler.exception.VariableException;
 
@@ -28,7 +29,13 @@ public class Application {
             if (name.equals("import")) {
                 throw new VariableException("The name import cannot be used as a variable name");
             }
-
+            if (name.equals("main")) {
+                throw new VariableException("The name main cannot be used as a variable name");
+            }
+            if (isConstant && exist(name))
+            {
+                throw new VariableException("The name of a constant cannot be the same as an existing function");
+            }
             this.currentContext.addVariable(new Variable(type, name, isConstant)); }
         catch (VariableException ex) {
             this.addError(ex.getMessage());
@@ -153,5 +160,15 @@ public class Application {
         }
 
         throw new VariableException("The function " + name + " does not exist");
+    }
+
+    private boolean exist(String name)
+    {
+        boolean found = false;
+        for (Function var : this.currentContext.functions)
+        {
+            found = var.getName().equals(name);
+        }
+        return found;
     }
 }
