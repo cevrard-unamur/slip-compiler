@@ -43,10 +43,7 @@ public class Function extends Context {
         }
     }
     private void addArgument(VariableBase variable) {
-        if (variable.getName().equals(this.name))
-        {
-            throw new VariableException("An argument's name cannot match his function's name");
-        }else if (!isExistingInSymbolTables(variable.getName())) {
+        if (!isExistingInSymbolTables(variable.getName())) {
             this.argumentSymbols.put(variable.getName(), this.argumentHeapIndex);
             this.arguments[argumentHeapIndex++] = variable;
         } else {
