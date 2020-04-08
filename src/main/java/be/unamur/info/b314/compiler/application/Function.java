@@ -15,6 +15,7 @@ public class Function extends Context {
     private VariableBase[] arguments;
     private int argumentHeapIndex = 0;
 
+
     public Function(String name, String returnType, Context parent) {
         this.argumentSymbols = new Hashtable<>();
 
@@ -39,10 +40,15 @@ public class Function extends Context {
 
     public void addArguments(ArrayList<VariableBase> arguments){
         for (VariableBase argument : arguments) {
-            addVariableBase(argument);
+            addArgument(argument);
         }
     }
-    private void addVariableBase(VariableBase variable) {
+
+    protected boolean isExistingInArgumentSymbolTables(String name) {
+        return this.argumentSymbols.containsKey(name);
+    }
+
+    private void addArgument(VariableBase variable) {
         if (!isExistingInSymbolTables(variable.getName())) {
             this.argumentSymbols.put(variable.getName(), this.argumentHeapIndex);
             this.arguments[argumentHeapIndex++] = variable;

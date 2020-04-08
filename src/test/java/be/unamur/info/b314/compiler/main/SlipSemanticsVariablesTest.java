@@ -28,6 +28,36 @@ public class SlipSemanticsVariablesTest {
 
     // tests OK
     @Test
+    public void test_array_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ok/array.slip", testFolder.newFile(), true, "semantics::variables: array.slip");
+    }
+
+
+    @Test
+    public void test_enum_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ok/enum.slip", testFolder.newFile(), true, "semantics::variables: enum.slip");
+    }
+
+
+    @Test
+    public void test_mixing_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ok/mixing.slip", testFolder.newFile(), true, "semantics::variables: mixing.slip");
+    }
+
+
+    @Test
+    public void test_struct_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ok/struct.slip", testFolder.newFile(), true, "semantics::variables: struct.slip");
+    }
+
+
+    @Test
+    public void test_type_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ok/type.slip", testFolder.newFile(), true, "semantics::variables: type.slip");
+    }
+
+
+    @Test
     public void test_assign_function_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/variables/ok/assign_function.slip", testFolder.newFile(), true, "semantics::variables: assign_function.slip");
     }
@@ -39,37 +69,25 @@ public class SlipSemanticsVariablesTest {
     }
 
 
-    @Test
-    public void test_array_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/variables/ok/array.slip", testFolder.newFile(), true, "semantics::variables: array.slip");
-    }
-
-
-    @Test
-    public void test_mixing_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/variables/ok/mixing.slip", testFolder.newFile(), true, "semantics::variables: mixing.slip");
-    }
-
-
-    @Test
-    public void test_enum_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/variables/ok/enum.slip", testFolder.newFile(), true, "semantics::variables: enum.slip");
-    }
-
-
-    @Test
-    public void test_type_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/variables/ok/type.slip", testFolder.newFile(), true, "semantics::variables: type.slip");
-    }
-
-
-    @Test
-    public void test_struct_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/variables/ok/struct.slip", testFolder.newFile(), true, "semantics::variables: struct.slip");
-    }
-
-
     // tests KO
+    @Test
+    public void test_already_define_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ko/already_define.slip", testFolder.newFile(), false, "semantics::variables: already_define.slip");
+    }
+
+
+    @Test
+    public void test_invalid_name_2_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ko/invalid_name_2.slip", testFolder.newFile(), false, "semantics::variables: invalid_name_2.slip");
+    }
+
+
+    @Test
+    public void test_invalid_name_3_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ko/invalid_name_3.slip", testFolder.newFile(), false, "semantics::variables: invalid_name_3.slip");
+    }
+
+
     @Test
     public void test_enum_duplicate_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/variables/ko/enum_duplicate.slip", testFolder.newFile(), false, "semantics::variables: enum_duplicate.slip");
@@ -77,8 +95,8 @@ public class SlipSemanticsVariablesTest {
 
 
     @Test
-    public void test_already_define_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/variables/ko/already_define.slip", testFolder.newFile(), false, "semantics::variables: already_define.slip");
+    public void test_invalid_name_1_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ko/invalid_name_1.slip", testFolder.newFile(), false, "semantics::variables: invalid_name_1.slip");
     }
 
 

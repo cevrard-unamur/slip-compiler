@@ -28,8 +28,8 @@ public class SlipSemanticsFunctionsTest {
 
     // tests OK
     @Test
-    public void test_void_function_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/functions/ok/void_function.slip", testFolder.newFile(), true, "semantics::functions: void_function.slip");
+    public void test_valid_name_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/functions/ok/valid_name.slip", testFolder.newFile(), true, "semantics::functions: valid_name.slip");
     }
 
 
@@ -45,10 +45,22 @@ public class SlipSemanticsFunctionsTest {
     }
 
 
+    @Test
+    public void test_void_function_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/functions/ok/void_function.slip", testFolder.newFile(), true, "semantics::functions: void_function.slip");
+    }
+
+
     // tests KO
     @Test
-    public void test_void_function_assign_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/functions/ko/void_function_assign.slip", testFolder.newFile(), false, "semantics::functions: void_function_assign.slip");
+    public void test_duplicate_param_name_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/functions/ko/duplicate_param_name.slip", testFolder.newFile(), false, "semantics::functions: duplicate_param_name.slip");
+    }
+
+
+    @Test
+    public void test_void_function_return_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/functions/ko/void_function_return.slip", testFolder.newFile(), false, "semantics::functions: void_function_return.slip");
     }
 
 
@@ -59,8 +71,32 @@ public class SlipSemanticsFunctionsTest {
 
 
     @Test
-    public void test_void_function_return_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/functions/ko/void_function_return.slip", testFolder.newFile(), false, "semantics::functions: void_function_return.slip");
+    public void test_variable_with_name_parameter_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/functions/ko/variable_with_name_parameter.slip", testFolder.newFile(), false, "semantics::functions: variable_with_name_parameter.slip");
+    }
+
+
+    @Test
+    public void test_invalid_name_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/functions/ko/invalid_name.slip", testFolder.newFile(), false, "semantics::functions: invalid_name.slip");
+    }
+
+
+    @Test
+    public void test_param_name_as_function_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/functions/ko/param_name_as_function.slip", testFolder.newFile(), false, "semantics::functions: param_name_as_function.slip");
+    }
+
+
+    @Test
+    public void test_void_function_assign_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/functions/ko/void_function_assign.slip", testFolder.newFile(), false, "semantics::functions: void_function_assign.slip");
+    }
+
+
+    @Test
+    public void test_duplicate_fct_name_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/functions/ko/duplicate_fct_name.slip", testFolder.newFile(), false, "semantics::functions: duplicate_fct_name.slip");
     }
 
 

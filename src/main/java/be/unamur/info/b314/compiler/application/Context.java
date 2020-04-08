@@ -120,6 +120,10 @@ public class Context {
     }
 
     private boolean isExistingInSymbolTables(String name) {
+        if (this instanceof Function && ((Function) this).isExistingInArgumentSymbolTables(name)) {
+            return true;
+        }
+
         return this.variableSymbols.containsKey(name) || this.functionSymbols.containsKey(name);
     }
 }

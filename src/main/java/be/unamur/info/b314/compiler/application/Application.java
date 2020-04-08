@@ -4,9 +4,13 @@ import be.unamur.info.b314.compiler.exception.PlayPlusException;
 import be.unamur.info.b314.compiler.exception.VariableException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Application {
+    private List<String> forbiddenVariableNames = Arrays.asList("main", "import");
+    private List<String> forbiddenFunctionNames = Arrays.asList("main");
+
     private List<String> errors = new ArrayList();
 
     private Context currentContext;
@@ -24,26 +28,26 @@ public class Application {
     }
 
     public void addVariable(String type, String name, Boolean isConstant) {
-        try {
-            if (name.equals("import")) {
-                throw new VariableException("The name import cannot be used as a variable name");
-            }
+        this.checkVariableName(name);
 
-            this.currentContext.addVariable(new Variable(type, name, isConstant)); }
-        catch (VariableException ex) {
-            this.addError(ex.getMessage());
-        }
+        this.currentContext.addVariable(new Variable(type, name, isConstant));
     }
 
     public void addArray(String type, String name, Integer[] size){
+        this.checkVariableName(name);
+
         this.currentContext.addArray(new Array(name, type, size));
     }
 
     public void addEnum(String name, List<String> values) {
+        this.checkVariableName(name);
+
         this.currentContext.addEnum(new Enumeration(name, values));
     }
 
     public void addFunction(String name, String returnType) {
+        this.checkFunctionName(name);
+
         Function function = new Function(name, returnType, this.currentContext);
         this.currentContext.addFunction(function);
         this.currentContext = function;
@@ -153,5 +157,21 @@ public class Application {
         }
 
         throw new VariableException("The function " + name + " does not exist");
+    }
+
+    private boolean checkVariableName(String name) {
+        if (this.forbiddenVariableNames.contains(name)) {
+            throw new VariableException("The name " + name + " is not allowed as a variable name");
+        }
+
+        return  true;
+    }
+
+    private boolean checkFunctionName(String name) {
+        if (this.forbiddenFunctionNames.contains(name)) {
+            throw new VariableException("The function " + name + " is not allowed as a variable name");
+        }
+
+        return  true;
     }
 }

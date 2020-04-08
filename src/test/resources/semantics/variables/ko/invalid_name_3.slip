@@ -1,0 +1,17 @@
+/* Test fonction  playPlus */
+
+   #import "world.map"
+
+    fct2 as function(): void
+      do
+        up(2);
+      end
+
+    fct2 as integer;
+
+    main as function():void
+      do
+        import();
+        dig();
+
+   end

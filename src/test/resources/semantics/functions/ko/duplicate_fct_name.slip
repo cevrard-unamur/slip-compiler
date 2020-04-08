@@ -1,0 +1,26 @@
+#import "world.map"
+
+    a as integer;
+    b as integer;
+
+    fct2 as function(fct2 as integer): integer
+          do
+            fct2 := 5;
+            up(2);
+            fct2 := y;
+          end
+
+    fct2 as function(fct2 as integer): integer
+          do
+            fct2 := 5;
+            up(2);
+            fct2 := y;
+          end
+
+    main as function():void
+      do
+        b := 3;
+        a := fct2(b);
+        dig();
+
+   end
