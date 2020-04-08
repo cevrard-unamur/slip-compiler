@@ -10,6 +10,8 @@ import java.util.List;
 public class Application {
     private List<String> errors = new ArrayList();
 
+    private String[] bannedName = {"import","main"};
+
     private Context currentContext;
 
     public Application() {
@@ -26,11 +28,12 @@ public class Application {
 
     public void addVariable(String type, String name, Boolean isConstant) {
         try {
-            if (name.equals("import")) {
-                throw new VariableException("The name import cannot be used as a variable name");
-            }
-            if (name.equals("main")) {
-                throw new VariableException("The name main cannot be used as a variable name");
+            for (String banned : bannedName)
+            {
+                if (name.equals(banned))
+                {
+                    throw new VariableException("The name of a variable cannot be 'import' or 'main'");
+                }
             }
             if (isConstant && exist(name))
             {

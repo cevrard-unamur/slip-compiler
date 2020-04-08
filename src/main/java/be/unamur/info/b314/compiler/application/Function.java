@@ -54,6 +54,10 @@ public class Function extends Context {
         }
     }
 
+    public boolean isAnArgument(String name)
+    {
+        return this.argumentSymbols.containsKey(name);
+    }
     private boolean isExistingInSymbolTables(String name) {
         return this.variableSymbols.containsKey(name) || this.functionSymbols.containsKey(name);
     }
