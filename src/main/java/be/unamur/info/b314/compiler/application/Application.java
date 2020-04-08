@@ -1,6 +1,5 @@
 package be.unamur.info.b314.compiler.application;
 
-import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
 import be.unamur.info.b314.compiler.exception.VariableException;
 
@@ -9,8 +8,6 @@ import java.util.List;
 
 public class Application {
     private List<String> errors = new ArrayList();
-
-    private String[] bannedName = {"import","main"};
 
     private Context currentContext;
 
@@ -28,25 +25,10 @@ public class Application {
 
     public void addVariable(String type, String name, Boolean isConstant) {
         try {
-            for (String banned : bannedName)
-            {
-                if (name.equals(banned))
-                {
-                    throw new VariableException("The name of a variable cannot be 'import' or 'main'");
-                }
+            if (name.equals("import")) {
+                throw new VariableException("The name import cannot be used as a variable name");
             }
-            if (isConstant && exist(name))
-            {
-                throw new VariableException("The name of a constant cannot be the same as an existing function");
-            }
-            if (this.currentContext instanceof Function)
-            {
-                Function fct = (Function)this.currentContext;
-                if (fct.isAnArgument(name))
-                {
-                    throw new VariableException("A local variable cannot be named as fct argument");
-                }
-            }
+
             this.currentContext.addVariable(new Variable(type, name, isConstant)); }
         catch (VariableException ex) {
             this.addError(ex.getMessage());
@@ -171,15 +153,5 @@ public class Application {
         }
 
         throw new VariableException("The function " + name + " does not exist");
-    }
-
-    private boolean exist(String name)
-    {
-        boolean found = false;
-        for (Function var : this.currentContext.functions)
-        {
-            found = var.getName().equals(name);
-        }
-        return found;
     }
 }
