@@ -3,7 +3,6 @@ package be.unamur.info.b314.compiler.helper;
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
-import javafx.util.Pair;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -23,10 +22,10 @@ public class VariableExpression {
                     VariableExpression.parseInitializeScalarVariable(ctx.initVariable(), variableData, application);
                 }
             } else if (ctx.variableType() instanceof PlayPlusParser.ArrayTypeContext) {
-                Pair<String, Integer[]> variableType = VariableHelper.addArray((PlayPlusParser.ArrayTypeContext)ctx.variableType(), id, application);
+                Tuple<String, Integer[]> variableType = VariableHelper.addArray((PlayPlusParser.ArrayTypeContext)ctx.variableType(), id, application);
 
                 if (ctx.initVariable() != null) {
-                    VariableExpression.parseInitializeArrayVariable(ctx.initVariable(), variableType.getKey(), variableType.getValue(), application);
+                    VariableExpression.parseInitializeArrayVariable(ctx.initVariable(), variableType.Item1, variableType.Item2, application);
                 }
             } else if (ctx.variableType() instanceof PlayPlusParser.StructureTypeContext) {
                 VariableHelper.addStructure(id, application);
