@@ -1,0 +1,15 @@
+/* Test fonction  playPlus */
+
+   #import "world.map"
+
+    main as function(): void
+      do
+        up(2);
+      end
+
+    main as function():void
+      do
+        main();
+        dig();
+
+   end

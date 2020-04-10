@@ -1,0 +1,12 @@
+/* My comments */
+
+#import "world.map"
+
+    main as boolean[5];
+
+main as function():void
+do
+
+dig();
+
+end
