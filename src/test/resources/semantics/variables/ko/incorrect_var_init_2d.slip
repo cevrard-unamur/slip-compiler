@@ -1,0 +1,12 @@
+/* My comments */
+
+#import "world.map"
+
+    v1 as boolean[3, 2] = ((false), (true, false), (true, false));
+
+main as function():void
+do
+
+dig();
+
+end

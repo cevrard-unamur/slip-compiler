@@ -1,0 +1,17 @@
+/* My comments */
+
+#import "world.map"
+
+    fct1 as function() : integer
+        do
+            fct1 := false;
+        end
+
+    v1 as boolean = fct1();
+
+main as function():void
+do
+
+dig();
+
+end
