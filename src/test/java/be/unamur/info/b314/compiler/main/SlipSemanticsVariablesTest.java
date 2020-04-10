@@ -101,12 +101,26 @@ public class SlipSemanticsVariablesTest {
 
     // tests KO
     @Test
+    public void test_array_initialisation_2d_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ko/array_initialisation_2d.slip", testFolder.newFile(), false, "semantics::variables: array_initialisation_2d.slip");
+    }
+
+
+    @Test
+    public void test_incorrect_var_init_2d_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ko/incorrect_var_init_2d.slip", testFolder.newFile(), false, "semantics::variables: incorrect_var_init_2d.slip");
+    }
+
+
+    @Test
     public void test_already_define_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/variables/ko/already_define.slip", testFolder.newFile(), false, "semantics::variables: already_define.slip");
     }
-  
-    public void test_array_initialisation_2d_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/variables/ko/array_initialisation_2d.slip", testFolder.newFile(), false, "semantics::variables: array_initialisation_2d.slip");
+
+
+    @Test
+    public void test_variable_init_3_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ko/variable_init_3.slip", testFolder.newFile(), false, "semantics::variables: variable_init_3.slip");
     }
 
 
@@ -119,28 +133,6 @@ public class SlipSemanticsVariablesTest {
     @Test
     public void test_invalid_name_3_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/variables/ko/invalid_name_3.slip", testFolder.newFile(), false, "semantics::variables: invalid_name_3.slip");
-    }
-
-
-    @Test
-    public void test_enum_duplicate_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/variables/ko/enum_duplicate.slip", testFolder.newFile(), false, "semantics::variables: enum_duplicate.slip");
-    }
-  
-    public void test_incorrect_var_init_2d_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/variables/ko/incorrect_var_init_2d.slip", testFolder.newFile(), false, "semantics::variables: incorrect_var_init_2d.slip");
-    }
-
-
-    @Test
-    public void test_invalid_name_1_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/variables/ko/invalid_name_1.slip", testFolder.newFile(), false, "semantics::variables: invalid_name_1.slip");
-    }
-
-
-    @Test
-    public void test_variable_init_3_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/variables/ko/variable_init_3.slip", testFolder.newFile(), false, "semantics::variables: variable_init_3.slip");
     }
 
 
@@ -177,6 +169,12 @@ public class SlipSemanticsVariablesTest {
     @Test
     public void test_enum_duplicate_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/variables/ko/enum_duplicate.slip", testFolder.newFile(), false, "semantics::variables: enum_duplicate.slip");
+    }
+
+
+    @Test
+    public void test_invalid_name_1_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ko/invalid_name_1.slip", testFolder.newFile(), false, "semantics::variables: invalid_name_1.slip");
     }
 
 

@@ -1,27 +1,14 @@
-/* My comments */
-
 #import "world.map"
 
-    v1 as boolean[5];
-    s, s1, n as integer;
-    v2 as boolean[5, 7];
-    v3 as integer[42, 58];
-    v4 as integer[42];
-    i as integer;
-    i as integer;
-    v5 as char[5, 7];
-    b as boolean;
-    v6 as integer[5, 12];
+    fct2 as function(fct2 as integer): integer
+      do
+        up(2);
+      end
 
-     D2 as record
-        a as integer[5];
-        b as char;
-        c as boolean[5,3];
-        end;
+     fct2 as integer[5];
 
-main as function():void
-do
+    main as function():void
+      do
+        dig();
 
-dig();
-
-end
+   end

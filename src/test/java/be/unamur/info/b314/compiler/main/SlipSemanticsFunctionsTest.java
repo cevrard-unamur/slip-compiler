@@ -98,8 +98,6 @@ public class SlipSemanticsFunctionsTest {
     public void test_duplicate_fct_name_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/functions/ko/duplicate_fct_name.slip", testFolder.newFile(), false, "semantics::functions: duplicate_fct_name.slip");
     }
-      
-    public void test_void_function_assign_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/functions/ko/void_function_assign.slip", testFolder.newFile(), false, "semantics::functions: void_function_assign.slip");
-    }
+
+
 }
