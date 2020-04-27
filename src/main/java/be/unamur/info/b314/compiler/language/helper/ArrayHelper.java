@@ -1,4 +1,4 @@
-package be.unamur.info.b314.compiler.helper;
+package be.unamur.info.b314.compiler.language.helper;
 
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import org.antlr.v4.runtime.tree.TerminalNode;

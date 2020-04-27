@@ -12,8 +12,10 @@ import java.util.List;
 
 import be.unamur.info.b314.compiler.application.Application;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
-import be.unamur.info.b314.compiler.listener.MapListener;
-import be.unamur.info.b314.compiler.visitor.LanguageVisitor;
+import be.unamur.info.b314.compiler.map.MapListener;
+import be.unamur.info.b314.compiler.language.LanguageVisitor;
+import be.unamur.info.b314.compiler.nbc.NBCListener;
+import be.unamur.info.b314.compiler.nbc.NBCPrinter;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
@@ -41,6 +43,8 @@ public class Main {
     private static final String HELP = "h";
     private static final String INPUT = "i";
     private static final String OUTPUT = "o";
+
+    private Application application;
 
     /**
      * Main method launched when starting compiler jar file.
@@ -172,6 +176,7 @@ public class Main {
      * Compiler Methods, this is where the MAGIC happens !!! \o/
      */
     private void compile() throws IOException {
+        this.application = new Application();
 
         // Put your code here !
 
@@ -180,9 +185,14 @@ public class Main {
         PlayPlusParser.RootContext tree = parse(new ANTLRInputStream(new FileInputStream(inputFile)));
         LOG.debug("Parsing input: done");
         LOG.debug("AST is {}", tree.toStringTree(parser));
-        LOG.debug("Add Listener");
+        LOG.debug("Add Listener/Visitor");
+        LOG.debug("Add Map Listener");
         mapParser(tree);
+        LOG.debug("Add Language Visitor");
         languageParser(tree);
+        LOG.debug("Add NBC Listener");
+        nbcPrinter(tree);
+        LOG.debug("All Listener/Visitor done");
     }
 
     /**
@@ -220,12 +230,17 @@ public class Main {
     }
 
     private void languageParser(PlayPlusParser.RootContext tree) {
-        Application application = new Application();
-
-        LanguageVisitor languageVisitor = new LanguageVisitor(application);
+        LanguageVisitor languageVisitor = new LanguageVisitor(this.application);
         languageVisitor.visit(tree);
 
-        handleErrors(application.getErrors(), "An error occurred with the language file");
+        handleErrors(this.application.getErrors(), "An error occurred with the language file");
+    }
+
+    private void nbcPrinter(PlayPlusParser.RootContext tree) throws FileNotFoundException {
+        ParseTreeWalker walker = new ParseTreeWalker();
+        NBCPrinter nbcPrinter = new NBCPrinter("nbcCode.nbc");
+        NBCListener nbcListener = new NBCListener(nbcPrinter, this.application);
+        walker.walk(nbcListener, tree);
     }
 
     private  void handleErrors(List<String> errors, String errorMessage) {

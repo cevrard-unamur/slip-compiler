@@ -1,20 +1,9 @@
-package be.unamur.info.b314.compiler.visitor;
+package be.unamur.info.b314.compiler.language;
 
 import be.unamur.info.b314.compiler.PlayPlusBaseVisitor;
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.*;
-import be.unamur.info.b314.compiler.exception.BooleanRightExpressionException;
-import be.unamur.info.b314.compiler.exception.IncorrectTypeException;
-import be.unamur.info.b314.compiler.exception.IntegerRightExpressionException;
-import be.unamur.info.b314.compiler.exception.PlayPlusException;
-import be.unamur.info.b314.compiler.helper.*;
-import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.TerminalNode;
-import sun.reflect.generics.tree.VoidDescriptor;
-import tmp.LanguageParser;
-
-import java.util.ArrayList;
-import java.util.List;
+import be.unamur.info.b314.compiler.language.helper.*;
 
 public class LanguageVisitor extends PlayPlusBaseVisitor {
     private Application application;
