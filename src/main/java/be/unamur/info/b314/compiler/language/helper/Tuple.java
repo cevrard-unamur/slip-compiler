@@ -1,4 +1,4 @@
-package be.unamur.info.b314.compiler.helper;
+package be.unamur.info.b314.compiler.language.helper;
 
 public class Tuple<X, Y> {
     public final X Item1;

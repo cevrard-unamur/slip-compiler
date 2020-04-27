@@ -1,10 +1,8 @@
-package be.unamur.info.b314.compiler.helper;
+package be.unamur.info.b314.compiler.language.helper;
 
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
-import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class VariableExpression {
