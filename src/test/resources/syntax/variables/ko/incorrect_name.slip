@@ -1,4 +1,4 @@
-#import "test.map"
+#import "world.map"
 
 23testArray as integer;
 

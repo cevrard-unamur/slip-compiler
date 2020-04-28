@@ -1,4 +1,4 @@
-#import "helloworld.map"
+#import "world.map"
 
 main as function(): void
 do

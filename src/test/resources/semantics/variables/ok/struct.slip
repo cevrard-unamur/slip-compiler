@@ -1,4 +1,4 @@
-#import "test.map"
+#import "world.map"
 
 test as testStructure as record
     testStructBoolean as boolean;

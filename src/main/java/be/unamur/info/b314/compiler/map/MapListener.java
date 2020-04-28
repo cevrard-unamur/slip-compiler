@@ -29,6 +29,8 @@ public class MapListener extends PlayPlusBaseListener {
         int currentLine = 0;
         int currentColumn = 0;
         int numberOfChest = 0;
+        int numberOfRobot = 0;
+        int numberOfEnemies = 0;
 
         for (PlayPlusParser.MapSymbolsContext mapItemContext : ctx.mapSymbols()) {
             // If we have the current line is the same as the number of wanted lines and
@@ -37,11 +39,9 @@ public class MapListener extends PlayPlusBaseListener {
                 errors.add("The size of the map is not matching the number of symbol.");
             }
 
-
-            if (mapItemContext instanceof PlayPlusParser.ChestContext)
-            {
-                numberOfChest++;
-            }
+            if (mapItemContext instanceof PlayPlusParser.ChestContext) { numberOfChest++; }
+            if (mapItemContext instanceof PlayPlusParser.RobotContext) { numberOfRobot++; }
+            if (mapItemContext instanceof PlayPlusParser.SqueletonContext) { numberOfEnemies++; }
 
             map[currentLine][currentColumn++] = mapItemContext.getText();
 
@@ -52,18 +52,11 @@ public class MapListener extends PlayPlusBaseListener {
             }
         }
 
-        if (currentLine != lines) {
-            errors.add("The size of the map is not matching the number of symbol.");
-        }
-
-        if (numberOfChest < 1)
-        {
-            errors.add("There is no chest on your map.");
-        }
-
-        if (numberOfChest > 1)
-        {
-            errors.add("There is too much chest on your map.");
-        }
+        if (currentLine != lines) { errors.add("The size of the map is not matching the number of symbol."); }
+        if (numberOfChest < 1) { errors.add("There is no chest on your map."); }
+        if (numberOfChest > 1) { errors.add("There is too much chests on your map."); }
+        if (numberOfRobot < 1) { errors.add("There is no robot on your map."); }
+        if (numberOfRobot > 1) { errors.add("There is too much robots on your map."); }
+        if (numberOfEnemies == 0) { errors.add("There is no enemy on your map"); }
     }
 }
