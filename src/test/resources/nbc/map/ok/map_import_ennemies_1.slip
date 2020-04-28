@@ -1,6 +1,4 @@
-#import "world.map"
-
-testArray as double;
+#import "worldenemies1.map"
 
 main as function(): void
 do

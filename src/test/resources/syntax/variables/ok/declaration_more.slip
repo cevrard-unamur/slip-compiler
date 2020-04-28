@@ -1,4 +1,4 @@
-#import "test.map"
+#import "world.map"
 
 testBoolean as boolean;
 testInteger as integer;

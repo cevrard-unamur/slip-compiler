@@ -44,7 +44,7 @@ public class Main {
     private static final String INPUT = "i";
     private static final String OUTPUT = "o";
 
-    private Application application;
+    private ANTLRParser antlrParser;
 
     /**
      * Main method launched when starting compiler jar file.
@@ -176,80 +176,19 @@ public class Main {
      * Compiler Methods, this is where the MAGIC happens !!! \o/
      */
     private void compile() throws IOException {
-        this.application = new Application();
+        this.antlrParser = new ANTLRParser();
 
-        // Put your code here !
-
-        // Get abstract syntax tree
         LOG.debug("Parsing input");
-        PlayPlusParser.RootContext tree = parse(new ANTLRInputStream(new FileInputStream(inputFile)));
+        PlayPlusParser.RootContext tree = antlrParser.parse(new ANTLRInputStream(new FileInputStream(inputFile)));
         LOG.debug("Parsing input: done");
         LOG.debug("AST is {}", tree.toStringTree(parser));
         LOG.debug("Add Listener/Visitor");
         LOG.debug("Add Map Listener");
-        mapParser(tree);
+        antlrParser.mapParser(tree);
         LOG.debug("Add Language Visitor");
-        languageParser(tree);
+        antlrParser.languageParser(tree);
         LOG.debug("Add NBC Listener");
-        nbcPrinter(tree);
+        antlrParser.nbcPrinter(tree, inputFile.getParent());
         LOG.debug("All Listener/Visitor done");
-    }
-
-    /**
-     * Builds the abstract syntax tree from input.
-     */
-    private PlayPlusParser.RootContext parse(ANTLRInputStream input) throws ParseCancellationException {
-        // Create the token stream
-        CommonTokenStream tokens = new CommonTokenStream(new PlayPlusLexer(input));
-        // Intialise parser
-        parser = new PlayPlusParser(tokens);
-        // Set error listener to adoc implementation
-        parser.removeErrorListeners();
-        MyConsoleErrorListener errorListener = new MyConsoleErrorListener();
-        parser.addErrorListener(errorListener);
-        // Launch parsing
-        PlayPlusParser.RootContext tree;
-        try {
-            tree = parser.root();
-        } catch (RecognitionException e) {
-            throw new IllegalArgumentException("Error while retrieving parsing tree!", e);
-        }
-        if (errorListener.errorHasBeenReported()) {
-            throw new IllegalArgumentException("Error while parsing input!");
-        }
-        return tree;
-    }
-
-
-    private void mapParser(PlayPlusParser.RootContext tree) {
-        ParseTreeWalker walker = new ParseTreeWalker();
-        MapListener mapListener = new MapListener();
-        walker.walk(mapListener, tree);
-
-        handleErrors(mapListener.getErrors(), "An error occurred with the map file");
-    }
-
-    private void languageParser(PlayPlusParser.RootContext tree) {
-        LanguageVisitor languageVisitor = new LanguageVisitor(this.application);
-        languageVisitor.visit(tree);
-
-        handleErrors(this.application.getErrors(), "An error occurred with the language file");
-    }
-
-    private void nbcPrinter(PlayPlusParser.RootContext tree) throws FileNotFoundException {
-        ParseTreeWalker walker = new ParseTreeWalker();
-        NBCPrinter nbcPrinter = new NBCPrinter("nbcCode.nbc");
-        NBCListener nbcListener = new NBCListener(nbcPrinter, this.application);
-        walker.walk(nbcListener, tree);
-    }
-
-    private  void handleErrors(List<String> errors, String errorMessage) {
-        if (errors.size() != 0) {
-            for (String error : errors) {
-                LOG.error(error);
-            }
-
-            throw new PlayPlusException(errorMessage);
-        }
     }
 }
