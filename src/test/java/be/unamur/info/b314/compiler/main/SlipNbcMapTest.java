@@ -65,6 +65,12 @@ public class SlipNbcMapTest {
 
 
     @Test
+    public void test_map_import_not_found_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/map/ko/map_import_not_found.slip", testFolder.newFile(), false, "nbc::map: map_import_not_found.slip");
+    }
+
+
+    @Test
     public void test_map_import_robot_2_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/nbc/map/ko/map_import_robot_2.slip", testFolder.newFile(), false, "nbc::map: map_import_robot_2.slip");
     }
