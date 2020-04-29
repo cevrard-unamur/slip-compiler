@@ -5,3 +5,8 @@
 #define SPEED 80
 #define WAIT 200
 #define NEAR 30
+
+x sdword
+y byte
+c sbyte
+b byte[]

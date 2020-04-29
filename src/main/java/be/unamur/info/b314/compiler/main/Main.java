@@ -14,7 +14,6 @@ import be.unamur.info.b314.compiler.application.Application;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
 import be.unamur.info.b314.compiler.map.MapListener;
 import be.unamur.info.b314.compiler.language.LanguageVisitor;
-import be.unamur.info.b314.compiler.nbc.NBCListener;
 import be.unamur.info.b314.compiler.nbc.NBCPrinter;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;

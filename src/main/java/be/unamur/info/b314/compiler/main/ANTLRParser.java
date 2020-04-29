@@ -6,8 +6,8 @@ import be.unamur.info.b314.compiler.application.Application;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
 import be.unamur.info.b314.compiler.language.LanguageVisitor;
 import be.unamur.info.b314.compiler.map.MapListener;
-import be.unamur.info.b314.compiler.nbc.NBCListener;
 import be.unamur.info.b314.compiler.nbc.NBCPrinter;
+import be.unamur.info.b314.compiler.nbc.NBCVisitor;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
@@ -72,10 +72,9 @@ public class ANTLRParser {
     }
 
     public void nbcPrinter(PlayPlusParser.RootContext tree, String inputFile) throws FileNotFoundException {
-        ParseTreeWalker walker = new ParseTreeWalker();
         NBCPrinter nbcPrinter = new NBCPrinter("nbcCode.nbc");
-        NBCListener nbcListener = new NBCListener(nbcPrinter, inputFile, this.application);
-        walker.walk(nbcListener, tree);
+        NBCVisitor nbcVisitor = new NBCVisitor(nbcPrinter, inputFile, this.application);
+        nbcVisitor.visit(tree);
 
         handleErrors(this.application.getErrors(), "An error occurred with the language file");
     }
