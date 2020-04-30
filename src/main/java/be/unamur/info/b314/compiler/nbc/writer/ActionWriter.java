@@ -19,6 +19,7 @@ public class ActionWriter {
      */
     public static void writeJump(PrintWriter writer) {
         NBCWriter.writePlaySound(writer);
+        NBCWriter.writePlaySound(writer);
     }
 
     /**

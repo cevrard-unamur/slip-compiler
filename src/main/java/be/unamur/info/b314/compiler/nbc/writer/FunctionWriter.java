@@ -22,5 +22,6 @@ public class FunctionWriter {
 
     public static void writeFunctionSubroutinesEnd(PrintWriter writer) {
         writer.format("ends").println();
+        writer.println();
     }
 }

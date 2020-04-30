@@ -22,4 +22,12 @@ public class NBCWriter {
         writer.println("  syscall SoundGetState, SGS");
         writer.println("  brtst NEQ, stillplaying, SGS.flags");
     }
+
+    public static void writeSegmentStart(PrintWriter writer) {
+        writer.println("dseg segment");
+    }
+
+    public static void writeSegmentEnd(PrintWriter writer) {
+        writer.println("dseg ends");
+    }
 }

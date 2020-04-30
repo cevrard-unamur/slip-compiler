@@ -15,6 +15,10 @@ public class Function {
         for (ParseTree child : context.mainFunctionInstruction().children) {
             if (child instanceof PlayPlusParser.DigInstructionContext) {
                 Function.enterDig((PlayPlusParser.DigInstructionContext)child, writer);
+            } else if (child instanceof PlayPlusParser.AssignationInstructionContext) {
+                Assignation.enterAssignationContext(((PlayPlusParser.AssignationInstructionContext) child).assignation(), application, writer);
+            } else if (child instanceof PlayPlusParser.IfInstructionContext) {
+                If.enterIfInstructionContext((PlayPlusParser.IfInstructionContext)child, application, writer);
             }
         }
 
@@ -22,9 +26,15 @@ public class Function {
     }
 
     public static void enterFunction(PlayPlusParser.FunctionDefinitionContext context, Application application, PrintWriter writer) {
-        FunctionWriter.writeFunctionSubroutinesStart(writer, context.FUNCTION().getText());
+        application.enterContext(context.ID().getText());
+        FunctionWriter.writeFunctionSubroutinesStart(writer, context.ID().getText());
+
+        for (PlayPlusParser.FunctionInstContext functionContext : context.functionInst()) {
+            Function.enterFunctionInstructionContext((PlayPlusParser.FunctionInstructionContext)functionContext, application, writer);
+        }
 
         FunctionWriter.writeFunctionSubroutinesEnd(writer);
+        application.leaveContext();
     }
 
     public static void enterDig(PlayPlusParser.DigInstructionContext context, PrintWriter writer) {
@@ -37,5 +47,13 @@ public class Function {
 
     public static void enterFight(PlayPlusParser.DigInstructionContext context, PrintWriter writer) {
         ActionWriter.writeFight(writer);
+    }
+
+    private static void enterFunctionInstructionContext(PlayPlusParser.FunctionInstructionContext context, Application application, PrintWriter writer) {
+        for (PlayPlusParser.InstContext instruction : context.inst()) {
+            if (instruction instanceof PlayPlusParser.AssignationInstructionContext) {
+                Assignation.enterAssignationContext(((PlayPlusParser.AssignationInstructionContext) instruction).assignation(), application, writer);
+            }
+        }
     }
 }

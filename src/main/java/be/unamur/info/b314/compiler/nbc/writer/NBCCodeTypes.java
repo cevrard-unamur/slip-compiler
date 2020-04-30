@@ -1,7 +1,7 @@
 package be.unamur.info.b314.compiler.nbc.writer;
 
 public enum NBCCodeTypes {
-    Int("sdword"), Char("sbyte"), Bool("byte"), Void("void");
+    Int("sdword"), Char("sbyte"), Bool("byte");
 
     private final String representation;
 

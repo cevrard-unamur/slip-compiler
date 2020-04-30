@@ -39,6 +39,10 @@ dseg segment
 dseg ends
 
 thread main
+brcmp NEQ, compVariable4, , 
+jump compVariable4End
+compVariable4:
+compVariable4End:
 ; Playing sound
 stillplaying:
   syscall SoundGetState, SGS

@@ -73,11 +73,11 @@ public class NBCVisitor extends PlayPlusBaseVisitor {
         }
 
         if (variable instanceof Variable) {
-            VariableWriter.printScalarInitialisation(this.printer.getWriter(),
+            VariableWriter.writeScalarInitialisation(this.printer.getWriter(),
                     VariableHelper.variableToNbcCodeType(variable.getType()),
                     variable.getName());
         } else if (variable instanceof Array) {
-            VariableWriter.printArrayInitialisation(this.printer.getWriter(),
+            VariableWriter.writeArrayInitialisation(this.printer.getWriter(),
                     VariableHelper.variableToNbcCodeType(variable.getType()),
                     variable.getName());
         }

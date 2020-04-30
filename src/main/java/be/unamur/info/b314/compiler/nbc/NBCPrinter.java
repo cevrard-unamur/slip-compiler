@@ -48,11 +48,13 @@ public class NBCPrinter {
         this.printSoundManagement();
     }
 
+    // TODO To Remove
     public void printDataSegmentStart() {
         this.writer.println("dseg segment");
         this.printEmptyLine();
     }
 
+    // TODO To Remove
     public void printDataSegmentEnd() {
         this.printEmptyLine();
         this.writer.println("dseg ends");
@@ -70,7 +72,7 @@ public class NBCPrinter {
     private void printSoundManagement() {
         this.printEmptyLine();
         NBCWriter.writeComment(writer,"sound management");
-        this.writer.println("dseg segment");
+        NBCWriter.writeSegmentStart(writer);
         NBCWriter.writeComment(writer,"definition");
         this.writer.println("SoundPT_def struct");
         this.writer.println("  result sbyte");
@@ -86,7 +88,7 @@ public class NBCPrinter {
         this.printEmptyLine();
         NBCWriter.writeComment(writer,"declaration");
         this.writer.println("PT_A SoundPT_def");
-        this.writer.println("dseg ends");
+        NBCWriter.writeSegmentEnd(writer);
         this.printEmptyLine();
     }
 }
