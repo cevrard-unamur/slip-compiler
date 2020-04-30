@@ -44,7 +44,7 @@ public class FunctionExpression {
             } else if (ctx.variableType() instanceof PlayPlusParser.ArrayTypeContext) {
                 PlayPlusParser.ArrayContext arrayType = (PlayPlusParser.ArrayContext)ctx.variableType().children.get(0);
 
-                arguments.add(new Array(arrayType.SCALAR().getText(), id.getText(), ArrayHelper.getSize(arrayType)));
+                arguments.add(new Array(id.getText(), arrayType.SCALAR().getText(), ArrayHelper.getSize(arrayType)));
             } else if (ctx.variableType() instanceof PlayPlusParser.StructureTypeContext) {
                 throw new PlayPlusException("The function argument is invalid");
             }

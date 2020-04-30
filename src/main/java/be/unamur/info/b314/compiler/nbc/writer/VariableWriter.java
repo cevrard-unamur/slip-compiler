@@ -4,11 +4,11 @@ import java.io.PrintWriter;
 
 public class VariableWriter {
     public static void printScalarInitialisation(PrintWriter writer, NBCCodeTypes type, String name) {
-        writer.format("%s %s", name, type.getRepresentation()).println();
+        writer.format("  %s %s", name, type.getRepresentation()).println();
     }
 
     public static void printArrayInitialisation(PrintWriter writer, NBCCodeTypes type, String name) {
-        writer.format("%s %s[]", name, type.getRepresentation()).println();
+        writer.format("  %s %s[]", name, type.getRepresentation()).println();
     }
 
     public static void printVariableSet(PrintWriter writer, String targetName, Integer value) {

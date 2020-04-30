@@ -4,7 +4,9 @@ import be.unamur.info.b314.compiler.exception.ConstantException;
 import be.unamur.info.b314.compiler.exception.VariableException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
+import java.util.List;
 
 public class Context {
     protected static final int defaultStackSize = 1000;
@@ -42,6 +44,8 @@ public class Context {
         this.records = new Record[defaultStackSize];
         this.enums = new Enumeration[defaultStackSize];
     }
+
+    public List<VariableBase> getVariables() { return Arrays.asList(this.variables).subList(0, this.variableHeapIndex); }
 
     public void addVariable(Variable variable) { this.addVariableBase(variable); }
 
