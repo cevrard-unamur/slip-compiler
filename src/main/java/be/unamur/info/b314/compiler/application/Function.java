@@ -3,7 +3,9 @@ package be.unamur.info.b314.compiler.application;
 import be.unamur.info.b314.compiler.exception.VariableException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
+import java.util.List;
 
 public class Function extends Context {
     private static final int defaultStackSize = 10;
@@ -37,6 +39,8 @@ public class Function extends Context {
     public String getArgumentType(int i) { return arguments[i].getType(); }
 
     public VariableBase getArgument(String name) { return this.arguments[this.argumentSymbols.get(name).intValue()]; }
+
+    public List<VariableBase> getArguments() { return Arrays.asList(this.arguments).subList(0, this.argumentHeapIndex); }
 
     public void addArguments(ArrayList<VariableBase> arguments){
         for (VariableBase argument : arguments) {

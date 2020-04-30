@@ -27,6 +27,7 @@ public class VariableExpression {
                 }
             } else if (ctx.variableType() instanceof PlayPlusParser.StructureTypeContext) {
                 VariableHelper.addStructure(id, application);
+                StructureExpression.parseStructureDeclaration(((PlayPlusParser.StructureTypeContext)ctx.variableType()).structureDeclaration(), application);
             }
         }
 

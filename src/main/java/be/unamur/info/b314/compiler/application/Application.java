@@ -71,6 +71,12 @@ public class Application {
         this.currentContext = this.currentContext.parent;
     }
 
+    public void goToRootContext() {
+        while (this.currentContext.parent != null) {
+            this.leaveContext();
+        }
+    }
+
     public Variable getVariable(String name) {
         Context context = this.currentContext;
 
@@ -159,6 +165,18 @@ public class Application {
         throw new VariableException("The function " + name + " does not exist");
     }
 
+    public List<VariableBase> getAllVariables() {
+        return this.getAllVariables(this.currentContext);
+    }
+
+    public List<VariableBase> getAllFunctionsParameters() {
+        return this.getAllFunctionsParameters(this.currentContext);
+    }
+
+    public List<Record> getAllRecords() {
+        return this.getAllRecords(this.currentContext);
+    }
+
     private boolean checkVariableName(String name) {
         if (this.forbiddenVariableNames.contains(name)) {
             throw new VariableException("The name " + name + " is not allowed as a variable name");
@@ -173,5 +191,53 @@ public class Application {
         }
 
         return  true;
+    }
+
+    private List<VariableBase> getAllVariables(Context context) {
+        if (context == null) { return new ArrayList<>(); }
+
+        List<VariableBase> variables = new ArrayList<>();
+
+        variables.addAll(Arrays.asList(context.variables).subList(0, context.variableHeapIndex));
+
+        for (int i = 0; i < context.functionHeapIndex; i++) {
+            variables.addAll(this.getAllVariables(context.functions[i]));
+        }
+
+        return variables;
+    }
+
+    private List<VariableBase> getAllFunctionsParameters(Context context) {
+        if (context == null) { return new ArrayList<>(); }
+
+        List<VariableBase> variables = new ArrayList<>();
+
+        if (context instanceof Function) {
+            variables.addAll(((Function)context).getArguments());
+        }
+
+        for (int i = 0; i < context.functionHeapIndex; i++) {
+            variables.addAll(this.getAllFunctionsParameters(context.functions[i]));
+        }
+
+        return variables;
+    }
+
+    private List<Record> getAllRecords(Context context) {
+        if (context == null) { return new ArrayList<>(); }
+
+        List<Record> records = new ArrayList<>();
+
+        records.addAll(Arrays.asList(context.records).subList(0, context.recordHeapIndex));
+
+        for (int i = 0; i < context.functionHeapIndex; i++) {
+            records.addAll(this.getAllRecords(context.functions[i]));
+        }
+
+        for (int i = 0; i < context.recordHeapIndex; i++) {
+            records.addAll(this.getAllRecords(context.records[i]));
+        }
+
+        return records;
     }
 }
