@@ -88,6 +88,7 @@ public class NBCPrinter {
         this.printEmptyLine();
         NBCWriter.writeComment(writer,"declaration");
         this.writer.println("PT_A SoundPT_def");
+        this.writer.println("SGS SoundGS_def");
         NBCWriter.writeSegmentEnd(writer);
         this.printEmptyLine();
     }

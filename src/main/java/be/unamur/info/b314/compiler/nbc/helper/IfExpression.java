@@ -16,15 +16,18 @@ public class IfExpression {
     public static void enterIfContext(PlayPlusParser.IfContext context, Application application, PrintWriter writer) {
         if (context.rightExpr() instanceof PlayPlusParser.CompExpressionContext) {
             IfExpression.enterCompExpressionContext((PlayPlusParser.CompExpressionContext)context.rightExpr(), application, writer);
+        } else if (context.rightExpr() instanceof PlayPlusParser.FunctionCallExpressionContext) {
+
         }
 
         conditionId++;
     }
 
     private static void enterCompExpressionContext(PlayPlusParser.CompExpressionContext context, Application application, PrintWriter writer) {
-        String comparisonOperator = "=";
-        String leftValue = "";
-        String rightValue = "";
+        // We retrieve the operator of comparison
+        String comparisonOperator = context.getChild(1).getText();
+        String leftValue = RightExpression.enterRightExpression(context.rightExpr(0), application, writer);
+        String rightValue = RightExpression.enterRightExpression(context.rightExpr(1), application, writer);
 
         String jumpName = "compVariable" + conditionId;
         String jumpNameEnd = "compVariable" + conditionId + "End";

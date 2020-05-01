@@ -34,6 +34,12 @@ public class SlipNbcFunctionTest {
 
 
     @Test
+    public void test_param_from_array_with_function_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/function/ok/param_from_array_with_function.slip", testFolder.newFile(), true, "nbc::function: param_from_array_with_function.slip");
+    }
+
+
+    @Test
     public void test_param_from_array_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/nbc/function/ok/param_from_array.slip", testFolder.newFile(), true, "nbc::function: param_from_array.slip");
     }

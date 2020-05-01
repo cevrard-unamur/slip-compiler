@@ -23,48 +23,42 @@ SoundGS_def ends
 
 ; declaration
 PT_A SoundPT_def
+SGS SoundGS_def
 dseg ends
 
 dseg segment
 
 ; Variables
-  i sdword
-  s sbyte
-  t1 byte[]
-  t2 sdword[]
-  t3 sdword[]
+  x sdword
 ; Functions parameters
 ; Records
 
 dseg ends
 
 thread main
-brcmp EQ, compVariable11, , 
-jump compVariable11End
-compVariable11:
-compVariable11End:
+set x, 3
 ; Playing sound
-stillplaying:
+stillplaying1:
   syscall SoundGetState, SGS
-  brtst NEQ, stillplaying, SGS.flags
+  brtst NEQ, stillplaying1, SGS.flags
   set PT_A.freq, 440
   set PT_A.time, 1000
   set PT_A.loop, 0
   set PT_A.vol, 3
   syscall SoundPlayTone, PT_A
 ; Playing sound
-stillplaying:
+stillplaying2:
   syscall SoundGetState, SGS
-  brtst NEQ, stillplaying, SGS.flags
+  brtst NEQ, stillplaying2, SGS.flags
   set PT_A.freq, 440
   set PT_A.time, 1000
   set PT_A.loop, 0
   set PT_A.vol, 3
   syscall SoundPlayTone, PT_A
 ; Playing sound
-stillplaying:
+stillplaying3:
   syscall SoundGetState, SGS
-  brtst NEQ, stillplaying, SGS.flags
+  brtst NEQ, stillplaying3, SGS.flags
   set PT_A.freq, 440
   set PT_A.time, 1000
   set PT_A.loop, 0

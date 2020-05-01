@@ -3,6 +3,8 @@ package be.unamur.info.b314.compiler.nbc.writer;
 import java.io.PrintWriter;
 
 public class NBCWriter {
+    private static int waitBeforeSoundId = 1;
+
     public static void writeComment(PrintWriter writer, String comment) {
         writer.printf("; %s", comment).println();
     }
@@ -18,9 +20,10 @@ public class NBCWriter {
     }
 
     public static void writeWaitBeforePlayingSound(PrintWriter writer) {
-        writer.println("stillplaying:");
+        writer.format("stillplaying%s:", NBCWriter.waitBeforeSoundId).println();
         writer.println("  syscall SoundGetState, SGS");
-        writer.println("  brtst NEQ, stillplaying, SGS.flags");
+        writer.format("  brtst NEQ, stillplaying%s, SGS.flags", NBCWriter.waitBeforeSoundId).println();
+        NBCWriter.waitBeforeSoundId++;
     }
 
     public static void writeSegmentStart(PrintWriter writer) {

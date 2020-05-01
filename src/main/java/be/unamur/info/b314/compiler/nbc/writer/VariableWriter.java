@@ -17,12 +17,6 @@ public class VariableWriter {
         writer.format("  %s %s %s", name, type.getRepresentation(), value).println();
     }
 
-    public static void writeTemporaryScalarInitialisation(PrintWriter writer, NBCCodeTypes type, String name, String value) {
-        NBCWriter.writeSegmentStart(writer);
-        writer.format("  %s %s %s", name, type.getRepresentation(), value).println();
-        NBCWriter.writeSegmentEnd(writer);
-    }
-
     public static void writeArrayInitialisation(PrintWriter writer, NBCCodeTypes type, String name) {
         writer.format("  %s %s[]", name, type.getRepresentation()).println();
     }
