@@ -10,26 +10,23 @@ dseg segment
 dseg ends
 dseg segment
 ; Variables
-  x sdword
+  i sdword
+  s sbyte
+  t1 byte[]
+  t2 sdword[]
+  t3 sdword[]
 ; Functions parameters
 ; Records
 dseg ends
-subroutine x
-set x, 3
-ends
-
 thread main
 dseg segment
-  __actionVariable1Inc sdword 0
+  __rightExpressionVar75 sdword
 dseg ends
-__actionVariable1:
-RotateMotor(OUT_BC, 80, 410)
-OnFwd(OUT_C, 80)
-wait 200
-OnFwd(OUT_C, 0)
-call x
-add __actionVariable1Inc, __actionVariable1Inc, __incPlayPlusParser
-brcmp NotEqual, __actionVariable1, __actionVariable1Inc, x
+set __rightExpressionVar75, 10
+brcmp NEQ, __compVariable16, i, __rightExpressionVar75
+jump __compVariable16End
+__compVariable16:
+__compVariable16End:
 ; Playing sound
   PlayTone(TONE_C4, 2000)
   wait 2000

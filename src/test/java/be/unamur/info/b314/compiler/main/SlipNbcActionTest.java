@@ -28,6 +28,12 @@ public class SlipNbcActionTest {
 
     // tests OK
     @Test
+    public void test_move_left_param_array_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/action/ok/move_left_param_array.slip", testFolder.newFile(), true, "nbc::action: move_left_param_array.slip");
+    }
+
+
+    @Test
     public void test_move_left_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/nbc/action/ok/move_left.slip", testFolder.newFile(), true, "nbc::action: move_left.slip");
     }

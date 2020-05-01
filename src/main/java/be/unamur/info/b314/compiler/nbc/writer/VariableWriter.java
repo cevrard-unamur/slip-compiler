@@ -32,4 +32,8 @@ public class VariableWriter {
     public static void writeExtractFromArray(PrintWriter writer, String targetName, String arrayName, String index) {
         writer.format("index %s, %s, %s", targetName, arrayName, index).println();
     }
+
+    public static void writeSetToArray(PrintWriter writer, String sourceName, String arrayName, String index) {
+        writer.format("replace %s, %s, %s, %s", arrayName, arrayName, index, sourceName).println();
+    }
 }

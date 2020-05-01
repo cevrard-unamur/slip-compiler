@@ -1,9 +1,12 @@
 #import "world.map"
 
-x as integer = 12;
+x as integer[2];
 
 main as function(): void
 do
-    up();
+    x[0] := 1;
+    x[1] := 2;
+
+    left(x[1]);
     dig();
 end

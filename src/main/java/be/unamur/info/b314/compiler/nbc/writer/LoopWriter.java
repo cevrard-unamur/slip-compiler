@@ -17,7 +17,7 @@ public class LoopWriter {
                 getIncVariableName(label),
                 NBCWriter.incVariableName);
         // We jump at the beginning of the loop if the limit is not reach
-        writer.format("brcmp %s, %s, %s, %s", NBCOpCodeTypes.NotEqual, label, getIncVariableName(label), limit)
+        writer.format("brcmp %s, %s, %s, %s", NBCOpCodeTypes.NotEqual.getRepresentation(), label, getIncVariableName(label), limit)
                 .println();
     }
 
