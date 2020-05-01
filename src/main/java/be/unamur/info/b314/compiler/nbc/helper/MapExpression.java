@@ -8,7 +8,7 @@ import org.antlr.v4.runtime.ANTLRInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class Map {
+public class MapExpression {
     public static void enterMapImportation(PlayPlusParser.MapImportationContext ctx, String inputFile, Application application) {
         try {
             // Retrieve and parse the map file

@@ -7,8 +7,20 @@ public class VariableWriter {
         writer.format("  %s %s", name, type.getRepresentation()).println();
     }
 
+    public static void writeTemporaryScalarInitialisation(PrintWriter writer, NBCCodeTypes type, String name) {
+        NBCWriter.writeSegmentStart(writer);
+        writer.format("  %s %s", name, type.getRepresentation()).println();
+        NBCWriter.writeSegmentEnd(writer);
+    }
+
     public static void writeScalarInitialisation(PrintWriter writer, NBCCodeTypes type, String name, String value) {
         writer.format("  %s %s %s", name, type.getRepresentation(), value).println();
+    }
+
+    public static void writeTemporaryScalarInitialisation(PrintWriter writer, NBCCodeTypes type, String name, String value) {
+        NBCWriter.writeSegmentStart(writer);
+        writer.format("  %s %s %s", name, type.getRepresentation(), value).println();
+        NBCWriter.writeSegmentEnd(writer);
     }
 
     public static void writeArrayInitialisation(PrintWriter writer, NBCCodeTypes type, String name) {
@@ -21,5 +33,9 @@ public class VariableWriter {
 
     public static void writeVariableMove(PrintWriter writer, String targetName, String sourceName) {
         writer.format("mov %s, %s", targetName, sourceName).println();
+    }
+
+    public static void writeExtractFromArray(PrintWriter writer, String targetName, String arrayName, String index) {
+        writer.format("index %s, %s, %s", targetName, arrayName, index).println();
     }
 }
