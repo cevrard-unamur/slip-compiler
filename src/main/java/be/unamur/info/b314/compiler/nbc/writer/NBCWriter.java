@@ -3,7 +3,18 @@ package be.unamur.info.b314.compiler.nbc.writer;
 import java.io.PrintWriter;
 
 public class NBCWriter {
-    private static int waitBeforeSoundId = 1;
+    private static final String musicTone = "TONE_C4";
+    private static final int musicTime = 2000;
+
+    public static final String turnLeftWheel = "OUT_C";
+    public static final String turnRightWheel = "OUT_B";
+    public static final String forwardWheel = "OUT_BC";
+    public static final int turnPower = 410;
+    public static final int forwardPower = 1000;
+    public static final int speed = 80;
+    public static final int wait = 200;
+
+    public static final String incVariableName = "__incPlayPlusParser";
 
     public static void writeComment(PrintWriter writer, String comment) {
         writer.printf("; %s", comment).println();
@@ -11,19 +22,10 @@ public class NBCWriter {
 
     public static void writePlaySound(PrintWriter writer) {
         NBCWriter.writeComment(writer, "Playing sound");
-        NBCWriter.writeWaitBeforePlayingSound(writer);
-        writer.println("  set PT_A.freq, 440");
-        writer.println("  set PT_A.time, 1000");
-        writer.println("  set PT_A.loop, 0");
-        writer.println("  set PT_A.vol, 3");
-        writer.println("  syscall SoundPlayTone, PT_A");
-    }
-
-    public static void writeWaitBeforePlayingSound(PrintWriter writer) {
-        writer.format("stillplaying%s:", NBCWriter.waitBeforeSoundId).println();
-        writer.println("  syscall SoundGetState, SGS");
-        writer.format("  brtst NEQ, stillplaying%s, SGS.flags", NBCWriter.waitBeforeSoundId).println();
-        NBCWriter.waitBeforeSoundId++;
+        writer.format("  PlayTone(%s, %s)", musicTone, musicTime).println();
+        writer.format("  wait %s", musicTime).println();
+        writer.format("  PlayTone(%s, %s)", 0, 0).println();
+        writer.format("  wait %s", 1000).println();
     }
 
     public static void writeSegmentStart(PrintWriter writer) {
@@ -32,5 +34,9 @@ public class NBCWriter {
 
     public static void writeSegmentEnd(PrintWriter writer) {
         writer.println("dseg ends");
+    }
+
+    public static void writeLabel(PrintWriter writer, String label) {
+        writer.format("%s:", label).println();
     }
 }

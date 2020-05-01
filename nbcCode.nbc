@@ -5,64 +5,45 @@
 #define SPEED 80
 #define WAIT 200
 #define NEAR 30
-
-; sound management
 dseg segment
-; definition
-SoundPT_def struct
-  result sbyte
-  freq word
-  time word
-  loop byte
-  vol byte
-SoundPT_def ends
-SoundGS_def struct
-  result byte
-  flags byte
-SoundGS_def ends
-
-; declaration
-PT_A SoundPT_def
-SGS SoundGS_def
+  __incPlayPlusParser sdword 1
 dseg ends
-
 dseg segment
-
 ; Variables
   x sdword
 ; Functions parameters
 ; Records
-
 dseg ends
+subroutine x
+set x, 3
+ends
 
 thread main
-set x, 3
+dseg segment
+  __actionVariable1Inc sdword 0
+dseg ends
+__actionVariable1:
+RotateMotor(OUT_BC, 80, 410)
+OnFwd(OUT_C, 80)
+wait 200
+OnFwd(OUT_C, 0)
+call x
+add __actionVariable1Inc, __actionVariable1Inc, __incPlayPlusParser
+brcmp NotEqual, __actionVariable1, __actionVariable1Inc, x
 ; Playing sound
-stillplaying1:
-  syscall SoundGetState, SGS
-  brtst NEQ, stillplaying1, SGS.flags
-  set PT_A.freq, 440
-  set PT_A.time, 1000
-  set PT_A.loop, 0
-  set PT_A.vol, 3
-  syscall SoundPlayTone, PT_A
+  PlayTone(TONE_C4, 2000)
+  wait 2000
+  PlayTone(0, 0)
+  wait 1000
 ; Playing sound
-stillplaying2:
-  syscall SoundGetState, SGS
-  brtst NEQ, stillplaying2, SGS.flags
-  set PT_A.freq, 440
-  set PT_A.time, 1000
-  set PT_A.loop, 0
-  set PT_A.vol, 3
-  syscall SoundPlayTone, PT_A
+  PlayTone(TONE_C4, 2000)
+  wait 2000
+  PlayTone(0, 0)
+  wait 1000
 ; Playing sound
-stillplaying3:
-  syscall SoundGetState, SGS
-  brtst NEQ, stillplaying3, SGS.flags
-  set PT_A.freq, 440
-  set PT_A.time, 1000
-  set PT_A.loop, 0
-  set PT_A.vol, 3
-  syscall SoundPlayTone, PT_A
+  PlayTone(TONE_C4, 2000)
+  wait 2000
+  PlayTone(0, 0)
+  wait 1000
 endt
 

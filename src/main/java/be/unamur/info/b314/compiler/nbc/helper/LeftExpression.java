@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 
 public class LeftExpression {
     private static int leftExpressionId = 1;
-    private static final String temporaryVariableName = "leftExpressionVar";
+    private static final String temporaryVariableName = "__leftExpressionVar";
 
     private static String getVariableName() {
         return temporaryVariableName + leftExpressionId;

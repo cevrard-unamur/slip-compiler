@@ -23,6 +23,8 @@ public class FunctionExpression {
                 AssignationExpression.enterAssignationContext(((PlayPlusParser.AssignationInstructionContext) child).assignation(), application, writer);
             } else if (child instanceof PlayPlusParser.IfInstructionContext) {
                 IfExpression.enterIfInstructionContext((PlayPlusParser.IfInstructionContext)child, application, writer);
+            } else if (child instanceof PlayPlusParser.ActionInstructionContext) {
+                ActionExpression.enterActionInstructionContext((PlayPlusParser.ActionInstructionContext)child, application, writer);
             }
         }
 
@@ -53,14 +55,17 @@ public class FunctionExpression {
         ActionWriter.writeFight(writer);
     }
 
-    public static void enterFunctionCall(PlayPlusParser.FunctionCallContext context, Application application, PrintWriter writer) {
-        Function function = application.getFunction(context.ID().getText());
+    public static String enterFunctionCall(PlayPlusParser.FunctionCallContext context, Application application, PrintWriter writer) {
+        String functionName = context.ID().getText();
+        Function function = application.getFunction(functionName);
         // We set all the parameters
         for (int i = 0; i < context.rightExpr().size(); i++) {
             FunctionExpression.argumentAssignation(context.rightExpr(i), function.getArgument(i), application, writer);
         }
         // We call the function itself
-        FunctionWriter.writeFunctionCall(writer, context.ID().getText());
+        FunctionWriter.writeFunctionCall(writer, functionName);
+
+        return functionName;
     }
 
     private static void enterFunctionInstructionContext(PlayPlusParser.FunctionInstructionContext context, Application application, PrintWriter writer) {

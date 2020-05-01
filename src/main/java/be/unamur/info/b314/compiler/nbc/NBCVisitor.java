@@ -28,7 +28,7 @@ public class NBCVisitor extends PlayPlusBaseVisitor {
         // We check if the imported map is correct.
         MapExpression.enterMapImportation((PlayPlusParser.MapImportationContext)ctx.mapImport(), this.inputFile, this.application);
 
-        this.printer.printDataSegmentStart();
+        NBCWriter.writeSegmentStart(this.printer.getWriter());
 
         // We declare all the variables in the nbc files at the beginning.
         NBCWriter.writeComment(this.printer.getWriter(), "Variables");
@@ -55,7 +55,7 @@ public class NBCVisitor extends PlayPlusBaseVisitor {
             }
         }
 
-        this.printer.printDataSegmentEnd();
+        NBCWriter.writeSegmentEnd(this.printer.getWriter());
 
         for (PlayPlusParser.FunctContext function : ctx.funct()) {
             FunctionExpression.enterFunction((PlayPlusParser.FunctionDefinitionContext)function, this.application, this.printer.getWriter());

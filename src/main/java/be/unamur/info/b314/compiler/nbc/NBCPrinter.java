@@ -1,7 +1,9 @@
 package be.unamur.info.b314.compiler.nbc;
 
+import be.unamur.info.b314.compiler.nbc.writer.NBCCodeTypes;
 import be.unamur.info.b314.compiler.nbc.writer.NBCWriter;
 import be.unamur.info.b314.compiler.nbc.writer.PreprocessorWriter;
+import be.unamur.info.b314.compiler.nbc.writer.VariableWriter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -45,51 +47,13 @@ public class NBCPrinter {
         PreprocessorWriter.printPreprocessorDefine(writer, "SPEED", "80");
         PreprocessorWriter.printPreprocessorDefine(writer, "WAIT", "200");
         PreprocessorWriter.printPreprocessorDefine(writer, "NEAR", "30");
-        this.printSoundManagement();
-    }
 
-    // TODO To Remove
-    public void printDataSegmentStart() {
-        this.writer.println("dseg segment");
-        this.printEmptyLine();
-    }
-
-    // TODO To Remove
-    public void printDataSegmentEnd() {
-        this.printEmptyLine();
-        this.writer.println("dseg ends");
-        this.printEmptyLine();
+        NBCWriter.writeSegmentStart(writer);
+        VariableWriter.writeScalarInitialisation(writer, NBCCodeTypes.Int, NBCWriter.incVariableName, "1");
+        NBCWriter.writeSegmentEnd(writer);
     }
 
     public void printStructureSegmentStart(String name) { this.writer.format("%s struct", name).println(); }
 
     public void printStructureSegmentEnd(String name) { this.writer.format("%s ends", name).println(); }
-
-    private void printEmptyLine() {
-        this.writer.println();
-    }
-
-    private void printSoundManagement() {
-        this.printEmptyLine();
-        NBCWriter.writeComment(writer,"sound management");
-        NBCWriter.writeSegmentStart(writer);
-        NBCWriter.writeComment(writer,"definition");
-        this.writer.println("SoundPT_def struct");
-        this.writer.println("  result sbyte");
-        this.writer.println("  freq word");
-        this.writer.println("  time word");
-        this.writer.println("  loop byte");
-        this.writer.println("  vol byte");
-        this.writer.println("SoundPT_def ends");
-        this.writer.println("SoundGS_def struct");
-        this.writer.println("  result byte");
-        this.writer.println("  flags byte");
-        this.writer.println("SoundGS_def ends");
-        this.printEmptyLine();
-        NBCWriter.writeComment(writer,"declaration");
-        this.writer.println("PT_A SoundPT_def");
-        this.writer.println("SGS SoundGS_def");
-        NBCWriter.writeSegmentEnd(writer);
-        this.printEmptyLine();
-    }
 }

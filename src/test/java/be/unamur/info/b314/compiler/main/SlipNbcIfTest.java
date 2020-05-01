@@ -28,6 +28,12 @@ public class SlipNbcIfTest {
 
     // tests OK
     @Test
+    public void test_compare_number_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/if/ok/compare_number.slip", testFolder.newFile(), true, "nbc::if: compare_number.slip");
+    }
+
+
+    @Test
     public void test_function_call_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/nbc/if/ok/function_call.slip", testFolder.newFile(), true, "nbc::if: function_call.slip");
     }
@@ -36,6 +42,12 @@ public class SlipNbcIfTest {
     @Test
     public void test_compare_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/nbc/if/ok/compare.slip", testFolder.newFile(), true, "nbc::if: compare.slip");
+    }
+
+
+    @Test
+    public void test_compare_function_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/if/ok/compare_function.slip", testFolder.newFile(), true, "nbc::if: compare_function.slip");
     }
 
 

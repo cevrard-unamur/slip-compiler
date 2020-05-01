@@ -1,0 +1,12 @@
+#import "world.map"
+
+x as function(): integer
+do
+    x := 3;
+end
+
+main as function(): void
+do
+    left(x());
+    dig();
+end

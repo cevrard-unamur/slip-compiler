@@ -3,6 +3,26 @@ package be.unamur.info.b314.compiler.nbc.writer;
 import java.io.PrintWriter;
 
 public class ActionWriter {
+    public static void writeTurnLeft(PrintWriter writer) {
+        writer.format("RotateMotor(%s, %s, %s)",
+                NBCWriter.forwardWheel,
+                NBCWriter.speed,
+                NBCWriter.turnPower).println();
+        writer.format("OnFwd(%s, %s)", NBCWriter.turnLeftWheel, NBCWriter.speed).println();
+        writer.format("wait %s", NBCWriter.wait).println();
+        writer.format("OnFwd(%s, %s)", NBCWriter.turnLeftWheel, 0).println();
+    }
+
+    public static void writeGoForward(PrintWriter writer) {
+        writer.format("RotateMotor(%s, %s, %s)",
+                NBCWriter.forwardWheel,
+                NBCWriter.speed,
+                NBCWriter.forwardPower).println();
+        writer.format("OnFwd(%s, %s)", NBCWriter.forwardWheel, NBCWriter.speed).println();
+        writer.format("wait %s", NBCWriter.wait).println();
+        writer.format("OnFwd(%s, %s)", NBCWriter.forwardWheel, 0).println();
+    }
+
     /**
      * We play a sound three times when the robot is digging
      * @param writer the writer for the NBC code

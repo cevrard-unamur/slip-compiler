@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 
 public class RightExpression {
     private static int rightExpressionId = 1;
-    private static final String temporaryVariableName = "rightExpressionVar";
+    private static final String temporaryVariableName = "__rightExpressionVar";
 
     private static String getVariableName() {
         return temporaryVariableName + rightExpressionId;
