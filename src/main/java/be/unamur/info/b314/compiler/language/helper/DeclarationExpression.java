@@ -139,6 +139,8 @@ public class DeclarationExpression {
                 RepeatExpression.parseRepeatInstruction((PlayPlusParser.RepeatInstructionContext)node, application);
             } else if (node instanceof PlayPlusParser.FunctionCallInstructionContext) {
                 FunctionExpression.parseFunctionCallInstruction((PlayPlusParser.FunctionCallInstructionContext)node, "void", application);
+            } else if (node instanceof PlayPlusParser.VariableInstructionContext) {
+                VariableExpression.parseVariableInstruction((PlayPlusParser.VariableInstructionContext)node, application);
             } else if (node instanceof PlayPlusParser.DigInstructionContext) {
             } else if (node instanceof TerminalNode) {
             } else {

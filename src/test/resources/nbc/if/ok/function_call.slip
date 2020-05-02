@@ -1,0 +1,38 @@
+#import "world.map"
+
+fct1 as function(): boolean
+do
+    x as integer;
+    y as integer;
+
+    x := 1;
+    y := 2;
+
+    fct1 := x < y;
+end
+
+fct2 as function(x as integer): boolean
+do
+    y as integer;
+
+    x := 1;
+    y := 2;
+
+    fct2 := x < y;
+end
+
+main as function(): void
+do
+    t as integer;
+    t := 4;
+
+    if (fct1()) then
+        jump();
+    end
+
+    if (fct2(t)) then
+        jump();
+    end
+
+    dig();
+end

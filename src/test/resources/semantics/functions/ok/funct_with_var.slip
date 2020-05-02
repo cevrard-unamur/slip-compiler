@@ -17,6 +17,7 @@ do
    	 left();
    	 right();
    end
+   f1 := 'c';
    dig();
 
 end

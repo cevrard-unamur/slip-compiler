@@ -1,0 +1,9 @@
+#import "world.map"
+
+x as char;
+
+main as function(): void
+do
+    x := 'c';
+    dig();
+end

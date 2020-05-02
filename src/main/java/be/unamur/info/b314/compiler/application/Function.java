@@ -40,6 +40,8 @@ public class Function extends Context {
 
     public VariableBase getArgument(String name) { return this.arguments[this.argumentSymbols.get(name).intValue()]; }
 
+    public VariableBase getArgument(int position) { return this.arguments[position]; }
+
     public List<VariableBase> getArguments() { return Arrays.asList(this.arguments).subList(0, this.argumentHeapIndex); }
 
     public void addArguments(ArrayList<VariableBase> arguments){

@@ -1,0 +1,11 @@
+#import "world.map"
+
+x as boolean;
+y as boolean;
+
+main as function(): void
+do
+    x := true;
+    y := false;
+    dig();
+end

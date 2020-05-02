@@ -1,0 +1,16 @@
+#import "world.map"
+
+x as integer;
+y as integer;
+
+main as function(): void
+do
+    x := 1;
+    y := 2;
+
+    if (x < y) then
+        jump();
+    end
+
+    dig();
+end
