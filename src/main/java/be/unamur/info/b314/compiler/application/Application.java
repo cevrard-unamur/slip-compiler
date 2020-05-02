@@ -75,6 +75,10 @@ public class Application {
         this.currentContext = this.currentContext.parent;
     }
 
+    public void enterContext(String name) {
+        this.currentContext = this.currentContext.getFunction(name);
+    }
+
     public void goToRootContext() {
         while (this.currentContext.parent != null) {
             this.leaveContext();

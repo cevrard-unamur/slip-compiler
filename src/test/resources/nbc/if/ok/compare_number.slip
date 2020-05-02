@@ -1,0 +1,10 @@
+#import "world.map"
+
+main as function(): void
+do
+    if (4 < 1) then
+        jump();
+    end
+
+    dig();
+end

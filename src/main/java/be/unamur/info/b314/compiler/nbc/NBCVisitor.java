@@ -3,8 +3,8 @@ package be.unamur.info.b314.compiler.nbc;
 import be.unamur.info.b314.compiler.PlayPlusBaseVisitor;
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.*;
-import be.unamur.info.b314.compiler.nbc.helper.Function;
-import be.unamur.info.b314.compiler.nbc.helper.Map;
+import be.unamur.info.b314.compiler.nbc.helper.FunctionExpression;
+import be.unamur.info.b314.compiler.nbc.helper.MapExpression;
 import be.unamur.info.b314.compiler.nbc.helper.VariableHelper;
 import be.unamur.info.b314.compiler.nbc.writer.NBCWriter;
 import be.unamur.info.b314.compiler.nbc.writer.VariableWriter;
@@ -26,9 +26,9 @@ public class NBCVisitor extends PlayPlusBaseVisitor {
     @Override
     public Object visitProgramme(PlayPlusParser.ProgrammeContext ctx) {
         // We check if the imported map is correct.
-        Map.enterMapImportation((PlayPlusParser.MapImportationContext)ctx.mapImport(), this.inputFile, this.application);
+        MapExpression.enterMapImportation((PlayPlusParser.MapImportationContext)ctx.mapImport(), this.inputFile, this.application);
 
-        this.printer.printDataSegmentStart();
+        NBCWriter.writeSegmentStart(this.printer.getWriter());
 
         // We declare all the variables in the nbc files at the beginning.
         NBCWriter.writeComment(this.printer.getWriter(), "Variables");
@@ -55,13 +55,13 @@ public class NBCVisitor extends PlayPlusBaseVisitor {
             }
         }
 
-        this.printer.printDataSegmentEnd();
+        NBCWriter.writeSegmentEnd(this.printer.getWriter());
 
         for (PlayPlusParser.FunctContext function : ctx.funct()) {
-            Function.enterFunction((PlayPlusParser.FunctionDefinitionContext)function, this.application, this.printer.getWriter());
+            FunctionExpression.enterFunction((PlayPlusParser.FunctionDefinitionContext)function, this.application, this.printer.getWriter());
         }
 
-        Function.enterMain((PlayPlusParser.MainContext)ctx.mainFunction(), this.application, this.printer.getWriter());
+        FunctionExpression.enterMain((PlayPlusParser.MainContext)ctx.mainFunction(), this.application, this.printer.getWriter());
 
         this.printer.close();
         return ctx;
@@ -73,11 +73,11 @@ public class NBCVisitor extends PlayPlusBaseVisitor {
         }
 
         if (variable instanceof Variable) {
-            VariableWriter.printScalarInitialisation(this.printer.getWriter(),
+            VariableWriter.writeScalarInitialisation(this.printer.getWriter(),
                     VariableHelper.variableToNbcCodeType(variable.getType()),
                     variable.getName());
         } else if (variable instanceof Array) {
-            VariableWriter.printArrayInitialisation(this.printer.getWriter(),
+            VariableWriter.writeArrayInitialisation(this.printer.getWriter(),
                     VariableHelper.variableToNbcCodeType(variable.getType()),
                     variable.getName());
         }
