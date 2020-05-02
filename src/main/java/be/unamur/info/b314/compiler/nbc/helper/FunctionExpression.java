@@ -33,7 +33,7 @@ public class FunctionExpression {
             } else if (child instanceof PlayPlusParser.ActionInstructionContext) {
                 ActionExpression.enterActionInstructionContext((PlayPlusParser.ActionInstructionContext)child, application, writer);
             } else if (child instanceof PlayPlusParser.VariableInstructionContext) {
-                // This instruction does not need to be handle here as all variable are created at the beginning of the application
+                // TODO
             } else if (child instanceof PlayPlusParser.FunctionCallInstructionContext) {
                 FunctionExpression.enterFunctionCall(
                         ((PlayPlusParser.FunctionCallInstructionContext) child).functionCall(),

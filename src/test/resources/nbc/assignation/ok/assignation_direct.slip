@@ -1,0 +1,8 @@
+#import "world.map"
+
+x as integer = 5;
+
+main as function(): void
+do
+    dig();
+end
