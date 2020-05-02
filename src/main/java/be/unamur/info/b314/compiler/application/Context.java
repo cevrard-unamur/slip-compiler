@@ -13,6 +13,8 @@ public class Context {
 
     protected Context parent;
 
+    protected String[][] map;
+
     // The variables and functions information.
     protected VariableBase[] variables;
     protected Function[] functions;
@@ -78,6 +80,14 @@ public class Context {
         } else {
             throw new VariableException("A record with the name " + record.getName() + " already exist");
         }
+    }
+
+    public void addMap(String[][] map){
+        this.map = map;
+    }
+
+    public String[][] getMap(){
+        return this.map;
     }
 
     public VariableBase getVariable(String name) {

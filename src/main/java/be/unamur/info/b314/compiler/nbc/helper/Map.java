@@ -3,7 +3,9 @@ package be.unamur.info.b314.compiler.nbc.helper;
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
 import be.unamur.info.b314.compiler.main.ANTLRParser;
+import be.unamur.info.b314.compiler.map.MapListener;
 import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -18,8 +20,20 @@ public class Map {
             ANTLRParser antlrParser = new ANTLRParser();
             PlayPlusParser.RootContext tree = antlrParser.parse(new ANTLRInputStream(new FileInputStream(mapPath)));
             antlrParser.mapParser(tree);
+            application.addMap(mapGetter(tree));
         } catch (IOException e) {
             application.addError(e.getMessage());
         }
+    }
+
+    public static String[][] mapGetter(PlayPlusParser.RootContext tree){
+        String[][] map;
+        ParseTreeWalker walker = new ParseTreeWalker();
+        MapListener mapListener = new MapListener();
+        walker.walk(mapListener, tree);
+
+        map = mapListener.getMap();
+
+        return map;
     }
 }
