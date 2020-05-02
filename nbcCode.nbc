@@ -13,45 +13,21 @@ dseg segment
 dseg ends
 dseg segment
 ; Variables
-  x sdword[]
+  x sdword
 ; Functions parameters
 ; Records
 dseg ends
 thread main
 dseg segment
-  __rightExpressionVar1 sdword
-dseg ends
-set __rightExpressionVar1, 0
-dseg segment
-  __assignationVariable1 sdword 1
-dseg ends
-replace x, x, __rightExpressionVar1, __assignationVariable1
-dseg segment
-  __rightExpressionVar2 sdword
-dseg ends
-set __rightExpressionVar2, 1
-dseg segment
-  __assignationVariable2 sdword 2
-dseg ends
-replace x, x, __rightExpressionVar2, __assignationVariable2
-dseg segment
   __actionVariable1Inc sdword 0
 dseg ends
 __actionVariable1:
-RotateMotor(OUT_BC, 80, 410)
-OnFwd(OUT_C, 80)
+RotateMotor(OUT_BC, -80, 1000)
+OnFwd(OUT_BC, -80)
 wait 200
-OnFwd(OUT_C, 0)
-dseg segment
-  __rightExpressionVar3 sdword
-dseg ends
-set __rightExpressionVar3, 1
-dseg segment
-  __leftExpressionVar1 sdword
-dseg ends
-index __leftExpressionVar1, x, __rightExpressionVar3
+OnFwd(OUT_BC, 0)
 add __actionVariable1Inc, __actionVariable1Inc, __incPlayPlusParser
-brcmp NEQ, __actionVariable1, __actionVariable1Inc, __leftExpressionVar1
+brcmp NEQ, __actionVariable1, __actionVariable1Inc, 5
 ; Playing sound
   PlayTone(TONE_C4, 2000)
   wait 2000
