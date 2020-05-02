@@ -13,12 +13,32 @@ public class ActionWriter {
         writer.format("OnFwd(%s, %s)", NBCWriter.turnLeftWheel, 0).println();
     }
 
+    public static void writeTurnRight(PrintWriter writer) {
+        writer.format("RotateMotor(%s, %s, %s)",
+                NBCWriter.forwardWheel,
+                NBCWriter.speed,
+                NBCWriter.turnPower).println();
+        writer.format("OnFwd(%s, %s)", NBCWriter.turnRightWheel, NBCWriter.speed).println();
+        writer.format("wait %s", NBCWriter.wait).println();
+        writer.format("OnFwd(%s, %s)", NBCWriter.turnRightWheel, 0).println();
+    }
+
     public static void writeGoForward(PrintWriter writer) {
         writer.format("RotateMotor(%s, %s, %s)",
                 NBCWriter.forwardWheel,
                 NBCWriter.speed,
                 NBCWriter.forwardPower).println();
         writer.format("OnFwd(%s, %s)", NBCWriter.forwardWheel, NBCWriter.speed).println();
+        writer.format("wait %s", NBCWriter.wait).println();
+        writer.format("OnFwd(%s, %s)", NBCWriter.forwardWheel, 0).println();
+    }
+
+    public static void writeGoBackward(PrintWriter writer) {
+        writer.format("RotateMotor(%s, %s, %s)",
+                NBCWriter.forwardWheel,
+                -NBCWriter.speed,
+                NBCWriter.forwardPower).println();
+        writer.format("OnFwd(%s, %s)", NBCWriter.forwardWheel, -NBCWriter.speed).println();
         writer.format("wait %s", NBCWriter.wait).println();
         writer.format("OnFwd(%s, %s)", NBCWriter.forwardWheel, 0).println();
     }
