@@ -39,4 +39,3 @@ thread main
   PlayTone(0, 0)
   wait 1000
 endt
-
