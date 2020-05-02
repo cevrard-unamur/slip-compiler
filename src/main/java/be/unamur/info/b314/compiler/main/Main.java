@@ -43,8 +43,6 @@ public class Main {
     private static final String INPUT = "i";
     private static final String OUTPUT = "o";
 
-    private ANTLRParser antlrParser;
-
     /**
      * Main method launched when starting compiler jar file.
      *
@@ -107,11 +105,6 @@ public class Main {
      */
     private File inputFile;
 
-    /**
-     * The output PCode file.
-     */
-    private File outputFile;
-
     private PlayPlusParser parser;
 
     private Main() {
@@ -160,7 +153,10 @@ public class Main {
         checkArgument(inputFile.exists() && inputFile.isFile(), "File %s not found!", inputFile.getName());
         LOG.debug("Input file set to {}", inputFile.getPath());
 
-        outputFile = new File(line.getOptionValue(OUTPUT));
+        /**
+         * The output PCode file.
+         */
+        File outputFile = new File(line.getOptionValue(OUTPUT));
         if (!outputFile.exists()) {
             outputFile.createNewFile();
         }
@@ -175,7 +171,7 @@ public class Main {
      * Compiler Methods, this is where the MAGIC happens !!! \o/
      */
     private void compile() throws IOException {
-        this.antlrParser = new ANTLRParser();
+        ANTLRParser antlrParser = new ANTLRParser();
 
         LOG.debug("Parsing input");
         PlayPlusParser.RootContext tree = antlrParser.parse(new ANTLRInputStream(new FileInputStream(inputFile)));

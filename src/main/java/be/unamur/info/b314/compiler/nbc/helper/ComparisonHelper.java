@@ -21,6 +21,6 @@ public class ComparisonHelper {
                 return NBCOpCodeTypes.NotEqual;
         }
 
-        throw new PlayPlusException("There is no matching type for this type");
+        throw new PlayPlusException("There is no matching type for this comparison");
     }
 }

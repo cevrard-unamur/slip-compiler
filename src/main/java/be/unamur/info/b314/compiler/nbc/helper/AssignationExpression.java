@@ -15,6 +15,8 @@ public class AssignationExpression {
     private static int conditionId = 1;
     private static final String assignationTemporaryVariable = "__assignationVariable";
 
+    private static String getAssignationName() { return AssignationExpression.assignationTemporaryVariable + AssignationExpression.conditionId; }
+
     public static void enterAssignationContext(PlayPlusParser.AssignationContext context, Application application, PrintWriter writer) {
         // WE give each time the full context to the children functions because we need some information from it.
         if (context.leftExpr() instanceof PlayPlusParser.LeftIdContext) {
@@ -25,10 +27,11 @@ public class AssignationExpression {
             // TODO
         } else if (context.leftExpr() instanceof PlayPlusParser.LeftPropertyArrayContext) {
             // TODO
+        } else {
+            // TODO
+            int i = 0;
         }
     }
-
-    private static String getAssignationName() { return AssignationExpression.assignationTemporaryVariable + AssignationExpression.conditionId; }
 
     private static void enterLeftIdContext(PlayPlusParser.AssignationContext context, Application application, PrintWriter writer) {
         // We get the id of the target variable (the left expression) by retrieving the matching variable in the context
@@ -52,6 +55,7 @@ public class AssignationExpression {
         String targetName = AssignationExpression.getAssignationName();
 
         // We get the variable which hold the targeted index in the array.
+        // TODO Handle 2D array
         for (PlayPlusParser.RightExprContext rightExpr : targetArray.rightExpr()) {
             variableName = RightExpression.enterRightExpression(rightExpr, application, writer);
         }

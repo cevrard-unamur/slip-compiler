@@ -45,5 +45,11 @@ public class SlipNbcAssignationTest {
     }
 
 
+    @Test
+    public void test_assignation_direct_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/assignation/ok/assignation_direct.slip", testFolder.newFile(), true, "nbc::assignation: assignation_direct.slip");
+    }
+
+
     // tests KO
 }
