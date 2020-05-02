@@ -1,10 +1,5 @@
 package be.unamur.info.b314.compiler.application;
 
-import be.unamur.info.b314.compiler.exception.ConstantException;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class Record extends Context {
     private String name;
 

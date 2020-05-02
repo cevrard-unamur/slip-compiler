@@ -2,6 +2,7 @@ package be.unamur.info.b314.compiler.nbc.helper;
 
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
+import be.unamur.info.b314.compiler.exception.PlayPlusException;
 import be.unamur.info.b314.compiler.nbc.writer.IfWriter;
 import be.unamur.info.b314.compiler.nbc.writer.NBCOpCodeTypes;
 import be.unamur.info.b314.compiler.nbc.writer.NBCWriter;
@@ -12,29 +13,30 @@ public class IfExpression {
     private static int conditionId = 1;
     private static final String conditionTemporaryVariable = "__compVariable";
 
+    private static String getJumpName() { return IfExpression.conditionTemporaryVariable + IfExpression.conditionId; }
+    private static String getJumpNameEnd() { return IfExpression.conditionTemporaryVariable + IfExpression.conditionId + "End"; }
+
     public static void enterIfInstructionContext(PlayPlusParser.IfInstructionContext context, Application application, PrintWriter writer) {
         IfExpression.enterIfContext((PlayPlusParser.IfContext)context.ifBlock(), application, writer);
     }
 
     public static void enterIfContext(PlayPlusParser.IfContext context, Application application, PrintWriter writer) {
-        if (context.rightExpr() instanceof PlayPlusParser.CompExpressionContext) {
-            IfExpression.enterCompExpressionContext((PlayPlusParser.CompExpressionContext)context.rightExpr(), application, writer);
-        } else if (context.rightExpr() instanceof PlayPlusParser.FunctionCallExpressionContext) {
-            IfExpression.enterFunctionCallExpressionContext(
-                    (PlayPlusParser.FunctionCallExpressionContext)context.rightExpr(),
-                    application,
-                    writer);
-        }
+        String rightExpressionVariable = RightExpression.enterRightExpression(context.rightExpr(), application, writer);
+
+        // TODO We need to compare the value of the right expression to check if it's true of false
+        //   -- Write the If/Else code
 
         conditionId++;
     }
 
+    // TODO To Replace
     private  static void enterFunctionCallExpressionContext(PlayPlusParser.FunctionCallExpressionContext context, Application application, PrintWriter writer) {
         String functionName = FunctionExpression.enterFunctionCall(
                 context.functionCall(),
                 application,
                 writer);
 
+        // Change the right value
         IfWriter.writeIfCondition(writer,
                 NBCOpCodeTypes.Equal,
                 IfExpression.getJumpName(),
@@ -48,6 +50,7 @@ public class IfExpression {
         NBCWriter.writeLabel(writer, IfExpression.getJumpNameEnd());
     }
 
+    // TODO To Replace
     private static void enterCompExpressionContext(PlayPlusParser.CompExpressionContext context, Application application, PrintWriter writer) {
         // We retrieve the operator of comparison
         String comparisonOperator = context.getChild(1).getText();
@@ -66,7 +69,4 @@ public class IfExpression {
         // TODO Write Then code
         NBCWriter.writeLabel(writer, IfExpression.getJumpNameEnd());
     }
-
-    private static String getJumpName() { return IfExpression.conditionTemporaryVariable + IfExpression.conditionId; }
-    private static String getJumpNameEnd() { return IfExpression.conditionTemporaryVariable + IfExpression.conditionId + "End"; }
 }

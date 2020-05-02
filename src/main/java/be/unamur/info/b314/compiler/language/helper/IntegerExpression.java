@@ -2,7 +2,7 @@ package be.unamur.info.b314.compiler.language.helper;
 
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
-import be.unamur.info.b314.compiler.exception.IntegerRightExpressionException;
+import be.unamur.info.b314.compiler.exception.PlayPlusException;
 
 public class IntegerExpression {
     public static Object parseIntegerRightExpression(PlayPlusParser.RightExprContext ctx, Application application) {
@@ -21,7 +21,7 @@ public class IntegerExpression {
         } else if (ctx instanceof PlayPlusParser.FunctionCallExpressionContext) {
             return FunctionExpression.parseFunctionCall(((PlayPlusParser.FunctionCallExpressionContext) ctx).functionCall(), "integer", application);
         } else {
-            throw new IntegerRightExpressionException("Cannot parse this as an integer expression");
+            throw new PlayPlusException("Cannot parse this as an integer expression");
         }
     }
 

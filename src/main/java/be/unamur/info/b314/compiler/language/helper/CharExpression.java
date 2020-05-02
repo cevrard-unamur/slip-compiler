@@ -2,7 +2,7 @@ package be.unamur.info.b314.compiler.language.helper;
 
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
-import be.unamur.info.b314.compiler.exception.IntegerRightExpressionException;
+import be.unamur.info.b314.compiler.exception.PlayPlusException;
 
 public class CharExpression {
     // Parse char expression
@@ -14,7 +14,7 @@ public class CharExpression {
         } else if (ctx instanceof PlayPlusParser.LeftExpressionContext) {
             return GenericExpression.parseLeftExpression((PlayPlusParser.LeftExpressionContext)ctx, "char", application);
         } else {
-            throw new IntegerRightExpressionException("Cannot parse this as a char expression");
+            throw new PlayPlusException("Cannot parse this as a char expression");
         }
     }
 

@@ -1,9 +1,7 @@
 package be.unamur.info.b314.compiler.application;
 
-import be.unamur.info.b314.compiler.exception.ConstantException;
-import be.unamur.info.b314.compiler.exception.VariableException;
+import be.unamur.info.b314.compiler.exception.PlayPlusException;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
@@ -60,7 +58,7 @@ public class Context {
             this.enumSymbols.put(enumeration.getName(), this.enumHeapIndex);
             this.enums[enumHeapIndex++] = enumeration;
         } else {
-            throw new VariableException("An enumeration with the name " + enumeration.getName() + " already exist");
+            throw new PlayPlusException("An enumeration with the name " + enumeration.getName() + " already exist");
         }
     }
 
@@ -69,7 +67,7 @@ public class Context {
             this.functionSymbols.put(function.getName(), this.functionHeapIndex);
             this.functions[functionHeapIndex++] = function;
         } else {
-            throw new VariableException("A function with the name " + function.getName() + " already exist");
+            throw new PlayPlusException("A function with the name " + function.getName() + " already exist");
         }
     }
 
@@ -78,7 +76,7 @@ public class Context {
             this.recordSymbols.put(record.getName(), this.recordHeapIndex);
             this.records[recordHeapIndex++] = record;
         } else {
-            throw new VariableException("A record with the name " + record.getName() + " already exist");
+            throw new PlayPlusException("A record with the name " + record.getName() + " already exist");
         }
     }
 
@@ -129,7 +127,7 @@ public class Context {
             this.variableSymbols.put(variable.getName(), this.variableHeapIndex);
             this.variables[variableHeapIndex++] = variable;
         } else {
-            throw new VariableException("A variable with the name " + variable.getName() + " already exist");
+            throw new PlayPlusException("A variable with the name " + variable.getName() + " already exist");
         }
     }
 

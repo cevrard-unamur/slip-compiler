@@ -1,6 +1,6 @@
 package be.unamur.info.b314.compiler.application;
 
-import be.unamur.info.b314.compiler.exception.VariableException;
+import be.unamur.info.b314.compiler.exception.PlayPlusException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -59,7 +59,7 @@ public class Function extends Context {
             this.argumentSymbols.put(variable.getName(), this.argumentHeapIndex);
             this.arguments[argumentHeapIndex++] = variable;
         } else {
-            throw new VariableException("An argument with the name " + variable.getName() + " already exist");
+            throw new PlayPlusException("An argument with the name " + variable.getName() + " already exist");
         }
     }
 
