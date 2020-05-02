@@ -18,16 +18,11 @@ dseg segment
 ; Records
 dseg ends
 thread main
-dseg segment
-  __actionVariable1Inc sdword 0
-dseg ends
-__actionVariable1:
-RotateMotor(OUT_BC, -80, 1000)
-OnFwd(OUT_BC, -80)
-wait 200
-OnFwd(OUT_BC, 0)
-add __actionVariable1Inc, __actionVariable1Inc, __incPlayPlusParser
-brcmp NEQ, __actionVariable1, __actionVariable1Inc, 5
+; Playing sound
+  PlayTone(TONE_C4, 2000)
+  wait 2000
+  PlayTone(0, 0)
+  wait 1000
 ; Playing sound
   PlayTone(TONE_C4, 2000)
   wait 2000

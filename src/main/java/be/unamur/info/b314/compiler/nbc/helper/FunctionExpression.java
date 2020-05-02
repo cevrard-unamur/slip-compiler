@@ -47,14 +47,6 @@ public class FunctionExpression {
         ActionWriter.writeDig(writer);
     }
 
-    public static void enterJump(PlayPlusParser.DigInstructionContext context, PrintWriter writer) {
-        // TODO loop on the right expression
-    }
-
-    public static void enterFight(PlayPlusParser.DigInstructionContext context, PrintWriter writer) {
-        ActionWriter.writeFight(writer);
-    }
-
     public static String enterFunctionCall(PlayPlusParser.FunctionCallContext context, Application application, PrintWriter writer) {
         String functionName = context.ID().getText();
         Function function = application.getFunction(functionName);

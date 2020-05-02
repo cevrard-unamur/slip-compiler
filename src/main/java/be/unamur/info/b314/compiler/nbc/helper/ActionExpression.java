@@ -2,7 +2,6 @@ package be.unamur.info.b314.compiler.nbc.helper;
 
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
-import be.unamur.info.b314.compiler.nbc.ActionInterface;
 import be.unamur.info.b314.compiler.nbc.writer.ActionWriter;
 import be.unamur.info.b314.compiler.nbc.writer.LoopWriter;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -16,7 +15,9 @@ public class ActionExpression {
     public static void enterActionInstructionContext(PlayPlusParser.ActionInstructionContext context, Application application, PrintWriter writer) {
         if (context.actionType() instanceof PlayPlusParser.DigContext) {
             ActionWriter.writeDig(writer);
-        } else {
+        } else if (context.actionType() instanceof PlayPlusParser.FightContext) {
+            ActionWriter.writeFight(writer);
+        } else if (context.actionType() instanceof PlayPlusParser.ActionContext) {
             PlayPlusParser.ActionContext action = (PlayPlusParser.ActionContext) context.actionType();
             PlayPlusParser.RightExprContext rightExpression = action.rightExpr();
             TerminalNode node = (TerminalNode) action.getChild(0);
@@ -69,11 +70,25 @@ public class ActionExpression {
                             application,
                             writer);
                 }
+            } else if (node.getSymbol().getType() == PlayPlusParser.JUMP) {
+                if (rightExpression == null) {
+                    // If we don't have a right expression, it's mean we are only performing the action once
+                    ActionWriter.writeJump(writer);
+                } else {
+                    // Otherwise, we need to create a loop with this action
+                    executeRightExpressionAction(
+                            (interfaceWriter) -> ActionWriter.writeJump(interfaceWriter),
+                            rightExpression,
+                            application,
+                            writer);
+                }
             }
         }
     }
 
-    private static String getActionName() { return ActionExpression.actionTemporaryVariable + ActionExpression.conditionId; }
+    private static String getActionName() {
+        return ActionExpression.actionTemporaryVariable + ActionExpression.conditionId;
+    }
 
     private static void executeRightExpressionAction(
             ActionInterface actionInterface,
@@ -85,10 +100,10 @@ public class ActionExpression {
         actionInterface.execute(writer);
 
         if (rightExpression instanceof PlayPlusParser.NumberContext) {
-            variableName= ((PlayPlusParser.NumberContext) rightExpression).NUMBER().getText();
+            variableName = ((PlayPlusParser.NumberContext) rightExpression).NUMBER().getText();
         } else if (rightExpression instanceof PlayPlusParser.LeftExpressionContext) {
             variableName = LeftExpression.enterLeftExpression(
-                    (PlayPlusParser.LeftExpressionContext)rightExpression,
+                    (PlayPlusParser.LeftExpressionContext) rightExpression,
                     application,
                     writer);
         } else if (rightExpression instanceof PlayPlusParser.FunctionCallExpressionContext) {
