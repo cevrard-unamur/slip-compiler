@@ -8,5 +8,6 @@ end
 main as function(): void
 do
     left(x());
+    up(x());
     dig();
 end

@@ -48,9 +48,8 @@ public class NBCPrinter {
         PreprocessorWriter.printPreprocessorDefine(writer, "WAIT", "200");
         PreprocessorWriter.printPreprocessorDefine(writer, "NEAR", "30");
 
-        NBCWriter.writeSegmentStart(writer);
-        VariableWriter.writeScalarInitialisation(writer, NBCCodeTypes.Int, NBCWriter.incVariableName, "1");
-        NBCWriter.writeSegmentEnd(writer);
+        VariableWriter.writeTemporaryScalarInitialisation(writer, NBCCodeTypes.Int, NBCWriter.incVariableName, "1");
+        VariableWriter.writeTemporaryScalarInitialisation(writer, NBCCodeTypes.Int, NBCWriter.zeroVariableName, "0");
     }
 
     public void printStructureSegmentStart(String name) { this.writer.format("%s struct", name).println(); }

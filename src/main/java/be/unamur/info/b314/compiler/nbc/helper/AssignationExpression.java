@@ -65,6 +65,7 @@ public class AssignationExpression {
         Array array = application.getArray(targetArray.ID().getText());
 
         String variableName = "--";
+        String targetName = AssignationExpression.getAssignationName();
 
         // We get the variable which hold the targeted index in the array.
         for (PlayPlusParser.RightExprContext rightExpr : targetArray.rightExpr()) {
@@ -74,14 +75,12 @@ public class AssignationExpression {
         // We get the value we want to set in the array.
         if (context.rightExpr() instanceof PlayPlusParser.NumberContext) {
             String setValue = ((PlayPlusParser.NumberContext) context.rightExpr()).NUMBER().getText();
-            NBCWriter.writeSegmentStart(writer);
-            VariableWriter.writeScalarInitialisation(writer,
+            VariableWriter.writeTemporaryScalarInitialisation(writer,
                     NBCCodeTypes.Int,
-                    AssignationExpression.getAssignationName(),
+                    targetName,
                     setValue);
-            NBCWriter.writeSegmentEnd(writer);
             VariableWriter.writeSetToArray(writer,
-                    AssignationExpression.getAssignationName(),
+                    targetName,
                     array.getName(),
                     variableName);
         }

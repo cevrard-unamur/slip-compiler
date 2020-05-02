@@ -27,7 +27,7 @@ public class ActionExpression {
                     ActionWriter.writeTurnLeft(writer);
                 } else {
                     // Otherwise, we need to create a loop with this action
-                    executeRightExpressionAction(
+                    executeRightExpressionForwardAction(
                             (interfaceWriter) -> ActionWriter.writeTurnLeft(interfaceWriter),
                             rightExpression,
                             application,
@@ -39,7 +39,7 @@ public class ActionExpression {
                     ActionWriter.writeGoForward(writer);
                 } else {
                     // Otherwise, we need to create a loop with this action
-                    executeRightExpressionAction(
+                    executeRightExpressionForwardAction(
                             (interfaceWriter) -> ActionWriter.writeGoForward(interfaceWriter),
                             rightExpression,
                             application,
@@ -51,7 +51,7 @@ public class ActionExpression {
 
     private static String getActionName() { return ActionExpression.actionTemporaryVariable + ActionExpression.conditionId; }
 
-    private static void executeRightExpressionAction(
+    private static void executeRightExpressionForwardAction(
             ActionInterface actionInterface,
             PlayPlusParser.RightExprContext rightExpression,
             Application application,

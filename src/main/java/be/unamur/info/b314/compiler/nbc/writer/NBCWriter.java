@@ -15,6 +15,7 @@ public class NBCWriter {
     public static final int wait = 200;
 
     public static final String incVariableName = "__incPlayPlusParser";
+    public static final String zeroVariableName = "__zero";
 
     public static void writeComment(PrintWriter writer, String comment) {
         writer.printf("; %s", comment).println();
