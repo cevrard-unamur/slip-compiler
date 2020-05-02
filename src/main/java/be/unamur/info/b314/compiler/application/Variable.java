@@ -1,6 +1,6 @@
 package be.unamur.info.b314.compiler.application;
 
-import be.unamur.info.b314.compiler.exception.ConstantException;
+import be.unamur.info.b314.compiler.exception.PlayPlusException;
 
 public class Variable extends VariableBase {
     private Boolean isConstant;
@@ -10,7 +10,7 @@ public class Variable extends VariableBase {
 
     public void setValue(String value) {
         if (this.isConstant) {
-            throw new ConstantException("A constant cannot be modified");
+            throw new PlayPlusException("A constant cannot be modified");
         }
     }
 

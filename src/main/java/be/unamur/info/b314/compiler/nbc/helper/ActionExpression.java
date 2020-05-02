@@ -12,6 +12,10 @@ public class ActionExpression {
     private static int conditionId = 1;
     private static final String actionTemporaryVariable = "__actionVariable";
 
+    private static String getActionName() {
+        return ActionExpression.actionTemporaryVariable + ActionExpression.conditionId;
+    }
+
     public static void enterActionInstructionContext(PlayPlusParser.ActionInstructionContext context, Application application, PrintWriter writer) {
         if (context.actionType() instanceof PlayPlusParser.DigContext) {
             ActionWriter.writeDig(writer);
@@ -86,8 +90,8 @@ public class ActionExpression {
         }
     }
 
-    private static String getActionName() {
-        return ActionExpression.actionTemporaryVariable + ActionExpression.conditionId;
+    public static void enterDigInstructionContext(PlayPlusParser.DigInstructionContext context, PrintWriter writer) {
+        ActionWriter.writeDig(writer);
     }
 
     private static void executeRightExpressionAction(

@@ -2,7 +2,7 @@ package be.unamur.info.b314.compiler.language.helper;
 
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
-import be.unamur.info.b314.compiler.exception.BooleanRightExpressionException;
+import be.unamur.info.b314.compiler.exception.PlayPlusException;
 
 public class BooleanExpression {
     public static Object parseBooleanRightExpression(PlayPlusParser.RightExprContext ctx, Application application) {
@@ -21,7 +21,7 @@ public class BooleanExpression {
         } else if (ctx instanceof PlayPlusParser.FunctionCallExpressionContext) {
             return FunctionExpression.parseFunctionCall(((PlayPlusParser.FunctionCallExpressionContext) ctx).functionCall(), "boolean", application);
         } else {
-            throw new BooleanRightExpressionException("Cannot parse this as a boolean expression");
+            throw new PlayPlusException("Cannot parse this as a boolean expression");
         }
     }
 

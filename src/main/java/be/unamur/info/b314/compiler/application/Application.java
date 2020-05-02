@@ -1,7 +1,6 @@
 package be.unamur.info.b314.compiler.application;
 
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
-import be.unamur.info.b314.compiler.exception.VariableException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -98,7 +97,7 @@ public class Application {
             context = context.parent;
         }
 
-        throw new VariableException("The variable " + name + " does not exist");
+        throw new PlayPlusException("The variable " + name + " does not exist");
     }
 
     public Array getArray(String name) {
@@ -114,7 +113,7 @@ public class Application {
             context = context.parent;
         }
 
-        throw new VariableException("The array " + name + " does not exist");
+        throw new PlayPlusException("The array " + name + " does not exist");
     }
 
     public Array getArrayOfRecord(String name, String propertyName) {
@@ -134,7 +133,7 @@ public class Application {
             context = context.parent;
         }
 
-        throw new VariableException("The array " + propertyName + " does not exist in the record " + name);
+        throw new PlayPlusException("The array " + propertyName + " does not exist in the record " + name);
     }
 
     public Variable getVariableOfRecord(String name, String propertyName) {
@@ -154,7 +153,7 @@ public class Application {
             context = context.parent;
         }
 
-        throw new VariableException("The variable " + propertyName + " does not exist in the record " + name);
+        throw new PlayPlusException("The variable " + propertyName + " does not exist in the record " + name);
     }
 
     public Function getFunction(String name) {
@@ -170,7 +169,7 @@ public class Application {
             context = context.parent;
         }
 
-        throw new VariableException("The function " + name + " does not exist");
+        throw new PlayPlusException("The function " + name + " does not exist");
     }
 
     public List<VariableBase> getAllVariables() {
@@ -187,7 +186,7 @@ public class Application {
 
     private boolean checkVariableName(String name) {
         if (this.forbiddenVariableNames.contains(name)) {
-            throw new VariableException("The name " + name + " is not allowed as a variable name");
+            throw new PlayPlusException("The name " + name + " is not allowed as a variable name");
         }
 
         return  true;
@@ -195,7 +194,7 @@ public class Application {
 
     private boolean checkFunctionName(String name) {
         if (this.forbiddenFunctionNames.contains(name)) {
-            throw new VariableException("The function " + name + " is not allowed as a variable name");
+            throw new PlayPlusException("The function " + name + " is not allowed as a variable name");
         }
 
         return  true;

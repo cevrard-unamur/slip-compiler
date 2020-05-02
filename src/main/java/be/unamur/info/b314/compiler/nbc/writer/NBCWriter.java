@@ -17,6 +17,9 @@ public class NBCWriter {
     public static final String incVariableName = "__incPlayPlusParser";
     public static final String zeroVariableName = "__zero";
 
+    public static final String BooleanFalse = "0";
+    public static final String BooleanTrue = "1";
+
     public static void writeComment(PrintWriter writer, String comment) {
         writer.printf("; %s", comment).println();
     }

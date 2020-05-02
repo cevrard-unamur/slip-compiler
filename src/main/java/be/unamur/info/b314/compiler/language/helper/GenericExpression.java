@@ -4,7 +4,6 @@ import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
 import be.unamur.info.b314.compiler.application.Array;
 import be.unamur.info.b314.compiler.application.Variable;
-import be.unamur.info.b314.compiler.exception.IncorrectTypeException;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
@@ -16,14 +15,14 @@ public class GenericExpression {
             Variable variable = application.getVariable(leftContext.getText());
 
             if (!variable.getType().equals(expectedType)) {
-                throw new IncorrectTypeException("The type of the variable " + variable.getName() + " is incorrect - ID Context");
+                throw new PlayPlusException("The type of the variable " + variable.getName() + " is incorrect - ID Context");
             }
         } else if (leftContext instanceof PlayPlusParser.LeftArrayContext) {
             Array array = application.getArray(((PlayPlusParser.LeftArrayContext) leftContext).ID().getText());
 
 
             if (!array.getType().equals(expectedType)) {
-                throw new IncorrectTypeException("The type of the variable " + array.getName() + " is incorrect - Array Context");
+                throw new PlayPlusException("The type of the variable " + array.getName() + " is incorrect - Array Context");
             }
         } else if (leftContext instanceof PlayPlusParser.LeftPropertyContext) {
             PlayPlusParser.LeftExprContext recordExpression = ((PlayPlusParser.LeftPropertyContext) leftContext).leftExpr();
@@ -32,7 +31,7 @@ public class GenericExpression {
             Variable variable  = application.getVariableOfRecord(recordExpression.getText(), arrayId.getText());
 
             if (!variable.getType().equals(expectedType)) {
-                throw new IncorrectTypeException("The type of the variable " + variable.getName() + " is incorrect - Record ID Context");
+                throw new PlayPlusException("The type of the variable " + variable.getName() + " is incorrect - Record ID Context");
             }
         } else if (leftContext instanceof PlayPlusParser.LeftPropertyArrayContext) {
             PlayPlusParser.LeftExprContext recordExpression = ((PlayPlusParser.LeftPropertyArrayContext) leftContext).leftExpr();
@@ -41,7 +40,7 @@ public class GenericExpression {
             Array array = application.getArrayOfRecord(recordExpression.getText(), arrayId.getText());
 
             if (!array.getType().equals(expectedType)) {
-                throw new IncorrectTypeException("The type of the variable " + array.getName() + " is incorrect - Record Array Context");
+                throw new PlayPlusException("The type of the variable " + array.getName() + " is incorrect - Record Array Context");
             }
         } else {
             throw new PlayPlusException("This parsing of the left expression is not handle");

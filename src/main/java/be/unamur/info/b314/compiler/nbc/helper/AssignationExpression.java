@@ -16,6 +16,7 @@ public class AssignationExpression {
     private static final String assignationTemporaryVariable = "__assignationVariable";
 
     public static void enterAssignationContext(PlayPlusParser.AssignationContext context, Application application, PrintWriter writer) {
+        // WE give each time the full context to the children functions because we need some information from it.
         if (context.leftExpr() instanceof PlayPlusParser.LeftIdContext) {
             AssignationExpression.enterLeftIdContext(context, application, writer);
         } else if (context.leftExpr() instanceof PlayPlusParser.LeftArrayContext) {
@@ -33,31 +34,14 @@ public class AssignationExpression {
         // We get the id of the target variable (the left expression) by retrieving the matching variable in the context
         Variable variableTarget = application.getVariable(((PlayPlusParser.LeftIdContext) context.leftExpr()).ID().getText());
 
-        // We check the right expression to write the NBC
-        // If we have a char, a number or a boolean we need to 'set' the variable
-        // If we have a right expression which is another variable, we need to 'mov' it
-        if (context.rightExpr() instanceof PlayPlusParser.CharContext) {
-            String setValue = ((PlayPlusParser.CharContext) context.rightExpr()).CHAR().getText();
-            VariableWriter.writeVariableSet(writer, variableTarget.getName(), setValue);
-        } else if (context.rightExpr() instanceof PlayPlusParser.NumberContext) {
-            String setValue = ((PlayPlusParser.NumberContext) context.rightExpr()).NUMBER().getText();
-            VariableWriter.writeVariableSet(writer, variableTarget.getName(), setValue);
-        } else if (context.rightExpr() instanceof PlayPlusParser.BooleanTrueContext) {
-            VariableWriter.writeVariableSet(writer, variableTarget.getName(), "1");
-        } else if (context.rightExpr() instanceof PlayPlusParser.BooleanFalseContext) {
-            VariableWriter.writeVariableSet(writer, variableTarget.getName(), "0");
-        } else if (context.rightExpr() instanceof PlayPlusParser.FunctionCallExpressionContext) {
-            // We call the function to get the result of it
-            FunctionExpression.enterFunctionCall(((PlayPlusParser.FunctionCallExpressionContext) context.rightExpr()).functionCall(),
-                    application,
-                    writer);
-            // We move the result into the target variable
-            VariableWriter.writeVariableMove(writer,
-                    variableTarget.getName(),
-                    ((PlayPlusParser.FunctionCallExpressionContext) context.rightExpr()).functionCall().ID().getText());
-        } else if (context.rightExpr() instanceof PlayPlusParser.LeftExpressionContext) {
-            // TODO
-        }
+        // This call generate a temporary variable that we use to move it result into our left variable
+        String variableSource = RightExpression.enterRightExpression(context.rightExpr(), application, writer);
+
+        VariableWriter.writeVariableMove(
+                writer,
+                variableTarget.getName(),
+                variableSource
+        );
     }
 
     private static void enterLeftArrayContext(PlayPlusParser.AssignationContext context, Application application, PrintWriter writer) {
