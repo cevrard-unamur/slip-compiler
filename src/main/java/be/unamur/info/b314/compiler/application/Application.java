@@ -63,6 +63,10 @@ public class Application {
         this.currentContext = record;
     }
 
+    public void addMap(String[][] map){
+        this.currentContext.addMap(map);
+    }
+
     public void leaveContext() {
         if (this.currentContext.parent == null) {
             throw new PlayPlusException("Trying to leave context without parent");
