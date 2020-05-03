@@ -11,8 +11,16 @@ public class IfExpression {
     public static Object parseIf(PlayPlusParser.IfContext ctx, Application application) {
         BooleanExpression.parseBooleanRightExpression(ctx.rightExpr(), application);
 
-        for (PlayPlusParser.InstContext instruction : ctx.inst()) {
-            DeclarationExpression.parseInstruction(instruction, application);
+        if (ctx.ifThenBlock() != null) {
+            for (PlayPlusParser.InstContext instruction : ctx.ifThenBlock().inst()) {
+                DeclarationExpression.parseInstruction(instruction, application);
+            }
+        }
+
+        if (ctx.ifElseBlock() != null) {
+            for (PlayPlusParser.InstContext instruction : ctx.ifElseBlock().inst()) {
+                DeclarationExpression.parseInstruction(instruction, application);
+            }
         }
 
         return ctx;

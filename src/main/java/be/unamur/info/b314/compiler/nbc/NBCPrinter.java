@@ -50,6 +50,14 @@ public class NBCPrinter {
 
         VariableWriter.writeTemporaryScalarInitialisation(writer, NBCCodeTypes.Int, NBCWriter.incVariableName, "1");
         VariableWriter.writeTemporaryScalarInitialisation(writer, NBCCodeTypes.Int, NBCWriter.zeroVariableName, "0");
+        VariableWriter.writeTemporaryScalarInitialisation(writer,
+                NBCCodeTypes.Int,
+                NBCWriter.booleanTrueVariableName,
+                NBCWriter.booleanTrue);
+        VariableWriter.writeTemporaryScalarInitialisation(writer,
+                NBCCodeTypes.Int,
+                NBCWriter.booleanFalseVariableName,
+                NBCWriter.booleanFalse);
     }
 
     public void printStructureSegmentStart(String name) { this.writer.format("%s struct", name).println(); }

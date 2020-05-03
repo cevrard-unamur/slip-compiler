@@ -2,7 +2,6 @@ package be.unamur.info.b314.compiler.nbc.helper;
 
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
-import be.unamur.info.b314.compiler.exception.PlayPlusException;
 import be.unamur.info.b314.compiler.nbc.writer.IfWriter;
 import be.unamur.info.b314.compiler.nbc.writer.NBCOpCodeTypes;
 import be.unamur.info.b314.compiler.nbc.writer.NBCWriter;
@@ -23,50 +22,36 @@ public class IfExpression {
     public static void enterIfContext(PlayPlusParser.IfContext context, Application application, PrintWriter writer) {
         String rightExpressionVariable = RightExpression.enterRightExpression(context.rightExpr(), application, writer);
 
-        // TODO We need to compare the value of the right expression to check if it's true of false
-        //   -- Write the If/Else code
-
-        conditionId++;
-    }
-
-    // TODO To Replace
-    private  static void enterFunctionCallExpressionContext(PlayPlusParser.FunctionCallExpressionContext context, Application application, PrintWriter writer) {
-        String functionName = FunctionExpression.enterFunctionCall(
-                context.functionCall(),
-                application,
-                writer);
-
-        // Change the right value
-        IfWriter.writeIfCondition(writer,
+        // Write the compare condition
+        IfWriter.writeCompareCondition(
+                writer,
                 NBCOpCodeTypes.Equal,
                 IfExpression.getJumpName(),
-                functionName,
-                "1");
-
-        // TODO Write Else code
-        IfWriter.writeJump(writer, IfExpression.getJumpNameEnd());
+                rightExpressionVariable,
+                NBCWriter.booleanTrueVariableName
+        );
+        // Else code of the condition
+        if (context.ifElseBlock() != null) {
+            for (PlayPlusParser.InstContext instruction : context.ifElseBlock().inst()) {
+                DeclarationExpression.enterInstruction(instruction, application, writer);
+            }
+        }
+        // Jump to the end label
+        IfWriter.writeJump(
+                writer,
+                IfExpression.getJumpNameEnd()
+        );
+        // If code label
         NBCWriter.writeLabel(writer, IfExpression.getJumpName());
-        // TODO Write Then code
+        // Then code of the condition
+        if (context.ifThenBlock() != null) {
+            for (PlayPlusParser.InstContext instruction : context.ifThenBlock().inst()) {
+                DeclarationExpression.enterInstruction(instruction, application, writer);
+            }
+        }
+        // End of the condition label
         NBCWriter.writeLabel(writer, IfExpression.getJumpNameEnd());
-    }
 
-    // TODO To Replace
-    private static void enterCompExpressionContext(PlayPlusParser.CompExpressionContext context, Application application, PrintWriter writer) {
-        // We retrieve the operator of comparison
-        String comparisonOperator = context.getChild(1).getText();
-        String leftValue = RightExpression.enterRightExpression(context.rightExpr(0), application, writer);
-        String rightValue = RightExpression.enterRightExpression(context.rightExpr(1), application, writer);
-
-        IfWriter.writeIfCondition(writer,
-                ComparisonHelper.comparisonToNbcOpCodeType(comparisonOperator),
-                IfExpression.getJumpName(),
-                leftValue,
-                rightValue);
-
-        // TODO Write Else code
-        IfWriter.writeJump(writer, IfExpression.getJumpNameEnd());
-        NBCWriter.writeLabel(writer, IfExpression.getJumpName());
-        // TODO Write Then code
-        NBCWriter.writeLabel(writer, IfExpression.getJumpNameEnd());
+        conditionId++;
     }
 }
