@@ -14,9 +14,10 @@ public class Variable extends VariableBase {
         }
     }
 
-    public Variable(String type, String name, Boolean isConstant) {
+    public Variable(String type, String name, Boolean isConstant, String context) {
         this.type = type;
         this.name = name;
         this.isConstant = isConstant;
+        this.context = context;
     }
 }

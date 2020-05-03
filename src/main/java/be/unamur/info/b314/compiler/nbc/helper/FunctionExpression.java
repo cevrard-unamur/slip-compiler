@@ -3,6 +3,7 @@ package be.unamur.info.b314.compiler.nbc.helper;
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
 import be.unamur.info.b314.compiler.application.Function;
+import be.unamur.info.b314.compiler.application.Variable;
 import be.unamur.info.b314.compiler.application.VariableBase;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
 import be.unamur.info.b314.compiler.nbc.writer.FunctionWriter;
@@ -33,7 +34,11 @@ public class FunctionExpression {
             } else if (child instanceof PlayPlusParser.ActionInstructionContext) {
                 ActionExpression.enterActionInstructionContext((PlayPlusParser.ActionInstructionContext)child, application, writer);
             } else if (child instanceof PlayPlusParser.VariableInstructionContext) {
-                // TODO
+                VariableExpression.enterVariable(
+                        (PlayPlusParser.VariableInstructionContext)child,
+                        application,
+                        writer
+                );
             } else if (child instanceof PlayPlusParser.FunctionCallInstructionContext) {
                 FunctionExpression.enterFunctionCall(
                         ((PlayPlusParser.FunctionCallInstructionContext) child).functionCall(),
@@ -190,9 +195,14 @@ public class FunctionExpression {
                         indexVariable);
             }
         } else if (rightExpression instanceof PlayPlusParser.IntegerExpressionContext) {
-            // TODO
+            // TODO Matthias
         } else if (rightExpression instanceof PlayPlusParser.CompExpressionContext) {
-            // TODO
+            String argumentValue = ComparisonExpression.enterComp(
+                    (PlayPlusParser.CompExpressionContext)rightExpression,
+                    application,
+                    writer
+            );
+            VariableWriter.writeVariableMove(writer, argument.getName(), argumentValue);
         } else {
             throw new PlayPlusException("Not implemented");
         }

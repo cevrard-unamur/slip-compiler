@@ -1,0 +1,15 @@
+#import "world.map"
+
+x as char;
+
+fct1 as function(z as char): char
+   do
+     x as integer;
+     fct1 := 'c';
+   end
+
+main as function(): void
+do
+    x := fct1('d');
+    dig();
+end
