@@ -189,6 +189,10 @@ public class FunctionExpression {
                         ((PlayPlusParser.LeftArrayContext) leftExpression.leftExpr()).ID().getText(),
                         indexVariable);
             }
+        } else if (rightExpression instanceof PlayPlusParser.IntegerExpressionContext) {
+            // TODO
+        } else if (rightExpression instanceof PlayPlusParser.CompExpressionContext) {
+            // TODO
         } else {
             throw new PlayPlusException("Not implemented");
         }

@@ -23,7 +23,7 @@ public class IfExpression {
         String rightExpressionVariable = RightExpression.enterRightExpression(context.rightExpr(), application, writer);
 
         // Write the compare condition
-        IfWriter.writeCompareCondition(
+        IfWriter.writeBreakIfCondition(
                 writer,
                 NBCOpCodeTypes.Equal,
                 IfExpression.getJumpName(),
@@ -52,6 +52,6 @@ public class IfExpression {
         // End of the condition label
         NBCWriter.writeLabel(writer, IfExpression.getJumpNameEnd());
 
-        conditionId++;
+        IfExpression.conditionId++;
     }
 }
