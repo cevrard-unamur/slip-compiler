@@ -22,7 +22,7 @@ public class MapExpression {
             antlrParser.mapParser(tree);
             application.addMap(mapGetter(tree));
         } catch (IOException e) {
-            application.addError(e.getMessage());
+            // If the map is not found, we ignore the map validation
         }
     }
 
