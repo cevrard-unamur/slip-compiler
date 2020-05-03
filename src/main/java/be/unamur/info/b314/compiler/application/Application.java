@@ -29,13 +29,13 @@ public class Application {
     public void addVariable(String type, String name, Boolean isConstant) {
         this.checkVariableName(name);
 
-        this.currentContext.addVariable(new Variable(type, name, isConstant));
+        this.currentContext.addVariable(new Variable(type, name, isConstant, this.getContextName() ));
     }
 
     public void addArray(String type, String name, Integer[] size){
         this.checkVariableName(name);
 
-        this.currentContext.addArray(new Array(name, type, size));
+        this.currentContext.addArray(new Array(name, type, size, this.getContextName()));
     }
 
     public void addEnum(String name, List<String> values) {
@@ -52,7 +52,7 @@ public class Application {
         this.currentContext = function;
         // We add a first variable in the function context for the return of it
         if (returnType != "void") {
-            this.currentContext.addVariable(new Variable(returnType, name, false));
+            this.currentContext.addVariable(new Variable(returnType, name, false, this.getContextName()));
         }
     }
 
@@ -182,6 +182,16 @@ public class Application {
 
     public List<Record> getAllRecords() {
         return this.getAllRecords(this.currentContext);
+    }
+
+    public String getContextName() {
+        if (this.currentContext instanceof Function) {
+            return ((Function) this.currentContext).getName();
+        } else if (this.currentContext instanceof Record) {
+            return ((Record) this.currentContext).getName();
+        } else {
+            return "";
+        }
     }
 
     private boolean checkVariableName(String name) {

@@ -16,13 +16,21 @@ public class LeftExpression {
     }
 
     public static String enterLeftExpression(PlayPlusParser.LeftExpressionContext context, Application application, PrintWriter writer) {
-        if (context.leftExpr() instanceof PlayPlusParser.LeftIdContext) {
-            return ((PlayPlusParser.LeftIdContext) context.leftExpr()).ID().getText();
-        } else if (context.leftExpr() instanceof PlayPlusParser.LeftArrayContext) {
+        return LeftExpression.enterLeftExpression(
+                context.leftExpr(),
+                application,
+                writer
+        );
+    }
+
+    public static String enterLeftExpression(PlayPlusParser.LeftExprContext context, Application application, PrintWriter writer) {
+        if (context instanceof PlayPlusParser.LeftIdContext) {
+            return ((PlayPlusParser.LeftIdContext) context).ID().getText();
+        } else if (context instanceof PlayPlusParser.LeftArrayContext) {
             String indexVariable = "--";
             String variableName = getLeftExpressionName();
             // We need to get the name of the right expression and execute the code of it
-            for (PlayPlusParser.RightExprContext childRightExpression : ((PlayPlusParser.LeftArrayContext) context.leftExpr()).rightExpr()) {
+            for (PlayPlusParser.RightExprContext childRightExpression : ((PlayPlusParser.LeftArrayContext) context).rightExpr()) {
                 indexVariable = RightExpression.enterRightExpression(childRightExpression, application, writer);
             }
 
@@ -31,7 +39,7 @@ public class LeftExpression {
             VariableWriter.writeExtractFromArray(
                     writer,
                     variableName,
-                    ((PlayPlusParser.LeftArrayContext) context.leftExpr()).ID().getText(),
+                    ((PlayPlusParser.LeftArrayContext) context).ID().getText(),
                     indexVariable);
 
             LeftExpression.leftExpressionId++;
