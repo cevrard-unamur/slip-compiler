@@ -15,21 +15,21 @@ public class WhileExpression {
     private static String getJumpName() { return WhileExpression.whileTemporaryVariable + WhileExpression.whileId; }
     private static String getJumpNameEnd() { return WhileExpression.whileTemporaryVariable + WhileExpression.whileId + "End"; }
 
-
     public static void enterWhileInstruction(PlayPlusParser.WhileInstructionContext context, Application application, PrintWriter writer) {
-        WhileExpression.enterFor((PlayPlusParser.WhileContext)context.whileBlock(), application, writer);
+        WhileExpression.enterWhile((PlayPlusParser.WhileContext)context.whileBlock(), application, writer);
     }
 
-    public static void enterFor(PlayPlusParser.WhileContext context, Application application, PrintWriter writer) {
+    public static void enterWhile(PlayPlusParser.WhileContext context, Application application, PrintWriter writer) {
         // Handle the right expression
         String rightExpressionVariable = RightExpression.enterRightExpression(context.rightExpr(), application, writer);
 
         // Write the label to restart the loop
         NBCWriter.writeLabel(writer, WhileExpression.getJumpName());
-        // Write the compare condition
+
+        // Write the compare condition, if the condition is false, we jump to the end
         IfWriter.writeBreakIfCondition(
                 writer,
-                NBCOpCodeTypes.Equal,
+                NBCOpCodeTypes.NotEqual,
                 WhileExpression.getJumpNameEnd(),
                 rightExpressionVariable,
                 NBCWriter.booleanTrueVariableName
@@ -42,6 +42,7 @@ public class WhileExpression {
 
         // Jump to the beginning of the loop
         IfWriter.writeJump(writer, WhileExpression.getJumpName());
+
         // End of the condition label
         NBCWriter.writeLabel(writer, WhileExpression.getJumpNameEnd());
         WhileExpression.whileId++;
