@@ -1,23 +1,24 @@
 package be.unamur.info.b314.compiler.nbc.helper;
 
+import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
 import be.unamur.info.b314.compiler.nbc.writer.NBCCodeTypes;
 import be.unamur.info.b314.compiler.nbc.writer.NBCOpCodeTypes;
 
 public class ComparisonHelper {
-    public static NBCOpCodeTypes comparisonToNbcOpCodeType(String opCode) {
+    public static NBCOpCodeTypes comparisonToNbcOpCodeType(int opCode) {
         switch (opCode) {
-            case "=":
+            case PlayPlusParser.EQUAL:
                 return NBCOpCodeTypes.Equal;
-            case "<":
+            case PlayPlusParser.LESS:
                 return NBCOpCodeTypes.LessThan;
-            case "<=":
+            case PlayPlusParser.LESS_EQUAL:
                 return NBCOpCodeTypes.LessThanOrEqual;
-            case ">":
+            case PlayPlusParser.GREAT:
                 return NBCOpCodeTypes.GreaterThan;
-            case ">=":
+            case PlayPlusParser.GREAT_EQUAL:
                 return NBCOpCodeTypes.GreaterThanOrEqual;
-            case "<>":
+            case PlayPlusParser.NOT_EQUAL:
                 return NBCOpCodeTypes.NotEqual;
         }
 

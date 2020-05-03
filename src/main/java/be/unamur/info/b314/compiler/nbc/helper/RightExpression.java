@@ -73,11 +73,17 @@ public class RightExpression {
                     writer
             );
         } else if (context instanceof PlayPlusParser.BoolExpressionContext) {
-            // TODO
-            return "";
+            return ComparisonExpression.enterBoolean(
+                    (PlayPlusParser.BoolExpressionContext)context,
+                    application,
+                    writer
+            );
         } else if (context instanceof PlayPlusParser.NotExpressionContext) {
-            // TODO
-            return "";
+            return ComparisonExpression.enterNot(
+                    (PlayPlusParser.NotExpressionContext)context,
+                    application,
+                    writer
+            );
         } else if (context instanceof PlayPlusParser.FunctionCallExpressionContext) {
             // We call the function and return the name of it
             return FunctionExpression.enterFunctionCall(
