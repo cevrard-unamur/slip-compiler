@@ -5,12 +5,20 @@ import be.unamur.info.b314.compiler.nbc.helper.IfExpression;
 import java.io.PrintWriter;
 
 public class IfWriter {
-    public static void writeIfCondition(PrintWriter writer,
-                                        NBCOpCodeTypes type,
-                                        String name,
-                                        String leftValue,
-                                        String rightValue) {
-        writer.format("brcmp %s, %s, %s, %s", type.getRepresentation(), name, leftValue, rightValue).println();
+    public static void writeCompareCondition(PrintWriter writer,
+                                             NBCOpCodeTypes type,
+                                             String targetVariable,
+                                             String leftValue,
+                                             String rightValue) {
+        writer.format("cmp %s, %s, %s, %s", type.getRepresentation(), targetVariable, leftValue, rightValue).println();
+    }
+
+    public static void writeBreakIfCondition(PrintWriter writer,
+                                             NBCOpCodeTypes type,
+                                             String label,
+                                             String leftValue,
+                                             String rightValue) {
+        writer.format("brcmp %s, %s, %s, %s", type.getRepresentation(), label, leftValue, rightValue).println();
     }
 
     public static void writeJump(PrintWriter writer, String label) {

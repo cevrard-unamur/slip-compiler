@@ -1,0 +1,13 @@
+/* My comments */
+
+#import "world.map"
+
+    const i as integer = 5;
+
+main as function():void
+do
+
+    i := 5;
+    dig();
+
+end

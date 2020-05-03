@@ -155,9 +155,9 @@ public class FunctionExpression {
             String argumentValue = ((PlayPlusParser.CharContext) rightExpression).CHAR().getText();
             VariableWriter.writeVariableSet(writer, argument.getName(), argumentValue);
         } else if (rightExpression instanceof PlayPlusParser.BooleanTrueContext) {
-            VariableWriter.writeVariableSet(writer, argument.getName(), NBCWriter.BooleanTrue);
+            VariableWriter.writeVariableSet(writer, argument.getName(), NBCWriter.booleanTrue);
         } else if (rightExpression instanceof PlayPlusParser.BooleanFalseContext) {
-            VariableWriter.writeVariableSet(writer, argument.getName(), NBCWriter.BooleanFalse);
+            VariableWriter.writeVariableSet(writer, argument.getName(), NBCWriter.booleanFalse);
         } else if (rightExpression instanceof PlayPlusParser.FunctionCallExpressionContext) {
             // We call the function to retrieve the result of it and assign it to our argument
             FunctionExpression.enterFunctionCall(

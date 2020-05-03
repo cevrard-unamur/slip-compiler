@@ -105,7 +105,11 @@ digInstruction: DIG LPAR RPAR
             ;
 fightInstruction: FIGHT LPAR RPAR
             ;
-ifBlock: IF LPAR rightExpr RPAR THEN (inst)+ (ELSE (inst)+)? END    #if
+ifBlock: IF LPAR rightExpr RPAR THEN ifThenBlock (ELSE ifElseBlock)? END    #if
+            ;
+ifThenBlock: (inst)+
+            ;
+ifElseBlock: (inst)+
             ;
 whileBlock: WHILE LPAR rightExpr RPAR DO (inst)+ END                #while
             ;

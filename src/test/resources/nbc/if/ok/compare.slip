@@ -10,6 +10,10 @@ do
 
     if (x < y) then
         jump();
+        dig();
+    else
+        left();
+        right();
     end
 
     dig();

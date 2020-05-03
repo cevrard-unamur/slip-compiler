@@ -42,7 +42,7 @@ public class RightExpression {
             VariableWriter.writeTemporaryScalarInitialisation(writer,
                     NBCCodeTypes.Char,
                     variableName,
-                    NBCWriter.BooleanFalse);
+                    NBCWriter.booleanFalse);
             rightExpressionId++;
             return variableName;
         } else if (context instanceof PlayPlusParser.BooleanTrueContext) {
@@ -51,7 +51,7 @@ public class RightExpression {
             VariableWriter.writeTemporaryScalarInitialisation(writer,
                     NBCCodeTypes.Char,
                     variableName,
-                    NBCWriter.BooleanTrue);
+                    NBCWriter.booleanTrue);
             rightExpressionId++;
             return variableName;
         } else if (context instanceof PlayPlusParser.IntegerExpressionContext) {
@@ -64,10 +64,14 @@ public class RightExpression {
             return RightExpression.enterRightExpression(
                     ((PlayPlusParser.ParenthesesExpressionContext) context).rightExpr(),
                     application,
-                    writer);
+                    writer
+            );
         } else if (context instanceof PlayPlusParser.CompExpressionContext) {
-            // TODO
-            return "";
+            return ComparisonExpression.enterComp(
+                    (PlayPlusParser.CompExpressionContext)context,
+                    application,
+                    writer
+            );
         } else if (context instanceof PlayPlusParser.BoolExpressionContext) {
             // TODO
             return "";

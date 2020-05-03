@@ -27,9 +27,6 @@ public class AssignationExpression {
             // TODO
         } else if (context.leftExpr() instanceof PlayPlusParser.LeftPropertyArrayContext) {
             // TODO
-        } else {
-            // TODO
-            int i = 0;
         }
     }
 

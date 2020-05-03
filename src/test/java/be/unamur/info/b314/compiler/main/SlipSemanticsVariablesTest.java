@@ -149,6 +149,12 @@ public class SlipSemanticsVariablesTest {
 
 
     @Test
+    public void test_const_affectation_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/variables/ko/const_affectation.slip", testFolder.newFile(), false, "semantics::variables: const_affectation.slip");
+    }
+
+
+    @Test
     public void test_incorrect_var_init_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/variables/ko/incorrect_var_init.slip", testFolder.newFile(), false, "semantics::variables: incorrect_var_init.slip");
     }
