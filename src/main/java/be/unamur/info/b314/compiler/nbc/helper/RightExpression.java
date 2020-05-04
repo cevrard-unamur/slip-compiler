@@ -61,8 +61,11 @@ public class RightExpression {
                     writer
             );
         } else if (context instanceof PlayPlusParser.NegativeIntegerExpressionContext) {
-            // TODO Matthias
-            return "";
+            return IntegerExpression.enterNeg(
+                    (PlayPlusParser.NegativeIntegerExpressionContext) context,
+                    application,
+                    writer
+            );
         } else if (context instanceof PlayPlusParser.ParenthesesExpressionContext) {
             return RightExpression.enterRightExpression(
                     ((PlayPlusParser.ParenthesesExpressionContext) context).rightExpr(),
