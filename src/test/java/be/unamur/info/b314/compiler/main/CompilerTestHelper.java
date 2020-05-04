@@ -1,10 +1,17 @@
 package be.unamur.info.b314.compiler.main;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintStream;
+import org.apache.logging.log4j.core.util.IOUtils;
+import org.hamcrest.Matchers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.*;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
 import static org.hamcrest.Matchers.endsWith;
 import static org.junit.Assert.assertThat;
 
@@ -12,8 +19,8 @@ import static org.junit.Assert.assertThat;
  *
  */
 class CompilerTestHelper {
-    
-    
+    private static final Logger LOG = LoggerFactory.getLogger(CompilerTestHelper.class);
+
     /**
      * Launch compilation and check OK/KO output according to the given parameters.
      *
@@ -40,6 +47,32 @@ class CompilerTestHelper {
             expected = String.format("KO%n");
         }
         assertThat(message, errContent.toString(), endsWith(expected)); // Check that the output ends with OK/KO
+
+        if(expected.equals("OK\n")) {
+            Process process;
+            BufferedReader execErrorStream;
+            Integer exit;
+
+            try {
+
+                String workingDirectory = System.getProperty("user.dir");
+
+                process = Runtime.getRuntime().exec(
+                        String.format("nbc %s -O=%s/%s", outputFile.getAbsolutePath(), workingDirectory, "nbcCode.rxe"));
+                execErrorStream = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+                exit = process.waitFor();
+                assertThat(IOUtils.toString(execErrorStream), exit.toString(), Matchers.equalTo("0"));
+
+                // if everything went ok, copy the code to a known location
+                Files.move(
+                        Paths.get(outputFile.getAbsolutePath()),
+                        Paths.get(System.getProperty("user.dir") + "/nbcCode.nbc"),
+                        StandardCopyOption.REPLACE_EXISTING
+                );
+            } catch (IOException | InterruptedException e) {
+                LOG.error("unable to run nbc: " + e.toString());
+            }
+        }
     }
 
 }
