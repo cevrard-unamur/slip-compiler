@@ -43,5 +43,26 @@ public class IntegerExpression {
         return integerVariable;
     }
 
-    //public static String enterNeg()
+    public static String enterNeg(PlayPlusParser.NegativeIntegerExpressionContext context, Application application, PrintWriter writer){
+        String negativeVariable = IntegerExpression.getAssignationName();
+        // We get the negative operator
+        TerminalNode negNode = (TerminalNode) (context.getChild(0));
+        int symbol = negNode.getSymbol().getType();
+
+        NBCOpCodeTypes negOpCode = ComparisonHelper.comparisonToNbcOpCodeType(symbol);
+
+        IfWriter.writeNegCondition(
+                writer,
+                negOpCode,
+                negativeVariable,
+                RightExpression.enterRightExpression(
+                        context.rightExpr(),
+                        application,
+                        writer
+                )
+        );
+
+        IntegerExpression.integerId++;
+        return negativeVariable;
+    }
 }
