@@ -52,6 +52,12 @@ public class SlipSyntaxFunctionTest {
 
 
     @Test
+    public void test_functions_multiple_global_vars_and_functions_with_parameters_call_from_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/function/ok/functions_multiple_global_vars_and_functions_with_parameters_call_from.slip", testFolder.newFile(), true, "syntax::function: functions_multiple_global_vars_and_functions_with_parameters_call_from.slip");
+    }
+
+
+    @Test
     public void test_void_function_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/function/ok/void_function.slip", testFolder.newFile(), true, "syntax::function: void_function.slip");
     }

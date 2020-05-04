@@ -203,6 +203,20 @@ public class FunctionExpression {
                     writer
             );
             VariableWriter.writeVariableMove(writer, argument.getName(), argumentValue);
+        } else if (rightExpression instanceof PlayPlusParser.ParenthesesExpressionContext) {
+            FunctionExpression.argumentAssignation(
+                    ((PlayPlusParser.ParenthesesExpressionContext) rightExpression).rightExpr(),
+                    argument,
+                    application,
+                    writer
+            );
+        } else if (rightExpression instanceof PlayPlusParser.BoolExpressionContext) {
+            String argumentValue = ComparisonExpression.enterBoolean(
+                    (PlayPlusParser.BoolExpressionContext)rightExpression,
+                    application,
+                    writer
+            );
+            VariableWriter.writeVariableMove(writer, argument.getName(), argumentValue);
         } else {
             throw new PlayPlusException("Not implemented");
         }
