@@ -1,0 +1,86 @@
+#import "world.map"
+
+  b1 as boolean;
+  	b2 as boolean;
+  	b3 as boolean;
+  	f1 as char;
+  	i1 as integer;
+  	v2 as boolean[5, 7];
+  	v3 as integer[42, 58];
+  	v4 as integer[34];
+  	b4 as boolean;
+  	b5 as boolean;
+  	s1 as char;
+  	i2 as integer;
+  	b6 as boolean;
+  	i3 as integer;
+  	s2 as char;
+  	f4 as char;
+
+
+fct1 as function(x as integer): char
+    do
+        x := 5;
+    	x := x - i1;
+        f1 := s2;
+    	fct1 := f1;
+    end
+
+    fct2 as function(x as integer, y as boolean): integer
+    do
+    	if(x >= 5) then
+    	x := x - 1;
+    	else
+    	   x := x + 1;
+    	end
+      fct2 := x;
+    end
+
+    f3 as boolean;
+
+    fct3 as function():boolean
+    do
+        f3 := (true and false) or ((not(true or (b1 or b2)) or v2[0, (i3+1-2*8)*0]));
+      fct3 := f3;
+    end
+
+    fct4 as function():char
+    do
+       f4 := 'a';
+     fct4 := f4;
+    end
+
+    fct5 as function(x as integer, y as boolean, z as char): integer
+    do
+    		if(y and  x < 2) then
+    			while (x < i3) do
+    				x := x + 1;
+    				end
+    		else
+    			if (z = 'a') then
+    				x := 2 * (x - 1);
+    			end
+    		end
+    	fct5 := x;
+    end
+
+ f as integer;
+ i as integer;
+
+main as function():void
+do
+
+  f := 0;
+  s2 := 'b';
+  s1 := fct1(f);
+  if (fct5(i1 + 2, s1 = 'b',  s2) > 5) then
+      i3 := fct2(f, (true or false ));
+   end
+   i := 0;
+    while (i < 10) do
+    	f1 := fct4();
+    	i := i + 1;
+    end
+   dig();
+
+end
