@@ -4,7 +4,7 @@ import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
 import be.unamur.info.b314.compiler.nbc.writer.IfWriter;
 import be.unamur.info.b314.compiler.nbc.writer.LogicWriter;
-import be.unamur.info.b314.compiler.nbc.writer.NBCOpCodeTypes;
+import be.unamur.info.b314.compiler.nbc.writer.NBCIntCodeTypes;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.io.PrintWriter;
@@ -21,7 +21,7 @@ public class IntegerExpression {
         TerminalNode mathNode = (TerminalNode) (context.getChild(1));
         int symbol = mathNode.getSymbol().getType();
 
-        NBCOpCodeTypes mathOpCode = ComparisonHelper.comparisonToNbcOpCodeType(symbol);
+        NBCIntCodeTypes mathOpCode = IntegerHelper.integerToNbcOpCodeType(symbol);
 
         IfWriter.writeMathCondition(
                 writer,
@@ -49,7 +49,7 @@ public class IntegerExpression {
         TerminalNode negNode = (TerminalNode) (context.getChild(0));
         int symbol = negNode.getSymbol().getType();
 
-        NBCOpCodeTypes negOpCode = ComparisonHelper.comparisonToNbcOpCodeType(symbol);
+        NBCIntCodeTypes negOpCode = IntegerHelper.integerToNbcOpCodeType(symbol);
 
         IfWriter.writeNegCondition(
                 writer,

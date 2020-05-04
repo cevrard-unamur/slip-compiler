@@ -6,14 +6,7 @@ public enum NBCOpCodeTypes {
     LessThanOrEqual("LTEQ"),
     GreaterThanOrEqual("GTEQ"),
     Equal("EQ"),
-    NotEqual("NEQ"),
-    Addition("add"),
-    Subtraction("sub"),
-    Multiplication("mul"),
-    Division("div"),
-    Modulo("mod"),
-    Negation("neg");
-
+    NotEqual("NEQ");
 
     private final String representation;
 

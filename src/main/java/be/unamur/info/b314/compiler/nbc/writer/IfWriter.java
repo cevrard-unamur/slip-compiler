@@ -14,7 +14,7 @@ public class IfWriter {
     }
 
     public static void writeMathCondition(PrintWriter writer,
-                                          NBCOpCodeTypes type,
+                                          NBCIntCodeTypes type,
                                           String targetVariable,
                                           String leftValue,
                                           String rightValue){
@@ -22,7 +22,7 @@ public class IfWriter {
     }
 
     public static void writeNegCondition(PrintWriter writer,
-                                         NBCOpCodeTypes type,
+                                         NBCIntCodeTypes type,
                                          String targetVariable,
                                          String rightValue){
         writer.format("%s, %s, %s", type.getRepresentation(), targetVariable, rightValue).println();
