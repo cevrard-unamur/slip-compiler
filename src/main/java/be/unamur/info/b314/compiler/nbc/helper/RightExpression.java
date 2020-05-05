@@ -55,11 +55,17 @@ public class RightExpression {
             rightExpressionId++;
             return variableName;
         } else if (context instanceof PlayPlusParser.IntegerExpressionContext) {
-            // TODO Matthias
-            return "";
+            return IntegerExpression.enterCalc(
+                    (PlayPlusParser.IntegerExpressionContext) context,
+                    application,
+                    writer
+            );
         } else if (context instanceof PlayPlusParser.NegativeIntegerExpressionContext) {
-            // TODO Matthias
-            return "";
+            return IntegerExpression.enterNeg(
+                    (PlayPlusParser.NegativeIntegerExpressionContext) context,
+                    application,
+                    writer
+            );
         } else if (context instanceof PlayPlusParser.ParenthesesExpressionContext) {
             return RightExpression.enterRightExpression(
                     ((PlayPlusParser.ParenthesesExpressionContext) context).rightExpr(),
