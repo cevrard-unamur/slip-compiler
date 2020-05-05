@@ -16,4 +16,12 @@ public class VariableBase {
     public String getContext() {
         return context;
     }
+
+    public String getNameAndContext() {
+        if (this.context == null) {
+            return this.name;
+        }
+
+        return String.format("%s_%s", this.name, this.context);
+    }
 }
