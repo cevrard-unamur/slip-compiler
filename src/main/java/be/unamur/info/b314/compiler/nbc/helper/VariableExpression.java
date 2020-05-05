@@ -11,6 +11,7 @@ public class VariableExpression {
         //  Pour info, les variables sont déjà créé dans NBC, il faut "juste"
         //    récupérer le resultat de l'expression droite et l'assigner à la variable existante
         //  Toutes les variables de l'application (définie dans le code SLIP) sont créés au début du programme NBC
+        //  Créer des tests slip pour la fonctionnalité sur laquelle je travail
     }
 
     public static void enterVariable(PlayPlusParser.VariableInstructionContext context, Application application, PrintWriter writer) {
