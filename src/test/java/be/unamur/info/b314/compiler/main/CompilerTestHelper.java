@@ -63,12 +63,7 @@ class CompilerTestHelper {
                 exit = process.waitFor();
                 assertThat(IOUtils.toString(execErrorStream), exit.toString(), Matchers.equalTo("0"));
 
-                // if everything went ok, copy the code to a known location
-                Files.move(
-                        Paths.get(outputFile.getAbsolutePath()),
-                        Paths.get(System.getProperty("user.dir") + "/nbcCode.nbc"),
-                        StandardCopyOption.REPLACE_EXISTING
-                );
+                LOG.info("NBC compilation has been performed");
             } catch (IOException | InterruptedException e) {
                 LOG.error("unable to run nbc: " + e.toString());
             }
