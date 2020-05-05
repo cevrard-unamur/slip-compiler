@@ -14,7 +14,6 @@ public class VariableExpression {
     }
 
     public static void enterVariable(PlayPlusParser.VariableInstructionContext context, Application application, PrintWriter writer) {
-        context.
         // TODO Matthias
         //  Pour info, les variables sont déjà créé dans NBC, il faut "juste"
         //    récupérer le resultat de l'expression droite et l'assigner à la variable existante
