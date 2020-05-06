@@ -28,18 +28,6 @@ public class SlipNbcActionTest {
 
     // tests OK
     @Test
-    public void test_move_down_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/nbc/action/ok/move_down.slip", testFolder.newFile(), true, "nbc::action: move_down.slip");
-    }
-
-
-    @Test
-    public void test_move_left_param_array_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/nbc/action/ok/move_left_param_array.slip", testFolder.newFile(), true, "nbc::action: move_left_param_array.slip");
-    }
-
-
-    @Test
     public void test_move_left_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/nbc/action/ok/move_left.slip", testFolder.newFile(), true, "nbc::action: move_left.slip");
     }
@@ -64,14 +52,26 @@ public class SlipNbcActionTest {
 
 
     @Test
-    public void test_move_left_param_var_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/nbc/action/ok/move_left_param_var.slip", testFolder.newFile(), true, "nbc::action: move_left_param_var.slip");
+    public void test_move_up_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/action/ok/move_up.slip", testFolder.newFile(), true, "nbc::action: move_up.slip");
     }
 
 
     @Test
-    public void test_move_left_param_number_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/nbc/action/ok/move_left_param_number.slip", testFolder.newFile(), true, "nbc::action: move_left_param_number.slip");
+    public void test_move_left_param_array_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/action/ok/move_left_param_array.slip", testFolder.newFile(), true, "nbc::action: move_left_param_array.slip");
+    }
+
+
+    @Test
+    public void test_move_down_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/action/ok/move_down.slip", testFolder.newFile(), true, "nbc::action: move_down.slip");
+    }
+
+
+    @Test
+    public void test_move_left_param_var_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/action/ok/move_left_param_var.slip", testFolder.newFile(), true, "nbc::action: move_left_param_var.slip");
     }
 
 
@@ -82,14 +82,14 @@ public class SlipNbcActionTest {
 
 
     @Test
-    public void test_fight_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/nbc/action/ok/fight.slip", testFolder.newFile(), true, "nbc::action: fight.slip");
+    public void test_move_left_param_number_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/action/ok/move_left_param_number.slip", testFolder.newFile(), true, "nbc::action: move_left_param_number.slip");
     }
 
 
     @Test
-    public void test_move_up_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/nbc/action/ok/move_up.slip", testFolder.newFile(), true, "nbc::action: move_up.slip");
+    public void test_fight_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/action/ok/fight.slip", testFolder.newFile(), true, "nbc::action: fight.slip");
     }
 
 

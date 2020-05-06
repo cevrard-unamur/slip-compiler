@@ -28,6 +28,12 @@ public class SlipSyntaxCommentsTest {
 
     // tests OK
     @Test
+    public void test_multiline_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/comments/ok/multiline.slip", testFolder.newFile(), true, "syntax::comments: multiline.slip");
+    }
+
+
+    @Test
     public void test_more_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/comments/ok/more.slip", testFolder.newFile(), true, "syntax::comments: more.slip");
     }
@@ -36,12 +42,6 @@ public class SlipSyntaxCommentsTest {
     @Test
     public void test_singleline_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/comments/ok/singleline.slip", testFolder.newFile(), true, "syntax::comments: singleline.slip");
-    }
-
-
-    @Test
-    public void test_multiline_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/comments/ok/multiline.slip", testFolder.newFile(), true, "syntax::comments: multiline.slip");
     }
 
 

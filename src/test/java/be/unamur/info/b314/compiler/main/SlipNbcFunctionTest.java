@@ -28,12 +28,6 @@ public class SlipNbcFunctionTest {
 
     // tests OK
     @Test
-    public void test_param_right_expr_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/nbc/function/ok/param_right_expr.slip", testFolder.newFile(), true, "nbc::function: param_right_expr.slip");
-    }
-
-
-    @Test
     public void test_param_from_array_with_function_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/nbc/function/ok/param_from_array_with_function.slip", testFolder.newFile(), true, "nbc::function: param_from_array_with_function.slip");
     }
@@ -46,14 +40,20 @@ public class SlipNbcFunctionTest {
 
 
     @Test
-    public void test_param_bool_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/nbc/function/ok/param_bool.slip", testFolder.newFile(), true, "nbc::function: param_bool.slip");
+    public void test_param_right_expr_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/function/ok/param_right_expr.slip", testFolder.newFile(), true, "nbc::function: param_right_expr.slip");
     }
 
 
     @Test
     public void test_param_char_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/nbc/function/ok/param_char.slip", testFolder.newFile(), true, "nbc::function: param_char.slip");
+    }
+
+
+    @Test
+    public void test_param_bool_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/function/ok/param_bool.slip", testFolder.newFile(), true, "nbc::function: param_bool.slip");
     }
 
 

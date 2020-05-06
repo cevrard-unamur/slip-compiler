@@ -40,14 +40,14 @@ public class SlipNbcIfTest {
 
 
     @Test
-    public void test_compare_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/nbc/if/ok/compare.slip", testFolder.newFile(), true, "nbc::if: compare.slip");
+    public void test_compare_function_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/if/ok/compare_function.slip", testFolder.newFile(), true, "nbc::if: compare_function.slip");
     }
 
 
     @Test
-    public void test_compare_function_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/nbc/if/ok/compare_function.slip", testFolder.newFile(), true, "nbc::if: compare_function.slip");
+    public void test_compare_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/if/ok/compare.slip", testFolder.newFile(), true, "nbc::if: compare.slip");
     }
 
 

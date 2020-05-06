@@ -28,12 +28,6 @@ public class SlipNbcVariablesTest {
 
     // tests OK
     @Test
-    public void test_variable_declaration_init_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/nbc/variables/ok/variable_declaration_init.slip", testFolder.newFile(), true, "nbc::variables: variable_declaration_init.slip");
-    }
-
-
-    @Test
     public void test_variable_context_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/nbc/variables/ok/variable_context.slip", testFolder.newFile(), true, "nbc::variables: variable_context.slip");
     }
@@ -42,6 +36,12 @@ public class SlipNbcVariablesTest {
     @Test
     public void test_variable_declaration_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/nbc/variables/ok/variable_declaration.slip", testFolder.newFile(), true, "nbc::variables: variable_declaration.slip");
+    }
+
+
+    @Test
+    public void test_variable_declaration_init_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/variables/ok/variable_declaration_init.slip", testFolder.newFile(), true, "nbc::variables: variable_declaration_init.slip");
     }
 
 

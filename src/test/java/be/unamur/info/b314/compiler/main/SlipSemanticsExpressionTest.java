@@ -28,14 +28,14 @@ public class SlipSemanticsExpressionTest {
 
     // tests OK
     @Test
-    public void test_add_integer_2_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/expression/ok/add_integer_2.slip", testFolder.newFile(), true, "semantics::expression: add_integer_2.slip");
+    public void test_boolean_parentheses_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/expression/ok/boolean_parentheses.slip", testFolder.newFile(), true, "semantics::expression: boolean_parentheses.slip");
     }
 
 
     @Test
-    public void test_boolean_expression_2_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/expression/ok/boolean_expression_2.slip", testFolder.newFile(), true, "semantics::expression: boolean_expression_2.slip");
+    public void test_add_array_2d_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/expression/ok/add_array_2d.slip", testFolder.newFile(), true, "semantics::expression: add_array_2d.slip");
     }
 
 
@@ -46,8 +46,20 @@ public class SlipSemanticsExpressionTest {
 
 
     @Test
+    public void test_add_integer_1_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/expression/ok/add_integer_1.slip", testFolder.newFile(), true, "semantics::expression: add_integer_1.slip");
+    }
+
+
+    @Test
     public void test_compare_1_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/semantics/expression/ok/compare_1.slip", testFolder.newFile(), true, "semantics::expression: compare_1.slip");
+    }
+
+
+    @Test
+    public void test_boolean_expression_1_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/expression/ok/boolean_expression_1.slip", testFolder.newFile(), true, "semantics::expression: boolean_expression_1.slip");
     }
 
 
@@ -64,26 +76,14 @@ public class SlipSemanticsExpressionTest {
 
 
     @Test
-    public void test_boolean_expression_1_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/expression/ok/boolean_expression_1.slip", testFolder.newFile(), true, "semantics::expression: boolean_expression_1.slip");
+    public void test_add_integer_2_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/expression/ok/add_integer_2.slip", testFolder.newFile(), true, "semantics::expression: add_integer_2.slip");
     }
 
 
     @Test
-    public void test_add_integer_1_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/expression/ok/add_integer_1.slip", testFolder.newFile(), true, "semantics::expression: add_integer_1.slip");
-    }
-
-
-    @Test
-    public void test_add_array_2d_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/expression/ok/add_array_2d.slip", testFolder.newFile(), true, "semantics::expression: add_array_2d.slip");
-    }
-
-
-    @Test
-    public void test_boolean_parentheses_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/semantics/expression/ok/boolean_parentheses.slip", testFolder.newFile(), true, "semantics::expression: boolean_parentheses.slip");
+    public void test_boolean_expression_2_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/semantics/expression/ok/boolean_expression_2.slip", testFolder.newFile(), true, "semantics::expression: boolean_expression_2.slip");
     }
 
 
