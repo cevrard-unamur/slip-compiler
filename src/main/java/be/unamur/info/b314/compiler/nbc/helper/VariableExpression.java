@@ -28,15 +28,25 @@ public class VariableExpression {
 
             PlayPlusParser.ConstantContext constantContext = (PlayPlusParser.ConstantContext) declarationType;
 
-            PlayPlusParser.RightInitialisationContext contextSwitch = (PlayPlusParser.RightInitialisationContext)constantContext.initVariable();
-            PlayPlusParser.RightExprContext rightExprContext = contextSwitch.rightExpr();
+            if (constantContext.initVariable() instanceof PlayPlusParser.RightInitialisationContext) {
 
-            Variable variable = application.getVariable(constantContext.ID().getText());
+                PlayPlusParser.RightInitialisationContext contextSwitch = (PlayPlusParser.RightInitialisationContext)constantContext.initVariable();
+                PlayPlusParser.RightExprContext rightExprContext = contextSwitch.rightExpr();
 
-            if (variable.getConstant()){
-                VariableWriter.writeVariableMove(writer, variable.getName(),
-                        RightExpression.enterRightExpression(rightExprContext, application, writer)
-                );
+                Variable variable = application.getVariable(constantContext.ID().getText());
+
+                if (variable.getConstant()){
+                    VariableWriter.writeVariableMove(writer, variable.getName(),
+                            RightExpression.enterRightExpression(rightExprContext, application, writer)
+                    );
+                }
+            }else if (constantContext.initVariable() instanceof PlayPlusParser.ArrayInitialisationContext) {
+                PlayPlusParser.ArrayInitialisationContext arrayInitialisationContext = (PlayPlusParser.ArrayInitialisationContext)constantContext.initVariable();
+
+                Array array = application.getArray(constantContext.ID().getText());
+
+                VariableWriter.writeArrayBuild(writer, array.getName(), ArrayExpression.enterInit(arrayInitialisationContext, application, writer));
+
             }
         }
     }
