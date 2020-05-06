@@ -22,16 +22,19 @@ public class VariableExpression {
         ParseTree declarationType = ctx.getChild(0);
 
         if (declarationType instanceof PlayPlusParser.VariableDeclarationContext){
+
             PlayPlusParser.VariableDefinitionContext var = (PlayPlusParser.VariableDefinitionContext) declarationType;
+
             if (!(var.initVariable().isEmpty())){
                 if (var.initVariable() instanceof PlayPlusParser.RightInitialisationContext){
+
                     PlayPlusParser.RightInitialisationContext contextSwitch = (PlayPlusParser.RightInitialisationContext)var.initVariable();
                     PlayPlusParser.RightExprContext rightExprContext = (PlayPlusParser.RightExprContext)contextSwitch.rightExpr();
 
-                }
-                for (TerminalNode id : var.ID()){
-                    VariableBase variable = application.getVariable(id.getText());
+                    for (TerminalNode id : var.ID()){
+                        VariableBase variable = application.getVariable(id.getText());
 
+                    }
                 }
             }
         }

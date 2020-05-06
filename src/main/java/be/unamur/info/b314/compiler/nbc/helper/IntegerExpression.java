@@ -46,15 +46,9 @@ public class IntegerExpression {
 
     public static String enterNeg(PlayPlusParser.NegativeIntegerExpressionContext context, Application application, PrintWriter writer){
         String negativeVariable = IntegerExpression.getAssignationName();
-        // We get the negative operator
-        TerminalNode negNode = (TerminalNode) (context.getChild(0));
-        int symbol = negNode.getSymbol().getType();
-
-        NBCIntCodeTypes negOpCode = IntegerHelper.integerToNbcOpCodeType(symbol);
 
         OperatorWriter.writeNegCondition(
                 writer,
-                negOpCode,
                 negativeVariable,
                 RightExpression.enterRightExpression(
                         context.rightExpr(),
