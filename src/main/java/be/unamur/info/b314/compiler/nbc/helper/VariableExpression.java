@@ -49,7 +49,7 @@ public class VariableExpression {
     }
 
     private static void moveVariable(PlayPlusParser.VariableDefinitionContext context, Application application, PrintWriter writer) {
-        if (!(context.initVariable().isEmpty())){
+        if (context.initVariable() != null){
             if (context.initVariable() instanceof PlayPlusParser.RightInitialisationContext){
 
                 PlayPlusParser.RightInitialisationContext contextSwitch = (PlayPlusParser.RightInitialisationContext)context.initVariable();
