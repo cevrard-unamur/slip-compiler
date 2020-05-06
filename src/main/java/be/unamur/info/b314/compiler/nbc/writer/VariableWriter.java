@@ -1,6 +1,9 @@
 package be.unamur.info.b314.compiler.nbc.writer;
 
+import tmp.LanguageParser;
+
 import java.io.PrintWriter;
+import java.util.List;
 
 public class VariableWriter {
     public static void writeScalarInitialisation(PrintWriter writer, NBCCodeTypes type, String name) {
@@ -41,5 +44,9 @@ public class VariableWriter {
 
     public static void writeSetToArray(PrintWriter writer, String sourceName, String arrayName, String index) {
         writer.format("replace %s, %s, %s, %s", arrayName, arrayName, index, sourceName).println();
+    }
+
+    public static void writeArrayBuild(PrintWriter writer, String arrayName, String variables) {
+        writer.format("arrbuild %s, %s", arrayName, variables).println();
     }
 }

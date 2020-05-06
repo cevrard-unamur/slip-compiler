@@ -2,7 +2,11 @@ package be.unamur.info.b314.compiler.nbc.helper;
 
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
+import be.unamur.info.b314.compiler.application.Array;
+import be.unamur.info.b314.compiler.application.Variable;
+import be.unamur.info.b314.compiler.nbc.helper.RightExpression;
 import be.unamur.info.b314.compiler.application.VariableBase;
+import be.unamur.info.b314.compiler.nbc.writer.VariableWriter;
 import com.sun.org.apache.xerces.internal.dom.ChildNode;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -11,11 +15,6 @@ import java.io.PrintWriter;
 
 public class VariableExpression {
     public static void enterGlobalVariable(PlayPlusParser.GlobalVariableContext context, Application application, PrintWriter writer) {
-        // TODO Matthias
-        //  Pour info, les variables sont déjà créé dans NBC, il faut "juste"
-        //    récupérer le resultat de l'expression droite et l'assigner à la variable existante
-        //  Toutes les variables de l'application (définie dans le code SLIP) sont créés au début du programme NBC
-        //  Créer des tests slip pour la fonctionnalité sur laquelle je travail
 
         PlayPlusParser.GlobalDeclarationContext ctx = (PlayPlusParser.GlobalDeclarationContext)context;
 
@@ -23,27 +22,56 @@ public class VariableExpression {
 
         if (declarationType instanceof PlayPlusParser.VariableDeclarationContext){
 
-            PlayPlusParser.VariableDefinitionContext var = (PlayPlusParser.VariableDefinitionContext) declarationType;
+            moveVariable((PlayPlusParser.VariableDefinitionContext)declarationType,application,writer);
 
-            if (!(var.initVariable().isEmpty())){
-                if (var.initVariable() instanceof PlayPlusParser.RightInitialisationContext){
+        }else if(declarationType instanceof PlayPlusParser.ConstDeclarationContext){
 
-                    PlayPlusParser.RightInitialisationContext contextSwitch = (PlayPlusParser.RightInitialisationContext)var.initVariable();
-                    PlayPlusParser.RightExprContext rightExprContext = (PlayPlusParser.RightExprContext)contextSwitch.rightExpr();
+            PlayPlusParser.ConstantContext constantContext = (PlayPlusParser.ConstantContext) declarationType;
 
-                    for (TerminalNode id : var.ID()){
-                        VariableBase variable = application.getVariable(id.getText());
+            PlayPlusParser.RightInitialisationContext contextSwitch = (PlayPlusParser.RightInitialisationContext)constantContext.initVariable();
+            PlayPlusParser.RightExprContext rightExprContext = contextSwitch.rightExpr();
 
-                    }
-                }
+            Variable variable = application.getVariable(constantContext.ID().getText());
+
+            if (variable.getConstant()){
+                VariableWriter.writeVariableMove(writer, variable.getName(),
+                        RightExpression.enterRightExpression(rightExprContext, application, writer)
+                );
             }
         }
     }
 
     public static void enterVariable(PlayPlusParser.VariableInstructionContext context, Application application, PrintWriter writer) {
-        // TODO Matthias
-        //  Pour info, les variables sont déjà créé dans NBC, il faut "juste"
-        //    récupérer le resultat de l'expression droite et l'assigner à la variable existante
-        //  Toutes les variables de l'application (définie dans le code SLIP) sont créés au début du programme NBC
+
+        PlayPlusParser.VariableDeclarationContext varContext = context.variableDeclaration();
+
+        moveVariable((PlayPlusParser.VariableDefinitionContext)varContext,application,writer);
+    }
+
+    private static void moveVariable(PlayPlusParser.VariableDefinitionContext context, Application application, PrintWriter writer) {
+        if (!(context.initVariable().isEmpty())){
+            if (context.initVariable() instanceof PlayPlusParser.RightInitialisationContext){
+
+                PlayPlusParser.RightInitialisationContext contextSwitch = (PlayPlusParser.RightInitialisationContext)context.initVariable();
+                PlayPlusParser.RightExprContext rightExprContext = contextSwitch.rightExpr();
+
+                for (TerminalNode id : context.ID()){
+                    VariableBase variable = application.getVariable(id.getText());
+
+                    VariableWriter.writeVariableMove(writer, variable.getName(),
+                            RightExpression.enterRightExpression(rightExprContext, application, writer)
+                    );
+                }
+            }else if (context.initVariable() instanceof PlayPlusParser.ArrayInitialisationContext) {
+
+                PlayPlusParser.ArrayInitialisationContext arrayInitialisationContext = (PlayPlusParser.ArrayInitialisationContext)context.initVariable();
+
+                for (TerminalNode id : context.ID()){
+                    Array array = application.getArray(id.getText());
+
+                    VariableWriter.writeArrayBuild(writer, array.getName(), ArrayExpression.enterInit(arrayInitialisationContext, application, writer));
+                }
+            }
+        }
     }
 }
