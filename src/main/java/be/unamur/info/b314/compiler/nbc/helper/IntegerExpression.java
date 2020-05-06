@@ -5,6 +5,7 @@ import be.unamur.info.b314.compiler.application.Application;
 import be.unamur.info.b314.compiler.nbc.writer.IfWriter;
 import be.unamur.info.b314.compiler.nbc.writer.LogicWriter;
 import be.unamur.info.b314.compiler.nbc.writer.NBCIntCodeTypes;
+import be.unamur.info.b314.compiler.nbc.writer.OperatorWriter;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.io.PrintWriter;
@@ -23,7 +24,7 @@ public class IntegerExpression {
 
         NBCIntCodeTypes mathOpCode = IntegerHelper.integerToNbcOpCodeType(symbol);
 
-        IfWriter.writeMathCondition(
+        OperatorWriter.writeMathCondition(
                 writer,
                 mathOpCode,
                 integerVariable,
@@ -51,7 +52,7 @@ public class IntegerExpression {
 
         NBCIntCodeTypes negOpCode = IntegerHelper.integerToNbcOpCodeType(symbol);
 
-        IfWriter.writeNegCondition(
+        OperatorWriter.writeNegCondition(
                 writer,
                 negOpCode,
                 negativeVariable,

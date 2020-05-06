@@ -2,6 +2,7 @@ package be.unamur.info.b314.compiler.nbc.helper;
 
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
+import be.unamur.info.b314.compiler.application.VariableBase;
 import com.sun.org.apache.xerces.internal.dom.ChildNode;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -21,8 +22,18 @@ public class VariableExpression {
         ParseTree declarationType = ctx.getChild(0);
 
         if (declarationType instanceof PlayPlusParser.VariableDeclarationContext){
-            PlayPlusParser.VariableDeclarationContext var = (PlayPlusParser.VariableDeclarationContext) declarationType;
+            PlayPlusParser.VariableDefinitionContext var = (PlayPlusParser.VariableDefinitionContext) declarationType;
+            if (!(var.initVariable().isEmpty())){
+                if (var.initVariable() instanceof PlayPlusParser.RightInitialisationContext){
+                    PlayPlusParser.RightInitialisationContext contextSwitch = (PlayPlusParser.RightInitialisationContext)var.initVariable();
+                    PlayPlusParser.RightExprContext rightExprContext = (PlayPlusParser.RightExprContext)contextSwitch.rightExpr();
 
+                }
+                for (TerminalNode id : var.ID()){
+                    VariableBase variable = application.getVariable(id.getText());
+
+                }
+            }
         }
     }
 
