@@ -1,0 +1,115 @@
+\documentclass[12pt,a4paper]{article}
+
+\newif\ifindustry
+
+\industryfalse
+
+%% ---------------------------------
+%% |      Additional packages      |
+%% ---------------------------------
+%% 
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper, margin=1in]{geometry} %% margins
+\usepackage{natbib} %% References
+\usepackage{graphicx} %http://en.wikibooks.org/wiki/LaTeX/Importing_Graphics#Graphics_storage
+\usepackage[export]{adjustbox}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{tikz}
+\usepackage{color}
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+\usepackage{listings}
+\lstset{language=Java,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{pgreen},
+  keywordstyle=\color{pblue},
+  stringstyle=\color{pred},
+  basicstyle=\ttfamily,
+  moredelim=[il][\textcolor{pgrey}]{$$},
+  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%},
+  tabsize=4
+}
+\usepackage{amsmath,amsfonts,amssymb}	% AMS mathematical facilities, fonts and symbols
+\usepackage{lastpage}
+\usepackage[bookmarks=true, colorlinks=false]{hyperref} % Links - must be last package
+
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\graphicspath{{./figures/}} %Use curly braces for each path to add 
+
+
+\newcommand{\jt}[1]{\lstinline{#1}}
+
+%% ---------------------------------
+%% | Information about the report  |
+%% ---------------------------------
+
+\newcommand{\mytype}{Projet : Compilateur SLIP vers NBC}
+\newcommand{\mystream}{IHDC B332 - Théorie des langages : Syntaxe et sémantique}
+
+\newcommand{\firststudentname}{Nicolay Matthias}
+\newcommand{\secondstudentname}{Evrard Cédric}
+
+\newcommand{\myyear}{2020}
+\newcommand{\duedate}{15/05/2020}
+
+% Describe separation hints here:
+\hyphenation{
+% Man-age-ment
+}
+
+
+%% ------------------------
+%% |    Including files   |
+%% ------------------------
+% Only files listed here will be included!
+% Useful command for partially translating the document (for bug-fixing e.g.)
+\includeonly{%
+titlepage,
+text/introduction,
+text/demarche,
+text/organisation,
+text/problems,
+text/conclusion,
+text/problems/projet1,
+text/problems/projet2,
+text/problems/projet3,
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Here, main documents begins %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\include{titlepage}
+
+%% -----------------
+%% |   Main part   |
+%% -----------------
+\date{}
+
+\pagestyle{plain}
+\pagenumbering{arabic}
+
+\input{text/introduction}
+\input{text/demarche}
+\input{text/structure-table}
+\input{text/architecture}
+\input{text/conclusion}
+
+%% --------------------
+%% |   Bibliography   |
+%% --------------------
+
+% Style
+\bibliographystyle{apalike}
+\bibliography{refs}
+
+\end{document}
