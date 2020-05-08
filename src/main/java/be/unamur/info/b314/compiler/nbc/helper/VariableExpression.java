@@ -36,7 +36,7 @@ public class VariableExpression {
                 Variable variable = application.getVariable(constantContext.ID().getText());
 
                 if (variable.getConstant()){
-                    VariableWriter.writeVariableMove(writer, variable.getName(),
+                    VariableWriter.writeVariableMove(writer, variable.getNameAndContext(),
                             RightExpression.enterRightExpression(rightExprContext, application, writer)
                     );
                 }
@@ -45,7 +45,7 @@ public class VariableExpression {
 
                 Array array = application.getArray(constantContext.ID().getText());
 
-                VariableWriter.writeArrayBuild(writer, array.getName(), ArrayExpression.enterInit(arrayInitialisationContext, application, writer));
+                VariableWriter.writeArrayBuild(writer, array.getNameAndContext(), ArrayExpression.enterInit(arrayInitialisationContext, application, writer));
 
             }
         }
@@ -68,7 +68,7 @@ public class VariableExpression {
                 for (TerminalNode id : context.ID()){
                     VariableBase variable = application.getVariable(id.getText());
 
-                    VariableWriter.writeVariableMove(writer, variable.getName(),
+                    VariableWriter.writeVariableMove(writer, variable.getNameAndContext(),
                             RightExpression.enterRightExpression(rightExprContext, application, writer)
                     );
                 }
@@ -79,7 +79,7 @@ public class VariableExpression {
                 for (TerminalNode id : context.ID()){
                     Array array = application.getArray(id.getText());
 
-                    VariableWriter.writeArrayBuild(writer, array.getName(), ArrayExpression.enterInit(arrayInitialisationContext, application, writer));
+                    VariableWriter.writeArrayBuild(writer, array.getNameAndContext(), ArrayExpression.enterInit(arrayInitialisationContext, application, writer));
                 }
             }
         }

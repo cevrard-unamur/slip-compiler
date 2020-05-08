@@ -5,11 +5,18 @@ import be.unamur.info.b314.compiler.application.Application;
 import be.unamur.info.b314.compiler.application.Array;
 import be.unamur.info.b314.compiler.application.Variable;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
-import be.unamur.info.b314.compiler.nbc.writer.VariableWriter;
+import be.unamur.info.b314.compiler.nbc.writer.*;
 
 import java.io.PrintWriter;
 
 public class AssignationExpression {
+    private static int assignationId = 1;
+    private static final String assignationTemporaryVariable = "__assignationVariable";
+
+    private static String getActionName() {
+        return AssignationExpression.assignationTemporaryVariable + AssignationExpression.assignationId;
+    }
+
     public static String enterAssignationContext(PlayPlusParser.AssignationContext context, Application application, PrintWriter writer) {
         // WE give each time the full context to the children functions because we need some information from it.
         if (context.leftExpr() instanceof PlayPlusParser.LeftIdContext) {
@@ -34,15 +41,15 @@ public class AssignationExpression {
 
         VariableWriter.writeVariableMove(
                 writer,
-                variableTarget.getName(),
+                variableTarget.getNameAndContext(),
                 variableSource
         );
 
-        return variableTarget.getName();
+        return variableTarget.getNameAndContext();
     }
 
     private static String enterLeftArrayContext(PlayPlusParser.AssignationContext context, Application application, PrintWriter writer) {
-        PlayPlusParser.LeftArrayContext targetArray = (PlayPlusParser.LeftArrayContext)context.leftExpr();
+        PlayPlusParser.LeftArrayContext targetArray = (PlayPlusParser.LeftArrayContext) context.leftExpr();
         Array array = application.getArray(targetArray.ID().getText());
 
         String indexVariable = "--";
@@ -51,7 +58,42 @@ public class AssignationExpression {
         if (array.getDimension() == 1) {
             indexVariable = RightExpression.enterRightExpression(targetArray.rightExpr(0), application, writer);
         } else {
-            // TODO Handle 2D array
+            String rowVariable = RightExpression.enterRightExpression(targetArray.rightExpr(0), application, writer);
+            String columnVariable = RightExpression.enterRightExpression(targetArray.rightExpr(1), application, writer);
+
+            String rowSizeVariable = AssignationExpression.getActionName();
+            AssignationExpression.assignationId++;
+            indexVariable = AssignationExpression.getActionName();
+
+            VariableWriter.writeTemporaryScalarInitialisation(
+                    writer,
+                    NBCCodeTypes.Int,
+                    rowSizeVariable,
+                    array.getSize()[0].toString()
+            );
+
+            VariableWriter.writeTemporaryScalarInitialisation(
+                    writer,
+                    NBCCodeTypes.Int,
+                    indexVariable
+            );
+
+            OperatorWriter.writeMathCondition(
+                    writer,
+                    NBCIntCodeTypes.Multiplication,
+                    indexVariable,
+                    rowVariable,
+                    rowSizeVariable);
+
+            OperatorWriter.writeMathCondition(
+                    writer,
+                    NBCIntCodeTypes.Addition,
+                    indexVariable,
+                    indexVariable,
+                    columnVariable
+            );
+
+            AssignationExpression.assignationId++;
         }
 
         String variableSource = RightExpression.enterRightExpression(context.rightExpr(), application, writer);
@@ -60,11 +102,11 @@ public class AssignationExpression {
         VariableWriter.writeSetToArray(
                 writer,
                 variableSource,
-                array.getName(),
+                array.getNameAndContext(),
                 indexVariable
         );
 
-        return array.getName();
+        return array.getNameAndContext();
     }
 
     private static String enterLeftPropertyContext(
@@ -72,7 +114,7 @@ public class AssignationExpression {
             Application application,
             PrintWriter writer) {
         // We get the structure information
-        PlayPlusParser.LeftPropertyContext leftExpression = (PlayPlusParser.LeftPropertyContext)context.leftExpr();
+        PlayPlusParser.LeftPropertyContext leftExpression = (PlayPlusParser.LeftPropertyContext) context.leftExpr();
         String structureVariable = LeftExpression.enterLeftExpression(
                 leftExpression.leftExpr(),
                 application,
@@ -90,18 +132,18 @@ public class AssignationExpression {
 
         VariableWriter.writeVariableMove(
                 writer,
-                String.format("%s.%s", structureVariable, variableTarget.getName()),
+                String.format("%s.%s", structureVariable, variableTarget.getNameAndContext()),
                 variableSource
         );
 
-        return String.format("%s.%s", structureVariable, variableTarget.getName());
+        return String.format("%s.%s", structureVariable, variableTarget.getNameAndContext());
     }
 
     private static String enterLeftPropertyArrayContext(
             PlayPlusParser.AssignationContext context,
             Application application,
             PrintWriter writer) {
-        PlayPlusParser.LeftPropertyArrayContext targetArray = (PlayPlusParser.LeftPropertyArrayContext)context.leftExpr();
+        PlayPlusParser.LeftPropertyArrayContext targetArray = (PlayPlusParser.LeftPropertyArrayContext) context.leftExpr();
         String structureVariable = LeftExpression.enterLeftExpression(
                 targetArray.leftExpr(),
                 application,
@@ -123,17 +165,52 @@ public class AssignationExpression {
         if (array.getDimension() == 1) {
             indexVariable = RightExpression.enterRightExpression(targetArray.rightExpr(0), application, writer);
         } else {
-            // TODO Handle 2D array
+            String rowVariable = RightExpression.enterRightExpression(targetArray.rightExpr(0), application, writer);
+            String columnVariable = RightExpression.enterRightExpression(targetArray.rightExpr(1), application, writer);
+
+            String rowSizeVariable = AssignationExpression.getActionName();
+            AssignationExpression.assignationId++;
+            indexVariable = AssignationExpression.getActionName();
+
+            VariableWriter.writeTemporaryScalarInitialisation(
+                    writer,
+                    NBCCodeTypes.Int,
+                    rowSizeVariable,
+                    array.getSize()[0].toString()
+            );
+
+            VariableWriter.writeTemporaryScalarInitialisation(
+                    writer,
+                    NBCCodeTypes.Int,
+                    indexVariable
+            );
+
+            OperatorWriter.writeMathCondition(
+                    writer,
+                    NBCIntCodeTypes.Multiplication,
+                    indexVariable,
+                    rowVariable,
+                    rowSizeVariable);
+
+            OperatorWriter.writeMathCondition(
+                    writer,
+                    NBCIntCodeTypes.Addition,
+                    indexVariable,
+                    indexVariable,
+                    columnVariable
+            );
+            
+            AssignationExpression.assignationId++;
         }
 
         // We get the value we want to set in the array.
         VariableWriter.writeSetToArray(
                 writer,
                 variableSource,
-                String.format("%s.%s", structureVariable, array.getName()),
+                String.format("%s.%s", structureVariable, array.getNameAndContext()),
                 indexVariable
         );
 
-        return String.format("%s.%s", structureVariable, array.getName());
+        return String.format("%s.%s", structureVariable, array.getNameAndContext());
     }
 }

@@ -46,7 +46,7 @@ public class VariableWriter {
         writer.format("replace %s, %s, %s, %s", arrayName, arrayName, index, sourceName).println();
     }
 
-    public static void writeArrayBuild(PrintWriter writer, String arrayName, String variables) {
-        writer.format("arrbuild %s, %s", arrayName, variables).println();
+    public static void writeArrayBuild(PrintWriter writer, String arrayName, List<String> variables) {
+        writer.format("arrbuild %s, %s", arrayName, String.join(", ", variables)).println();
     }
 }

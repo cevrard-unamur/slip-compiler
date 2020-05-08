@@ -22,6 +22,14 @@ public class Array extends VariableBase {
     }
 
     /**
+     * Return the sizes of the array.
+     * @return the sizes of the array.
+     */
+    public Integer[] getSize() {
+        return size;
+    }
+
+    /**
      * Gets the dimension of the array.
      * @return the dimension of the array.
      */

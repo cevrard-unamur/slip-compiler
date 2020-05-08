@@ -2,6 +2,7 @@ package be.unamur.info.b314.compiler.nbc.helper;
 
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
+import be.unamur.info.b314.compiler.application.Variable;
 import be.unamur.info.b314.compiler.nbc.writer.IfWriter;
 import be.unamur.info.b314.compiler.nbc.writer.NBCOpCodeTypes;
 import be.unamur.info.b314.compiler.nbc.writer.NBCWriter;
@@ -21,7 +22,7 @@ public class ForExpression {
     }
 
     public static void enterFor(PlayPlusParser.ForContext context, Application application, PrintWriter writer) {
-        String incrementLoopVariableName = context.ID().getText();
+        Variable incrementVariable = application.getVariable(context.ID().getText());
 
         // Calculate the right expression for the initialisation
         String rightExpressionInitialisation = RightExpression.enterRightExpression(
@@ -32,7 +33,7 @@ public class ForExpression {
         // Move this expression to the loop variable
         VariableWriter.writeVariableMove(
                 writer,
-                incrementLoopVariableName,
+                incrementVariable.getNameAndContext(),
                 rightExpressionInitialisation
         );
 
@@ -50,7 +51,7 @@ public class ForExpression {
                 writer,
                 NBCOpCodeTypes.Equal,
                 ForExpression.getJumpNameEnd(),
-                incrementLoopVariableName,
+                incrementVariable.getNameAndContext(),
                 rightExpressionEndOfLoop
         );
 
