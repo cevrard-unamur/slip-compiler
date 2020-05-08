@@ -18,7 +18,7 @@ public class VariableBase {
     }
 
     public String getNameAndContext() {
-        if (this.context == null) {
+        if (this.context == null || this.context == "") {
             return this.name;
         }
 

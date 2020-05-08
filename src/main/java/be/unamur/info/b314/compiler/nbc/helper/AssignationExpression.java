@@ -34,15 +34,15 @@ public class AssignationExpression {
 
         VariableWriter.writeVariableMove(
                 writer,
-                variableTarget.getName(),
+                variableTarget.getNameAndContext(),
                 variableSource
         );
 
-        return variableTarget.getName();
+        return variableTarget.getNameAndContext();
     }
 
     private static String enterLeftArrayContext(PlayPlusParser.AssignationContext context, Application application, PrintWriter writer) {
-        PlayPlusParser.LeftArrayContext targetArray = (PlayPlusParser.LeftArrayContext)context.leftExpr();
+        PlayPlusParser.LeftArrayContext targetArray = (PlayPlusParser.LeftArrayContext) context.leftExpr();
         Array array = application.getArray(targetArray.ID().getText());
 
         String indexVariable = "--";
@@ -60,11 +60,11 @@ public class AssignationExpression {
         VariableWriter.writeSetToArray(
                 writer,
                 variableSource,
-                array.getName(),
+                array.getNameAndContext(),
                 indexVariable
         );
 
-        return array.getName();
+        return array.getNameAndContext();
     }
 
     private static String enterLeftPropertyContext(
@@ -72,7 +72,7 @@ public class AssignationExpression {
             Application application,
             PrintWriter writer) {
         // We get the structure information
-        PlayPlusParser.LeftPropertyContext leftExpression = (PlayPlusParser.LeftPropertyContext)context.leftExpr();
+        PlayPlusParser.LeftPropertyContext leftExpression = (PlayPlusParser.LeftPropertyContext) context.leftExpr();
         String structureVariable = LeftExpression.enterLeftExpression(
                 leftExpression.leftExpr(),
                 application,
@@ -90,18 +90,18 @@ public class AssignationExpression {
 
         VariableWriter.writeVariableMove(
                 writer,
-                String.format("%s.%s", structureVariable, variableTarget.getName()),
+                String.format("%s.%s", structureVariable, variableTarget.getNameAndContext()),
                 variableSource
         );
 
-        return String.format("%s.%s", structureVariable, variableTarget.getName());
+        return String.format("%s.%s", structureVariable, variableTarget.getNameAndContext());
     }
 
     private static String enterLeftPropertyArrayContext(
             PlayPlusParser.AssignationContext context,
             Application application,
             PrintWriter writer) {
-        PlayPlusParser.LeftPropertyArrayContext targetArray = (PlayPlusParser.LeftPropertyArrayContext)context.leftExpr();
+        PlayPlusParser.LeftPropertyArrayContext targetArray = (PlayPlusParser.LeftPropertyArrayContext) context.leftExpr();
         String structureVariable = LeftExpression.enterLeftExpression(
                 targetArray.leftExpr(),
                 application,
@@ -130,10 +130,10 @@ public class AssignationExpression {
         VariableWriter.writeSetToArray(
                 writer,
                 variableSource,
-                String.format("%s.%s", structureVariable, array.getName()),
+                String.format("%s.%s", structureVariable, array.getNameAndContext()),
                 indexVariable
         );
 
-        return String.format("%s.%s", structureVariable, array.getName());
+        return String.format("%s.%s", structureVariable, array.getNameAndContext());
     }
 }

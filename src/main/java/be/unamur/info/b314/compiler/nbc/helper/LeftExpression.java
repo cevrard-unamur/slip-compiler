@@ -2,6 +2,9 @@ package be.unamur.info.b314.compiler.nbc.helper;
 
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
+import be.unamur.info.b314.compiler.application.Variable;
+import be.unamur.info.b314.compiler.application.VariableBase;
+import be.unamur.info.b314.compiler.exception.PlayPlusException;
 import be.unamur.info.b314.compiler.nbc.writer.NBCCodeTypes;
 import be.unamur.info.b314.compiler.nbc.writer.VariableWriter;
 
@@ -25,8 +28,15 @@ public class LeftExpression {
 
     public static String enterLeftExpression(PlayPlusParser.LeftExprContext context, Application application, PrintWriter writer) {
         if (context instanceof PlayPlusParser.LeftIdContext) {
-            return ((PlayPlusParser.LeftIdContext) context).ID().getText();
+            try {
+                VariableBase variable = application.getVariable(((PlayPlusParser.LeftIdContext) context).ID().getText());
+                return variable.getNameAndContext();
+            } catch (PlayPlusException ex) {
+                return ((PlayPlusParser.LeftIdContext) context).ID().getText();
+            }
         } else if (context instanceof PlayPlusParser.LeftArrayContext) {
+            VariableBase array = application.getArray(((PlayPlusParser.LeftArrayContext) context).ID().getText());
+
             String indexVariable = "--";
             String variableName = getLeftExpressionName();
             // We need to get the name of the right expression and execute the code of it
@@ -39,7 +49,7 @@ public class LeftExpression {
             VariableWriter.writeExtractFromArray(
                     writer,
                     variableName,
-                    ((PlayPlusParser.LeftArrayContext) context).ID().getText(),
+                    array.getNameAndContext(),
                     indexVariable);
 
             LeftExpression.leftExpressionId++;

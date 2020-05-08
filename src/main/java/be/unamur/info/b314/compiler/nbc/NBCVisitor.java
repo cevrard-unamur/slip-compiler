@@ -80,11 +80,11 @@ public class NBCVisitor extends PlayPlusBaseVisitor {
         if (variable instanceof Variable) {
             VariableWriter.writeScalarInitialisation(this.printer.getWriter(),
                     VariableHelper.variableToNbcCodeType(variable.getType()),
-                    variable.getName());
+                    variable.getNameAndContext());
         } else if (variable instanceof Array) {
             VariableWriter.writeArrayInitialisation(this.printer.getWriter(),
                     VariableHelper.variableToNbcCodeType(variable.getType()),
-                    variable.getName());
+                    variable.getNameAndContext());
         } else {
             int i = 0;
         }
