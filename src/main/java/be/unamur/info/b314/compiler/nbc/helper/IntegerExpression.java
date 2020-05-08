@@ -5,6 +5,7 @@ import be.unamur.info.b314.compiler.application.Application;
 import be.unamur.info.b314.compiler.nbc.writer.IfWriter;
 import be.unamur.info.b314.compiler.nbc.writer.LogicWriter;
 import be.unamur.info.b314.compiler.nbc.writer.NBCIntCodeTypes;
+import be.unamur.info.b314.compiler.nbc.writer.OperatorWriter;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.io.PrintWriter;
@@ -23,7 +24,7 @@ public class IntegerExpression {
 
         NBCIntCodeTypes mathOpCode = IntegerHelper.integerToNbcOpCodeType(symbol);
 
-        IfWriter.writeMathCondition(
+        OperatorWriter.writeMathCondition(
                 writer,
                 mathOpCode,
                 integerVariable,
@@ -45,15 +46,9 @@ public class IntegerExpression {
 
     public static String enterNeg(PlayPlusParser.NegativeIntegerExpressionContext context, Application application, PrintWriter writer){
         String negativeVariable = IntegerExpression.getAssignationName();
-        // We get the negative operator
-        TerminalNode negNode = (TerminalNode) (context.getChild(0));
-        int symbol = negNode.getSymbol().getType();
 
-        NBCIntCodeTypes negOpCode = IntegerHelper.integerToNbcOpCodeType(symbol);
-
-        IfWriter.writeNegCondition(
+        OperatorWriter.writeNegCondition(
                 writer,
-                negOpCode,
                 negativeVariable,
                 RightExpression.enterRightExpression(
                         context.rightExpr(),

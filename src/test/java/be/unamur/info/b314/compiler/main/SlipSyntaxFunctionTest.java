@@ -34,12 +34,6 @@ public class SlipSyntaxFunctionTest {
 
 
     @Test
-    public void test_factorial_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/function/ok/factorial.slip", testFolder.newFile(), true, "syntax::function: factorial.slip");
-    }
-
-
-    @Test
     public void test_no_local_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/function/ok/no_local.slip", testFolder.newFile(), true, "syntax::function: no_local.slip");
     }
@@ -52,14 +46,20 @@ public class SlipSyntaxFunctionTest {
 
 
     @Test
-    public void test_functions_multiple_global_vars_and_functions_with_parameters_call_from_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/function/ok/functions_multiple_global_vars_and_functions_with_parameters_call_from.slip", testFolder.newFile(), true, "syntax::function: functions_multiple_global_vars_and_functions_with_parameters_call_from.slip");
+    public void test_void_function_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/function/ok/void_function.slip", testFolder.newFile(), true, "syntax::function: void_function.slip");
     }
 
 
     @Test
-    public void test_void_function_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/function/ok/void_function.slip", testFolder.newFile(), true, "syntax::function: void_function.slip");
+    public void test_factorial_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/function/ok/factorial.slip", testFolder.newFile(), true, "syntax::function: factorial.slip");
+    }
+
+
+    @Test
+    public void test_functions_multiple_global_vars_and_functions_with_parameters_call_from_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/function/ok/functions_multiple_global_vars_and_functions_with_parameters_call_from.slip", testFolder.newFile(), true, "syntax::function: functions_multiple_global_vars_and_functions_with_parameters_call_from.slip");
     }
 
 

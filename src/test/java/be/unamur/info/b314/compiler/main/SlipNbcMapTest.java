@@ -28,20 +28,8 @@ public class SlipNbcMapTest {
 
     // tests OK
     @Test
-    public void test_map_import_chest_1_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/nbc/map/ok/map_import_chest_1.slip", testFolder.newFile(), true, "nbc::map: map_import_chest_1.slip");
-    }
-
-
-    @Test
-    public void test_map_import_not_found_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/nbc/map/ok/map_import_not_found.slip", testFolder.newFile(), true, "nbc::map: map_import_not_found.slip");
-    }
-
-
-    @Test
-    public void test_map_import_ennemies_1_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/nbc/map/ok/map_import_ennemies_1.slip", testFolder.newFile(), true, "nbc::map: map_import_ennemies_1.slip");
+    public void test_map_import_ennemies_3_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/map/ok/map_import_ennemies_3.slip", testFolder.newFile(), true, "nbc::map: map_import_ennemies_3.slip");
     }
 
 
@@ -52,15 +40,27 @@ public class SlipNbcMapTest {
 
 
     @Test
-    public void test_map_import_ennemies_3_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/nbc/map/ok/map_import_ennemies_3.slip", testFolder.newFile(), true, "nbc::map: map_import_ennemies_3.slip");
+    public void test_map_import_not_found_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/map/ok/map_import_not_found.slip", testFolder.newFile(), true, "nbc::map: map_import_not_found.slip");
+    }
+
+
+    @Test
+    public void test_map_import_chest_1_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/map/ok/map_import_chest_1.slip", testFolder.newFile(), true, "nbc::map: map_import_chest_1.slip");
+    }
+
+
+    @Test
+    public void test_map_import_ennemies_1_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/map/ok/map_import_ennemies_1.slip", testFolder.newFile(), true, "nbc::map: map_import_ennemies_1.slip");
     }
 
 
     // tests KO
     @Test
-    public void test_map_import_chest_0_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/nbc/map/ko/map_import_chest_0.slip", testFolder.newFile(), false, "nbc::map: map_import_chest_0.slip");
+    public void test_map_import_enemies_0_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/map/ko/map_import_enemies_0.slip", testFolder.newFile(), false, "nbc::map: map_import_enemies_0.slip");
     }
 
 
@@ -77,14 +77,14 @@ public class SlipNbcMapTest {
 
 
     @Test
-    public void test_map_import_enemies_0_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/nbc/map/ko/map_import_enemies_0.slip", testFolder.newFile(), false, "nbc::map: map_import_enemies_0.slip");
+    public void test_map_import_chest_2_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/map/ko/map_import_chest_2.slip", testFolder.newFile(), false, "nbc::map: map_import_chest_2.slip");
     }
 
 
     @Test
-    public void test_map_import_chest_2_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/nbc/map/ko/map_import_chest_2.slip", testFolder.newFile(), false, "nbc::map: map_import_chest_2.slip");
+    public void test_map_import_chest_0_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/nbc/map/ko/map_import_chest_0.slip", testFolder.newFile(), false, "nbc::map: map_import_chest_0.slip");
     }
 
 

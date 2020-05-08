@@ -28,20 +28,14 @@ public class SlipSyntaxProgramTest {
 
     // tests OK
     @Test
-    public void test_operations_with_arrays_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/program/ok/operations_with_arrays.slip", testFolder.newFile(), true, "syntax::program: operations_with_arrays.slip");
-    }
-
-
-    @Test
     public void test_operations_only_env_vars_ok() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/program/ok/operations_only_env_vars.slip", testFolder.newFile(), true, "syntax::program: operations_only_env_vars.slip");
     }
 
 
     @Test
-    public void test_full_program_ok() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/program/ok/full_program.slip", testFolder.newFile(), true, "syntax::program: full_program.slip");
+    public void test_operations_with_arrays_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/program/ok/operations_with_arrays.slip", testFolder.newFile(), true, "syntax::program: operations_with_arrays.slip");
     }
 
 
@@ -51,10 +45,22 @@ public class SlipSyntaxProgramTest {
     }
 
 
+    @Test
+    public void test_full_program_ok() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/program/ok/full_program.slip", testFolder.newFile(), true, "syntax::program: full_program.slip");
+    }
+
+
     // tests KO
     @Test
     public void test_missing_main_function_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/program/ko/missing_main_function.slip", testFolder.newFile(), false, "syntax::program: missing_main_function.slip");
+    }
+
+
+    @Test
+    public void test_empty_import_ko() throws Exception{
+        CompilerTestHelper.launchCompilation("/syntax/program/ko/empty_import.slip", testFolder.newFile(), false, "syntax::program: empty_import.slip");
     }
 
 
@@ -67,12 +73,6 @@ public class SlipSyntaxProgramTest {
     @Test
     public void test_no_dig_instruction_ko() throws Exception{
         CompilerTestHelper.launchCompilation("/syntax/program/ko/no_dig_instruction.slip", testFolder.newFile(), false, "syntax::program: no_dig_instruction.slip");
-    }
-
-
-    @Test
-    public void test_empty_import_ko() throws Exception{
-        CompilerTestHelper.launchCompilation("/syntax/program/ko/empty_import.slip", testFolder.newFile(), false, "syntax::program: empty_import.slip");
     }
 
 

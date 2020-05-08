@@ -195,7 +195,19 @@ public class FunctionExpression {
                         indexVariable);
             }
         } else if (rightExpression instanceof PlayPlusParser.IntegerExpressionContext) {
-            // TODO Matthias
+            String argumentValue = IntegerExpression.enterCalc(
+                    (PlayPlusParser.IntegerExpressionContext)rightExpression,
+                    application,
+                    writer
+            );
+            VariableWriter.writeVariableMove(writer, argument.getName(), argumentValue);
+        } else if (rightExpression instanceof PlayPlusParser.NegativeIntegerExpressionContext){
+            String argumentValue = IntegerExpression.enterNeg(
+                    (PlayPlusParser.NegativeIntegerExpressionContext)rightExpression,
+                    application,
+                    writer
+            );
+            VariableWriter.writeVariableMove(writer, argument.getName(), argumentValue);
         } else if (rightExpression instanceof PlayPlusParser.CompExpressionContext) {
             String argumentValue = ComparisonExpression.enterComp(
                     (PlayPlusParser.CompExpressionContext)rightExpression,
