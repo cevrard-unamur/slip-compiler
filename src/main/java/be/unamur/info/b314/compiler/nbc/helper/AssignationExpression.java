@@ -48,7 +48,7 @@ public class AssignationExpression {
         String indexVariable = "--";
 
         // We get the variable which hold the targeted index in the array.
-        if (array.getLength() == 1) {
+        if (array.getDimension() == 1) {
             indexVariable = RightExpression.enterRightExpression(targetArray.rightExpr(0), application, writer);
         } else {
             // TODO Handle 2D array
@@ -120,7 +120,7 @@ public class AssignationExpression {
         String indexVariable = "--";
 
         // We get the variable which hold the targeted index in the array.
-        if (array.getLength() == 1) {
+        if (array.getDimension() == 1) {
             indexVariable = RightExpression.enterRightExpression(targetArray.rightExpr(0), application, writer);
         } else {
             // TODO Handle 2D array
