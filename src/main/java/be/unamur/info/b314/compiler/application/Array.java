@@ -1,22 +1,31 @@
 package be.unamur.info.b314.compiler.application;
 
-import java.util.ArrayList;
-
 public class Array extends VariableBase {
+    /**
+     * The size of the array.
+     */
     private Integer[] size;
 
-    private ArrayList<String> values;
-
+    /**
+     * Initializes a new instance of an array.
+     * @param name the name of the array.
+     * @param type the type of the array.
+     * @param size the size of the array.
+     * @param context the context name in which the array is created.
+     */
     public Array(String name, String type, Integer[] size, String context)
     {
         this.name = name;
         this.type = type;
         this.size = size;
-        this.values = new ArrayList<>();
         this.context = context;
     }
 
-    public Integer getLength() {
+    /**
+     * Gets the dimension of the array.
+     * @return the dimension of the array.
+     */
+    public Integer getDimension() {
         return size.length;
     }
 }
