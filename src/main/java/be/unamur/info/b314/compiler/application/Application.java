@@ -26,6 +26,11 @@ public class Application {
     private Context currentContext;
 
     /**
+     * The map of the application.
+     */
+    private String[][] map;
+
+    /**
      * Initializes a new instance of an application with a new context.
      */
     public Application() {
@@ -112,12 +117,16 @@ public class Application {
     }
 
     /**
-     * Adds the map to the current context.
+     * Sets the map to the application.
      * @param map
      */
-    public void addMap(String[][] map){
-        this.currentContext.addMap(map);
-    }
+    public void setMap(String[][] map){ this.map = map; }
+
+    /**
+     * Gets the map of the application
+     * @return
+     */
+    public String[][] getMap() { return this.map; }
 
     /**
      * Leaves the current context for the parent of it.
