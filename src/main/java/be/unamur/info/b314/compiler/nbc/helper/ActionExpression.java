@@ -9,13 +9,29 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import java.io.PrintWriter;
 
 public class ActionExpression {
-    private static int conditionId = 1;
+    /**
+     * The action identifier for the temporary variable.
+     */
+    private static int actionId = 1;
+    /**
+     * The prefix name of the temporary variable
+     */
     private static final String actionTemporaryVariable = "__actionVariable";
 
+    /**
+     * Gets the name of the temporary variable use for the action.
+     * @return the name of the temporary variable use for the action.
+     */
     private static String getActionName() {
-        return ActionExpression.actionTemporaryVariable + ActionExpression.conditionId;
+        return ActionExpression.actionTemporaryVariable + ActionExpression.actionId;
     }
 
+    /**
+     * Enters in an action instruction context to write the NBC code of it.
+     * @param context the action instruction context.
+     * @param application the application.
+     * @param writer the print writer of the NBC output.
+     */
     public static void enterActionInstructionContext(PlayPlusParser.ActionInstructionContext context, Application application, PrintWriter writer) {
         if (context.actionType() instanceof PlayPlusParser.DigContext) {
             ActionWriter.writeDig(writer);
@@ -90,10 +106,22 @@ public class ActionExpression {
         }
     }
 
+    /**
+     * Enters in a dig instruction context.
+     * @param context the dig instruction context.
+     * @param writer the print writer of the NBC output.
+     */
     public static void enterDigInstructionContext(PlayPlusParser.DigInstructionContext context, PrintWriter writer) {
         ActionWriter.writeDig(writer);
     }
 
+    /**
+     * Executes a right expression action.
+     * @param actionInterface the action to execute.
+     * @param rightExpression the right expression of the action.
+     * @param application the application.
+     * @param writer the print writer of the NBC output.
+     */
     private static void executeRightExpressionAction(
             ActionInterface actionInterface,
             PlayPlusParser.RightExprContext rightExpression,
@@ -118,6 +146,6 @@ public class ActionExpression {
         }
 
         LoopWriter.writeEndLoop(writer, getActionName(), variableName);
-        ActionExpression.conditionId++;
+        ActionExpression.actionId++;
     }
 }
