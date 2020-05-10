@@ -65,14 +65,14 @@ public class AssignationExpression {
             AssignationExpression.assignationId++;
             indexVariable = AssignationExpression.getActionName();
 
-            VariableWriter.writeTemporaryScalarInitialisation(
+            VariableWriter.writeTemporaryScalarDeclaration(
                     writer,
                     NBCCodeTypes.Int,
                     rowSizeVariable,
                     array.getSize()[0].toString()
             );
 
-            VariableWriter.writeTemporaryScalarInitialisation(
+            VariableWriter.writeTemporaryScalarDeclaration(
                     writer,
                     NBCCodeTypes.Int,
                     indexVariable
@@ -172,14 +172,14 @@ public class AssignationExpression {
             AssignationExpression.assignationId++;
             indexVariable = AssignationExpression.getActionName();
 
-            VariableWriter.writeTemporaryScalarInitialisation(
+            VariableWriter.writeTemporaryScalarDeclaration(
                     writer,
                     NBCCodeTypes.Int,
                     rowSizeVariable,
                     array.getSize()[0].toString()
             );
 
-            VariableWriter.writeTemporaryScalarInitialisation(
+            VariableWriter.writeTemporaryScalarDeclaration(
                     writer,
                     NBCCodeTypes.Int,
                     indexVariable

@@ -71,9 +71,9 @@ public class ANTLRParser {
         handleErrors(this.application.getErrors(), "An error occurred with the language file");
     }
 
-    public void nbcPrinter(PlayPlusParser.RootContext tree, String inputFile) throws FileNotFoundException {
+    public void nbcPrinter(PlayPlusParser.RootContext tree, String inputPath) throws FileNotFoundException {
         NBCPrinter nbcPrinter = new NBCPrinter("nbcCode.nbc");
-        NBCVisitor nbcVisitor = new NBCVisitor(nbcPrinter, inputFile, this.application);
+        NBCVisitor nbcVisitor = new NBCVisitor(nbcPrinter, inputPath, this.application);
         nbcVisitor.visit(tree);
 
         handleErrors(this.application.getErrors(), "An error occurred with the language file");

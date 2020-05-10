@@ -21,7 +21,7 @@ public class RightExpression {
         if (context instanceof PlayPlusParser.NumberContext) {
             // We create a temporary variable with the value of the number
             String variableName = RightExpression.getVariableName();
-            VariableWriter.writeTemporaryScalarInitialisation(writer,
+            VariableWriter.writeTemporaryScalarDeclaration(writer,
                     NBCCodeTypes.Int,
                     variableName,
                     ((PlayPlusParser.NumberContext) context).NUMBER().getText());
@@ -30,7 +30,7 @@ public class RightExpression {
         } else if (context instanceof PlayPlusParser.CharContext) {
             // We create a temporary variable with the value of the char
             String variableName = RightExpression.getVariableName();
-            VariableWriter.writeTemporaryScalarInitialisation(writer,
+            VariableWriter.writeTemporaryScalarDeclaration(writer,
                     NBCCodeTypes.Char,
                     variableName,
                     ((PlayPlusParser.CharContext) context).CHAR().getText());
@@ -39,7 +39,7 @@ public class RightExpression {
         } else if (context instanceof PlayPlusParser.BooleanFalseContext) {
             // We create a temporary variable with the value of the boolean false
             String variableName = RightExpression.getVariableName();
-            VariableWriter.writeTemporaryScalarInitialisation(writer,
+            VariableWriter.writeTemporaryScalarDeclaration(writer,
                     NBCCodeTypes.Char,
                     variableName,
                     NBCWriter.booleanFalse);
@@ -48,7 +48,7 @@ public class RightExpression {
         } else if (context instanceof PlayPlusParser.BooleanTrueContext) {
             // We create a temporary variable with the value of the boolean false
             String variableName = RightExpression.getVariableName();
-            VariableWriter.writeTemporaryScalarInitialisation(writer,
+            VariableWriter.writeTemporaryScalarDeclaration(writer,
                     NBCCodeTypes.Char,
                     variableName,
                     NBCWriter.booleanTrue);
