@@ -9,6 +9,12 @@ import be.unamur.info.b314.compiler.exception.PlayPlusException;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class DeclarationExpression {
+    /**
+     * Method that parse a global declaration
+     * @param ctx current global declaration context
+     * @param application current application
+     * @return GlobalDeclaration context
+     */
     public static Object parseGlobalDeclaration(PlayPlusParser.GlobalDeclarationContext ctx, Application application) {
         Object declaration = ctx.children.get(0);
 
@@ -30,10 +36,22 @@ public class DeclarationExpression {
         return ctx;
     }
 
+    /**
+     * Method that parse an assignation instruction
+     * @param ctx current AssignationInstructionContext context
+     * @param application current application
+     * @return the assignation context
+     */
     public static Object parseAssignationInstruction(PlayPlusParser.AssignationInstructionContext ctx, Application application) {
         return DeclarationExpression.parseAssignation(ctx.assignation(), application);
     }
 
+    /**
+     * Method that parse an assignation
+     * @param ctx current assignation context
+     * @param application current application
+     * @return the assignation context
+     */
     public static Object parseAssignation(PlayPlusParser.AssignationContext ctx, Application application) {
         // We check the validity of both expression
         PlayPlusParser.LeftExprContext leftExpression = ctx.leftExpr();
@@ -104,6 +122,12 @@ public class DeclarationExpression {
         return ctx;
     }
 
+    /**
+     * Method that parse an instruction
+     * @param ctx current instruction context
+     * @param application current application
+     * @return the instruction context
+     */
     public static Object parseInstruction(PlayPlusParser.InstContext ctx, Application application) {
         if (ctx instanceof PlayPlusParser.ActionInstructionContext) {
             ActionExpression.parseActionInstruction((PlayPlusParser.ActionInstructionContext)ctx, application);
@@ -123,6 +147,12 @@ public class DeclarationExpression {
         return ctx;
     }
 
+    /**
+     * Method that parse the Main instruction
+     * @param ctx current Main instruction context
+     * @param application current application
+     * @return the main instruction context
+     */
     public static Object parseMainInstructionContext(PlayPlusParser.MainInstructionContext ctx, Application application) {
         for (Object node : ctx.children) {
             if (node instanceof PlayPlusParser.ActionInstructionContext) {

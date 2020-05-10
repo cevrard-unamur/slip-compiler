@@ -8,6 +8,12 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import java.util.ArrayList;
 
 public class FunctionExpression {
+    /**
+     * Method that parse a function definition
+     * @param ctx current function definition context
+     * @param application current application
+     * @return the function definition context
+     */
     public static Object parseFunctionDefinition(PlayPlusParser.FunctionDefinitionContext ctx, Application application) {
         application.addFunction(ctx.ID().getText(), ctx.returnType().getText());
 
@@ -25,6 +31,12 @@ public class FunctionExpression {
         return ctx;
     }
 
+    /**
+     * Method that parse function arguments
+     * @param ctx current function argument context
+     * @param application current application
+     * @return the function arguments context
+     */
     public static Object parseFunctionArguments(PlayPlusParser.FunctionParametersContext ctx, Application application) {
         // Parse all the arguments
         for (PlayPlusParser.ArgumentContext argument : ctx.argument()) {
@@ -34,6 +46,12 @@ public class FunctionExpression {
         return ctx;
     }
 
+    /**
+     * Method that parse an argument
+     * @param ctx current argument context
+     * @param application current application
+     * @return the argument context
+     */
     public static Object parseArgument(PlayPlusParser.FunctionParameterContext ctx, Application application){
 
         ArrayList<VariableBase> arguments = new ArrayList<>();
@@ -58,6 +76,12 @@ public class FunctionExpression {
         return ctx;
     }
 
+    /**
+     * Method that parse a function instruction
+     * @param ctx current function instruction context
+     * @param application current application
+     * @return the function instruction argument
+     */
     public static Object parseFunctionInstruction(PlayPlusParser.FunctionInstructionContext ctx, Application application) {
         // Handle enumeration declaration
         for (PlayPlusParser.EnumDeclarationContext enumeration : ctx.enumDeclaration()) {
@@ -82,12 +106,26 @@ public class FunctionExpression {
         return ctx;
     }
 
+    /**
+     * Method that parse a function call instruction
+     * @param ctx current function call instruction context
+     * @param expectedType function expected return type
+     * @param application current application
+     * @return the function call instruction context
+     */
     public static Object parseFunctionCallInstruction(PlayPlusParser.FunctionCallInstructionContext ctx, String expectedType, Application application) {
         FunctionExpression.parseFunctionCall(ctx.functionCall(), expectedType, application);
 
         return ctx;
     }
 
+    /**
+     * Method that parse a function call
+     * @param ctx current function call context
+     * @param expectedType the function return expected type
+     * @param application current application
+     * @return the function call context
+     */
     public static Object parseFunctionCall(PlayPlusParser.FunctionCallContext ctx, String expectedType, Application application) {
         // Check if the return type of the function is matching
         Function function = application.getFunction(ctx.ID().getText());

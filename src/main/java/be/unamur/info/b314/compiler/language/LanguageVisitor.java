@@ -8,10 +8,19 @@ import be.unamur.info.b314.compiler.language.helper.*;
 public class LanguageVisitor extends PlayPlusBaseVisitor {
     private Application application;
 
+    /**
+     * Method that initialise the language visitor
+     * @param application the application
+     */
     public LanguageVisitor(Application application) {
         this.application = application;
     }
 
+    /**
+     * Override of the visitGlobalDeclaration method
+     * @param ctx current global declaration context
+     * @return the parsed global declaration context if the parsing went well null otherwise
+     */
     @Override
     public Object visitGlobalDeclaration(PlayPlusParser.GlobalDeclarationContext ctx) {
         try {
@@ -22,6 +31,11 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         }
     }
 
+    /**
+     * Override of the visitFunctionDefinition
+     * @param ctx current function definition context
+     * @return the function definition context if the parsing went well null otherwise
+     */
     @Override
     public Object visitFunctionDefinition(PlayPlusParser.FunctionDefinitionContext ctx) {
         try {
@@ -32,6 +46,11 @@ public class LanguageVisitor extends PlayPlusBaseVisitor {
         }
     }
 
+    /**
+     * Override of the visitMain function
+     * @param ctx current main context
+     * @return the visit main context if the parsing went well null otherwise
+     */
     @Override
     public Object visitMain(PlayPlusParser.MainContext ctx) {
         try {
