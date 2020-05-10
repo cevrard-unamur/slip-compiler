@@ -3,7 +3,6 @@ package be.unamur.info.b314.compiler.nbc.helper;
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
 import be.unamur.info.b314.compiler.application.Function;
-import be.unamur.info.b314.compiler.application.Variable;
 import be.unamur.info.b314.compiler.application.VariableBase;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
 import be.unamur.info.b314.compiler.nbc.writer.FunctionWriter;
@@ -34,7 +33,7 @@ public class FunctionExpression {
             } else if (child instanceof PlayPlusParser.ActionInstructionContext) {
                 ActionExpression.enterActionInstructionContext((PlayPlusParser.ActionInstructionContext)child, application, writer);
             } else if (child instanceof PlayPlusParser.VariableInstructionContext) {
-                VariableExpression.enterVariable(
+                VariableExpression.enterVariableInstruction(
                         (PlayPlusParser.VariableInstructionContext)child,
                         application,
                         writer
@@ -210,21 +209,21 @@ public class FunctionExpression {
                         indexVariable);
             }
         } else if (rightExpression instanceof PlayPlusParser.IntegerExpressionContext) {
-            String argumentValue = IntegerExpression.enterCalc(
+            String argumentValue = IntegerExpression.enterIntegerExpression(
                     (PlayPlusParser.IntegerExpressionContext)rightExpression,
                     application,
                     writer
             );
             VariableWriter.writeVariableMove(writer, argument.getNameAndContext(), argumentValue);
         } else if (rightExpression instanceof PlayPlusParser.NegativeIntegerExpressionContext){
-            String argumentValue = IntegerExpression.enterNeg(
+            String argumentValue = IntegerExpression.enterNegativeIntegerExpression(
                     (PlayPlusParser.NegativeIntegerExpressionContext)rightExpression,
                     application,
                     writer
             );
             VariableWriter.writeVariableMove(writer, argument.getNameAndContext(), argumentValue);
         } else if (rightExpression instanceof PlayPlusParser.CompExpressionContext) {
-            String argumentValue = ComparisonExpression.enterComp(
+            String argumentValue = ComparisonExpression.enterCompExpression(
                     (PlayPlusParser.CompExpressionContext)rightExpression,
                     application,
                     writer

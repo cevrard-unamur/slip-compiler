@@ -2,8 +2,6 @@ package be.unamur.info.b314.compiler.nbc.helper;
 
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
-import be.unamur.info.b314.compiler.nbc.writer.IfWriter;
-import be.unamur.info.b314.compiler.nbc.writer.LogicWriter;
 import be.unamur.info.b314.compiler.nbc.writer.NBCIntCodeTypes;
 import be.unamur.info.b314.compiler.nbc.writer.OperatorWriter;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -11,13 +9,34 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import java.io.PrintWriter;
 
 public class IntegerExpression {
+    /**
+     * The integer identifier for the temporary variable.
+     */
     private static int integerId = 1;
+    /**
+     * The prefix name of the temporary variable
+     */
     private static final String integerTemporaryVariable = "__integerVariable";
 
-    private static String getAssignationName() { return IntegerExpression.integerTemporaryVariable + IntegerExpression.integerId; }
+    /**
+     * Gets the name of the temporary variable use for the integer.
+     * @return the name of the temporary variable use for the integer.
+     */
+    private static String getIntegerName() { return IntegerExpression.integerTemporaryVariable + IntegerExpression.integerId; }
 
-    public static String enterCalc(PlayPlusParser.IntegerExpressionContext context, Application application, PrintWriter writer) {
-        String integerVariable = IntegerExpression.getAssignationName();
+    /**
+     * Enters an integer expression context to write the NBC code of it.
+     * @param context the integer expression context.
+     * @param application the application.
+     * @param writer the print writer of the NBC output.
+     * @return the name of the temporary variable generated for the integer expression.
+     */
+    public static String enterIntegerExpression(
+            PlayPlusParser.IntegerExpressionContext context,
+            Application application,
+            PrintWriter writer
+    ) {
+        String integerVariable = IntegerExpression.getIntegerName();
         // We get the math operator
         TerminalNode mathNode = (TerminalNode) (context.getChild(1));
         int symbol = mathNode.getSymbol().getType();
@@ -44,8 +63,19 @@ public class IntegerExpression {
         return integerVariable;
     }
 
-    public static String enterNeg(PlayPlusParser.NegativeIntegerExpressionContext context, Application application, PrintWriter writer){
-        String negativeVariable = IntegerExpression.getAssignationName();
+    /**
+     * Enters in a negative integer expression context to write the NBC code of it.
+     * @param context the negative integer expression context.
+     * @param application the application.
+     * @param writer the print writer of the NBC output.
+     * @return the name of the temporary variable generated for the integer expression.
+     */
+    public static String enterNegativeIntegerExpression(
+            PlayPlusParser.NegativeIntegerExpressionContext context,
+            Application application,
+            PrintWriter writer
+    ){
+        String negativeVariable = IntegerExpression.getIntegerName();
 
         OperatorWriter.writeNegCondition(
                 writer,

@@ -6,6 +6,11 @@ import be.unamur.info.b314.compiler.nbc.writer.NBCIntCodeTypes;
 import be.unamur.info.b314.compiler.nbc.writer.NBCOpCodeTypes;
 
 public class IntegerHelper {
+    /**
+     * Cast an integer code from ANTLR to an NBC integer code.
+     * @param intCode the ANTLR integer code.
+     * @return the NBC integer code.
+     */
     public static NBCIntCodeTypes integerToNbcOpCodeType(int intCode) {
         switch (intCode) {
             case PlayPlusParser.PLUS:
