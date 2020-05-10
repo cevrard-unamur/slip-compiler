@@ -41,11 +41,11 @@ public class VariableExpression {
     }
 
     /**
-     * Method that parse
-     * @param ctx
-     * @param expectedType
-     * @param application
-     * @return
+     * Method that parse an initialisation of a scalar variable
+     * @param ctx current variable initialisation context
+     * @param expectedType variable expected type
+     * @param application current application
+     * @return InitVariable context
      */
     private static Object parseInitializeScalarVariable(PlayPlusParser.InitVariableContext ctx, String expectedType, Application application) {
         VariableExpression.parseRightInitialisation((PlayPlusParser.RightInitialisationContext)ctx, expectedType, application);
@@ -53,6 +53,14 @@ public class VariableExpression {
         return ctx;
     }
 
+    /**
+     * Method that parse the initialisation of a variable in an array
+     * @param ctx current initialisation variable context
+     * @param expectedType variable expected type
+     * @param arraySize the size of the array to initialise
+     * @param application current application
+     * @return the context of the initialised variable
+     */
     private static Object parseInitializeArrayVariable(PlayPlusParser.InitVariableContext ctx, String expectedType, Integer[] arraySize, Application application) {
         // We check if the number of argument is matching the size of the array
         checkNumberOfArrayInitialisation((PlayPlusParser.ArrayInitialisationContext)ctx, arraySize);
@@ -63,6 +71,13 @@ public class VariableExpression {
         return ctx;
     }
 
+    /**
+     * Method that parse the initialisation of a variable
+     * @param ctx current init variable context
+     * @param expectedType variable expected type
+     * @param application current application
+     * @return the init variable context
+     */
     private static Object parseInitializeVariable(PlayPlusParser.InitVariableContext ctx, String expectedType, Application application) {
         if (ctx instanceof PlayPlusParser.RightInitialisationContext) {
             VariableExpression.parseRightInitialisation((PlayPlusParser.RightInitialisationContext)ctx, expectedType, application);
@@ -75,6 +90,13 @@ public class VariableExpression {
         return ctx;
     }
 
+    /**
+     * Method that parse a right initialisation
+     * @param ctx current right initialisation context
+     * @param expectedType the variable expected type
+     * @param application current application
+     * @return the right initialisation context
+     */
     private static Object parseRightInitialisation(PlayPlusParser.RightInitialisationContext ctx, String expectedType, Application application) {
         switch (expectedType) {
             case "integer":
@@ -93,6 +115,11 @@ public class VariableExpression {
         return ctx;
     }
 
+    /**
+     * Method that check the number of array to initialise
+     * @param ctx current array initialisation context
+     * @param arraySize number of variable in the array to initialise
+     */
     private static void checkNumberOfArrayInitialisation(PlayPlusParser.ArrayInitialisationContext ctx, Integer[] arraySize) {
         if (ctx.initVariable().size() != arraySize[0]) {
             throw new PlayPlusException("The size of the initialisation is incorrect");
