@@ -20,7 +20,7 @@ public class MapExpression {
             ANTLRParser antlrParser = new ANTLRParser();
             PlayPlusParser.RootContext tree = antlrParser.parse(new ANTLRInputStream(new FileInputStream(mapPath)));
             antlrParser.mapParser(tree);
-            application.addMap(mapGetter(tree));
+            application.setMap(MapExpression.mapGetter(tree));
         } catch (IOException e) {
             // If the map is not found, we ignore the map validation
         }
