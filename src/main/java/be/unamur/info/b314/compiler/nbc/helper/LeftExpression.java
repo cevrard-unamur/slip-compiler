@@ -2,7 +2,6 @@ package be.unamur.info.b314.compiler.nbc.helper;
 
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
-import be.unamur.info.b314.compiler.application.Variable;
 import be.unamur.info.b314.compiler.application.VariableBase;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
 import be.unamur.info.b314.compiler.nbc.writer.NBCCodeTypes;
@@ -44,7 +43,7 @@ public class LeftExpression {
                 indexVariable = RightExpression.enterRightExpression(childRightExpression, application, writer);
             }
 
-            VariableWriter.writeTemporaryScalarInitialisation(writer, NBCCodeTypes.Int, variableName);
+            VariableWriter.writeTemporaryScalarDeclaration(writer, NBCCodeTypes.Int, variableName);
 
             VariableWriter.writeExtractFromArray(
                     writer,

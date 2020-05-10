@@ -3,6 +3,10 @@ package be.unamur.info.b314.compiler.nbc.writer;
 import java.io.PrintWriter;
 
 public class ActionWriter {
+    /**
+     * Writes the turn left action in NBC.
+     * @param writer the print writer of the NBC output.
+     */
     public static void writeTurnLeft(PrintWriter writer) {
         writer.format("RotateMotor(%s, %s, %s)",
                 NBCWriter.forwardWheel,
@@ -13,6 +17,10 @@ public class ActionWriter {
         writer.format("OnFwd(%s, %s)", NBCWriter.turnLeftWheel, 0).println();
     }
 
+    /**
+     * Writes the turn right action in NBC.
+     * @param writer the print writer of the NBC output.
+     */
     public static void writeTurnRight(PrintWriter writer) {
         writer.format("RotateMotor(%s, %s, %s)",
                 NBCWriter.forwardWheel,
@@ -23,6 +31,10 @@ public class ActionWriter {
         writer.format("OnFwd(%s, %s)", NBCWriter.turnRightWheel, 0).println();
     }
 
+    /**
+     * Writes the go forward action in NBC.
+     * @param writer the print writer of the NBC output.
+     */
     public static void writeGoForward(PrintWriter writer) {
         writer.format("RotateMotor(%s, %s, %s)",
                 NBCWriter.forwardWheel,
@@ -33,6 +45,10 @@ public class ActionWriter {
         writer.format("OnFwd(%s, %s)", NBCWriter.forwardWheel, 0).println();
     }
 
+    /**
+     * Writes the go backward action in NBC.
+     * @param writer the print writer of the NBC output.
+     */
     public static void writeGoBackward(PrintWriter writer) {
         writer.format("RotateMotor(%s, %s, %s)",
                 NBCWriter.forwardWheel,
@@ -44,8 +60,8 @@ public class ActionWriter {
     }
 
     /**
-     * We play a sound three times when the robot is digging
-     * @param writer the writer for the NBC code
+     * Plays a sound three times when the robot is digging.
+     * @param writer the print writer of the NBC output.
      */
     public static void writeDig(PrintWriter writer) {
         NBCWriter.writePlaySound(writer);
@@ -54,8 +70,8 @@ public class ActionWriter {
     }
 
     /**
-     * We play a sound two times when the robot is jumping
-     * @param writer the writer for the NBC code
+     * Plays a sound two times when the robot is jumping.
+     * @param writer the print writer of the NBC output.
      */
     public static void writeJump(PrintWriter writer) {
         NBCWriter.writePlaySound(writer);
@@ -63,8 +79,8 @@ public class ActionWriter {
     }
 
     /**
-     * We play a sound one time when the robot is fighting
-     * @param writer the writer for the NBC code
+     * Plays a sound one time when the robot is fighting.
+     * @param writer the print writer of the NBC output.
      */
     public static void writeFight(PrintWriter writer) {
         NBCWriter.writePlaySound(writer);

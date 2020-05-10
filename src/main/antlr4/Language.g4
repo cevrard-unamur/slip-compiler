@@ -2,7 +2,7 @@ grammar Language;
 
 import LanguageWords;
 
-prog:  mapImport (globalVariable|funct)* mainFunction EOF                                               #programme
+prog:  mapImport (globalVariable|funct)* mainFunction EOF                                               #program
             ;
 
 mapImport:  IMPORT QUOTE MAPFILE QUOTE                                                                  #mapImportation
