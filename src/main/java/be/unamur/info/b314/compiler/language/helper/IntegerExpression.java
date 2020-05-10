@@ -5,6 +5,12 @@ import be.unamur.info.b314.compiler.application.Application;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
 
 public class IntegerExpression {
+    /**
+     * Method that parse an integer right expression
+     * @param ctx current right expression context
+     * @param application current application
+     * @return the appropriate context
+     */
     public static Object parseIntegerRightExpression(PlayPlusParser.RightExprContext ctx, Application application) {
         if (ctx instanceof PlayPlusParser.NumberContext) {
             return ctx;
@@ -25,6 +31,12 @@ public class IntegerExpression {
         }
     }
 
+    /**
+     * Method that parse an integer expression
+     * @param ctx current context
+     * @param application current application
+     * @return the integer expression context
+     */
     public static Object parseIntegerExpression(PlayPlusParser.IntegerExpressionContext ctx, Application application) {
         PlayPlusParser.RightExprContext leftChild = ctx.rightExpr(0);
         PlayPlusParser.RightExprContext rightChild = ctx.rightExpr(1);
@@ -35,10 +47,22 @@ public class IntegerExpression {
         return ctx;
     }
 
+    /**
+     * Method that parse an integer parentheses expression
+     * @param ctx current integer parentheses expression context
+     * @param application current application
+     * @return the integer right expression context
+     */
     public static Object parseIntegerParenthesesExpression(PlayPlusParser.ParenthesesExpressionContext ctx, Application application) {
         return IntegerExpression.parseIntegerRightExpression(ctx.rightExpr(), application);
     }
 
+    /**
+     * Method that parse a integer left expression context
+     * @param ctx current integer left expression context
+     * @param application current application
+     * @return the left expression context
+     */
     public static Object parseIntegerLeftExpression(PlayPlusParser.LeftExpressionContext ctx, Application application) {
         return GenericExpression.parseLeftExpression(ctx, "integer", application);
     }

@@ -6,6 +6,12 @@ import be.unamur.info.b314.compiler.exception.PlayPlusException;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class VariableExpression {
+    /**
+     * Method that parse a variable instruction
+     * @param ctx current variable instruction context
+     * @param application current application
+     * @return the variable instruction context
+     */
     public static Object parseVariableInstruction(PlayPlusParser.VariableInstructionContext ctx, Application application) {
         VariableExpression.parseVariableDefinition((PlayPlusParser.VariableDefinitionContext)ctx.variableDeclaration(), application);
         return ctx;
@@ -34,6 +40,13 @@ public class VariableExpression {
         return ctx;
     }
 
+    /**
+     * Method that parse
+     * @param ctx
+     * @param expectedType
+     * @param application
+     * @return
+     */
     private static Object parseInitializeScalarVariable(PlayPlusParser.InitVariableContext ctx, String expectedType, Application application) {
         VariableExpression.parseRightInitialisation((PlayPlusParser.RightInitialisationContext)ctx, expectedType, application);
 
