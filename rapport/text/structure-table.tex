@@ -1,3 +1,28 @@
 \section{Structure de la table des symboles}
 
-% Une description de la structure de donn ́ee et de l’utilisation de votre table des symboles avec la/les d ́efinition(s) du/des classe(s) utilis ́ee(s) pour l’impl ́ementer et une justifica- tion de votre choix. Inutile de reprendre ici l’ensemble de la documentation, le but est d’expliquer comment se structure la table des symboles et comment elle a  ́et ́e utilis ́ee pour valider le code en entr ́ee du compilateur (pensez donc `a utiliser un formalisme ad ́equat, tel qu’un diagramme de classes).
+% Une description de la structure de donn ́ee et de l’utilisation de votre table des symboles avec la/les d ́efinition(s) du/des classe(s) utilis ́ee(s) pour l’impl ́ementer et 
+% une justifica- tion de votre choix. Inutile de reprendre ici l’ensemble de la documentation, le but est d’expliquer comment se structure la table des symboles et comment
+% elle a  ́eté utilisée pour valider le code en entr ́ee du compilateur (pensez donc `a utiliser un formalisme ad ́equat, tel qu’un diagramme de classes).
+
+La structure ustilisée se trouve dans la classe \emph{Context.java}.
+
+La "Table des symboles" en elle même est composée de quatre \emph{Hashtables} qui sont accompagnées d'un \emph{array} pour chanque symbole.
+Les quatre symboles différents sont :
+\begin{itemize}
+    \item VariableBase
+    \item Function
+    \item Record
+    \item Enumeration
+\end{itemize}
+
+Notre choix d'utiliser quatre \emph{Hashtable} est simple, notre point de vue est qu'il y a quatre classe de symboles. Ansi donc pour avoir une simplicité de codage, de stockage et
+d'acces aux symboles, nous avons utilisé cette implémentation.
+
+Notre "Table des symbole" est donc utilisée comme suit:
+\begin{itemize}
+    \item Lors du passage de notre visiteur, chaque symbole est stoqué dans l'\emph{array} assigné à son symbole et référencé dans sa \emph{Hashtable}. Le tout dans le contexte dans lequel se trouve ce symbole.
+    \item Lors du "test" du code, chaque \emph{Function} est vérifiée par la validité de son type de retour et de la bonne présence des \emph{VariableBase} dans leur contexte respectif pour qu'elles respectent leurs portées. Cette action est facilitée par la présence des \emph{Hashtable}
+    \item Chaque symbole est donc restitué en code NBC en conservant chaque fonctionalité du code \emph{Slip} entré dans le compilateur.
+\end{itemize}
+
+Ceci est donc le résumé de l'implémentation de notra "Table des symboles".
