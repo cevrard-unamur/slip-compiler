@@ -9,16 +9,42 @@ import be.unamur.info.b314.compiler.nbc.writer.NBCWriter;
 import java.io.PrintWriter;
 
 public class IfExpression {
-    private static int conditionId = 1;
-    private static final String conditionTemporaryVariable = "__compVariable";
+    /**
+     * The if identifier for the temporary variable.
+     */
+    private static int ifId = 1;
+    /**
+     * The prefix name of the temporary variable
+     */
+    private static final String ifTemporaryVariable = "__ifVariable";
 
-    private static String getJumpName() { return IfExpression.conditionTemporaryVariable + IfExpression.conditionId; }
-    private static String getJumpNameEnd() { return IfExpression.conditionTemporaryVariable + IfExpression.conditionId + "End"; }
+    /**
+     * Gets the name of the jump name use for the if.
+     * @return the name of the jump name use for the if.
+     */
+    private static String getJumpName() { return IfExpression.ifTemporaryVariable + IfExpression.ifId; }
+    /**
+     * Gets the name of the end jump name use for the if.
+     * @return the name of the end jump name use for the if.
+     */
+    private static String getJumpNameEnd() { return IfExpression.ifTemporaryVariable + IfExpression.ifId + "End"; }
 
+    /**
+     * Enters in a if instruction context to write the NBC code of it.
+     * @param context the if instruction context.
+     * @param application the application.
+     * @param writer the print writer of the NBC output.
+     */
     public static void enterIfInstructionContext(PlayPlusParser.IfInstructionContext context, Application application, PrintWriter writer) {
         IfExpression.enterIfContext((PlayPlusParser.IfContext)context.ifBlock(), application, writer);
     }
 
+    /**
+     * Enters in a if context to write the NBC code of it.
+     * @param context the if context.
+     * @param application the application.
+     * @param writer the print writer of the NBC output.
+     */
     public static void enterIfContext(PlayPlusParser.IfContext context, Application application, PrintWriter writer) {
         String rightExpressionVariable = RightExpression.enterRightExpression(context.rightExpr(), application, writer);
 
@@ -52,6 +78,6 @@ public class IfExpression {
         // End of the condition label
         NBCWriter.writeLabel(writer, IfExpression.getJumpNameEnd());
 
-        IfExpression.conditionId++;
+        IfExpression.ifId++;
     }
 }

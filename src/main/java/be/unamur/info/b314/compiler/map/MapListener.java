@@ -11,14 +11,26 @@ public class MapListener extends PlayPlusBaseListener {
     private List<String> errors = new ArrayList();
     private String[][] map;
 
+    /**
+     * Method that get the errors
+     * @return the List of errors
+     */
     public List<String> getErrors() {
         return this.errors;
     }
 
+    /**
+     * Method that get the map
+     * @return doubled array representation of the map
+     */
     public String[][] getMap() {
         return this.map;
     }
 
+    /**
+     * Override method of the map parsing
+     * @param ctx current map context
+     */
     @Override
     public void enterMapDescription(PlayPlusParser.MapDescriptionContext ctx) {
         Integer lines = Integer.parseUnsignedInt(ctx.NUMBER(0).getText());

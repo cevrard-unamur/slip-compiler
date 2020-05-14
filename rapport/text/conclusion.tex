@@ -2,5 +2,16 @@
 
 % Une conclusion qui synth ́etise :
 % — Les forces et les faiblesses du compilateur que vous avez construit.
-% — Les am ́eliorations que vous pourriez/devriez/aimeriez apporter `a ce compilateur. — Ce que ce projet vous a appris.
+% — Les am ́eliorations que vous pourriez/devriez/aimeriez apporter `a ce compilateur. 
+% — Ce que ce projet vous a appris.
 % — Tout commentaire constructif sur le projet en lui-mˆeme qui vous semble pertinent.
+
+Nous sommes assez content de notre compilateur, particulièrement l'architecture de celui-ci qui, suivant le context ANTLR, redirige vers la partie qui s'occupe de la gestion de ce context. Cela nous à permis de facilement réutiliser nos codes et de gérer la plus part des parties du compilateur de manière indépendante.
+
+Une faiblesse de celui-ci pourrait être l'utilisation importante de \emph{instanceof}. Nous aurions pu regarder à une alternative suivant les informations qui étaient contenues dans le context ANTLR sur lequel on travaillait pour voir si celui-ci ne contenait pas une information qui nous aurait permis d'éviter l'\emph{instanceof}.
+
+ Une amélioration que bous aimerions apporter est un \emph{refactoring} de la grammaire. En effet, nous avons pu remarquer lors de l'écriture du compilateur que nous avions à passer par certains contexts qui ne faisaient rien. Nous pourrions donc retirer certains éléments de la grammaire pour améliorer celle-ci.
+ 
+ Le projet nous a appris l'écriture d'une grammaire assez complète ainsi que la rigueur dans la compilation d'un code vers un autre. De fait, il y a vite beaucoup d'éléments à gérer dans le code NBC de sortie.
+ 
+ Une difficulté du projet a été de ne pas pouvoir tester le code compilé sur un vrai robot LEGO\copyright car le simulateur \emph{Bricx} n'est pas complet et donc nous ne pouvions savoir si ce que nous générions était correcte et correspondait au comportement attendu. 

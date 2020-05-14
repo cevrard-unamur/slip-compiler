@@ -8,6 +8,13 @@ import be.unamur.info.b314.compiler.exception.PlayPlusException;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class GenericExpression {
+    /**
+     * Method that parse a left expression
+     * @param ctx current left expression context
+     * @param expectedType expected variable type
+     * @param application current application
+     * @return the left expression context
+     */
     public static Object parseLeftExpression(PlayPlusParser.LeftExpressionContext ctx, String expectedType, Application application) {
         PlayPlusParser.LeftExprContext leftContext = ctx.leftExpr();
 
@@ -49,6 +56,12 @@ public class GenericExpression {
         return ctx;
     }
 
+    /**
+     * Method that parse a comparison expression
+     * @param ctx current comparison expression context
+     * @param application current application
+     * @return the comparison expression
+     */
     public static Object parseCompExpression(PlayPlusParser.CompExpressionContext ctx, Application application) {
         PlayPlusParser.RightExprContext leftChild = ctx.rightExpr(0);
         PlayPlusParser.RightExprContext rightChild = ctx.rightExpr(1);
@@ -89,6 +102,13 @@ public class GenericExpression {
         return ctx;
     }
 
+    /**
+     * Method that parse a parentheses expression
+     * @param ctx current parentheses expression
+     * @param expectedType expression expected type
+     * @param application current application
+     * @return the parentheses expression context
+     */
     public static Object parseParenthesesExpression(PlayPlusParser.ParenthesesExpressionContext ctx, String expectedType, Application application) {
         if (ctx.rightExpr() instanceof PlayPlusParser.ParenthesesExpressionContext) {
             parseParenthesesExpression((PlayPlusParser.ParenthesesExpressionContext)ctx.rightExpr(), expectedType, application);

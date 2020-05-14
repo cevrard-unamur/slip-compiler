@@ -5,7 +5,12 @@ import be.unamur.info.b314.compiler.application.Application;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
 
 public class CharExpression {
-    // Parse char expression
+    /**
+     * Method that parse a char right expression
+     * @param ctx current RightExpressionContext
+     * @param application current application
+     * @return appropriate context
+     */
     public static Object parseCharRightExpression(PlayPlusParser.RightExprContext ctx, Application application) {
         if (ctx instanceof PlayPlusParser.CharContext) {
             return CharExpression.parseCharExpression((PlayPlusParser.CharContext)ctx, application);
@@ -18,6 +23,12 @@ public class CharExpression {
         }
     }
 
+    /**
+     * Method that parse a regular char expression
+     * @param ctx current CharContext
+     * @param application current application
+     * @return CharExpression context
+     */
     public static Object parseCharExpression(PlayPlusParser.CharContext ctx, Application application) {
         return ctx;
     }

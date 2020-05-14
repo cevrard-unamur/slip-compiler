@@ -10,18 +10,35 @@ import be.unamur.info.b314.compiler.nbc.writer.VariableWriter;
 import java.io.PrintWriter;
 
 public class RightExpression {
+    /**
+     * The right expression identifier for the temporary variable.
+     */
     private static int rightExpressionId = 1;
+    /**
+     * The prefix name of the temporary variable
+     */
     private static final String temporaryVariableName = "__rightExpressionVar";
 
+    /**
+     * Gets the name of the temporary variable use for the right expression.
+     * @return the name of the temporary variable use for the right expression.
+     */
     private static String getVariableName() {
         return temporaryVariableName + rightExpressionId;
     }
 
+    /**
+     * Enters in a right expression to generate the NBC code of it.
+     * @param context the right expression context.
+     * @param application the application.
+     * @param writer the print writer of the NBC output.
+     * @return the name of the temporary variable generated for the right expression result.
+     */
     public static String enterRightExpression(PlayPlusParser.RightExprContext context, Application application, PrintWriter writer) {
         if (context instanceof PlayPlusParser.NumberContext) {
             // We create a temporary variable with the value of the number
             String variableName = RightExpression.getVariableName();
-            VariableWriter.writeTemporaryScalarInitialisation(writer,
+            VariableWriter.writeTemporaryScalarDeclaration(writer,
                     NBCCodeTypes.Int,
                     variableName,
                     ((PlayPlusParser.NumberContext) context).NUMBER().getText());
@@ -30,7 +47,7 @@ public class RightExpression {
         } else if (context instanceof PlayPlusParser.CharContext) {
             // We create a temporary variable with the value of the char
             String variableName = RightExpression.getVariableName();
-            VariableWriter.writeTemporaryScalarInitialisation(writer,
+            VariableWriter.writeTemporaryScalarDeclaration(writer,
                     NBCCodeTypes.Char,
                     variableName,
                     ((PlayPlusParser.CharContext) context).CHAR().getText());
@@ -39,7 +56,7 @@ public class RightExpression {
         } else if (context instanceof PlayPlusParser.BooleanFalseContext) {
             // We create a temporary variable with the value of the boolean false
             String variableName = RightExpression.getVariableName();
-            VariableWriter.writeTemporaryScalarInitialisation(writer,
+            VariableWriter.writeTemporaryScalarDeclaration(writer,
                     NBCCodeTypes.Char,
                     variableName,
                     NBCWriter.booleanFalse);
@@ -48,20 +65,20 @@ public class RightExpression {
         } else if (context instanceof PlayPlusParser.BooleanTrueContext) {
             // We create a temporary variable with the value of the boolean false
             String variableName = RightExpression.getVariableName();
-            VariableWriter.writeTemporaryScalarInitialisation(writer,
+            VariableWriter.writeTemporaryScalarDeclaration(writer,
                     NBCCodeTypes.Char,
                     variableName,
                     NBCWriter.booleanTrue);
             rightExpressionId++;
             return variableName;
         } else if (context instanceof PlayPlusParser.IntegerExpressionContext) {
-            return IntegerExpression.enterCalc(
+            return IntegerExpression.enterIntegerExpression(
                     (PlayPlusParser.IntegerExpressionContext) context,
                     application,
                     writer
             );
         } else if (context instanceof PlayPlusParser.NegativeIntegerExpressionContext) {
-            return IntegerExpression.enterNeg(
+            return IntegerExpression.enterNegativeIntegerExpression(
                     (PlayPlusParser.NegativeIntegerExpressionContext) context,
                     application,
                     writer
@@ -73,7 +90,7 @@ public class RightExpression {
                     writer
             );
         } else if (context instanceof PlayPlusParser.CompExpressionContext) {
-            return ComparisonExpression.enterComp(
+            return ComparisonExpression.enterCompExpression(
                     (PlayPlusParser.CompExpressionContext)context,
                     application,
                     writer

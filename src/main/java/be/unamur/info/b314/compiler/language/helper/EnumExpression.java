@@ -8,12 +8,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EnumExpression {
+    /**
+     * Method that parse an EnumerationDeclaration
+     * @param ctx current EnumerationDeclaration context
+     * @param application current application
+     * @return the EnumerationDeclaration context
+     */
     public static Object parseEnumerationDeclaration(PlayPlusParser.EnumDeclarationContext ctx, Application application) {
         EnumExpression.parseEnumeration((PlayPlusParser.EnumerationContext)ctx, application);
 
         return ctx;
     }
 
+    /**
+     * Method that parse an Enumeration
+     * @param ctx current enumeration context
+     * @param application current application
+     * @return the enumeration context
+     */
     public static Object parseEnumeration(PlayPlusParser.EnumerationContext ctx, Application application) {
         List<String> values = new ArrayList<>();
 

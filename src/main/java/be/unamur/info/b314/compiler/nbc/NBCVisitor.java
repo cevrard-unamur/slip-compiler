@@ -13,21 +13,41 @@ import be.unamur.info.b314.compiler.nbc.writer.VariableWriter;
 import java.util.List;
 
 public class NBCVisitor extends PlayPlusBaseVisitor {
+    /**
+     * The application for which we want to print the NBC code.
+     */
     private final Application application;
-    private final String inputFile;
+    /**
+     * The path to the folder of the test.
+     */
+    private final String inputPath;
+    /**
+     * The NBC printer.
+     */
     private final NBCPrinter printer;
 
-    public NBCVisitor(NBCPrinter printer, String inputFile, Application application) {
+    /**
+     * Initializes a new instance of a NBCVisitor.
+     * @param printer the NBC printer.
+     * @param inputPath the path to the folder of the test.
+     * @param application the application for which we want to print the NBC code.
+     */
+    public NBCVisitor(NBCPrinter printer, String inputPath, Application application) {
         this.printer = printer;
-        this.inputFile = inputFile;
+        this.inputPath = inputPath;
         this.application = application;
         this.application.goToRootContext();
     }
 
+    /**
+     * The ANTRL function call on the program visit node.
+     * @param ctx the context of the program.
+     * @return the context of the program.
+     */
     @Override
-    public Object visitProgramme(PlayPlusParser.ProgrammeContext ctx) {
+    public Object visitProgram(PlayPlusParser.ProgramContext ctx) {
         // We check if the imported map is correct.
-        MapExpression.enterMapImportation((PlayPlusParser.MapImportationContext)ctx.mapImport(), this.inputFile, this.application);
+        MapExpression.enterMapImportation((PlayPlusParser.MapImportationContext)ctx.mapImport(), this.inputPath, this.application);
 
         NBCWriter.writeSegmentStart(this.printer.getWriter());
 
@@ -72,19 +92,23 @@ public class NBCVisitor extends PlayPlusBaseVisitor {
         return ctx;
     }
 
+    /**
+     * Print a variable in NBC.
+     * @param variable the variable to print.
+     */
     private void printVariableBase(VariableBase variable) {
         if (variable.getType().equals("void")) {
             return;
         }
 
         if (variable instanceof Variable) {
-            VariableWriter.writeScalarInitialisation(this.printer.getWriter(),
+            VariableWriter.writeScalarDeclaration(this.printer.getWriter(),
                     VariableHelper.variableToNbcCodeType(variable.getType()),
-                    variable.getName());
+                    variable.getNameAndContext());
         } else if (variable instanceof Array) {
-            VariableWriter.writeArrayInitialisation(this.printer.getWriter(),
+            VariableWriter.writeArrayDeclaration(this.printer.getWriter(),
                     VariableHelper.variableToNbcCodeType(variable.getType()),
-                    variable.getName());
+                    variable.getNameAndContext());
         } else {
             int i = 0;
         }

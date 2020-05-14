@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArrayHelper {
+    /**
+     * Method that help translating a Integer list into an integer array
+     * @param ctx current ArrayContext
+     * @return integer array filled with the array context numbers
+     */
     public static Integer[] getSize(PlayPlusParser.ArrayContext ctx) {
         List<Integer> arraySize = new ArrayList<>();
 

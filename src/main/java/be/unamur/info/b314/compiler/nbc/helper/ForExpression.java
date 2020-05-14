@@ -2,6 +2,7 @@ package be.unamur.info.b314.compiler.nbc.helper;
 
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
+import be.unamur.info.b314.compiler.application.Variable;
 import be.unamur.info.b314.compiler.nbc.writer.IfWriter;
 import be.unamur.info.b314.compiler.nbc.writer.NBCOpCodeTypes;
 import be.unamur.info.b314.compiler.nbc.writer.NBCWriter;
@@ -10,18 +11,44 @@ import be.unamur.info.b314.compiler.nbc.writer.VariableWriter;
 import java.io.PrintWriter;
 
 public class ForExpression {
+    /**
+     * The for identifier for the temporary variable.
+     */
     private static int forId = 1;
+    /**
+     * The prefix name of the temporary variable
+     */
     private static final String forTemporaryVariable = "__forVariable";
 
+    /**
+     * Gets the name of the jump name use for the for.
+     * @return the name of the jump name use for the for.
+     */
     private static String getJumpName() { return ForExpression.forTemporaryVariable + ForExpression.forId; }
+    /**
+     * Gets the name of the end jump name use for the for.
+     * @return the name of the end jump name use for the for.
+     */
     private static String getJumpNameEnd() { return ForExpression.forTemporaryVariable + ForExpression.forId + "End"; }
 
+    /**
+     * Enters in a for instruction context to write the NBC code of it.
+     * @param context the for instruction context.
+     * @param application the application.
+     * @param writer the print writer of the NBC output.
+     */
     public static void enterForInstruction(PlayPlusParser.ForInstructionContext context, Application application, PrintWriter writer) {
         ForExpression.enterFor((PlayPlusParser.ForContext)context.forBlock(), application, writer);
     }
 
+    /**
+     * Enters in a for context to write the NBC code of it.
+     * @param context the for context.
+     * @param application the application.
+     * @param writer the print writer of the NBC output.
+     */
     public static void enterFor(PlayPlusParser.ForContext context, Application application, PrintWriter writer) {
-        String incrementLoopVariableName = context.ID().getText();
+        Variable incrementVariable = application.getVariable(context.ID().getText());
 
         // Calculate the right expression for the initialisation
         String rightExpressionInitialisation = RightExpression.enterRightExpression(
@@ -32,7 +59,7 @@ public class ForExpression {
         // Move this expression to the loop variable
         VariableWriter.writeVariableMove(
                 writer,
-                incrementLoopVariableName,
+                incrementVariable.getNameAndContext(),
                 rightExpressionInitialisation
         );
 
@@ -50,7 +77,7 @@ public class ForExpression {
                 writer,
                 NBCOpCodeTypes.Equal,
                 ForExpression.getJumpNameEnd(),
-                incrementLoopVariableName,
+                incrementVariable.getNameAndContext(),
                 rightExpressionEndOfLoop
         );
 

@@ -3,7 +3,6 @@ package be.unamur.info.b314.compiler.nbc.helper;
 import be.unamur.info.b314.compiler.PlayPlusParser;
 import be.unamur.info.b314.compiler.application.Application;
 import be.unamur.info.b314.compiler.application.Function;
-import be.unamur.info.b314.compiler.application.Variable;
 import be.unamur.info.b314.compiler.application.VariableBase;
 import be.unamur.info.b314.compiler.exception.PlayPlusException;
 import be.unamur.info.b314.compiler.nbc.writer.FunctionWriter;
@@ -34,7 +33,7 @@ public class FunctionExpression {
             } else if (child instanceof PlayPlusParser.ActionInstructionContext) {
                 ActionExpression.enterActionInstructionContext((PlayPlusParser.ActionInstructionContext)child, application, writer);
             } else if (child instanceof PlayPlusParser.VariableInstructionContext) {
-                VariableExpression.enterVariable(
+                VariableExpression.enterVariableInstruction(
                         (PlayPlusParser.VariableInstructionContext)child,
                         application,
                         writer
@@ -106,9 +105,9 @@ public class FunctionExpression {
             FunctionExpression.argumentAssignation(context.rightExpr(i), function.getArgument(i), application, writer);
         }
         // We call the function itself
-        FunctionWriter.writeFunctionCall(writer, functionName);
+        FunctionWriter.writeFunctionCall(writer, function.getName());
 
-        return functionName;
+        return function.getVariable(function.getName()).getNameAndContext();
     }
 
     /**
@@ -155,33 +154,48 @@ public class FunctionExpression {
     private static void argumentAssignation(PlayPlusParser.RightExprContext rightExpression, VariableBase argument, Application application, PrintWriter writer) {
         if (rightExpression instanceof PlayPlusParser.NumberContext) {
             String argumentValue = ((PlayPlusParser.NumberContext) rightExpression).NUMBER().getText();
-            VariableWriter.writeVariableSet(writer, argument.getName(), argumentValue);
+            VariableWriter.writeVariableSet(writer, argument.getNameAndContext(), argumentValue);
         } else if (rightExpression instanceof PlayPlusParser.CharContext) {
             String argumentValue = ((PlayPlusParser.CharContext) rightExpression).CHAR().getText();
-            VariableWriter.writeVariableSet(writer, argument.getName(), argumentValue);
+            VariableWriter.writeVariableSet(writer, argument.getNameAndContext(), argumentValue);
         } else if (rightExpression instanceof PlayPlusParser.BooleanTrueContext) {
-            VariableWriter.writeVariableSet(writer, argument.getName(), NBCWriter.booleanTrue);
+            VariableWriter.writeVariableSet(writer, argument.getNameAndContext(), NBCWriter.booleanTrue);
         } else if (rightExpression instanceof PlayPlusParser.BooleanFalseContext) {
-            VariableWriter.writeVariableSet(writer, argument.getName(), NBCWriter.booleanFalse);
+            VariableWriter.writeVariableSet(writer, argument.getNameAndContext(), NBCWriter.booleanFalse);
         } else if (rightExpression instanceof PlayPlusParser.FunctionCallExpressionContext) {
+            Function function = application.getFunction(
+                    ((PlayPlusParser.FunctionCallExpressionContext) rightExpression).functionCall().ID().getText()
+            );
+
+            VariableBase returnVariable = function.getVariable(
+                    ((PlayPlusParser.FunctionCallExpressionContext) rightExpression).functionCall().ID().getText()
+            );
             // We call the function to retrieve the result of it and assign it to our argument
             FunctionExpression.enterFunctionCall(
                     ((PlayPlusParser.FunctionCallExpressionContext) rightExpression).functionCall(),
                     application,
                     writer);
             VariableWriter.writeVariableMove(writer,
-                    argument.getName(),
-                    ((PlayPlusParser.FunctionCallExpressionContext) rightExpression).functionCall().ID().getText());
+                    argument.getNameAndContext(),
+                    returnVariable.getNameAndContext());
         } else if (rightExpression instanceof PlayPlusParser.LeftExpressionContext) {
             // If we have a left expression, we need to check the type of it to know how to get the content of it
             PlayPlusParser.LeftExpressionContext leftExpression = ((PlayPlusParser.LeftExpressionContext) rightExpression);
             if (leftExpression.leftExpr() instanceof PlayPlusParser.LeftIdContext) {
+                VariableBase targetVariable = application.getVariable(
+                        ((PlayPlusParser.LeftIdContext) leftExpression.leftExpr()).ID().getText()
+                );
+
                 // If it's just an id, we need to get back the value of it and store it in the argument
                 VariableWriter.writeVariableMove(
                         writer,
-                        argument.getName(),
-                        ((PlayPlusParser.LeftIdContext) leftExpression.leftExpr()).ID().getText());
+                        argument.getNameAndContext(),
+                        targetVariable.getNameAndContext());
             } else if (leftExpression.leftExpr() instanceof PlayPlusParser.LeftArrayContext) {
+                VariableBase targetVariable = application.getArray(
+                        ((PlayPlusParser.LeftArrayContext) leftExpression.leftExpr()).ID().getText()
+                );
+
                 String indexVariable = "--";
                 // We need to get the name of the right expression and execute the code of it
                 for (PlayPlusParser.RightExprContext childRightExpression : ((PlayPlusParser.LeftArrayContext) leftExpression.leftExpr()).rightExpr()) {
@@ -190,31 +204,31 @@ public class FunctionExpression {
 
                 VariableWriter.writeExtractFromArray(
                         writer,
-                        argument.getName(),
-                        ((PlayPlusParser.LeftArrayContext) leftExpression.leftExpr()).ID().getText(),
+                        argument.getNameAndContext(),
+                        targetVariable.getNameAndContext(),
                         indexVariable);
             }
         } else if (rightExpression instanceof PlayPlusParser.IntegerExpressionContext) {
-            String argumentValue = IntegerExpression.enterCalc(
+            String argumentValue = IntegerExpression.enterIntegerExpression(
                     (PlayPlusParser.IntegerExpressionContext)rightExpression,
                     application,
                     writer
             );
-            VariableWriter.writeVariableMove(writer, argument.getName(), argumentValue);
+            VariableWriter.writeVariableMove(writer, argument.getNameAndContext(), argumentValue);
         } else if (rightExpression instanceof PlayPlusParser.NegativeIntegerExpressionContext){
-            String argumentValue = IntegerExpression.enterNeg(
+            String argumentValue = IntegerExpression.enterNegativeIntegerExpression(
                     (PlayPlusParser.NegativeIntegerExpressionContext)rightExpression,
                     application,
                     writer
             );
-            VariableWriter.writeVariableMove(writer, argument.getName(), argumentValue);
+            VariableWriter.writeVariableMove(writer, argument.getNameAndContext(), argumentValue);
         } else if (rightExpression instanceof PlayPlusParser.CompExpressionContext) {
-            String argumentValue = ComparisonExpression.enterComp(
+            String argumentValue = ComparisonExpression.enterCompExpression(
                     (PlayPlusParser.CompExpressionContext)rightExpression,
                     application,
                     writer
             );
-            VariableWriter.writeVariableMove(writer, argument.getName(), argumentValue);
+            VariableWriter.writeVariableMove(writer, argument.getNameAndContext(), argumentValue);
         } else if (rightExpression instanceof PlayPlusParser.ParenthesesExpressionContext) {
             FunctionExpression.argumentAssignation(
                     ((PlayPlusParser.ParenthesesExpressionContext) rightExpression).rightExpr(),
@@ -228,7 +242,7 @@ public class FunctionExpression {
                     application,
                     writer
             );
-            VariableWriter.writeVariableMove(writer, argument.getName(), argumentValue);
+            VariableWriter.writeVariableMove(writer, argument.getNameAndContext(), argumentValue);
         } else {
             throw new PlayPlusException("Not implemented");
         }
